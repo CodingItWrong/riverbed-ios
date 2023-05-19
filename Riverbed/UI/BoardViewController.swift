@@ -9,9 +9,11 @@ class BoardViewController: UIViewController,
 
     var cardStore: CardStore!
     var columnStore: ColumnStore!
+    var elementStore: ElementStore!
 
     var cards = [Card]()
     var columns = [Column]()
+    var elements = [Element]()
 
     var board: Board? {
         didSet { updateForBoard() }
@@ -56,6 +58,15 @@ class BoardViewController: UIViewController,
                 print("Error loading columns: \(error)")
             }
         }
+        elementStore.all(for: board) { (result) in
+            switch result {
+            case let .success(elements):
+                self.elements = elements
+                self.columnsCollectionView.reloadData()
+            case let .failure(error):
+                print("Error loading elements: \(error)")
+            }
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,6 +103,7 @@ class BoardViewController: UIViewController,
         let column = columns[indexPath.row]
 
         cell.title.text = column.attributes.name
+        cell.elements = elements
         cell.cards = cards
 
         return cell
@@ -112,6 +124,9 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource {
     var cards = [Card]() {
         didSet { tableView.reloadData() }
     }
+    var elements = [Element]() {
+        didSet { tableView.reloadData() }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cards.count
@@ -122,7 +137,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource {
 
         if let cell = cell as? CardSummaryCell {
             let card = cards[indexPath.row]
-            cell.card = card
+            cell.configureData(card: card, elements: elements)
         }
 
         return cell
@@ -130,28 +145,66 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource {
 }
 
 class CardSummaryCell: UITableViewCell {
-    @IBOutlet var cardView: UIView!
+    @IBOutlet var cardView: UIView! {
+        didSet { configureCardView() }
+    }
     @IBOutlet var fieldStack: UIStackView!
 
-    var card: Card? {
-        // TODO: base on elements instead of card changes (should help performance)
-        didSet { configureSummaryFields() }
+    private var card: Card?
+    var elements: [Element]?
+    var labels = [String: UILabel]()
+
+    var summaryElements: [Element] {
+        let elements = elements?.filter { $0.attributes.showInSummary } ?? []
+        return elements
     }
 
-    func configureSummaryFields() {
+    func configureCardView() {
+        cardView.layer.cornerRadius = 5.0
+    }
+
+    func configureData(card: Card, elements: [Element]) {
+        if elements != self.elements {
+            self.elements = elements
+            configureElements()
+        }
+
+        self.card = card
+        configureValues()
+    }
+
+    func configureElements() {
+        print("RECONFIGURING ELEMENTS FOR A CELL INSTANCE")
         fieldStack.arrangedSubviews.forEach { (subview) in
             subview.removeFromSuperview()
         }
-        let tempLabel = UILabel()
-        tempLabel.font = .preferredFont(forTextStyle: .body)
-        if let card = card {
-            tempLabel.text = "Card \(card.id)"
-        }
-        fieldStack.addArrangedSubview(tempLabel)
+        labels.removeAll()
+        summaryElements.forEach { (element) in
+            let label = UILabel()
+            label.font = .preferredFont(forTextStyle: .body)
 
-        let otherLabel = UILabel()
-        otherLabel.font = .preferredFont(forTextStyle: .body)
-        otherLabel.text = "Hi"
-        fieldStack.addArrangedSubview(otherLabel)
+            labels[element.id] = label
+            fieldStack.addArrangedSubview(label)
+        }
+    }
+
+    func configureValues() {
+        guard let card = card else { return }
+        summaryElements.forEach { (element) in
+            guard let label = labels[element.id] else {
+                print("Could not find label for element \(element.id)")
+                return
+            }
+            if let value = card.attributes.fieldValues[element.id] {
+                switch value {
+                case let .string(stringValue):
+                    label.text = stringValue
+                case .dictionary:
+                    label.text = "(TODO: dictionary)"
+                }
+            } else {
+                label.text = ""
+            }
+        }
     }
 }

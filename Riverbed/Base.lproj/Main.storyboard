@@ -40,7 +40,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-8l-pIW">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-8l-pIW">
                                                     <rect key="frame" x="0.0" y="34.5" width="454" height="979.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
@@ -52,10 +52,10 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gU5-nK-X3N">
-                                                                        <rect key="frame" x="16" y="11" width="422" height="75"/>
+                                                                        <rect key="frame" x="4" y="4" width="446" height="89"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YMW-MV-QbW">
-                                                                                <rect key="frame" x="8" y="8" width="406" height="59"/>
+                                                                                <rect key="frame" x="8" y="8" width="430" height="73"/>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,10 +68,10 @@
                                                                     </view>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="leading" secondItem="i2G-JH-JWr" secondAttribute="leadingMargin" id="UIZ-P5-w1y"/>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="gU5-nK-X3N" secondAttribute="bottom" id="UOH-Ak-0S2"/>
-                                                                    <constraint firstAttribute="trailingMargin" secondItem="gU5-nK-X3N" secondAttribute="trailing" id="XL9-OU-TDU"/>
-                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="top" secondItem="i2G-JH-JWr" secondAttribute="topMargin" id="oZK-Ij-bxb"/>
+                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="leading" secondItem="i2G-JH-JWr" secondAttribute="leading" constant="4" id="UIZ-P5-w1y"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="gU5-nK-X3N" secondAttribute="bottom" constant="4" id="UOH-Ak-0S2"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gU5-nK-X3N" secondAttribute="trailing" constant="4" id="XL9-OU-TDU"/>
+                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="top" secondItem="i2G-JH-JWr" secondAttribute="top" constant="4" id="oZK-Ij-bxb"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

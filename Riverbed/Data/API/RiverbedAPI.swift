@@ -23,6 +23,10 @@ struct RiverbedAPI {
         url(columnsPath(board))
     }
 
+    static func elementsURL(for board: Board) -> URL {
+        url(elementsPath(board))
+    }
+
     // MARK: - private
 
     private static func url(_ path: String) -> URL {
@@ -43,6 +47,10 @@ struct RiverbedAPI {
 
     private static func columnsPath(_ board: Board) -> String {
         joinPathSegments(boardPath(board), "columns")
+    }
+
+    private static func elementsPath(_ board: Board) -> String {
+        joinPathSegments(boardPath(board), "elements")
     }
 
     private static func joinPathSegments(_ pathSegments: String...) -> String {

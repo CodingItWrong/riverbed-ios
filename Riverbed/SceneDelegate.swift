@@ -34,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         boardVC.cardStore = CardStore()
         boardVC.columnStore = ColumnStore()
+        boardVC.elementStore = ElementStore()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -26,6 +26,8 @@
 		0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
 		0342FC802A17C24100CB8075 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
 		0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC812A17C2D300CB8075 /* CardStore.swift */; };
+		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
+		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		0342FC7D2A17B7CE00CB8075 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		0342FC7F2A17C24100CB8075 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0342FC812A17C2D300CB8075 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
+		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
+		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
+				038BBC2D2A1811C300BB2284 /* ElementStore.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 				0342FC702A17960000CB8075 /* Board.swift */,
 				0342FC7F2A17C24100CB8075 /* Card.swift */,
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
+				038BBC2F2A1811C900BB2284 /* Element.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
+				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				0342FC752A17B68200CB8075 /* ColumnStore.swift in Sources */,
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
@@ -355,6 +362,7 @@
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
+				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
