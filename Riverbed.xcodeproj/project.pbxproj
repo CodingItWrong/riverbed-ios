@@ -9,13 +9,15 @@
 /* Begin PBXBuildFile section */
 		03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF52A13DF9D0063EE24 /* AppDelegate.swift */; };
 		03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */; };
-		03027DFA2A13DF9D0063EE24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF92A13DF9D0063EE24 /* ViewController.swift */; };
 		03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFB2A13DF9D0063EE24 /* Main.storyboard */; };
 		03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFE2A13DF9E0063EE24 /* Assets.xcassets */; };
 		03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */; };
 		03027E0D2A13DF9E0063EE24 /* RiverbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E0C2A13DF9E0063EE24 /* RiverbedTests.swift */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
 		03027E192A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E182A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift */; };
+		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
+		0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC6D2A17959F00CB8075 /* BoardStore.swift */; };
+		0342FC712A17960000CB8075 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC702A17960000CB8075 /* Board.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +41,6 @@
 		03027DF22A13DF9D0063EE24 /* Riverbed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riverbed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027DF52A13DF9D0063EE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03027DF92A13DF9D0063EE24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03027DFC2A13DF9D0063EE24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		03027DFE2A13DF9E0063EE24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03027E012A13DF9E0063EE24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,9 @@
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
 		03027E182A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
+		0342FC6D2A17959F00CB8075 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
+		0342FC702A17960000CB8075 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,10 @@
 		03027DF42A13DF9D0063EE24 /* Riverbed */ = {
 			isa = PBXGroup;
 			children = (
+				0342FC6C2A1794D500CB8075 /* Data */,
+				0342FC6B2A17948300CB8075 /* UI */,
 				03027DF52A13DF9D0063EE24 /* AppDelegate.swift */,
 				03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */,
-				03027DF92A13DF9D0063EE24 /* ViewController.swift */,
 				03027DFB2A13DF9D0063EE24 /* Main.storyboard */,
 				03027DFE2A13DF9E0063EE24 /* Assets.xcassets */,
 				03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */,
@@ -125,6 +130,31 @@
 				03027E182A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift */,
 			);
 			path = RiverbedUITests;
+			sourceTree = "<group>";
+		};
+		0342FC6B2A17948300CB8075 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0342FC692A17947A00CB8075 /* BoardListViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0342FC6C2A1794D500CB8075 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0342FC6F2A1795F500CB8075 /* Models */,
+				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0342FC6F2A1795F500CB8075 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0342FC702A17960000CB8075 /* Board.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,9 +309,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03027DFA2A13DF9D0063EE24 /* ViewController.swift in Sources */,
+				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
+				0342FC712A17960000CB8075 /* Board.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
+				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

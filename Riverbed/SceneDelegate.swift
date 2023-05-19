@@ -16,6 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // (see `application:configurationForConnectingSceneSession` instead).
 
 //        guard let _ = (scene as? UIWindowScene) else { return }
+
+        guard let splitVC = window?.rootViewController as? UISplitViewController
+        else { fatalError("Expected a UISplitViewController") }
+
+        guard let leftNavController = splitVC.viewControllers.first as? UINavigationController
+        else { fatalError("Expected a UINavigationController") }
+
+        guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
+        else { fatalError("Expected a BoardListViewController") }
+
+        boardListVC.boardStore = BoardStore()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
