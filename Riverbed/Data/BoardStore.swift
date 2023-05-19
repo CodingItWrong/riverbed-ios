@@ -25,8 +25,6 @@ class BoardStore {
     }
 
     private func processBoardsResponse(data: Data?, error: Error?) -> Result<[Board], Error> {
-        print(jsonData: data)
-
         guard let data = data else {
             if let error = error {
                 return .failure(error)
