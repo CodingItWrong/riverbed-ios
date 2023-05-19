@@ -1,2 +1,6 @@
 disabled_rules:
   - closure_parameter_position
+
+nesting:
+  # Allows nested objects under JSON:API types, with CodingKeys nested under that
+  type_level: 2
