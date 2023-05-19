@@ -75,9 +75,11 @@ class BoardViewController: UIViewController,
         } else {
             width = 300
         }
-        let height = collectionView.frame.size.height -
-            collectionView.contentInset.top -
-            collectionView.contentInset.bottom
+        let height = collectionView.frame.size.height
+            - collectionView.safeAreaInsets.top
+            - collectionView.safeAreaInsets.bottom
+        // this may be due to "cells should not extend outside the safe area insets",
+        // which may not apply in my case to allow scrolling into the unsafe area
 
         return CGSize(width: width, height: height)
     }
