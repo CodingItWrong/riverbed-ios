@@ -1,5 +1,6 @@
 disabled_rules:
   - closure_parameter_position
+  - todo
 
 nesting:
   # Allows nested objects under JSON:API types, with CodingKeys nested under that
