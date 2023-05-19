@@ -97,7 +97,7 @@ class BoardViewController: UIViewController,
 
     func configureForCurrentSizeClass() {
         let isPagingEnabled = self.traitCollection.horizontalSizeClass == .compact
-        print("configureForCurrentSizeClass, isPagingEnabled = \(isPagingEnabled)")
+//        print("configureForCurrentSizeClass, isPagingEnabled = \(isPagingEnabled)")
         columnsCollectionView.isPagingEnabled = isPagingEnabled
     }
 

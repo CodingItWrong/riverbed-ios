@@ -19,8 +19,6 @@ class CardStore {
     }
 
     private func processCardsResponse(data: Data?, error: Error?) -> Result<[Card], Error> {
-        print(jsonData: data)
-
         guard let data = data else {
             if let error = error {
                 return .failure(error)
