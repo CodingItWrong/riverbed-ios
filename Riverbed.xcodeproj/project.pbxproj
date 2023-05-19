@@ -19,6 +19,11 @@
 		0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC6D2A17959F00CB8075 /* BoardStore.swift */; };
 		0342FC712A17960000CB8075 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC702A17960000CB8075 /* Board.swift */; };
 		0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC722A17B51A00CB8075 /* BoardViewController.swift */; };
+		0342FC752A17B68200CB8075 /* ColumnStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC742A17B68200CB8075 /* ColumnStore.swift */; };
+		0342FC772A17B69D00CB8075 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC762A17B69D00CB8075 /* APIError.swift */; };
+		0342FC792A17B6D400CB8075 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC782A17B6D400CB8075 /* Utils.swift */; };
+		0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */; };
+		0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,11 @@
 		0342FC6D2A17959F00CB8075 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 		0342FC702A17960000CB8075 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		0342FC722A17B51A00CB8075 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		0342FC742A17B68200CB8075 /* ColumnStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStore.swift; sourceTree = "<group>"; };
+		0342FC762A17B69D00CB8075 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		0342FC782A17B6D400CB8075 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedAPI.swift; sourceTree = "<group>"; };
+		0342FC7D2A17B7CE00CB8075 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +123,7 @@
 				03027DFE2A13DF9E0063EE24 /* Assets.xcassets */,
 				03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */,
 				03027E032A13DF9E0063EE24 /* Info.plist */,
+				0342FC782A17B6D400CB8075 /* Utils.swift */,
 			);
 			path = Riverbed;
 			sourceTree = "<group>";
@@ -146,8 +157,10 @@
 		0342FC6C2A1794D500CB8075 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0342FC7A2A17B70100CB8075 /* API */,
 				0342FC6F2A1795F500CB8075 /* Models */,
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
+				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -156,8 +169,18 @@
 			isa = PBXGroup;
 			children = (
 				0342FC702A17960000CB8075 /* Board.swift */,
+				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0342FC7A2A17B70100CB8075 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0342FC762A17B69D00CB8075 /* APIError.swift */,
+				0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,8 +337,13 @@
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
+				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
+				0342FC752A17B68200CB8075 /* ColumnStore.swift in Sources */,
+				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
 				0342FC712A17960000CB8075 /* Board.swift in Sources */,
+				0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
+				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 			);

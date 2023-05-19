@@ -6,7 +6,7 @@ class Board: Codable {
     var attributes: Board.Attributes
 
     init(id: String, attributes: Board.Attributes) {
-        self.type = "cards"
+        self.type = "boards"
         self.id = id
         self.attributes = attributes
     }

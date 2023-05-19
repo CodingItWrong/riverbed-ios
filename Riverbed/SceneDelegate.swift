@@ -31,6 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         boardListVC.boardStore = BoardStore()
         boardListVC.delegate = boardVC
+
+        boardVC.columnStore = ColumnStore()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,10 +16,61 @@
                     <view key="view" contentMode="scaleToFill" id="wLI-0p-YwG">
                         <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-zJ-9RT" userLabel="Columns Collection View">
+                                <rect key="frame" x="0.0" y="74" width="744" height="1059"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lSJ-PT-g4j">
+                                    <size key="itemSize" width="269" height="1014"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="SQU-q4-32P" customClass="ColumnCell" customModule="Riverbed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="269" height="1014"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DyP-Tp-E0D">
+                                            <rect key="frame" x="0.0" y="0.0" width="269" height="1014"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0">
+                                                    <rect key="frame" x="8" y="8" width="269" height="26.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="leading" secondItem="DyP-Tp-E0D" secondAttribute="leadingMargin" id="CbT-a0-GMk"/>
+                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="topMargin" id="b2S-6H-uMe"/>
+                                                <constraint firstAttribute="trailing" secondItem="d3b-ht-uh0" secondAttribute="trailingMargin" id="wzs-2l-MD5"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="269" height="1014"/>
+                                        <connections>
+                                            <outlet property="title" destination="d3b-ht-uh0" id="7y0-IA-9zx"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Flc-lf-CdM" id="n1F-KY-e0I"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="AUI-zJ-9RT" secondAttribute="trailing" id="0wN-Gh-LAw"/>
+                            <constraint firstAttribute="bottom" secondItem="AUI-zJ-9RT" secondAttribute="bottom" id="RNJ-GT-KD1"/>
+                            <constraint firstItem="AUI-zJ-9RT" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="hJV-vh-mp2"/>
+                            <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" id="l7D-o0-FYJ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Board" id="z2e-de-ATP"/>
+                    <connections>
+                        <outlet property="columnsCollectionView" destination="AUI-zJ-9RT" id="bZi-91-2a7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxX-OE-SJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
