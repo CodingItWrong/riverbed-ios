@@ -1,0 +1,2 @@
+disabled_rules:
+  - closure_parameter_position
