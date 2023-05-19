@@ -19,14 +19,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         guard let splitVC = window?.rootViewController as? UISplitViewController
         else { fatalError("Expected a UISplitViewController") }
-
         guard let leftNavController = splitVC.viewControllers.first as? UINavigationController
+        else { fatalError("Expected a UINavigationController") }
+        guard let rightNavController = splitVC.viewControllers.last as? UINavigationController
         else { fatalError("Expected a UINavigationController") }
 
         guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
         else { fatalError("Expected a BoardListViewController") }
+        guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
+        else { fatalError("Expected a BoardViewController") }
 
         boardListVC.boardStore = BoardStore()
+        boardListVC.delegate = boardVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
