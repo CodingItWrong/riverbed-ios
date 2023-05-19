@@ -24,6 +24,8 @@
 		0342FC792A17B6D400CB8075 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC782A17B6D400CB8075 /* Utils.swift */; };
 		0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */; };
 		0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
+		0342FC802A17C24100CB8075 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
+		0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC812A17C2D300CB8075 /* CardStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		0342FC782A17B6D400CB8075 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedAPI.swift; sourceTree = "<group>"; };
 		0342FC7D2A17B7CE00CB8075 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
+		0342FC7F2A17C24100CB8075 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		0342FC812A17C2D300CB8075 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 				0342FC7A2A17B70100CB8075 /* API */,
 				0342FC6F2A1795F500CB8075 /* Models */,
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
+				0342FC812A17C2D300CB8075 /* CardStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
 			);
 			path = Data;
@@ -169,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				0342FC702A17960000CB8075 /* Board.swift */,
+				0342FC7F2A17C24100CB8075 /* Card.swift */,
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 			);
 			path = Models;
@@ -343,7 +349,9 @@
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
 				0342FC712A17960000CB8075 /* Board.swift in Sources */,
 				0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */,
+				0342FC802A17C24100CB8075 /* Card.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
+				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,

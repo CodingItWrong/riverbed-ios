@@ -29,14 +29,10 @@ class BoardStore {
 
         do {
             let decoder = JSONDecoder()
-            let boardsResponse = try decoder.decode(BoardsResponse.self, from: data)
+            let boardsResponse = try decoder.decode(RiverbedAPI.Response<[Board]>.self, from: data)
             return .success(boardsResponse.data)
         } catch {
             return .failure(error)
         }
     }
-}
-
-struct BoardsResponse: Codable {
-    let data: [Board]
 }
