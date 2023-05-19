@@ -19,7 +19,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-zJ-9RT" userLabel="Columns Collection View">
                                 <rect key="frame" x="0.0" y="74" width="744" height="1059"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lSJ-PT-g4j">
                                     <size key="itemSize" width="454" height="1014"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -42,24 +42,43 @@
                                                 </label>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-8l-pIW">
                                                     <rect key="frame" x="0.0" y="34.5" width="454" height="979.5"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="g7b-dP-BwV" style="IBUITableViewCellStyleDefault" id="hME-cL-Pxl">
-                                                            <rect key="frame" x="0.0" y="50" width="454" height="43.5"/>
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="97" id="hME-cL-Pxl" customClass="CardSummaryCell" customModule="Riverbed" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="50" width="454" height="97"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hME-cL-Pxl" id="i2G-JH-JWr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="454" height="43.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="454" height="97"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g7b-dP-BwV">
-                                                                        <rect key="frame" x="16" y="0.0" width="422" height="43.5"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                                        <nil key="textColor"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gU5-nK-X3N">
+                                                                        <rect key="frame" x="16" y="11" width="422" height="75"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YMW-MV-QbW">
+                                                                                <rect key="frame" x="8" y="8" width="406" height="59"/>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottomMargin" secondItem="YMW-MV-QbW" secondAttribute="bottom" id="5YK-7O-8BF"/>
+                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="leading" secondItem="gU5-nK-X3N" secondAttribute="leadingMargin" id="ZzF-Y5-D6c"/>
+                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="top" secondItem="gU5-nK-X3N" secondAttribute="topMargin" id="pHo-5A-Fym"/>
+                                                                            <constraint firstAttribute="trailingMargin" secondItem="YMW-MV-QbW" secondAttribute="trailing" id="rLN-7X-JAm"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="leading" secondItem="i2G-JH-JWr" secondAttribute="leadingMargin" id="UIZ-P5-w1y"/>
+                                                                    <constraint firstAttribute="bottomMargin" secondItem="gU5-nK-X3N" secondAttribute="bottom" id="UOH-Ak-0S2"/>
+                                                                    <constraint firstAttribute="trailingMargin" secondItem="gU5-nK-X3N" secondAttribute="trailing" id="XL9-OU-TDU"/>
+                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="top" secondItem="i2G-JH-JWr" secondAttribute="topMargin" id="oZK-Ij-bxb"/>
+                                                                </constraints>
                                                             </tableViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <outlet property="cardView" destination="gU5-nK-X3N" id="VPn-8e-OQ5"/>
+                                                                <outlet property="fieldStack" destination="YMW-MV-QbW" id="pPc-Ir-4ne"/>
+                                                            </connections>
                                                         </tableViewCell>
                                                     </prototypes>
                                                     <connections>

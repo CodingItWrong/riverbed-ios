@@ -119,10 +119,39 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let card = cards[indexPath.row]
 
-        cell.textLabel?.text = "Card \(card.id)"
+        if let cell = cell as? CardSummaryCell {
+            let card = cards[indexPath.row]
+            cell.card = card
+        }
 
         return cell
+    }
+}
+
+class CardSummaryCell: UITableViewCell {
+    @IBOutlet var cardView: UIView!
+    @IBOutlet var fieldStack: UIStackView!
+
+    var card: Card? {
+        // TODO: base on elements instead of card changes (should help performance)
+        didSet { configureSummaryFields() }
+    }
+
+    func configureSummaryFields() {
+        fieldStack.arrangedSubviews.forEach { (subview) in
+            subview.removeFromSuperview()
+        }
+        let tempLabel = UILabel()
+        tempLabel.font = .preferredFont(forTextStyle: .body)
+        if let card = card {
+            tempLabel.text = "Card \(card.id)"
+        }
+        fieldStack.addArrangedSubview(tempLabel)
+
+        let otherLabel = UILabel()
+        otherLabel.font = .preferredFont(forTextStyle: .body)
+        otherLabel.text = "Hi"
+        fieldStack.addArrangedSubview(otherLabel)
     }
 }
