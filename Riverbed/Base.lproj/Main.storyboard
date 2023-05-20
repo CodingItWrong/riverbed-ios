@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -248,6 +249,60 @@
                                 <connections>
                                     <outlet property="elementLabel" destination="3Kd-V0-bfH" id="iS0-5J-6VV"/>
                                     <outlet property="valueDatePicker" destination="JQ4-4i-H0M" id="UtG-N3-R0u"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoiceElementCell" id="sGL-Zn-LIB" customClass="ChoiceElementCell" customModule="Riverbed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="289" width="580" height="58"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sGL-Zn-LIB" id="Bjd-gg-FZn">
+                                    <rect key="frame" x="0.0" y="0.0" width="580" height="58"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nx2-D5-JKA">
+                                            <rect key="frame" x="20" y="4" width="540" height="50"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuZ-T3-093">
+                                                    <rect key="frame" x="0.0" y="0.0" width="453" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJc-sR-lND">
+                                                            <rect key="frame" x="6" y="0.0" width="427" height="50"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="SJc-sR-lND" firstAttribute="top" secondItem="zuZ-T3-093" secondAttribute="top" id="74T-3p-iQV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SJc-sR-lND" secondAttribute="trailing" constant="20" id="8yq-Nw-8Zc"/>
+                                                        <constraint firstItem="SJc-sR-lND" firstAttribute="leading" secondItem="zuZ-T3-093" secondAttribute="leading" constant="6" id="95y-gv-RzQ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="SJc-sR-lND" secondAttribute="bottom" id="OUF-d8-WBh"/>
+                                                    </constraints>
+                                                </view>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5C-sB-NIa">
+                                                    <rect key="frame" x="453" y="0.0" width="87" height="50"/>
+                                                    <menu key="menu" id="lMH-bd-aD3">
+                                                        <children>
+                                                            <command title="Item 1" id="eb1-dy-zA4"/>
+                                                            <command title="Item 2" id="iFH-US-R5l"/>
+                                                        </children>
+                                                    </menu>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Nx2-D5-JKA" secondAttribute="trailing" id="EzR-al-gPU"/>
+                                        <constraint firstItem="Nx2-D5-JKA" firstAttribute="top" secondItem="Bjd-gg-FZn" secondAttribute="top" constant="4" id="Mxe-m4-PFJ"/>
+                                        <constraint firstItem="Nx2-D5-JKA" firstAttribute="leading" secondItem="Bjd-gg-FZn" secondAttribute="leadingMargin" id="dMy-tI-Vgz"/>
+                                        <constraint firstAttribute="bottom" secondItem="Nx2-D5-JKA" secondAttribute="bottom" constant="4" id="ofY-fq-PMz"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="elementLabel" destination="SJc-sR-lND" id="qxG-vl-AVu"/>
+                                    <outlet property="valuePopUpButton" destination="h5C-sB-NIa" id="d3I-iB-TDb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

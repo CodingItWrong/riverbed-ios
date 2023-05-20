@@ -1,6 +1,6 @@
 import UIKit
 
-class TextElementCell: UITableViewCell {
+class TextElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var valueTextField: UITextField!

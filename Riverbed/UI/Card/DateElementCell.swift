@@ -1,6 +1,7 @@
 import UIKit
 
-class DateElementCell: UITableViewCell {
+// TODO: not have to inherit UITableViewCell
+class DateElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var valueDatePicker: UIDatePicker!

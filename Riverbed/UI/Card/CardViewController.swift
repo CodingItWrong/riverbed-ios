@@ -13,52 +13,43 @@ class CardViewController: UITableViewController {
         let element = elements[indexPath.row]
         let dataType = element.attributes.dataType ?? .text
 
+        var cell: ElementCell
         switch dataType {
-//        case .choice:
-//            guard let cell = tableView.dequeueReusableCell(
-//                withIdentifier: String(describing: ChoiceElementCell.self),
-//                for: indexPath) as? ChoiceElementCell else {
-//                preconditionFailure("Expected a DateElementCell")
-//            }
-//            return cell
+        case .choice:
+            guard let choiceCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: ChoiceElementCell.self),
+                for: indexPath) as? ElementCell
+            else { preconditionFailure("Expected a DateElementCell") }
+            cell = choiceCell
         case .date:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DateElementCell.self),
-                                                         for: indexPath) as? DateElementCell else {
-                preconditionFailure("Expected a DateElementCell")
-            }
-            if let card = card {
-                cell.update(for: element, and: card)
-            }
-            return cell
-        case .dateTime:
-            guard let cell = tableView.dequeueReusableCell(
+            guard let dateCell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: DateElementCell.self),
-                for: indexPath) as? DateElementCell else {
-                preconditionFailure("Expected a DateElementCell")
-            }
-            if let card = card {
-                cell.update(for: element, and: card)
-            }
-            return cell
+                for: indexPath) as? ElementCell
+            else { preconditionFailure("Expected a DateElementCell") }
+            cell = dateCell
+        case .dateTime:
+            guard let dateTimeCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: DateElementCell.self),
+                for: indexPath) as? ElementCell
+            else { preconditionFailure("Expected a DateElementCell") }
+            cell = dateTimeCell
         case .number:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
-                                                               for: indexPath) as? TextElementCell else {
-                preconditionFailure("Expected a TextElementCell")
-            }
-            if let card = card {
-                cell.update(for: element, and: card)
-            }
-            return cell
+            guard let numberCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: TextElementCell.self),
+                for: indexPath) as? ElementCell
+            else { preconditionFailure("Expected a TextElementCell") }
+            cell = numberCell
         default: // TODO: cover all cases explicitly
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
-                                                               for: indexPath) as? TextElementCell else {
-                preconditionFailure("Expected a TextElementCell")
-            }
-            if let card = card {
-                cell.update(for: element, and: card)
-            }
-            return cell
+            guard let textCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: TextElementCell.self),
+                for: indexPath) as? TextElementCell
+            else { preconditionFailure("Expected a TextElementCell") }
+            cell = textCell
         }
+        if let card = card {
+            cell.update(for: element, and: card)
+        }
+        return cell
     }
 
     @IBAction func toggleEditing(_ sender: UIButton) {
