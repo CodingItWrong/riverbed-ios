@@ -10,21 +10,29 @@ class CardViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextElementCell",
-                                                       for: indexPath) as? TextElementCell
-        else { preconditionFailure("Expected TextElementCell") }
-
         let element = elements[indexPath.row]
-        cell.elementLabel.text = element.attributes.name
+        let dataType = element.attributes.dataType ?? .text
+        var cell: UITableViewCell
 
-        let value = card?.attributes.fieldValues[element.id]
-        switch value {
-        case let .string(stringValue):
-            cell.valueTextField.text = stringValue
-        case .dictionary:
-            cell.valueTextField.text = "(TEMP: dictionary)"
-        case .none:
-            cell.valueTextField.text = ""
+        switch dataType {
+        case .date:
+            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DateElementCell.self),
+                                                         for: indexPath) as? DateElementCell else {
+                preconditionFailure("Expected a DateElementCell")
+            }
+            if let card = card {
+                dateCell.update(for: element, and: card)
+            }
+            cell = dateCell
+        default: // TODO: cover all cases explicitly
+            guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
+                                                               for: indexPath) as? TextElementCell else {
+                preconditionFailure("Expected a TextElementCell")
+            }
+            if let card = card {
+                textCell.update(for: element, and: card)
+            }
+            cell = textCell
         }
 
         return cell
