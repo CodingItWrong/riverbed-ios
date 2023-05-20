@@ -205,7 +205,6 @@ class CardSummaryCell: UITableViewCell {
     }
 
     func configureElements() {
-        print("RECONFIGURING ELEMENTS FOR A CELL INSTANCE")
         fieldStack.arrangedSubviews.forEach { (subview) in
             subview.removeFromSuperview()
         }
