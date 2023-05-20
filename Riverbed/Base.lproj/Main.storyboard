@@ -83,6 +83,7 @@
                                                     </prototypes>
                                                     <connections>
                                                         <outlet property="dataSource" destination="SQU-q4-32P" id="Ch4-Zj-ZOM"/>
+                                                        <outlet property="delegate" destination="SQU-q4-32P" id="Wdo-tl-eEw"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -120,11 +121,87 @@
                     <navigationItem key="navigationItem" title="Board" id="z2e-de-ATP"/>
                     <connections>
                         <outlet property="columnsCollectionView" destination="AUI-zJ-9RT" id="bZi-91-2a7"/>
+                        <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxX-OE-SJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1133.0645161290322" y="46.866725507502203"/>
+        </scene>
+        <!--Card View Controller-->
+        <scene sceneID="STQ-hI-8uB">
+            <objects>
+                <tableViewController id="6X2-2e-DlT" customClass="CardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hc2-xZ-QHt">
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="c9u-eZ-pbZ">
+                            <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS">
+                                    <rect key="frame" x="520.5" y="5" width="51.5" height="34"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="highlighter" catalog="system"/>
+                                    <connections>
+                                        <action selector="toggleEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="uxc-QE-hoX"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="wSu-gE-XFS" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="LjH-rI-HpU"/>
+                                <constraint firstItem="wSu-gE-XFS" firstAttribute="trailing" secondItem="c9u-eZ-pbZ" secondAttribute="trailingMargin" id="bqV-Cb-QI0"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="9OW-c5-qMf" customClass="ElementTableCell" customModule="Riverbed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94" width="580" height="66.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9OW-c5-qMf" id="KLB-U4-A1w">
+                                    <rect key="frame" x="0.0" y="0.0" width="580" height="66.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="EAv-8T-CoV">
+                                            <rect key="frame" x="20" y="4" width="540" height="58.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuY-24-wb7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="540" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfm-iQ-LTL">
+                                                    <rect key="frame" x="0.0" y="24.5" width="540" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="EAv-8T-CoV" secondAttribute="bottom" constant="4" id="3PS-JK-f0S"/>
+                                        <constraint firstItem="EAv-8T-CoV" firstAttribute="top" secondItem="KLB-U4-A1w" secondAttribute="top" constant="4" id="S7Y-zz-YaJ"/>
+                                        <constraint firstItem="EAv-8T-CoV" firstAttribute="leading" secondItem="KLB-U4-A1w" secondAttribute="leadingMargin" id="hbj-e4-Rb1"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="EAv-8T-CoV" secondAttribute="trailing" id="tvo-EZ-Ism"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="elementLabel" destination="VuY-24-wb7" id="v9a-FM-J7R"/>
+                                    <outlet property="valueTextField" destination="vfm-iQ-LTL" id="VaL-Aw-hNi"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6X2-2e-DlT" id="iYu-h0-608"/>
+                            <outlet property="delegate" destination="6X2-2e-DlT" id="unt-Qk-K9u"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1868" y="47"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="nfc-x6-vQt">
@@ -213,6 +290,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="highlighter" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

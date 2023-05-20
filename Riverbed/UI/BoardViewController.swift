@@ -3,7 +3,8 @@ import UIKit
 class BoardViewController: UIViewController,
                            BoardListDelegate,
                            UICollectionViewDataSource,
-                           UICollectionViewDelegateFlowLayout {
+                           UICollectionViewDelegateFlowLayout,
+                           CardSummaryDelegate {
 
     @IBOutlet var columnsCollectionView: UICollectionView!
 
@@ -105,6 +106,7 @@ class BoardViewController: UIViewController,
         cell.title.text = column.attributes.name
         cell.elements = elements
         cell.cards = cards
+        cell.delegate = self
 
         return cell
     }
@@ -115,11 +117,38 @@ class BoardViewController: UIViewController,
         columnsCollectionView.isPagingEnabled = isPagingEnabled
     }
 
+    func cardSelected(_ card: Card) {
+        performSegue(withIdentifier: "showCardDetail", sender: card)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showCardDetail":
+            guard let cardVC = segue.destination as? CardViewController else {
+                preconditionFailure("Expected CardViewController")
+            }
+            guard let card = sender as? Card else {
+                preconditionFailure("Expected Card")
+            }
+
+            cardVC.elements = elements
+            cardVC.card = card
+        default:
+            preconditionFailure("Unexpected segue")
+        }
+    }
+
 }
 
-class ColumnCell: UICollectionViewCell, UITableViewDataSource {
+@objc protocol CardSummaryDelegate: AnyObject {
+    func cardSelected(_ card: Card)
+}
+
+class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var title: UILabel!
     @IBOutlet var tableView: UITableView!
+
+    @IBOutlet weak var delegate: CardSummaryDelegate?
 
     var cards = [Card]() {
         didSet { tableView.reloadData() }
@@ -141,6 +170,12 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource {
         }
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = cards[indexPath.row]
+        delegate?.cardSelected(card)
+        tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
     }
 }
 

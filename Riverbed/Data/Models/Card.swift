@@ -1,6 +1,6 @@
 import Foundation
 
-class Card: Codable {
+class Card: NSObject, Codable {
     let type: String
     var id: String
     var attributes: Card.Attributes
