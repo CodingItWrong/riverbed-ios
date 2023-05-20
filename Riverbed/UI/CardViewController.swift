@@ -52,6 +52,15 @@ class CardViewController: UITableViewController {
         elements.insert(movedItem, at: destinationIndexPath.row)
     }
 
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            elements.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+
 }
 
 class ElementTableCell: UITableViewCell {
