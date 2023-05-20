@@ -12,6 +12,17 @@ class TextElementCell: UITableViewCell {
         if case let .string(stringValue) = value {
             valueTextField.text = stringValue
         }
+
+        switch element.attributes.dataType {
+        case .text:
+            valueTextField.keyboardType = .default
+        case .number:
+            valueTextField.keyboardType = .decimalPad
+            // TODO: disallow entering alphabetic characters with a bluetooth keyboard
+        default:
+            // TODO: remove this when all cases covered
+            valueTextField.keyboardType = .default
+        }
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

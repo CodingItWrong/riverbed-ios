@@ -36,6 +36,15 @@ class CardViewController: UITableViewController {
                 dateTimeCell.update(for: element, and: card)
             }
             cell = dateTimeCell
+        case .number:
+            guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
+                                                               for: indexPath) as? TextElementCell else {
+                preconditionFailure("Expected a TextElementCell")
+            }
+            if let card = card {
+                textCell.update(for: element, and: card)
+            }
+            cell = textCell
         default: // TODO: cover all cases explicitly
             guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
                                                                for: indexPath) as? TextElementCell else {
