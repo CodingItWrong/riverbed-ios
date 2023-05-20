@@ -35,6 +35,7 @@ class Element: Codable, Equatable {
         var elementType: Element.ElementType
         var dataType: Element.DataType?
         var showInSummary: Bool
+        var options: Element.Options?
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -42,5 +43,14 @@ class Element: Codable, Equatable {
             case dataType = "data-type"
             case showInSummary = "show-in-summary"
         }
+    }
+
+    class Options: Codable {
+        var choices: [Element.Choice]?
+    }
+
+    class Choice: Codable {
+        var id: String
+        var label: String
     }
 }
