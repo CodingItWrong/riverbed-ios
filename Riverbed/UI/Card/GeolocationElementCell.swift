@@ -42,4 +42,20 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
         // TODO: implement
         print("getDirections")
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+
+        let isEnabled = !editing
+
+        [
+            currentLocationButton,
+            directionsButton,
+            latitudeTextField,
+            longitudeTextField
+        ].forEach { $0.isEnabled = isEnabled }
+
+        mapView.isZoomEnabled = isEnabled
+        mapView.isScrollEnabled = isEnabled
+    }
 }

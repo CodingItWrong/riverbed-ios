@@ -10,4 +10,9 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
 
         // TODO: figure out how to configure options for the pop-up button menu
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        valuePopUpButton.isEnabled = !editing
+    }
 }

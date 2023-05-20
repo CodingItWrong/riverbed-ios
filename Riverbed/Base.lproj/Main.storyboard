@@ -387,6 +387,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="currentLocationButton" destination="Vub-Ej-jfy" id="1f3-fv-nIC"/>
+                                    <outlet property="directionsButton" destination="HHA-hF-vkq" id="fyW-Ac-7yF"/>
                                     <outlet property="elementLabel" destination="KME-Lg-FxX" id="Vja-mS-7hM"/>
                                     <outlet property="latitudeTextField" destination="N0x-ez-Iyq" id="Rhq-ug-7IV"/>
                                     <outlet property="longitudeTextField" destination="EuI-Ca-nmm" id="gdc-J9-ld8"/>
