@@ -12,51 +12,55 @@ class CardViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elements[indexPath.row]
         let dataType = element.attributes.dataType ?? .text
-        var cell: UITableViewCell
 
         switch dataType {
+//        case .choice:
+//            guard let cell = tableView.dequeueReusableCell(
+//                withIdentifier: String(describing: ChoiceElementCell.self),
+//                for: indexPath) as? ChoiceElementCell else {
+//                preconditionFailure("Expected a DateElementCell")
+//            }
+//            return cell
         case .date:
-            guard let dateCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DateElementCell.self),
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DateElementCell.self),
                                                          for: indexPath) as? DateElementCell else {
                 preconditionFailure("Expected a DateElementCell")
             }
-            dateCell.valueDatePicker.datePickerMode = .date
+            cell.valueDatePicker.datePickerMode = .date
             if let card = card {
-                dateCell.update(for: element, and: card)
+                cell.update(for: element, and: card)
             }
-            cell = dateCell
+            return cell
         case .dateTime:
-            guard let dateTimeCell = tableView.dequeueReusableCell(
+            guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: DateElementCell.self),
                 for: indexPath) as? DateElementCell else {
                 preconditionFailure("Expected a DateElementCell")
             }
-            dateTimeCell.valueDatePicker.datePickerMode = .dateAndTime
+            cell.valueDatePicker.datePickerMode = .dateAndTime
             if let card = card {
-                dateTimeCell.update(for: element, and: card)
+                cell.update(for: element, and: card)
             }
-            cell = dateTimeCell
+            return cell
         case .number:
-            guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
                                                                for: indexPath) as? TextElementCell else {
                 preconditionFailure("Expected a TextElementCell")
             }
             if let card = card {
-                textCell.update(for: element, and: card)
+                cell.update(for: element, and: card)
             }
-            cell = textCell
+            return cell
         default: // TODO: cover all cases explicitly
-            guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
                                                                for: indexPath) as? TextElementCell else {
                 preconditionFailure("Expected a TextElementCell")
             }
             if let card = card {
-                textCell.update(for: element, and: card)
+                cell.update(for: element, and: card)
             }
-            cell = textCell
+            return cell
         }
-
-        return cell
     }
 
     @IBAction func toggleEditing(_ sender: UIButton) {
