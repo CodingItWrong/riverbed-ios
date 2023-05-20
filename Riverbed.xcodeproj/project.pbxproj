@@ -35,6 +35,7 @@
 		03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A912A1960AD00639AC7 /* DateElementCell.swift */; };
 		03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A932A19737E00639AC7 /* ChoiceElementCell.swift */; };
 		03944A962A1976C400639AC7 /* ElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A952A1976C400639AC7 /* ElementCell.swift */; };
+		03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A972A19788F00639AC7 /* GeolocationElementCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		03944A912A1960AD00639AC7 /* DateElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateElementCell.swift; sourceTree = "<group>"; };
 		03944A932A19737E00639AC7 /* ChoiceElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceElementCell.swift; sourceTree = "<group>"; };
 		03944A952A1976C400639AC7 /* ElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementCell.swift; sourceTree = "<group>"; };
+		03944A972A19788F00639AC7 /* GeolocationElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationElementCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,8 +228,9 @@
 				038BBC312A1823ED00BB2284 /* CardViewController.swift */,
 				03944A932A19737E00639AC7 /* ChoiceElementCell.swift */,
 				03944A912A1960AD00639AC7 /* DateElementCell.swift */,
-				03944A8F2A195FF000639AC7 /* TextElementCell.swift */,
 				03944A952A1976C400639AC7 /* ElementCell.swift */,
+				03944A972A19788F00639AC7 /* GeolocationElementCell.swift */,
+				03944A8F2A195FF000639AC7 /* TextElementCell.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
+				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
 				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,

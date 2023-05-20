@@ -13,6 +13,7 @@ class CardViewController: UITableViewController {
         let element = elements[indexPath.row]
         let dataType = element.attributes.dataType ?? .text
 
+        // TODO: try again to extract out the specifying of a type to a variable
         var cell: ElementCell
         switch dataType {
         case .choice:
@@ -33,6 +34,12 @@ class CardViewController: UITableViewController {
                 for: indexPath) as? ElementCell
             else { preconditionFailure("Expected a DateElementCell") }
             cell = dateTimeCell
+        case .geolocation:
+            guard let geolocationCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: GeolocationElementCell.self),
+                for: indexPath) as? ElementCell
+            else { preconditionFailure("Expected a GeolocationElementCell") }
+            cell = geolocationCell
         case .number:
             guard let numberCell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: TextElementCell.self),
