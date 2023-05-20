@@ -77,13 +77,9 @@ class BoardViewController: UIViewController,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            preconditionFailure("Expected a UICollectionViewFlowLayout")
-        }
-
         var width: CGFloat
         if self.traitCollection.horizontalSizeClass == .compact {
-            width = view.bounds.width - layout.minimumInteritemSpacing
+            width = view.bounds.width
         } else {
             width = 300
         }
