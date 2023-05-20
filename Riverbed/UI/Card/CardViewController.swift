@@ -26,7 +26,6 @@ class CardViewController: UITableViewController {
                                                          for: indexPath) as? DateElementCell else {
                 preconditionFailure("Expected a DateElementCell")
             }
-            cell.valueDatePicker.datePickerMode = .date
             if let card = card {
                 cell.update(for: element, and: card)
             }
@@ -37,7 +36,6 @@ class CardViewController: UITableViewController {
                 for: indexPath) as? DateElementCell else {
                 preconditionFailure("Expected a DateElementCell")
             }
-            cell.valueDatePicker.datePickerMode = .dateAndTime
             if let card = card {
                 cell.update(for: element, and: card)
             }

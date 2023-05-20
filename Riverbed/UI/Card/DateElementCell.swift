@@ -32,6 +32,16 @@ class DateElementCell: UITableViewCell {
     func update(for element: Element, and card: Card) {
         elementLabel.text = element.attributes.name
 
+        switch element.attributes.dataType {
+        case .date:
+            valueDatePicker.datePickerMode = .date
+        case .dateTime:
+            valueDatePicker.datePickerMode = .dateAndTime
+        default:
+            // TODO: remove this when all cases covered
+            valueDatePicker.datePickerMode = .date
+        }
+
         let value = card.attributes.fieldValues[element.id]
         if case let .string(stringValue) = value {
             if let date = formatter.date(from: stringValue) {
