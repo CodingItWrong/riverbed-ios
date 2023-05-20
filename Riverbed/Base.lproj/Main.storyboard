@@ -55,15 +55,15 @@
                                                                         <rect key="frame" x="4" y="4" width="446" height="89"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="YMW-MV-QbW">
-                                                                                <rect key="frame" x="8" y="8" width="430" height="73"/>
+                                                                                <rect key="frame" x="12" y="12" width="422" height="65"/>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="bottomMargin" secondItem="YMW-MV-QbW" secondAttribute="bottom" id="5YK-7O-8BF"/>
-                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="leading" secondItem="gU5-nK-X3N" secondAttribute="leadingMargin" id="ZzF-Y5-D6c"/>
-                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="top" secondItem="gU5-nK-X3N" secondAttribute="topMargin" id="pHo-5A-Fym"/>
-                                                                            <constraint firstAttribute="trailingMargin" secondItem="YMW-MV-QbW" secondAttribute="trailing" id="rLN-7X-JAm"/>
+                                                                            <constraint firstAttribute="bottomMargin" secondItem="YMW-MV-QbW" secondAttribute="bottom" constant="4" id="5YK-7O-8BF"/>
+                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="leading" secondItem="gU5-nK-X3N" secondAttribute="leadingMargin" constant="4" id="ZzF-Y5-D6c"/>
+                                                                            <constraint firstItem="YMW-MV-QbW" firstAttribute="top" secondItem="gU5-nK-X3N" secondAttribute="topMargin" constant="4" id="pHo-5A-Fym"/>
+                                                                            <constraint firstAttribute="trailingMargin" secondItem="YMW-MV-QbW" secondAttribute="trailing" constant="4" id="rLN-7X-JAm"/>
                                                                         </constraints>
                                                                     </view>
                                                                 </subviews>
