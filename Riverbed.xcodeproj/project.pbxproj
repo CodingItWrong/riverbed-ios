@@ -29,6 +29,9 @@
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
+		03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */; };
+		03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8C2A195FA900639AC7 /* ColumnCell.swift */; };
+		03944A902A195FF000639AC7 /* ElementTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8F2A195FF000639AC7 /* ElementTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSummaryCell.swift; sourceTree = "<group>"; };
+		03944A8C2A195FA900639AC7 /* ColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCell.swift; sourceTree = "<group>"; };
+		03944A8F2A195FF000639AC7 /* ElementTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,9 +164,9 @@
 		0342FC6B2A17948300CB8075 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				03944A892A195F5100639AC7 /* Board */,
+				03944A8E2A195FE100639AC7 /* Card */,
 				0342FC692A17947A00CB8075 /* BoardListViewController.swift */,
-				0342FC722A17B51A00CB8075 /* BoardViewController.swift */,
-				038BBC312A1823ED00BB2284 /* CardViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -196,6 +202,25 @@
 				0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		03944A892A195F5100639AC7 /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				0342FC722A17B51A00CB8075 /* BoardViewController.swift */,
+				03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */,
+				03944A8C2A195FA900639AC7 /* ColumnCell.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		03944A8E2A195FE100639AC7 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				038BBC312A1823ED00BB2284 /* CardViewController.swift */,
+				03944A8F2A195FF000639AC7 /* ElementTableCell.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +389,10 @@
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
+				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
+				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
+				03944A902A195FF000639AC7 /* ElementTableCell.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 			);

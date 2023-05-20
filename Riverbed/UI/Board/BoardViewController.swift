@@ -20,6 +20,10 @@ class BoardViewController: UIViewController,
         didSet { updateForBoard() }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
@@ -135,107 +139,4 @@ class BoardViewController: UIViewController,
         }
     }
 
-}
-
-@objc protocol CardSummaryDelegate: AnyObject {
-    func cardSelected(_ card: Card)
-}
-
-class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet var title: UILabel!
-    @IBOutlet var tableView: UITableView!
-
-    @IBOutlet weak var delegate: CardSummaryDelegate?
-
-    var cards = [Card]() {
-        didSet { tableView.reloadData() }
-    }
-    var elements = [Element]() {
-        didSet { tableView.reloadData() }
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cards.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        if let cell = cell as? CardSummaryCell {
-            let card = cards[indexPath.row]
-            cell.configureData(card: card, elements: elements)
-        }
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = cards[indexPath.row]
-        delegate?.cardSelected(card)
-        tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
-    }
-}
-
-class CardSummaryCell: UITableViewCell {
-    @IBOutlet var cardView: UIView! {
-        didSet { configureCardView() }
-    }
-    @IBOutlet var fieldStack: UIStackView!
-
-    private var card: Card?
-    var elements: [Element]?
-    var labels = [String: UILabel]()
-
-    var summaryElements: [Element] {
-        let elements = elements?.filter { $0.attributes.showInSummary } ?? []
-        return elements
-    }
-
-    func configureCardView() {
-        cardView.layer.cornerRadius = 5.0
-    }
-
-    func configureData(card: Card, elements: [Element]) {
-        if elements != self.elements {
-            self.elements = elements
-            configureElements()
-        }
-
-        self.card = card
-        configureValues()
-    }
-
-    func configureElements() {
-        fieldStack.arrangedSubviews.forEach { (subview) in
-            subview.removeFromSuperview()
-        }
-        labels.removeAll()
-        summaryElements.forEach { (element) in
-            let label = UILabel()
-            label.font = .preferredFont(forTextStyle: .body)
-
-            labels[element.id] = label
-            fieldStack.addArrangedSubview(label)
-        }
-    }
-
-    func configureValues() {
-        guard let card = card else { return }
-        summaryElements.forEach { (element) in
-            guard let label = labels[element.id] else {
-                print("Could not find label for element \(element.id)")
-                return
-            }
-            if let value = card.attributes.fieldValues[element.id] {
-                switch value {
-                case let .string(stringValue):
-                    label.text = stringValue
-                case .dictionary:
-                    label.text = "(TODO: dictionary)"
-                }
-            } else {
-                label.text = ""
-            }
-        }
-    }
 }
