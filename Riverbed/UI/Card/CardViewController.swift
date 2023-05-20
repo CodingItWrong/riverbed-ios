@@ -46,7 +46,7 @@ class CardViewController: UITableViewController {
                 for: indexPath) as? ElementCell
             else { preconditionFailure("Expected a TextElementCell") }
             cell = numberCell
-        default: // TODO: cover all cases explicitly
+        case .text:
             guard let textCell = tableView.dequeueReusableCell(
                 withIdentifier: String(describing: TextElementCell.self),
                 for: indexPath) as? TextElementCell
