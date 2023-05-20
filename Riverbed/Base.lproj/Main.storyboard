@@ -156,7 +156,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="9OW-c5-qMf" customClass="ElementTableCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextElementCell" id="9OW-c5-qMf" customClass="TextElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="94" width="580" height="66.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9OW-c5-qMf" id="KLB-U4-A1w">

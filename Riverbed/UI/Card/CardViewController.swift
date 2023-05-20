@@ -10,8 +10,9 @@ class CardViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ElementTableCell
-        else { preconditionFailure("Expected ElementTableCell") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextElementCell",
+                                                       for: indexPath) as? TextElementCell
+        else { preconditionFailure("Expected TextElementCell") }
 
         let element = elements[indexPath.row]
         cell.elementLabel.text = element.attributes.name
