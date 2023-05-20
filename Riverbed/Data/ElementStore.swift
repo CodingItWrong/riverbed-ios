@@ -2,7 +2,7 @@ import Foundation
 
 class ElementStore {
     private let session = URLSession(configuration: .default)
-    private let accessToken = "9TVtzNRoaVlFxISzKIekaQvrt454GsQ92Nu00gS0na8"
+    private let accessToken = "WfH8KbT_F7qPsyQKGVU2uHn05o6vzThuoG078805608"
 
     func all(for board: Board, completion: @escaping (Result<[Element], Error>) -> Void) {
         let url = RiverbedAPI.elementsURL(for: board)

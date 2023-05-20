@@ -2,7 +2,7 @@ import Foundation
 
 class BoardStore {
     private let session = URLSession(configuration: .default)
-    private let accessToken = "9TVtzNRoaVlFxISzKIekaQvrt454GsQ92Nu00gS0na8"
+    private let accessToken = "WfH8KbT_F7qPsyQKGVU2uHn05o6vzThuoG078805608"
 
     func all(completion: @escaping (Result<[Board], Error>) -> Void) {
         let url = RiverbedAPI.boardsURL()
