@@ -20,10 +20,22 @@ class CardViewController: UITableViewController {
                                                          for: indexPath) as? DateElementCell else {
                 preconditionFailure("Expected a DateElementCell")
             }
+            dateCell.valueDatePicker.datePickerMode = .date
             if let card = card {
                 dateCell.update(for: element, and: card)
             }
             cell = dateCell
+        case .dateTime:
+            guard let dateTimeCell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: DateElementCell.self),
+                for: indexPath) as? DateElementCell else {
+                preconditionFailure("Expected a DateElementCell")
+            }
+            dateTimeCell.valueDatePicker.datePickerMode = .dateAndTime
+            if let card = card {
+                dateTimeCell.update(for: element, and: card)
+            }
+            cell = dateTimeCell
         default: // TODO: cover all cases explicitly
             guard let textCell = tableView.dequeueReusableCell(withIdentifier: String(describing: TextElementCell.self),
                                                                for: indexPath) as? TextElementCell else {
