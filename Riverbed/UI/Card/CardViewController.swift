@@ -11,8 +11,7 @@ class CardViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elements[indexPath.row]
-        let dataType = element.attributes.dataType ?? .text
-        let cellType = cellType(for: dataType)
+        let cellType = cellType(for: element)
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: cellType),
             for: indexPath) as? ElementCell
@@ -23,14 +22,20 @@ class CardViewController: UITableViewController {
         return cell
     }
 
-    private func cellType(for dataType: Element.DataType) -> UITableViewCell.Type {
-        switch dataType {
-        case .choice: return ChoiceElementCell.self
-        case .date: return DateElementCell.self
-        case .dateTime: return DateElementCell.self
-        case .geolocation: return GeolocationElementCell.self
-        case .number: return TextElementCell.self
-        case .text: return TextElementCell.self
+    private func cellType(for element: Element) -> UITableViewCell.Type {
+        switch element.attributes.elementType {
+        case .button: return ButtonElementCell.self
+        case .buttonMenu: return ButtonMenuElementCell.self
+        case .field:
+            switch element.attributes.dataType {
+            case .choice: return ChoiceElementCell.self
+            case .date: return DateElementCell.self
+            case .dateTime: return DateElementCell.self
+            case .geolocation: return GeolocationElementCell.self
+            case .number: return TextElementCell.self
+            case .text: return TextElementCell.self
+            case .none: return TextElementCell.self
+            }
         }
     }
 

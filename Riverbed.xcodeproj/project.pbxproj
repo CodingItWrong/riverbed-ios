@@ -36,6 +36,8 @@
 		03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A932A19737E00639AC7 /* ChoiceElementCell.swift */; };
 		03944A962A1976C400639AC7 /* ElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A952A1976C400639AC7 /* ElementCell.swift */; };
 		03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A972A19788F00639AC7 /* GeolocationElementCell.swift */; };
+		03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9A2A19860400639AC7 /* ButtonElementCell.swift */; };
+		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		03944A932A19737E00639AC7 /* ChoiceElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceElementCell.swift; sourceTree = "<group>"; };
 		03944A952A1976C400639AC7 /* ElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementCell.swift; sourceTree = "<group>"; };
 		03944A972A19788F00639AC7 /* GeolocationElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationElementCell.swift; sourceTree = "<group>"; };
+		03944A9A2A19860400639AC7 /* ButtonElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonElementCell.swift; sourceTree = "<group>"; };
+		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,13 +230,23 @@
 			isa = PBXGroup;
 			children = (
 				038BBC312A1823ED00BB2284 /* CardViewController.swift */,
+				03944A992A1985EA00639AC7 /* ElementCell */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		03944A992A1985EA00639AC7 /* ElementCell */ = {
+			isa = PBXGroup;
+			children = (
+				03944A9A2A19860400639AC7 /* ButtonElementCell.swift */,
+				03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */,
 				03944A932A19737E00639AC7 /* ChoiceElementCell.swift */,
 				03944A912A1960AD00639AC7 /* DateElementCell.swift */,
 				03944A952A1976C400639AC7 /* ElementCell.swift */,
 				03944A972A19788F00639AC7 /* GeolocationElementCell.swift */,
 				03944A8F2A195FF000639AC7 /* TextElementCell.swift */,
 			);
-			path = Card;
+			path = ElementCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
+				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
@@ -396,6 +411,7 @@
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
 				03944A962A1976C400639AC7 /* ElementCell.swift in Sources */,
+				03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */,
 				0342FC752A17B68200CB8075 /* ColumnStore.swift in Sources */,
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
 				0342FC712A17960000CB8075 /* Board.swift in Sources */,

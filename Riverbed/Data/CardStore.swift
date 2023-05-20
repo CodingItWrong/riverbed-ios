@@ -2,7 +2,7 @@ import Foundation
 
 class CardStore {
     private let session = URLSession(configuration: .default)
-    private let accessToken = "WfH8KbT_F7qPsyQKGVU2uHn05o6vzThuoG078805608"
+    private let accessToken = "nKDTc2UUqkascU0g9XzIOGaXF70X1PvYWAHKU2vz2oU"
 
     func all(for board: Board, completion: @escaping (Result<[Card], Error>) -> Void) {
         let url = RiverbedAPI.cardsURL(for: board)

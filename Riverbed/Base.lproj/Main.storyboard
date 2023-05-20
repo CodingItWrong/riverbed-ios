@@ -395,6 +395,63 @@
                                     <outlet property="mapView" destination="4Hj-NP-hJZ" id="mjp-gF-pJu"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonElementCell" id="IdT-L5-GGF" customClass="ButtonElementCell" customModule="Riverbed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="723.33334350585938" width="430" height="42.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IdT-L5-GGF" id="g5O-6O-Shq">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfK-pe-e7H">
+                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            <connections>
+                                                <action selector="clickButton:" destination="IdT-L5-GGF" eventType="touchUpInside" id="xx1-j7-nPN"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="PfK-pe-e7H" firstAttribute="leading" secondItem="g5O-6O-Shq" secondAttribute="leadingMargin" id="945-Lm-pLb"/>
+                                        <constraint firstItem="PfK-pe-e7H" firstAttribute="top" secondItem="g5O-6O-Shq" secondAttribute="top" constant="4" id="Dx1-N1-Vx9"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="PfK-pe-e7H" secondAttribute="trailing" id="GMg-8t-7Of"/>
+                                        <constraint firstAttribute="bottom" secondItem="PfK-pe-e7H" secondAttribute="bottom" constant="4" id="GlM-Eq-Qtx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="button" destination="PfK-pe-e7H" id="ykd-TY-yjQ"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonMenuElementCell" id="6rJ-ZI-fog" customClass="ButtonMenuElementCell" customModule="Riverbed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="765.66667556762695" width="430" height="42.333332061767578"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rJ-ZI-fog" id="SoP-uJ-wvp">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Lf-Uvv">
+                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
+                                            <menu key="menu" id="Dal-cB-Isn">
+                                                <children>
+                                                    <command title="Item 1" id="BKd-R6-SjN"/>
+                                                    <command title="Item 2" id="Xd8-Dp-GzE"/>
+                                                </children>
+                                            </menu>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Menu Button"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="kzL-Lf-Uvv" secondAttribute="bottom" constant="4" id="4sM-Qb-Rtf"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="kzL-Lf-Uvv" secondAttribute="trailing" id="HLv-tA-rU8"/>
+                                        <constraint firstItem="kzL-Lf-Uvv" firstAttribute="top" secondItem="SoP-uJ-wvp" secondAttribute="top" constant="4" id="eNZ-OU-IGL"/>
+                                        <constraint firstItem="kzL-Lf-Uvv" firstAttribute="leading" secondItem="SoP-uJ-wvp" secondAttribute="leadingMargin" id="mLE-mu-rAP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="menuButton" destination="Dal-cB-Isn" id="F4c-rp-63p"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="6X2-2e-DlT" id="iYu-h0-608"/>
