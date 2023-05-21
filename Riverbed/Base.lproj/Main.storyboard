@@ -405,7 +405,7 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfK-pe-e7H">
                                             <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Name"/>
                                             <connections>
                                                 <action selector="clickButton:" destination="IdT-L5-GGF" eventType="touchUpInside" id="xx1-j7-nPN"/>
                                             </connections>
@@ -438,7 +438,7 @@
                                                 </children>
                                             </menu>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="filled" title="Menu Button"/>
+                                            <buttonConfiguration key="configuration" style="filled" title="Name"/>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -449,7 +449,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="menuButton" destination="Dal-cB-Isn" id="F4c-rp-63p"/>
+                                    <outlet property="menuButton" destination="kzL-Lf-Uvv" id="GMH-W4-t9H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

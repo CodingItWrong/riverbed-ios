@@ -42,15 +42,22 @@ class Element: Codable, Equatable {
             case elementType = "element-type"
             case dataType = "data-type"
             case showInSummary = "show-in-summary"
+            case options
         }
     }
 
     class Options: Codable {
         var choices: [Element.Choice]?
+        var items: [Element.Item]?
     }
 
     class Choice: Codable {
         var id: String
         var label: String
+    }
+
+    class Item: Codable {
+        var name: String
+        // TODO: actions
     }
 }

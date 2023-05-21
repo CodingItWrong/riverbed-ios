@@ -5,7 +5,7 @@ class ButtonElementCell: UITableViewCell, ElementCell {
     @IBOutlet private(set) var button: UIButton!
 
     func update(for element: Element, and card: Card) {
-        button.titleLabel?.text = element.attributes.name
+        button.setTitle(element.attributes.name, for: .normal)
     }
 
     @IBAction func clickButton(_ sender: UIButton) {
