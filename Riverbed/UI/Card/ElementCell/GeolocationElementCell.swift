@@ -27,8 +27,15 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
 
             if let latitudeDouble = Double(latitudeString),
                let longitudeDouble = Double(longitudeString) {
-                mapView.centerCoordinate = CLLocationCoordinate2D(latitude: latitudeDouble,
-                                                                  longitude: longitudeDouble)
+                let coordinate = CLLocationCoordinate2D(latitude: latitudeDouble,
+                                                        longitude: longitudeDouble)
+                mapView.region = MKCoordinateRegion(
+                    center: coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 0.01,
+                                           longitudeDelta: 0.01))
+                let pin = MKPointAnnotation()
+                pin.coordinate = coordinate
+                mapView.addAnnotation(pin)
             }
         }
     }
