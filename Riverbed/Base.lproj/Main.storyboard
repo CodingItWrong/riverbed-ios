@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
-    <device id="retina6_72" orientation="portrait" appearance="dark"/>
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
@@ -159,14 +159,14 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextElementCell" id="9OW-c5-qMf" customClass="TextElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="94" width="430" height="96"/>
+                                <rect key="frame" x="0.0" y="94" width="430" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9OW-c5-qMf" id="KLB-U4-A1w">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="96"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="235"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="EAv-8T-CoV">
-                                            <rect key="frame" x="20" y="4" width="390" height="88"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="220"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZO-Ll-fhe">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
@@ -191,11 +191,21 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="URR-Lg-lqi">
+                                                    <rect key="frame" x="0.0" y="92" width="390" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="0fV-I0-3Zm"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" systemColor="labelColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="EAv-8T-CoV" secondAttribute="bottom" constant="4" id="3PS-JK-f0S"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="EAv-8T-CoV" secondAttribute="bottom" id="3PS-JK-f0S"/>
                                         <constraint firstItem="EAv-8T-CoV" firstAttribute="top" secondItem="KLB-U4-A1w" secondAttribute="top" constant="4" id="S7Y-zz-YaJ"/>
                                         <constraint firstItem="EAv-8T-CoV" firstAttribute="leading" secondItem="KLB-U4-A1w" secondAttribute="leadingMargin" id="hbj-e4-Rb1"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="EAv-8T-CoV" secondAttribute="trailing" id="tvo-EZ-Ism"/>
@@ -203,11 +213,13 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="elementLabel" destination="VuY-24-wb7" id="v9a-FM-J7R"/>
+                                    <outlet property="layoutStack" destination="EAv-8T-CoV" id="ddf-Sf-2d9"/>
                                     <outlet property="valueTextField" destination="vfm-iQ-LTL" id="VaL-Aw-hNi"/>
+                                    <outlet property="valueTextView" destination="URR-Lg-lqi" id="7mm-4C-OBS"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DateElementCell" id="5yA-sr-4kz" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="190" width="430" height="99"/>
+                                <rect key="frame" x="0.0" y="329" width="430" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yA-sr-4kz" id="7Lx-wW-YaT">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="99"/>
@@ -253,7 +265,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChoiceElementCell" id="sGL-Zn-LIB" customClass="ChoiceElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="289" width="430" height="58"/>
+                                <rect key="frame" x="0.0" y="428" width="430" height="58"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sGL-Zn-LIB" id="Bjd-gg-FZn">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="58"/>
@@ -307,7 +319,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeolocationElementCell" id="0kc-k3-8rB" customClass="GeolocationElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="347" width="430" height="384.33334350585938"/>
+                                <rect key="frame" x="0.0" y="486" width="430" height="384.33334350585938"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0kc-k3-8rB" id="HDj-JD-nBc">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="384.33334350585938"/>
@@ -396,7 +408,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonElementCell" id="IdT-L5-GGF" customClass="ButtonElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="731.33334350585938" width="430" height="42.333332061767578"/>
+                                <rect key="frame" x="0.0" y="870.33334350585938" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IdT-L5-GGF" id="g5O-6O-Shq">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
@@ -423,7 +435,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonMenuElementCell" id="6rJ-ZI-fog" customClass="ButtonMenuElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="773.66667556762695" width="430" height="42.333332061767578"/>
+                                <rect key="frame" x="0.0" y="912.66667556762695" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rJ-ZI-fog" id="SoP-uJ-wvp">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
@@ -553,6 +565,9 @@
         <image name="arrow.triangle.turn.up.right.circle" catalog="system" width="128" height="123"/>
         <image name="highlighter" catalog="system" width="128" height="120"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

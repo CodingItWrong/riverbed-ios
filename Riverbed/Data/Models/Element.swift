@@ -47,6 +47,7 @@ class Element: Codable, Equatable {
     }
 
     class Options: Codable {
+        var multiline: Bool?
         var choices: [Element.Choice]?
         var items: [Element.Item]?
     }
