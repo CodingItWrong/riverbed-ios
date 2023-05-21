@@ -11,6 +11,10 @@ class BoardListViewController: UITableViewController {
     var boardStore: BoardStore!
     var boards = [Board]()
 
+    var sortedBoards: [Board] {
+        boards.sorted { $0.attributes.name < $1.attributes.name }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBoards()
@@ -36,7 +40,7 @@ class BoardListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: UITableViewCell.self),
             for: indexPath)
-        let board = boards[indexPath.row]
+        let board = sortedBoards[indexPath.row]
 
         cell.textLabel?.text = board.attributes.name
 
@@ -44,7 +48,7 @@ class BoardListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let board = boards[indexPath.row]
+        let board = sortedBoards[indexPath.row]
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
         tableView.deselectRow(at: indexPath, animated: true)

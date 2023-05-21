@@ -18,6 +18,10 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         didSet { tableView.reloadData() }
     }
 
+    var sortedCards: [Card] {
+        cards.reversed() // newest first
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         cards.count
     }
@@ -26,7 +30,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         if let cell = cell as? CardSummaryCell {
-            let card = cards[indexPath.row]
+            let card = sortedCards[indexPath.row]
             cell.configureData(card: card, elements: elements)
         }
 
@@ -34,7 +38,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = cards[indexPath.row]
+        let card = sortedCards[indexPath.row]
         delegate?.cardSelected(card)
         tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
     }
