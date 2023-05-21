@@ -38,6 +38,8 @@
 		03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A972A19788F00639AC7 /* GeolocationElementCell.swift */; };
 		03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9A2A19860400639AC7 /* ButtonElementCell.swift */; };
 		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
+		03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
+		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		03944A972A19788F00639AC7 /* GeolocationElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationElementCell.swift; sourceTree = "<group>"; };
 		03944A9A2A19860400639AC7 /* ButtonElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonElementCell.swift; sourceTree = "<group>"; };
 		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
+		03944AA02A1AAE0000639AC7 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				03027DF52A13DF9D0063EE24 /* AppDelegate.swift */,
+				03944AA02A1AAE0000639AC7 /* DateUtils.swift */,
+				03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */,
 				03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */,
 				0342FC782A17B6D400CB8075 /* Utils.swift */,
 				0342FC6C2A1794D500CB8075 /* Data */,
@@ -405,8 +411,10 @@
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
+				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
+				03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */,
 				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
