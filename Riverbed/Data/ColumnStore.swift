@@ -2,12 +2,11 @@ import Foundation
 
 class ColumnStore {
     private let session = URLSession(configuration: .default)
-    private let accessToken = "nKDTc2UUqkascU0g9XzIOGaXF70X1PvYWAHKU2vz2oU"
 
     func all(for board: Board, completion: @escaping (Result<[Column], Error>) -> Void) {
         let url = RiverbedAPI.columnsURL(for: board)
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, _, error) in
             let result = self.processColumnsResponse(data: data, error: error)

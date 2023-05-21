@@ -5,6 +5,8 @@ struct RiverbedAPI {
         let data: T
     }
 
+    static let accessToken = "nKDTc2UUqkascU0g9XzIOGaXF70X1PvYWAHKU2vz2oU"
+
     private static let baseURL = URL(string: "http://localhost:3000/")
 
     static func boardsURL() -> URL {
