@@ -26,7 +26,7 @@ class Column: Codable {
 
     class CardInclusionCondition: Codable {
         var field: String
-        var query: Query
+        var query: String
     }
 
     class SortOrder: Codable {

@@ -38,7 +38,6 @@
 		03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A972A19788F00639AC7 /* GeolocationElementCell.swift */; };
 		03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9A2A19860400639AC7 /* ButtonElementCell.swift */; };
 		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
-		03944A9F2A1A69CB00639AC7 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9E2A1A69CB00639AC7 /* Query.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +93,6 @@
 		03944A972A19788F00639AC7 /* GeolocationElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeolocationElementCell.swift; sourceTree = "<group>"; };
 		03944A9A2A19860400639AC7 /* ButtonElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonElementCell.swift; sourceTree = "<group>"; };
 		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
-		03944A9E2A1A69CB00639AC7 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,7 +203,6 @@
 				0342FC7F2A17C24100CB8075 /* Card.swift */,
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 				038BBC2F2A1811C900BB2284 /* Element.swift */,
-				03944A9E2A1A69CB00639AC7 /* Query.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -425,7 +422,6 @@
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
-				03944A9F2A1A69CB00639AC7 /* Query.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
 				03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */,
