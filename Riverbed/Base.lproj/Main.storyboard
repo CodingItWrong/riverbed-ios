@@ -263,10 +263,10 @@
                                             <rect key="frame" x="20" y="4" width="390" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zuZ-T3-093">
-                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="138" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJc-sR-lND">
-                                                            <rect key="frame" x="6" y="0.0" width="364" height="50"/>
+                                                            <rect key="frame" x="6" y="0.0" width="112" height="50"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -281,7 +281,7 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5C-sB-NIa">
-                                                    <rect key="frame" x="390" y="0.0" width="0.0" height="50"/>
+                                                    <rect key="frame" x="138" y="0.0" width="252" height="50"/>
                                                     <menu key="menu" id="lMH-bd-aD3">
                                                         <children>
                                                             <command title="Item 1" id="eb1-dy-zA4"/>
