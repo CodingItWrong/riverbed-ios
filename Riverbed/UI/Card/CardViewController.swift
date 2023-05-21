@@ -62,6 +62,17 @@ class CardViewController: UITableViewController {
         elements.insert(movedItem, at: destinationIndexPath.row)
     }
 
+    override func tableView(
+        _ tableView: UITableView,
+        editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
+    {
+        if tableView.isEditing {
+            return .delete
+        } else {
+            return .none // disable swipe-to-delete when not in editing mode
+        }
+    }
+
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
