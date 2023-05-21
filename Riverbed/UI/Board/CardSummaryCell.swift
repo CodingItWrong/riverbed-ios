@@ -55,15 +55,10 @@ class CardSummaryCell: UITableViewCell {
                 print("Could not find label for element \(element.id)")
                 return
             }
-            if let value = card.attributes.fieldValues[element.id] {
-                switch value {
-                case let .string(stringValue):
-                    label.text = stringValue
-                case .dictionary:
-                    label.text = "(TODO: dictionary)"
-                case .none:
-                    label.text = ""
-                }
+            if let value = card.attributes.fieldValues[element.id],
+               let value = value // undo multiple levels of optional
+            {
+                label.text = element.formatString(from: value)
             } else {
                 label.text = ""
             }

@@ -30,6 +30,43 @@ class Element: Codable, Equatable {
         lhs.id == rhs.id
     }
 
+    func formatString(from value: FieldValue) -> String? {
+        guard let dataType = attributes.dataType else {
+            return nil
+        }
+
+        switch value {
+        case let .string(stringValue):
+            switch dataType {
+            case .text:
+                return stringValue
+            case .number:
+                return stringValue
+            case .date:
+                return DateUtils.humanString(fromServerString: stringValue) ?? ""
+            case .dateTime:
+                return DateTimeUtils.humanString(fromServerString: stringValue) ?? ""
+            case .choice:
+                return attributes.options?.choices?.first { (choice) in
+                    choice.id == stringValue
+                }?.label
+            case .geolocation:
+                return nil
+            }
+        case let .dictionary(dictValue):
+            switch dataType {
+            case .geolocation:
+                if let lat = dictValue["lat"],
+                   let lng = dictValue["lng"] {
+                    return "(\(lat), \(lng))"
+                }
+                return nil
+            default:
+                return nil
+            }
+        }
+    }
+
     class Attributes: Codable {
         var name: String?
         var elementType: Element.ElementType
