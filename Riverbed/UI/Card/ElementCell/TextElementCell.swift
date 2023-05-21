@@ -19,6 +19,9 @@ class TextElementCell: UITableViewCell, ElementCell {
         if case let .string(stringValue) = value {
             valueTextField.text = stringValue
             valueTextView.text = stringValue
+        } else {
+            valueTextField.text = ""
+            valueTextView.text = ""
         }
 
         switch element.attributes.dataType {

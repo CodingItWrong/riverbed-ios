@@ -12,7 +12,7 @@ class Card: NSObject, Codable {
     }
 
     class Attributes: Codable {
-        var fieldValues: [String: FieldValue]
+        var fieldValues: [String: FieldValue?]
 
         enum CodingKeys: String, CodingKey {
             case fieldValues = "field-values"

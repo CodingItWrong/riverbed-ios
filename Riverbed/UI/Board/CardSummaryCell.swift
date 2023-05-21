@@ -60,6 +60,8 @@ class CardSummaryCell: UITableViewCell {
                     label.text = stringValue
                 case .dictionary:
                     label.text = "(TODO: dictionary)"
+                case .none:
+                    label.text = ""
                 }
             } else {
                 label.text = ""
