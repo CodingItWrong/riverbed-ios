@@ -64,8 +64,7 @@ class CardViewController: UITableViewController {
 
     override func tableView(
         _ tableView: UITableView,
-        editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
-    {
+        editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         if tableView.isEditing {
             return .delete
         } else {
