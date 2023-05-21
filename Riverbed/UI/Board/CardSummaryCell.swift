@@ -40,6 +40,7 @@ class CardSummaryCell: UITableViewCell {
         labels.removeAll()
         summaryElements.forEach { (element) in
             let label = UILabel()
+            label.numberOfLines = 3
             label.font = .preferredFont(forTextStyle: .body)
 
             labels[element.id] = label
