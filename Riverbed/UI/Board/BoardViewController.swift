@@ -103,7 +103,7 @@ class BoardViewController: UIViewController,
             for: indexPath) as? ColumnCell else { preconditionFailure("Unexpected cell class") }
         let column = columns[indexPath.row]
 
-        cell.title.text = column.attributes.name
+        cell.column = column
         cell.elements = elements
         cell.cards = cards
         cell.delegate = self

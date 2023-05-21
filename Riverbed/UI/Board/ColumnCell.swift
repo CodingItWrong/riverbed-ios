@@ -6,6 +6,11 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     @IBOutlet weak var delegate: CardSummaryDelegate?
 
+    var column: Column? {
+        didSet {
+            title.text = column?.attributes.name ?? ""
+        }
+    }
     var cards = [Card]() {
         didSet { tableView.reloadData() }
     }
