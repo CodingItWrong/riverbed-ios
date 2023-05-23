@@ -53,6 +53,10 @@ class BoardViewController: UIViewController,
 
         navigationItem.title = board.attributes.name
 
+        cards = []
+        columns = []
+        elements = []
+
         cardStore.all(for: board) { (result) in
             switch result {
             case let .success(cards):
