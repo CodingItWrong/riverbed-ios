@@ -67,14 +67,14 @@ class Element: Codable, Equatable {
         }
     }
 
-    func sortValue(from value: FieldValue?) -> String {
+    func sortValue(from value: FieldValue?) -> String? {
         guard let dataType = attributes.dataType else {
-            return ""
+            return nil
         }
 
         switch value {
         case .none:
-            return ""
+            return nil
         case let .string(stringValue):
             switch dataType {
             case .text, .number, .date, .dateTime:
@@ -82,9 +82,9 @@ class Element: Codable, Equatable {
             case .choice:
                 return attributes.options?.choices?.first { (choice) in
                     choice.id == stringValue
-                }?.label ?? ""
+                }?.label
             case .geolocation:
-                return ""
+                return nil
             }
         case let .dictionary(dictValue):
             switch dataType {
@@ -92,9 +92,9 @@ class Element: Codable, Equatable {
                 if let lat = dictValue["lat"] {
                     return lat // arbitrarily chose to sort by latitude
                 }
-                return ""
+                return nil
             default:
-                return ""
+                return nil
             }
         }
     }

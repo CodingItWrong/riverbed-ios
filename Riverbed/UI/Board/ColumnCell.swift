@@ -137,8 +137,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
         // TODO: sort nil first
         let sortedCardGroups = cardGroups.sorted { (lhs, rhs) in
-            let aValue = groupField.sortValue(from: lhs.value)
-            let bValue = groupField.sortValue(from: rhs.value)
+            guard let aValue = groupField.sortValue(from: lhs.value) else { return true }
+            guard let bValue = groupField.sortValue(from: rhs.value) else { return false }
 
             return aValue > bValue
         }
