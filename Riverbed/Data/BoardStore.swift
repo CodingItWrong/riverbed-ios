@@ -28,7 +28,7 @@ class BoardStore {
 
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverAttributeDateTimeFormatter)
+            decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
             let boardsResponse = try decoder.decode(RiverbedAPI.Response<[Board]>.self, from: data)
             return .success(boardsResponse.data)
         } catch {
