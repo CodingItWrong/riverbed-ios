@@ -1,0 +1,20 @@
+name: Test
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up simulator
+        run: |
+          xcrun simctl create "iPhone 14" \
+            "com.apple.CoreSimulator.SimDeviceType.iPhone-14" \
+            "com.apple.CoreSimulator.SimRuntime.iOS-16-2"
+      - name: Build and run tests
+        run: exec ./.github/scripts/test.sh
