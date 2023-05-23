@@ -21,14 +21,10 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     var cardGroups = [CardGroup]()
 
-    var sortedCards: [Card] {
-        cards.reversed() // newest first
-    }
-
     private func updateCardGroups() {
         guard let column = column else { return }
 
-        cardGroups = Card.group(cards: sortedCards, for: column, with: elements)
+        cardGroups = Card.group(cards: cards, for: column, with: elements)
 
         tableView.reloadData()
     }
@@ -57,7 +53,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
         if let cell = cell as? CardSummaryCell {
-            let card = cardGroups[indexPath.section].cards[indexPath.row]
+            let card = card(for: indexPath)
             cell.configureData(card: card, elements: elements)
         }
 
@@ -65,9 +61,13 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = sortedCards[indexPath.row]
+        let card = card(for: indexPath)
         delegate?.cardSelected(card)
         tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
+    }
+
+    private func card(for indexPath: IndexPath) -> Card {
+        cardGroups[indexPath.section].cards[indexPath.row]
     }
 }
 
