@@ -20,8 +20,8 @@ class Board: Codable {
         enum CodingKeys: String, CodingKey {
             case name
             case icon
-            case colorTheme = "color_theme"
-            case favoritedAt = "favorited_at"
+            case colorTheme = "color-theme"
+            case favoritedAt = "favorited-at"
         }
     }
 }

@@ -1,6 +1,14 @@
 import Foundation
 
 struct DateTimeUtils {
+    // datetimes stored to model attributes use millisecond granularity
+    static let serverAttributeDateTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return formatter
+    }()
+
+    // datetimes stored to field elements only use second granularity
     private static let serverDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"

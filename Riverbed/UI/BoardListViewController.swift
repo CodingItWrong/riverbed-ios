@@ -11,8 +11,23 @@ class BoardListViewController: UITableViewController {
     var boardStore: BoardStore!
     var boards = [Board]()
 
-    var sortedBoards: [Board] {
-        boards.sorted { $0.attributes.name < $1.attributes.name }
+    var boardGroups = [BoardGroup]()
+
+    func updateBoardGroups() {
+        let sortedBoards = boards.sorted { $0.attributes.name < $1.attributes.name }
+        let temp = Dictionary(grouping: sortedBoards) { (board) in
+            board.attributes.favoritedAt != nil
+        }
+
+        var boardGroups = [BoardGroup]()
+        if let favorites = temp[true] {
+            boardGroups.append(BoardGroup(name: "Favorites", boards: favorites))
+        }
+        if let unfavorites = temp[false] {
+            boardGroups.append(BoardGroup(name: "Other Boards", boards: unfavorites))
+        }
+        self.boardGroups = boardGroups
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {
@@ -25,22 +40,30 @@ class BoardListViewController: UITableViewController {
             switch result {
             case let .success(boards):
                 self.boards = boards
-                self.tableView.reloadData()
+                self.updateBoardGroups()
             case let .failure(error):
                 print("Error loading boards: \(error)")
             }
         }
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        boardGroups.count
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        boards.count
+        boardGroups[section].boards.count
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        boardGroups[section].name
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: UITableViewCell.self),
             for: indexPath)
-        let board = sortedBoards[indexPath.row]
+        let board = board(for: indexPath)
 
         cell.textLabel?.text = board.attributes.name
 
@@ -48,10 +71,24 @@ class BoardListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let board = sortedBoards[indexPath.row]
+        let board = board(for: indexPath)
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    private func board(for indexPath: IndexPath) -> Board {
+        boardGroups[indexPath.section].boards[indexPath.row]
+    }
+
+    class BoardGroup {
+        var name: String
+        var boards: [Board]
+
+        init(name: String, boards: [Board]) {
+            self.name = name
+            self.boards = boards
+        }
     }
 
 }
