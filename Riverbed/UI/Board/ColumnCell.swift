@@ -114,8 +114,6 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
             }
         }
 
-        print("3")
-
         var cardGroups = [CardGroup]()
 
         cards.forEach { (card) in
@@ -135,18 +133,12 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
             }
         }
 
-        // TODO: sort nil first
         let sortedCardGroups = cardGroups.sorted { (lhs, rhs) in
             guard let aValue = groupField.sortValue(from: lhs.value) else { return true }
             guard let bValue = groupField.sortValue(from: rhs.value) else { return false }
 
             return aValue > bValue
         }
-
-//        print("total cards: \(cards.count)")
-//        sortedCardGroups.forEach { (group) in
-//            print("group \(group.value) with \(group.cards.count) cards")
-//        }
 
         switch direction {
         case .ascending: return sortedCardGroups
