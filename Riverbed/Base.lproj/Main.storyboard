@@ -529,10 +529,10 @@
             </objects>
             <point key="canvasLocation" x="360" y="-605"/>
         </scene>
-        <!--Split View Controller-->
+        <!--Riverbed Split View Controller-->
         <scene sceneID="Qj7-Jx-4Av">
             <objects>
-                <splitViewController allowDoubleColumnStyle="YES" primaryBackgroundStyle="sidebar" id="Kue-E1-G6l" sceneMemberID="viewController">
+                <splitViewController allowDoubleColumnStyle="YES" primaryBackgroundStyle="sidebar" id="Kue-E1-G6l" customClass="RiverbedSplitViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
                         <segue destination="0jh-il-39t" kind="relationship" relationship="masterViewController" id="fg1-gM-ySY"/>
                         <segue destination="HOC-y5-2k9" kind="relationship" relationship="detailViewController" id="blW-ez-EXY"/>

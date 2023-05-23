@@ -42,6 +42,7 @@
 		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
 		03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
 		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
+		03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
 		03944AA02A1AAE0000639AC7 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
+		03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedSplitViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				03944A892A195F5100639AC7 /* Board */,
 				03944A8E2A195FE100639AC7 /* Card */,
 				0342FC692A17947A00CB8075 /* BoardListViewController.swift */,
+				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
 				0342FC712A17960000CB8075 /* Board.swift in Sources */,
 				0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */,
+				03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */,
 				0342FC802A17C24100CB8075 /* Card.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
