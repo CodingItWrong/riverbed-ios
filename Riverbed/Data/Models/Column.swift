@@ -14,24 +14,22 @@ class Column: Codable {
     class Attributes: Codable {
         var name: String
         var displayOrder: Int?
-        var cardInclusionConditions: [CardInclusionCondition]?
-        var sortOrder: SortOrder?
+        var cardInclusionConditions: [Condition]?
+        var cardGrouping: SortOrder?
+        var cardSortOrder: SortOrder?
 
         enum CodingKeys: String, CodingKey {
             case name
             case displayOrder = "display_order"
             case cardInclusionConditions = "card-inclusion-conditions"
+            case cardGrouping = "card-grouping"
+            case cardSortOrder = "card-sort-order"
         }
     }
 
-    class CardInclusionCondition: Codable {
-        var field: String
-        var query: String
-    }
-
     class SortOrder: Codable {
-        var field: String
-        var direction: Direction
+        var field: String?
+        var direction: Direction?
     }
 
     enum Direction: String, Codable {

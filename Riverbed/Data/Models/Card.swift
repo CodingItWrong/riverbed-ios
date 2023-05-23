@@ -21,9 +21,20 @@ class Card: NSObject, Codable {
 
 }
 
-enum FieldValue: Codable {
+enum FieldValue: Codable, Equatable {
     case string(String)
     case dictionary([String: String])
+
+    static func == (lhs: FieldValue, rhs: FieldValue) -> Bool {
+        switch (lhs, rhs) {
+        case (let .string(lhs), let .string(rhs)):
+            return lhs == rhs
+        case (let .dictionary(lhs), let .dictionary(rhs)):
+            return lhs == rhs
+        default:
+            return false
+        }
+    }
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

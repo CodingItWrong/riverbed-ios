@@ -27,4 +27,19 @@ struct DateUtils {
 
         return DateUtils.humanDateFormatter.string(from: date)
     }
+
+    static func isCurrentMonth(_ dateString: String?) -> Bool {
+        isMonthOffset(dateString, by: 0)
+    }
+
+    static func isMonthOffset(_ dateString: String?, by numMonths: Int) -> Bool {
+        guard let date = date(fromServerString: dateString),
+              let offsetDate = Calendar.current.date(byAdding: .month, value: numMonths, to: date) else {
+            return false
+        }
+        let offsetComponents = Calendar.current.dateComponents([.year, .month], from: offsetDate)
+        let nowComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+
+        return offsetComponents == nowComponents
+    }
 }

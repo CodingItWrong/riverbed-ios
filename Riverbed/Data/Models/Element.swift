@@ -67,6 +67,38 @@ class Element: Codable, Equatable {
         }
     }
 
+    func sortValue(from value: FieldValue?) -> String {
+        guard let dataType = attributes.dataType else {
+            return ""
+        }
+
+        switch value {
+        case .none:
+            return ""
+        case let .string(stringValue):
+            switch dataType {
+            case .text, .number, .date, .dateTime:
+                return stringValue
+            case .choice:
+                return attributes.options?.choices?.first { (choice) in
+                    choice.id == stringValue
+                }?.label ?? ""
+            case .geolocation:
+                return ""
+            }
+        case let .dictionary(dictValue):
+            switch dataType {
+            case .geolocation:
+                if let lat = dictValue["lat"] {
+                    return lat // arbitrarily chose to sort by latitude
+                }
+                return ""
+            default:
+                return ""
+            }
+        }
+    }
+
     class Attributes: Codable {
         var name: String?
         var elementType: Element.ElementType

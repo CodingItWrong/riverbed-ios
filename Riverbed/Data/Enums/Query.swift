@@ -1,0 +1,97 @@
+import Foundation
+
+enum Query: String, Codable {
+    case contains = "CONTAINS"
+    case doesNotContain = "DOES_NOT_CONTAIN"
+    case doesNotEqual = "DOES_NOT_EQUAL_VALUE"
+    case equals = "EQUALS_VALUE"
+    case isCurrentMonth = "IS_CURRENT_MONTH"
+    case isEmpty = "IS_EMPTY"
+    case isEmptyOrEquals = "IS_EMPTY_OR_EQUALS"
+    case isFuture = "IS_FUTURE"
+    case isNotCurrentMonth = "IS_NOT_CURRENT_MONTH"
+    case isNotEmpty = "IS_NOT_EMPTY"
+    case isNotFuture = "IS_NOT_FUTURE"
+    case isNotPast = "IS_NOT_PAST"
+    case isPast = "IS_PAST"
+    case isPreviousMonth = "IS_PREVIOUS_MONTH"
+
+    var label: String {
+        switch self {
+        case .contains: return "contains"
+        case .doesNotContain: return "does not contain"
+        case .doesNotEqual: return "does not equal"
+        case .equals: return "equals"
+        case .isCurrentMonth: return "current month"
+        case .isEmpty: return "empty"
+        case .isEmptyOrEquals: return "empty or equals"
+        case .isFuture: return "future"
+        case .isNotCurrentMonth: return "not current month"
+        case .isNotEmpty: return "not empty"
+        case .isNotFuture: return "not future"
+        case .isNotPast: return "not past"
+        case .isPast: return "past"
+        case .isPreviousMonth: return "previous month"
+        }
+    }
+
+    var showConcreteValueField: Bool {
+        switch self {
+        case .isEmptyOrEquals, .equals, .doesNotEqual: return true
+        default: return false
+        }
+    }
+
+    func match(value: FieldValue?, dataType: Element.DataType, options: Condition.Options?) -> Bool {
+        switch self {
+        case .contains:
+            guard let optionValue = options?.value else { return true }
+            guard case let .string(stringValue) = value else { return false }
+            return stringValue.lowercased().contains(optionValue)
+        case .doesNotContain:
+            return !Query.contains.match(value: value, dataType: dataType, options: options)
+        case .doesNotEqual:
+            return !Query.equals.match(value: value, dataType: dataType, options: options)
+        case .equals:
+            if value == nil && options?.value == nil { return true }
+            guard case let .string(stringValue) = value,
+                  let optionValue = options?.value else { return false } // only one is nil
+            return stringValue == optionValue
+        case .isCurrentMonth:
+            guard case let .string(value) = value else {
+                return false
+            }
+            return DateUtils.isCurrentMonth(value)
+        case .isEmpty:
+            return value == nil
+        case .isEmptyOrEquals:
+            return Query.isEmpty.match(value: value, dataType: dataType, options: options) ||
+                   Query.equals.match(value: value, dataType: dataType, options: options)
+        case .isFuture:
+            guard case let .string(value) = value,
+                  let date = DateUtils.date(fromServerString: value) else {
+                return false
+            }
+            return date > Date()
+        case .isNotCurrentMonth:
+            return !Query.isCurrentMonth.match(value: value, dataType: dataType, options: options)
+        case .isNotEmpty:
+            return !Query.isEmpty.match(value: value, dataType: dataType, options: options)
+        case .isNotFuture:
+            return !Query.isFuture.match(value: value, dataType: dataType, options: options)
+        case .isNotPast:
+            return !Query.isPast.match(value: value, dataType: dataType, options: options)
+        case .isPast:
+            guard case let .string(value) = value,
+                  let date = DateUtils.date(fromServerString: value) else {
+                return false
+            }
+            return date < Date()
+        case .isPreviousMonth:
+            guard case let .string(value) = value else {
+                return false
+            }
+            return DateUtils.isMonthOffset(value, by: -1)
+        }
+    }
+}

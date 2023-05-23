@@ -15,6 +15,8 @@
 		03027E0D2A13DF9E0063EE24 /* RiverbedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E0C2A13DF9E0063EE24 /* RiverbedTests.swift */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
 		03027E192A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E182A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift */; };
+		032F2C862A1AE806008208E9 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
+		032F2C882A1AEA17008208E9 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
 		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
 		0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC6D2A17959F00CB8075 /* BoardStore.swift */; };
 		0342FC712A17960000CB8075 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC702A17960000CB8075 /* Board.swift */; };
@@ -72,6 +74,8 @@
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
 		03027E182A13DF9E0063EE24 /* RiverbedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		032F2C872A1AEA17008208E9 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
 		0342FC6D2A17959F00CB8075 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 		0342FC702A17960000CB8075 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -179,6 +183,14 @@
 			path = RiverbedUITests;
 			sourceTree = "<group>";
 		};
+		032F2C842A1AE7FD008208E9 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				032F2C852A1AE806008208E9 /* Query.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		0342FC6B2A17948300CB8075 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				0342FC7A2A17B70100CB8075 /* API */,
+				032F2C842A1AE7FD008208E9 /* Enums */,
 				0342FC6F2A1795F500CB8075 /* Models */,
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
@@ -209,6 +222,7 @@
 				0342FC7F2A17C24100CB8075 /* Card.swift */,
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 				038BBC2F2A1811C900BB2284 /* Element.swift */,
+				032F2C872A1AEA17008208E9 /* Condition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -412,10 +426,12 @@
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
+				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
 				03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */,
 				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,
+				032F2C862A1AE806008208E9 /* Query.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
 				03944A962A1976C400639AC7 /* ElementCell.swift in Sources */,
