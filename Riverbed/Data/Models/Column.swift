@@ -13,17 +13,29 @@ class Column: Codable {
 
     class Attributes: Codable {
         var name: String
-        var displayOrder: Int?
         var cardInclusionConditions: [Condition]?
         var cardGrouping: SortOrder?
         var cardSortOrder: SortOrder?
+        var displayOrder: Int?
 
         enum CodingKeys: String, CodingKey {
             case name
-            case displayOrder = "display-order"
             case cardInclusionConditions = "card-inclusion-conditions"
             case cardGrouping = "card-grouping"
             case cardSortOrder = "card-sort-order"
+            case displayOrder = "display-order"
+        }
+
+        init(name: String,
+             cardInclusionConditions: [Condition]? = nil,
+             cardGrouping: SortOrder? = nil,
+             cardSortOrder: SortOrder? = nil,
+             displayOrder: Int? = nil) {
+            self.name = name
+            self.cardInclusionConditions = cardInclusionConditions
+            self.cardGrouping = cardGrouping
+            self.cardSortOrder = cardSortOrder
+            self.displayOrder = displayOrder
         }
     }
 
