@@ -20,7 +20,7 @@ class Column: Codable {
 
         enum CodingKeys: String, CodingKey {
             case name
-            case displayOrder = "display_order"
+            case displayOrder = "display-order"
             case cardInclusionConditions = "card-inclusion-conditions"
             case cardGrouping = "card-grouping"
             case cardSortOrder = "card-sort-order"

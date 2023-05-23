@@ -20,6 +20,14 @@ class BoardViewController: UIViewController,
         didSet { updateForBoard() }
     }
 
+    var sortedColumns: [Column] {
+        columns.sorted { (lhs, rhs) in
+            guard let lhsOrder = lhs.attributes.displayOrder else { return false }
+            guard let rhsOrder = rhs.attributes.displayOrder else { return true }
+            return lhsOrder < rhsOrder
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -101,7 +109,7 @@ class BoardViewController: UIViewController,
         guard let cell = columnsCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: ColumnCell.self),
             for: indexPath) as? ColumnCell else { preconditionFailure("Unexpected cell class") }
-        let column = columns[indexPath.row]
+        let column = sortedColumns[indexPath.row]
 
         cell.column = column
         cell.elements = elements
