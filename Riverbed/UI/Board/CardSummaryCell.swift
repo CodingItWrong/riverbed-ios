@@ -16,7 +16,7 @@ class CardSummaryCell: UITableViewCell {
 
     var summaryElements: [Element] {
         let elements = elements?.filter { $0.attributes.showInSummary } ?? []
-        return elements
+        return elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
     }
 
     func configureCardView() {

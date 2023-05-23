@@ -5,12 +5,16 @@ class CardViewController: UITableViewController {
     var elements = [Element]()
     var card: Card?
 
+    var sortedElements: [Element] {
+        elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         elements.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = elements[indexPath.row]
+        let element = sortedElements[indexPath.row]
         let cellType = cellType(for: element)
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: cellType),
@@ -57,6 +61,7 @@ class CardViewController: UITableViewController {
             return
         }
 
+        // TODO: need to persist the new order to the server and resort from it
         let movedItem = elements[sourceIndexPath.row]
         elements.remove(at: sourceIndexPath.row)
         elements.insert(movedItem, at: destinationIndexPath.row)

@@ -30,6 +30,12 @@ class Element: Codable, Equatable {
         lhs.id == rhs.id
     }
 
+    static func areInIncreasingOrder(lhs: Element, rhs: Element) -> Bool {
+        guard let lhsOrder = lhs.attributes.displayOrder else { return true }
+        guard let rhsOrder = rhs.attributes.displayOrder else { return true }
+        return lhsOrder < rhsOrder
+    }
+
     func formatString(from value: FieldValue) -> String? {
         guard let dataType = attributes.dataType else {
             return nil
@@ -105,6 +111,7 @@ class Element: Codable, Equatable {
         var dataType: Element.DataType?
         var showInSummary: Bool
         var options: Element.Options?
+        var displayOrder: Int?
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -112,6 +119,7 @@ class Element: Codable, Equatable {
             case dataType = "data-type"
             case showInSummary = "show-in-summary"
             case options
+            case displayOrder = "display-order"
         }
     }
 
