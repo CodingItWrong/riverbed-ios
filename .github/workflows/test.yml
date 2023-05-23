@@ -11,10 +11,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Set up simulator
-        run: |
-          xcrun simctl create "iPhone 14" \
-            "com.apple.CoreSimulator.SimDeviceType.iPhone-14" \
-            "com.apple.CoreSimulator.SimRuntime.iOS-16-2"
+      - name: List simulators
+        run: xcrun simctl list
       - name: Build and run tests
         run: exec ./.github/scripts/test.sh
