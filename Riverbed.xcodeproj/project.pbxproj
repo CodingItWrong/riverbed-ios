@@ -26,6 +26,7 @@
 		0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
 		0342FC802A17C24100CB8075 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
 		0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC812A17C2D300CB8075 /* CardStore.swift */; };
+		035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -85,6 +86,8 @@
 		0342FC7D2A17B7CE00CB8075 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		0342FC7F2A17C24100CB8075 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0342FC812A17C2D300CB8075 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
+		035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
+		035C3E9C2A1D91DF00760AE5 /* Riverbed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Riverbed.xctestplan; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		03027DE92A13DF9D0063EE24 = {
 			isa = PBXGroup;
 			children = (
+				035C3E9C2A1D91DF00760AE5 /* Riverbed.xctestplan */,
 				03027DF42A13DF9D0063EE24 /* Riverbed */,
 				03027E0B2A13DF9E0063EE24 /* RiverbedTests */,
 				03027E152A13DF9E0063EE24 /* RiverbedUITests */,
@@ -170,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				03D6688C2A1CC78F00597D9E /* CardTests.swift */,
+				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
 			);
 			path = RiverbedTests;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
+				035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

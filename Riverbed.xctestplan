@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "986EA9A7-5311-4AA3-8113-D28475A6A877",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Riverbed.xcodeproj",
+      "identifier" : "03027DF12A13DF9D0063EE24",
+      "name" : "Riverbed"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Riverbed.xcodeproj",
+        "identifier" : "03027E072A13DF9E0063EE24",
+        "name" : "RiverbedTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Riverbed.xcodeproj",
+        "identifier" : "03027E112A13DF9E0063EE24",
+        "name" : "RiverbedUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

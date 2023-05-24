@@ -9,3 +9,12 @@ func print(jsonData: Data?) {
         print(jsonString)
     }
 }
+
+func singularizeOptionality<T>(_ value: T??) -> T? {
+    if let nestedOptional: T? = value {
+        return nestedOptional
+    } else {
+        let singleOptional: T? = nil
+        return singleOptional
+    }
+}
