@@ -17,4 +17,6 @@ func singularizeOptionality<T>(_ value: T??) -> T? {
         let singleOptional: T? = nil
         return singleOptional
     }
+    // alternative: return value ?? nil
+    // see https://stackoverflow.com/a/33049398/477480
 }
