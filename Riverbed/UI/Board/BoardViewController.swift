@@ -17,7 +17,7 @@ class BoardViewController: UIViewController,
     var elements = [Element]()
 
     var board: Board? {
-        didSet { updateForBoard() }
+        didSet { loadBoardData() }
     }
 
     var sortedColumns: [Column] {
@@ -48,7 +48,7 @@ class BoardViewController: UIViewController,
         self.board = board
     }
 
-    func updateForBoard() {
+    @objc func loadBoardData(_ sender: UIRefreshControl? = nil) {
         guard let board = board else { return }
 
         navigationItem.title = board.attributes.name
@@ -58,6 +58,9 @@ class BoardViewController: UIViewController,
         elements = []
 
         cardStore.all(for: board) { (result) in
+            // TODO: do this after all the loads complete
+            // Deferred or async/await?
+            sender?.endRefreshing()
             switch result {
             case let .success(cards):
                 self.cards = cards
@@ -113,12 +116,20 @@ class BoardViewController: UIViewController,
         guard let cell = columnsCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: ColumnCell.self),
             for: indexPath) as? ColumnCell else { preconditionFailure("Unexpected cell class") }
+
         let column = sortedColumns[indexPath.row]
 
         cell.column = column
         cell.elements = elements
         cell.cards = cards
         cell.delegate = self
+
+        if cell.tableView.refreshControl == nil {
+            cell.tableView.refreshControl = UIRefreshControl()
+            cell.tableView.refreshControl?.addTarget(self,
+                                                     action: #selector(self.loadBoardData),
+                                                     for: .valueChanged)
+        }
 
         return cell
     }

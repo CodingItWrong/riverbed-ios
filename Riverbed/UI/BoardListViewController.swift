@@ -33,10 +33,14 @@ class BoardListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBoards()
+        self.refreshControl?.addTarget(self,
+                                       action: #selector(self.loadBoards),
+                                       for: .valueChanged)
     }
 
-    func loadBoards() {
+    @objc func loadBoards() {
         boardStore.all { (result) in
+            self.refreshControl?.endRefreshing()
             switch result {
             case let .success(boards):
                 self.boards = boards
