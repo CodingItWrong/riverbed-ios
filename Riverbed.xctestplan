@@ -9,6 +9,7 @@
     }
   ],
   "defaultOptions" : {
+    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:Riverbed.xcodeproj",
       "identifier" : "03027DF12A13DF9D0063EE24",
