@@ -17,6 +17,24 @@ class CardStore {
         task.resume()
     }
 
+    func delete(_ card: Card, completion: @escaping (Result<Void, Error>) -> Void) {
+        let url = RiverbedAPI.cardURL(for: card)
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let task = session.dataTask(with: request) { (_, _, error) in
+            OperationQueue.main.addOperation {
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            }
+        }
+        task.resume()
+    }
+
     private func processCardsResponse(data: Data?, error: Error?) -> Result<[Card], Error> {
         guard let data = data else {
             if let error = error {

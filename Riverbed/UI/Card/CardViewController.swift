@@ -2,6 +2,8 @@ import UIKit
 
 class CardViewController: UITableViewController {
 
+    var cardStore: CardStore!
+
     var elements = [Element]()
     var card: Card?
 
@@ -47,10 +49,23 @@ class CardViewController: UITableViewController {
         // TODO: voiceover
         if isEditing {
             setEditing(false, animated: true)
-            sender.setImage(UIImage(systemName: "highlighter"), for: .normal)
+            sender.setImage(UIImage(systemName: "wrench"), for: .normal)
         } else {
             setEditing(true, animated: true)
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        }
+    }
+
+    @IBAction func deleteCard(_ sender: UIButton) {
+        guard let card = card else { return }
+
+        cardStore.delete(card) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.dismiss(animated: true)
+            case let .failure(error):
+                print("Error deleting card: \(String(describing: error))")
+            }
         }
     }
 

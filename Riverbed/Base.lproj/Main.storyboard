@@ -143,18 +143,29 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS">
-                                    <rect key="frame" x="370.33333333333331" y="5" width="51.666666666666686" height="34.333333333333336"/>
+                                    <rect key="frame" x="320" y="5" width="54" height="34.333333333333336"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="highlighter" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="wrench.adjustable" catalog="system"/>
                                     <connections>
                                         <action selector="toggleEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="uxc-QE-hoX"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe">
+                                    <rect key="frame" x="374" y="5" width="48" height="34.333333333333336"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                    <connections>
+                                        <action selector="deleteCard:" destination="6X2-2e-DlT" eventType="touchUpInside" id="lRx-rI-zt0"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="wSu-gE-XFS" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="LjH-rI-HpU"/>
-                                <constraint firstItem="wSu-gE-XFS" firstAttribute="trailing" secondItem="c9u-eZ-pbZ" secondAttribute="trailingMargin" id="bqV-Cb-QI0"/>
+                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="leading" secondItem="wSu-gE-XFS" secondAttribute="trailing" id="6pd-Im-I5e"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="89r-lJ-Gxe" secondAttribute="trailing" id="ULs-WE-8Gu"/>
+                                <constraint firstItem="wSu-gE-XFS" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="Vcj-tj-FRu"/>
+                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="ftu-Bj-UuX"/>
+                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="t9g-Ss-ZZj"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -579,8 +590,9 @@
     </scenes>
     <resources>
         <image name="arrow.triangle.turn.up.right.circle" catalog="system" width="128" height="123"/>
-        <image name="highlighter" catalog="system" width="128" height="120"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
+        <image name="trash" catalog="system" width="117" height="128"/>
+        <image name="wrench.adjustable" catalog="system" width="128" height="124"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

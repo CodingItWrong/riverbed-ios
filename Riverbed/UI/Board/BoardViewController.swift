@@ -146,6 +146,7 @@ class BoardViewController: UIViewController,
 
             cardVC.elements = elements
             cardVC.card = card
+            cardVC.cardStore = cardStore
         default:
             preconditionFailure("Unexpected segue")
         }
