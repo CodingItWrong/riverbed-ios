@@ -59,14 +59,24 @@ class CardViewController: UITableViewController {
     @IBAction func deleteCard(_ sender: UIButton) {
         guard let card = card else { return }
 
-        cardStore.delete(card) { [weak self] (result) in
-            switch result {
-            case .success:
-                self?.dismiss(animated: true)
-            case let .failure(error):
-                print("Error deleting card: \(String(describing: error))")
+        let alert = UIAlertController(title: "Delete?",
+                                      message: "Are you sure you want to delete this todo?",
+                                      preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Delete",
+                                      style: .destructive) {[weak self] _ in
+            self?.cardStore.delete(card) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.dismiss(animated: true)
+                case let .failure(error):
+                    print("Error deleting card: \(String(describing: error))")
+                }
             }
-        }
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(alert, animated: true)
     }
 
     override func tableView(_ tableView: UITableView,
