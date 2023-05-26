@@ -50,6 +50,37 @@ class CardStore {
         }
     }
 
+    func update(_ card: Card,
+                with fieldValues: [String: FieldValue?],
+                completion: @escaping (Result<Void, Error>) -> Void) {
+        let url = RiverbedAPI.cardURL(for: card)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let updatedCard = Card(id: card.id, attributes: Card.Attributes(fieldValues: fieldValues))
+
+        do {
+            let encoder = JSONEncoder()
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedCard))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (_, _, error) in
+                OperationQueue.main.addOperation {
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(()))
+                    }
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func delete(_ card: Card, completion: @escaping (Result<Void, Error>) -> Void) {
         let url = RiverbedAPI.cardURL(for: card)
         var request = URLRequest(url: url)

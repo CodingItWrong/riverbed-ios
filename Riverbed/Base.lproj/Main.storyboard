@@ -207,6 +207,9 @@
                                                     <rect key="frame" x="0.0" y="54" width="390" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="9OW-c5-qMf" id="bfU-RT-bNg"/>
+                                                    </connections>
                                                 </textField>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="URR-Lg-lqi">
                                                     <rect key="frame" x="0.0" y="92" width="390" height="128"/>
@@ -217,6 +220,9 @@
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="9OW-c5-qMf" id="sec-23-irv"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                         </stackView>

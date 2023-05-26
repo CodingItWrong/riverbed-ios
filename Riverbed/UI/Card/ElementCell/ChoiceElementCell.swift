@@ -2,6 +2,8 @@ import UIKit
 
 class ChoiceElementCell: UITableViewCell, ElementCell {
 
+    weak var delegate: ElementCellDelegate?
+
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var valuePopUpButton: UIButton!
 

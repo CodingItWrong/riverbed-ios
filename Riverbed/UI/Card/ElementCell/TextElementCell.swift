@@ -1,6 +1,10 @@
 import UIKit
 
-class TextElementCell: UITableViewCell, ElementCell {
+class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UITextViewDelegate {
+
+    weak var delegate: ElementCellDelegate?
+
+    private var element: Element?
 
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var layoutStack: UIStackView!
@@ -8,6 +12,8 @@ class TextElementCell: UITableViewCell, ElementCell {
     @IBOutlet private(set) var valueTextView: UITextView!
 
     func update(for element: Element, and card: Card) {
+        self.element = element
+
         valueTextView.layer.cornerRadius = 5
         valueTextView.layer.borderWidth = 1
         valueTextView.layer.borderColor = UIColor.separator.cgColor
@@ -62,6 +68,20 @@ class TextElementCell: UITableViewCell, ElementCell {
         super.setEditing(editing, animated: animated)
         valueTextField.isEnabled = !editing
         valueTextView.isEditable = !editing // because editing the list of elements, not editing their values
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        passUpdatedValueToDelegate(valueTextField.text)
+    }
+
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        passUpdatedValueToDelegate(valueTextView.text)
+    }
+
+    func passUpdatedValueToDelegate(_ value: String?) {
+        guard let element = element,
+              let value = value else { return }
+        delegate?.update(value: .string(value), for: element)
     }
 
 }

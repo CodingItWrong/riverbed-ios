@@ -2,6 +2,8 @@ import UIKit
 
 class ButtonMenuElementCell: UITableViewCell, ElementCell {
 
+    weak var delegate: ElementCellDelegate?
+
     @IBOutlet private(set) var menuButton: UIButton!
 
     func update(for element: Element, and card: Card) {

@@ -1,14 +1,36 @@
 import UIKit
 
-class CardViewController: UITableViewController {
+class CardViewController: UITableViewController, ElementCellDelegate {
 
     var cardStore: CardStore!
 
     var elements = [Element]()
-    var card: Card?
+    var card: Card? {
+        didSet {
+            if let card = card {
+                fieldValues = card.attributes.fieldValues
+            }
+        }
+    }
+    var fieldValues = [String: FieldValue?]()
 
     var sortedElements: [Element] {
         elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        guard let card = card else { return }
+
+        cardStore.update(card, with: fieldValues) { (result) in
+            switch result {
+            case .success:
+                print("SAVED CARD \(card.id)")
+            case let .failure(error):
+                print("Error saving card: \(String(describing: error))")
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,6 +44,7 @@ class CardViewController: UITableViewController {
             withIdentifier: String(describing: cellType),
             for: indexPath) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
+        cell.delegate = self
         if let card = card {
             cell.update(for: element, and: card)
         }
@@ -109,6 +132,11 @@ class CardViewController: UITableViewController {
             elements.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
+    }
+
+    func update(value: FieldValue, for element: Element) {
+        fieldValues[element.id] = value
+        print("UPDATED \(element.attributes.name) to \(String(describing: value))")
     }
 
 }

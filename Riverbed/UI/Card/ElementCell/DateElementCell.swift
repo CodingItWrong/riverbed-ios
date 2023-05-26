@@ -3,6 +3,8 @@ import UIKit
 // TODO: not have to inherit UITableViewCell
 class DateElementCell: UITableViewCell, ElementCell {
 
+    weak var delegate: ElementCellDelegate?
+
     private var dateValue: Date? {
         didSet {
             updateInputs()

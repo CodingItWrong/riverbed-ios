@@ -3,6 +3,8 @@ import MapKit
 
 class GeolocationElementCell: UITableViewCell, ElementCell {
 
+    weak var delegate: ElementCellDelegate?
+
     enum ValueKey: String {
         case latitude = "lat"
         case longitude = "lng"
