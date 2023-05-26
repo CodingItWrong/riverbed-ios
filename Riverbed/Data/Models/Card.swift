@@ -1,5 +1,23 @@
 import Foundation
 
+class JsonApiData<T: Codable>: Codable {
+    var data: T
+
+    init(data: T) {
+        self.data = data
+    }
+}
+
+class JsonApiResourceIdentifier: Codable {
+    var type: String
+    var id: String
+
+    init(type: String, id: String) {
+        self.type = type
+        self.id = id
+    }
+}
+
 class Card: NSObject, Codable {
     let type: String
     var id: String
@@ -14,10 +32,39 @@ class Card: NSObject, Codable {
     class Attributes: Codable {
         var fieldValues: [String: FieldValue?]
 
+        init(fieldValues: [String: FieldValue?]) {
+            self.fieldValues = fieldValues
+        }
+
         enum CodingKeys: String, CodingKey {
             case fieldValues = "field-values"
         }
     }
+}
+
+class NewCard: NSObject, Codable {
+    let type: String
+    var attributes: Card.Attributes
+    var relationships: NewCard.Relationships?
+
+    init(attributes: Card.Attributes, relationships: NewCard.Relationships? = nil) {
+        self.type = "cards"
+        self.attributes = attributes
+        self.relationships = relationships
+    }
+
+    class Relationships: Codable {
+        var boardData: JsonApiData<JsonApiResourceIdentifier>?
+
+        init(boardData: JsonApiData<JsonApiResourceIdentifier>) {
+            self.boardData = boardData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case boardData = "board"
+        }
+    }
+
 }
 
 extension Card {

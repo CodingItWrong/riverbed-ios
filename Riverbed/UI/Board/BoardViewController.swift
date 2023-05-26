@@ -144,6 +144,19 @@ class BoardViewController: UIViewController,
         performSegue(withIdentifier: "showCardDetail", sender: card)
     }
 
+    @IBAction func addCard(_ sender: UIBarButtonItem) {
+        guard let board = board else { return }
+
+        cardStore.create(on: board) { [weak self] (result) in
+            switch result {
+            case let .success(card):
+                self?.cardSelected(card)
+            case let .failure(error):
+                print("Error creating card: \(String(describing: error))")
+            }
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         switch segue.identifier {

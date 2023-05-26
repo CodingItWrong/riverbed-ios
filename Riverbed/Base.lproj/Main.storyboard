@@ -120,7 +120,13 @@
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" id="l7D-o0-FYJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Board" id="z2e-de-ATP"/>
+                    <navigationItem key="navigationItem" title="Board" id="z2e-de-ATP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nBP-Fy-yRm">
+                            <connections>
+                                <action selector="addCard:" destination="Flc-lf-CdM" id="I8U-94-bja"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="columnsCollectionView" destination="AUI-zJ-9RT" id="bZi-91-2a7"/>
                         <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>

@@ -1,6 +1,10 @@
 import Foundation
 
 struct RiverbedAPI {
+    struct RequestBody<T>: Codable where T: Codable {
+        let data: T
+    }
+
     struct Response<T>: Codable where T: Codable {
         let data: T
     }
@@ -15,6 +19,10 @@ struct RiverbedAPI {
 
     static func boardURL(_ board: Board) -> URL {
         url(boardPath(board))
+    }
+
+    static func cardsURL() -> URL {
+        url(cardsPath())
     }
 
     static func cardsURL(for board: Board) -> URL {
@@ -49,6 +57,10 @@ struct RiverbedAPI {
 
     private static func boardPath(_ board: Board) -> String {
         joinPathSegments(boardsPath(), board.id)
+    }
+
+    private static func cardsPath() -> String {
+        "/cards"
     }
 
     private static func cardsPath(_ board: Board) -> String {
