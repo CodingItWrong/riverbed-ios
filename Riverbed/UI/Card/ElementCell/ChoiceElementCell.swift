@@ -12,13 +12,23 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
     func update(for element: Element, and card: Card) {
         self.element = element
 
-        elementLabel.text = element.attributes.name
         let choices = element.attributes.options?.choices ?? []
+        let currentChoice = choices.first {
+            guard let value = card.attributes.fieldValues[element.id],
+                  case let .string(stringValue) = value  else { return false }
+            return $0.id == stringValue
+        }
+
+        elementLabel.text = element.attributes.name
         let menuOptions = choices.map { (choice) in
-            UIAction(title: choice.label) { [weak self] _ in
+            let state: UIMenuElement.State = choice == currentChoice ? .on : .off
+            return UIAction(title: choice.label, state: state) {
+                [weak self] _ in
+
                 self?.passUpdatedValueToDelegate(choice)
             }
         }
+
         valuePopUpButton.menu = UIMenu(children: menuOptions)
     }
 

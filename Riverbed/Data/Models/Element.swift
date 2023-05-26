@@ -129,9 +129,13 @@ class Element: Codable, Equatable {
         var items: [Element.Item]?
     }
 
-    class Choice: Codable {
+    class Choice: Codable, Equatable {
         var id: String
         var label: String
+
+        static func == (lhs: Element.Choice, rhs: Element.Choice) -> Bool {
+            lhs.id == rhs.id
+        }
     }
 
     class Item: Codable {
