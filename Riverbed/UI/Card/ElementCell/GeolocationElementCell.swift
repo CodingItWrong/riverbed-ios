@@ -90,8 +90,8 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
 
         // update pin and fields with coordinate
-        latitudeTextField.text = String(coordinate.latitude)
-        longitudeTextField.text = String(coordinate.longitude)
+        latitudeTextField.text = String(format: "%.5f", coordinate.latitude)
+        longitudeTextField.text = String(format: "%.5f", coordinate.longitude)
 
         updateMapFromCoordinate()
         passUpdatedValueToDelegate()
