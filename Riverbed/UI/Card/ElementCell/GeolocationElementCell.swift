@@ -108,9 +108,22 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
                                    longitudeDelta: 0.01))
         latitudeTextField.text = String(coordinate.latitude)
         longitudeTextField.text = String(coordinate.longitude)
+
+        passUpdatedValueToDelegate()
     }
 
     func passUpdatedValueToDelegate() {
-        // TODO
+        guard let element = element else { return }
+
+        if let latitudeString = latitudeTextField.text,
+           let longitudeString = longitudeTextField.text {
+            let coords = FieldValue.dictionary([
+                ValueKey.latitude.rawValue: latitudeString,
+                ValueKey.longitude.rawValue: longitudeString
+            ])
+            delegate?.update(value: coords, for: element)
+        } else {
+            delegate?.update(value: nil, for: element)
+        }
     }
 }
