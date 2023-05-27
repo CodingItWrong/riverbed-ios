@@ -13,11 +13,9 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     var cardStore: CardStore!
 
     var elements = [Element]()
-    var card: Card? {
+    var card: Card! { // will always be set in segue
         didSet {
-            if let card = card {
-                fieldValues = card.attributes.fieldValues
-            }
+            fieldValues = card.attributes.fieldValues
         }
     }
     var fieldValues = [String: FieldValue?]()
@@ -29,16 +27,16 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        guard let card = card else { return }
-
         if isCardDeleted {
             delegate?.cardWasDeleted(card)
         } else {
             cardStore.update(card, with: fieldValues) { [weak self] (result) in
+                guard let self = self else { return }
+
                 switch result {
                 case .success:
                     print("SAVED CARD \(card.id)")
-                    self?.delegate?.cardDidUpdate(card)
+                    delegate?.cardDidUpdate(card)
                 case let .failure(error):
                     print("Error saving card: \(String(describing: error))")
                 }
@@ -58,9 +56,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             for: indexPath) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
         cell.delegate = self
-        if let card = card {
-            cell.update(for: element, and: card)
-        }
+        cell.update(for: element, and: card)
         return cell
     }
 
@@ -93,15 +89,15 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
 
     @IBAction func deleteCard(_ sender: UIButton) {
-        guard let card = card else { return }
-
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Delete",
                                       style: .destructive) {[weak self] _ in
-            self?.cardStore.delete(card) { [weak self] (result) in
+            guard let self = self else { return }
+
+            cardStore.delete(card) { [weak self] (result) in
                 switch result {
                 case .success:
                     self?.isCardDeleted = true
