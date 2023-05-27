@@ -96,7 +96,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         guard let card = card else { return }
 
         let alert = UIAlertController(title: "Delete?",
-                                      message: "Are you sure you want to delete this todo?",
+                                      message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Delete",
