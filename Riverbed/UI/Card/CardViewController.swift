@@ -1,6 +1,12 @@
 import UIKit
 
+protocol CardViewControllerDelegate: AnyObject {
+    func cardDidUpdate(_ card: Card)
+}
+
 class CardViewController: UITableViewController, ElementCellDelegate {
+
+    weak var delegate: CardViewControllerDelegate?
 
     var cardStore: CardStore!
 
@@ -23,10 +29,11 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
         guard let card = card else { return }
 
-        cardStore.update(card, with: fieldValues) { (result) in
+        cardStore.update(card, with: fieldValues) { [weak self] (result) in
             switch result {
             case .success:
                 print("SAVED CARD \(card.id)")
+                self?.delegate?.cardDidUpdate(card)
             case let .failure(error):
                 print("Error saving card: \(String(describing: error))")
             }

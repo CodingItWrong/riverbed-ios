@@ -4,8 +4,8 @@ class BoardViewController: UIViewController,
                            BoardListDelegate,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout,
-                           CardSummaryDelegate {
-
+                           CardSummaryDelegate,
+                           CardViewControllerDelegate {
     @IBOutlet var columnsCollectionView: UICollectionView!
 
     var cardStore: CardStore!
@@ -180,12 +180,18 @@ class BoardViewController: UIViewController,
                 preconditionFailure("Expected Card")
             }
 
+            cardVC.delegate = self
             cardVC.elements = elements
             cardVC.card = card
             cardVC.cardStore = cardStore
         default:
             preconditionFailure("Unexpected segue")
         }
+    }
+
+    func cardDidUpdate(_ card: Card) {
+        // Could consider only reloading the cards
+        loadBoardData()
     }
 
 }
