@@ -2,11 +2,13 @@ import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
     func cardDidUpdate(_ card: Card)
+    func cardWasDeleted(_ card: Card)
 }
 
 class CardViewController: UITableViewController, ElementCellDelegate {
 
     weak var delegate: CardViewControllerDelegate?
+    private var isCardDeleted = false
 
     var cardStore: CardStore!
 
@@ -29,13 +31,17 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
         guard let card = card else { return }
 
-        cardStore.update(card, with: fieldValues) { [weak self] (result) in
-            switch result {
-            case .success:
-                print("SAVED CARD \(card.id)")
-                self?.delegate?.cardDidUpdate(card)
-            case let .failure(error):
-                print("Error saving card: \(String(describing: error))")
+        if isCardDeleted {
+            delegate?.cardWasDeleted(card)
+        } else {
+            cardStore.update(card, with: fieldValues) { [weak self] (result) in
+                switch result {
+                case .success:
+                    print("SAVED CARD \(card.id)")
+                    self?.delegate?.cardDidUpdate(card)
+                case let .failure(error):
+                    print("Error saving card: \(String(describing: error))")
+                }
             }
         }
     }
@@ -98,6 +104,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             self?.cardStore.delete(card) { [weak self] (result) in
                 switch result {
                 case .success:
+                    self?.isCardDeleted = true
                     self?.dismiss(animated: true)
                 case let .failure(error):
                     print("Error deleting card: \(String(describing: error))")

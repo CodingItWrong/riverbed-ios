@@ -194,4 +194,8 @@ class BoardViewController: UIViewController,
         loadBoardData()
     }
 
+    func cardWasDeleted(_ card: Card) {
+        loadBoardData()
+    }
+
 }
