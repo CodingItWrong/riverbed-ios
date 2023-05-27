@@ -17,7 +17,10 @@ class BoardViewController: UIViewController,
     var elements = [Element]()
 
     var board: Board? {
-        didSet { loadBoardData() }
+        didSet {
+            clearBoardData()
+            loadBoardData()
+        }
     }
 
     var sortedColumns: [Column] {
@@ -39,6 +42,11 @@ class BoardViewController: UIViewController,
         columnsCollectionView.collectionViewLayout.invalidateLayout()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        clearBoardData()
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         configureForCurrentSizeClass()
     }
@@ -48,14 +56,18 @@ class BoardViewController: UIViewController,
         self.board = board
     }
 
+    func clearBoardData() {
+        cards = []
+        columns = []
+        elements = []
+
+        columnsCollectionView.reloadData()
+    }
+
     @objc func loadBoardData(_ sender: UIRefreshControl? = nil) {
         guard let board = board else { return }
 
         navigationItem.title = board.attributes.name
-
-        cards = []
-        columns = []
-        elements = []
 
         cardStore.all(for: board) { (result) in
             // TODO: do this after all the loads complete
