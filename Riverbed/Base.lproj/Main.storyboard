@@ -417,17 +417,24 @@
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="0kc-k3-8rB" id="Pt0-lk-lkX"/>
+                                                            </connections>
                                                         </textField>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EuI-Ca-nmm">
                                                             <rect key="frame" x="200" y="0.0" width="190" height="34"/>
                                                             <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="0kc-k3-8rB" id="Q0A-fd-7A4"/>
+                                                            </connections>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hj-NP-hJZ">
                                                     <rect key="frame" x="0.0" y="176.33333333333337" width="390" height="200"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="pS2-MP-M6m"/>
                                                     </constraints>

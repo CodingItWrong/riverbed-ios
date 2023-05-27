@@ -1,9 +1,11 @@
 import UIKit
 import MapKit
 
-class GeolocationElementCell: UITableViewCell, ElementCell {
+class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate {
 
     weak var delegate: ElementCellDelegate?
+
+    private var element: Element?
 
     enum ValueKey: String {
         case latitude = "lat"
@@ -13,11 +15,21 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var latitudeTextField: UITextField!
     @IBOutlet private(set) var longitudeTextField: UITextField!
-    @IBOutlet private(set) var mapView: MKMapView!
     @IBOutlet private(set) var currentLocationButton: UIButton!
     @IBOutlet private(set) var directionsButton: UIButton!
+    @IBOutlet private(set) var mapView: MKMapView! {
+        didSet {
+            let tapRecognizer = UITapGestureRecognizer(target: self,
+                                                       action: #selector(didTapOnMapView(sender:)))
+            mapView.addGestureRecognizer(tapRecognizer)
+        }
+    }
+
+    private let pin = MKPointAnnotation()
 
     func update(for element: Element, and card: Card) {
+        self.element = element
+
         elementLabel.text = element.attributes.name
 
         [latitudeTextField, longitudeTextField].forEach { (field) in
@@ -41,10 +53,13 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
                     center: coordinate,
                     span: MKCoordinateSpan(latitudeDelta: 0.01,
                                            longitudeDelta: 0.01))
-                let pin = MKPointAnnotation()
                 pin.coordinate = coordinate
                 mapView.addAnnotation(pin)
+            } else {
+                mapView.removeAnnotation(pin)
             }
+        } else {
+            mapView.removeAnnotation(pin)
         }
     }
 
@@ -72,5 +87,30 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
 
         mapView.isZoomEnabled = isEnabled
         mapView.isScrollEnabled = isEnabled
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        passUpdatedValueToDelegate()
+    }
+
+    @objc func didTapOnMapView(sender: UITapGestureRecognizer) {
+        guard case .ended = sender.state else { return } // may not be needed for single tap
+
+        // get coordinate
+        let point = sender.location(in: mapView)
+        let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+
+        // update pin and fields with coordinate
+        pin.coordinate = coordinate
+        mapView.region = MKCoordinateRegion(
+            center: coordinate,
+            span: MKCoordinateSpan(latitudeDelta: 0.01,
+                                   longitudeDelta: 0.01))
+        latitudeTextField.text = String(coordinate.latitude)
+        longitudeTextField.text = String(coordinate.longitude)
+    }
+
+    func passUpdatedValueToDelegate() {
+        // TODO
     }
 }
