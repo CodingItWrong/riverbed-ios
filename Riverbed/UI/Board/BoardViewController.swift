@@ -16,7 +16,7 @@ class BoardViewController: UIViewController,
     var columns = [Column]()
     var elements = [Element]()
 
-    var board: Board? {
+    var board: Board! {
         didSet {
             clearBoardData()
             loadBoardData()
@@ -65,8 +65,6 @@ class BoardViewController: UIViewController,
     }
 
     @objc func loadBoardData(_ sender: UIRefreshControl? = nil) {
-        guard let board = board else { return }
-
         navigationItem.title = board.attributes.name
 
         cardStore.all(for: board) { (result) in
@@ -157,8 +155,6 @@ class BoardViewController: UIViewController,
     }
 
     @IBAction func addCard(_ sender: UIBarButtonItem) {
-        guard let board = board else { return }
-
         cardStore.create(on: board) { [weak self] (result) in
             switch result {
             case let .success(card):
