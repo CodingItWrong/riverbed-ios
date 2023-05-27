@@ -36,4 +36,21 @@ struct DateTimeUtils {
 
         return DateTimeUtils.serverDateTimeFormatter.string(from: date)
     }
+
+    static func isCurrentMonth(_ dateString: String?) -> Bool {
+        isMonthOffset(dateString, by: 0)
+    }
+
+    static func isMonthOffset(_ dateString: String?, by numMonths: Int) -> Bool {
+        guard let dateTime = dateTime(fromServerString: dateString) else {
+            return false
+        }
+        guard let offsetDateTime = Calendar.current.date(byAdding: .month, value: numMonths, to: dateTime) else {
+            return false
+        }
+        let offsetComponents = Calendar.current.dateComponents([.year, .month], from: offsetDateTime)
+        let nowComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+
+        return offsetComponents == nowComponents
+    }
 }

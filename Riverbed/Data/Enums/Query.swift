@@ -61,18 +61,37 @@ enum Query: String, Codable {
             guard case let .string(value) = value else {
                 return false
             }
-            return DateUtils.isCurrentMonth(value)
+            switch dataType {
+            case .date:
+                return DateUtils.isCurrentMonth(value)
+            case .dateTime:
+                return DateTimeUtils.isCurrentMonth(value)
+            default:
+                return false
+            }
         case .isEmpty:
             return value == nil
         case .isEmptyOrEquals:
             return Query.isEmpty.match(value: value, dataType: dataType, options: options) ||
                    Query.equals.match(value: value, dataType: dataType, options: options)
         case .isFuture:
-            guard case let .string(value) = value,
-                  let date = DateUtils.date(fromServerString: value) else {
+            guard case let .string(dateString) = value else {
                 return false
             }
-            return date > Date()
+            switch dataType {
+            case .date:
+                guard let date = DateUtils.date(fromServerString: dateString) else {
+                    return false
+                }
+                return date > Date()
+            case .dateTime:
+                guard let date = DateTimeUtils.dateTime(fromServerString: dateString) else {
+                    return false
+                }
+                return date > Date()
+            default:
+                return false
+            }
         case .isNotCurrentMonth:
             return !Query.isCurrentMonth.match(value: value, dataType: dataType, options: options)
         case .isNotEmpty:
@@ -82,16 +101,35 @@ enum Query: String, Codable {
         case .isNotPast:
             return !Query.isPast.match(value: value, dataType: dataType, options: options)
         case .isPast:
-            guard case let .string(value) = value,
-                  let date = DateUtils.date(fromServerString: value) else {
+            guard case let .string(dateString) = value else {
                 return false
             }
-            return date < Date()
+            switch dataType {
+            case .date:
+                guard let date = DateUtils.date(fromServerString: dateString) else {
+                    return false
+                }
+                return date < Date()
+            case .dateTime:
+                guard let date = DateTimeUtils.dateTime(fromServerString: dateString) else {
+                    return false
+                }
+                return date < Date()
+            default:
+                return false
+            }
         case .isPreviousMonth:
-            guard case let .string(value) = value else {
+            guard case let .string(dateString) = value else {
                 return false
             }
-            return DateUtils.isMonthOffset(value, by: -1)
+            switch dataType {
+            case .date:
+                return DateUtils.isMonthOffset(dateString, by: -1)
+            case .dateTime:
+                return DateTimeUtils.isMonthOffset(dateString, by: -1)
+            default:
+                return false
+            }
         }
     }
 }
