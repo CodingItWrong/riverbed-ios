@@ -44,23 +44,11 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
            let longitudeString = dictValue[ValueKey.longitude.rawValue] {
             latitudeTextField.text = latitudeString
             longitudeTextField.text = longitudeString
-
-            if let latitudeDouble = Double(latitudeString),
-               let longitudeDouble = Double(longitudeString) {
-                let coordinate = CLLocationCoordinate2D(latitude: latitudeDouble,
-                                                        longitude: longitudeDouble)
-                mapView.region = MKCoordinateRegion(
-                    center: coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.01,
-                                           longitudeDelta: 0.01))
-                pin.coordinate = coordinate
-                mapView.addAnnotation(pin)
-            } else {
-                mapView.removeAnnotation(pin)
-            }
         } else {
-            mapView.removeAnnotation(pin)
+            latitudeTextField.text = ""
+            longitudeTextField.text = ""
         }
+        updateMapFromCoordinate()
     }
 
     @IBAction func getCurrentLocation() {
@@ -90,6 +78,7 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        updateMapFromCoordinate()
         passUpdatedValueToDelegate()
     }
 
@@ -101,15 +90,30 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
 
         // update pin and fields with coordinate
-        pin.coordinate = coordinate
-        mapView.region = MKCoordinateRegion(
-            center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.01,
-                                   longitudeDelta: 0.01))
         latitudeTextField.text = String(coordinate.latitude)
         longitudeTextField.text = String(coordinate.longitude)
 
+        updateMapFromCoordinate()
         passUpdatedValueToDelegate()
+    }
+
+    func updateMapFromCoordinate() {
+        if let latitudeString = latitudeTextField.text,
+           let longitudeString = longitudeTextField.text,
+           let latitudeDouble = Double(latitudeString),
+           let longitudeDouble = Double(longitudeString) {
+            let coordinate = CLLocationCoordinate2D(latitude: latitudeDouble,
+                                                    longitude: longitudeDouble)
+            pin.coordinate = coordinate
+            mapView.region = MKCoordinateRegion(
+                center: coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.01,
+                                       longitudeDelta: 0.01))
+            mapView.addAnnotation(pin)
+        } else {
+            mapView.removeAnnotation(pin)
+        }
+
     }
 
     func passUpdatedValueToDelegate() {
