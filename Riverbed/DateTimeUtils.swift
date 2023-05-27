@@ -28,4 +28,12 @@ struct DateTimeUtils {
 
         return DateTimeUtils.humanDateTimeFormatter.string(from: dateTime)
     }
+
+    static func serverString(from date: Date?) -> String? {
+        guard let date = date else {
+            return nil
+        }
+
+        return DateTimeUtils.serverDateTimeFormatter.string(from: date)
+    }
 }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ElementCellDelegate: AnyObject {
-    func update(value: FieldValue, for element: Element)
+    func update(value: FieldValue?, for element: Element)
 }
 
 protocol ElementCell: UITableViewCell {

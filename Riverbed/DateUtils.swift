@@ -28,6 +28,14 @@ struct DateUtils {
         return DateUtils.humanDateFormatter.string(from: date)
     }
 
+    static func serverString(from date: Date?) -> String? {
+        guard let date = date else {
+            return nil
+        }
+
+        return DateUtils.serverDateFormatter.string(from: date)
+    }
+
     static func isCurrentMonth(_ dateString: String?) -> Bool {
         isMonthOffset(dateString, by: 0)
     }
