@@ -54,10 +54,10 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gU5-nK-X3N">
-                                                                        <rect key="frame" x="4" y="4" width="446" height="89"/>
+                                                                        <rect key="frame" x="8" y="4" width="438" height="89"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YMW-MV-QbW">
-                                                                                <rect key="frame" x="12" y="12" width="422" height="65"/>
+                                                                                <rect key="frame" x="12" y="12" width="414" height="65"/>
                                                                             </stackView>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -70,9 +70,9 @@
                                                                     </view>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="leading" secondItem="i2G-JH-JWr" secondAttribute="leading" constant="4" id="UIZ-P5-w1y"/>
+                                                                    <constraint firstItem="gU5-nK-X3N" firstAttribute="leading" secondItem="i2G-JH-JWr" secondAttribute="leading" constant="8" id="UIZ-P5-w1y"/>
                                                                     <constraint firstAttribute="bottom" secondItem="gU5-nK-X3N" secondAttribute="bottom" constant="4" id="UOH-Ak-0S2"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="gU5-nK-X3N" secondAttribute="trailing" constant="4" id="XL9-OU-TDU"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="gU5-nK-X3N" secondAttribute="trailing" constant="8" id="XL9-OU-TDU"/>
                                                                     <constraint firstItem="gU5-nK-X3N" firstAttribute="top" secondItem="i2G-JH-JWr" secondAttribute="top" constant="4" id="oZK-Ij-bxb"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
