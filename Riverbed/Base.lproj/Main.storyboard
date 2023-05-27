@@ -249,19 +249,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YdP-gR-zqC">
-                                            <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="41.333333333333343" height="20.333333333333329"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="26" y="15" width="31" height="14.333333333333336"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-QQ-bKV">
-                                            <rect key="frame" x="61.333333333333343" y="4" width="299" height="36"/>
+                                            <rect key="frame" x="57" y="4" width="303.33333333333331" height="36"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MKn-jP-lea">
-                                                    <rect key="frame" x="0.0" y="0.0" width="299" height="36"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="36"/>
                                                 </datePicker>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HY-f3-oe8">
-                                                    <rect key="frame" x="234" y="7.9999999999999982" width="65" height="20.333333333333329"/>
+                                                    <rect key="frame" x="238.33333333333331" y="7.9999999999999982" width="65" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -291,7 +291,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="sSK-fL-18s" secondAttribute="trailing" id="DPT-cU-wEH"/>
                                         <constraint firstItem="sSK-fL-18s" firstAttribute="centerY" secondItem="7Lx-wW-YaT" secondAttribute="centerY" id="LUl-mv-z0k"/>
                                         <constraint firstItem="sSK-fL-18s" firstAttribute="leading" secondItem="8CG-QQ-bKV" secondAttribute="trailing" id="Skb-bT-JRK"/>
-                                        <constraint firstItem="YdP-gR-zqC" firstAttribute="leading" secondItem="7Lx-wW-YaT" secondAttribute="leadingMargin" id="avR-LV-gaR"/>
+                                        <constraint firstItem="YdP-gR-zqC" firstAttribute="leading" secondItem="7Lx-wW-YaT" secondAttribute="leadingMargin" constant="6" id="avR-LV-gaR"/>
                                         <constraint firstItem="8CG-QQ-bKV" firstAttribute="leading" secondItem="YdP-gR-zqC" secondAttribute="trailing" id="b6F-bi-oAb"/>
                                         <constraint firstItem="YdP-gR-zqC" firstAttribute="centerY" secondItem="7Lx-wW-YaT" secondAttribute="centerY" id="cDN-nD-Olk"/>
                                     </constraints>
@@ -548,6 +548,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Boards" id="rxc-OO-zj3"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="D5Q-63-c09">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>
