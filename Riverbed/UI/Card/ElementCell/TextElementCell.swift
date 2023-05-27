@@ -72,6 +72,11 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
         valueTextView.isEditable = !editing // because editing the list of elements, not editing their values
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     func textFieldDidChangeSelection(_ textField: UITextField) {
         passUpdatedValueToDelegate(valueTextField.text)
     }
