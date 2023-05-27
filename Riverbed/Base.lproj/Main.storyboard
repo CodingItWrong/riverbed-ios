@@ -144,6 +144,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="c9u-eZ-pbZ">
                             <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -524,10 +525,16 @@
                         <connections>
                             <outlet property="dataSource" destination="6X2-2e-DlT" id="iYu-h0-608"/>
                             <outlet property="delegate" destination="6X2-2e-DlT" id="unt-Qk-K9u"/>
+                            <outletCollection property="gestureRecognizers" destination="fs0-M9-WBu" appends="YES" id="yTj-ft-lQp"/>
                         </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fs0-M9-WBu">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="6X2-2e-DlT" id="x6y-g0-WM9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1866.9767441860465" y="46.351931330472105"/>
         </scene>

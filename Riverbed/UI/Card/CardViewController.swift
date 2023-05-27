@@ -153,4 +153,8 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         print("UPDATED \(String(describing: element.attributes.name)) to \(String(describing: value))")
     }
 
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
 }
