@@ -43,7 +43,11 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
               let groupFieldId = cardGrouping.field,
               let groupField = elements.first(where: { $0.id == groupFieldId }),
               let groupValue = cardGroups[section].value else {
-            return "(empty)"
+            if cardGroups.count == 1 {
+                return nil
+            } else {
+                return "(empty)"
+            }
         }
 
         return groupField.formatString(from: groupValue)
