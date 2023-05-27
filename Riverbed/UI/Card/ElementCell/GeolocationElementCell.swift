@@ -20,6 +20,12 @@ class GeolocationElementCell: UITableViewCell, ElementCell {
     func update(for element: Element, and card: Card) {
         elementLabel.text = element.attributes.name
 
+        [latitudeTextField, longitudeTextField].forEach { (field) in
+            field?.layer.cornerRadius = 5
+            field?.layer.borderWidth = 1
+            field?.layer.borderColor = UIColor.separator.cgColor
+        }
+
         let value = card.attributes.fieldValues[element.id]
         if case let .dictionary(dictValue) = value,
            let latitudeString = dictValue[ValueKey.latitude.rawValue],

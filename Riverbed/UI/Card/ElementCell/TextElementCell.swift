@@ -14,9 +14,11 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     func update(for element: Element, and card: Card) {
         self.element = element
 
-        valueTextView.layer.cornerRadius = 5
-        valueTextView.layer.borderWidth = 1
-        valueTextView.layer.borderColor = UIColor.separator.cgColor
+        [valueTextField, valueTextView].forEach { (field) in
+            field?.layer.cornerRadius = 5
+            field?.layer.borderWidth = 1
+            field?.layer.borderColor = UIColor.separator.cgColor
+        }
 
         updateFormFieldShown(for: element)
         elementLabel.text = element.attributes.name
