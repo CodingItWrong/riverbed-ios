@@ -12,23 +12,26 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
     func update(for element: Element, and card: Card) {
         self.element = element
 
-        let choices = element.attributes.options?.choices ?? []
-        let currentChoice = choices.first {
-            guard let value = card.attributes.fieldValues[element.id],
-                  case let .string(stringValue) = value  else { return false }
-            return $0.id == stringValue
+        let choices: [Element.Choice?] = [nil] + (element.attributes.options?.choices ?? [])
+        let currentChoice = choices.first { (choice) in
+            if let choice = choice {
+                guard let value = card.attributes.fieldValues[element.id],
+                      case let .string(stringValue) = value else { return false }
+                return choice.id == stringValue
+            } else {
+                return card.attributes.fieldValues[element.id] == nil
+            }
         }
 
         elementLabel.text = element.attributes.name
         let menuOptions = choices.map { (choice) in
             let state: UIMenuElement.State = choice == currentChoice ? .on : .off
-            return UIAction(title: choice.label, state: state) {
+            return UIAction(title: choice?.label ?? "(choose)", state: state) {
                 [weak self] _ in
 
                 self?.passUpdatedValueToDelegate(choice)
             }
         }
-
         valuePopUpButton.menu = UIMenu(children: menuOptions)
     }
 
@@ -37,8 +40,13 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
         valuePopUpButton.isEnabled = !editing
     }
 
-    func passUpdatedValueToDelegate(_ choice: Element.Choice) {
+    func passUpdatedValueToDelegate(_ choice: Element.Choice?) {
         guard let element = element else { return }
-        delegate?.update(value: .string(choice.id), for: element)
+
+        if let choice = choice {
+            delegate?.update(value: .string(choice.id), for: element)
+        } else {
+            delegate?.update(value: .none, for: element)
+        }
     }
 }
