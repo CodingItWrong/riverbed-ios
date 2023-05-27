@@ -14,17 +14,27 @@ class BoardListViewController: UITableViewController {
     var boardGroups = [BoardGroup]()
 
     func updateBoardGroups() {
-        let sortedBoards = boards.sorted { $0.attributes.name < $1.attributes.name }
-        let temp = Dictionary(grouping: sortedBoards) { (board) in
+        let temp = Dictionary(grouping: boards) { (board) in
             board.attributes.favoritedAt != nil
         }
 
         var boardGroups = [BoardGroup]()
         if let favorites = temp[true] {
-            boardGroups.append(BoardGroup(name: "Favorites", boards: favorites))
+            boardGroups.append(
+                BoardGroup(name: "Favorites",
+                           boards: favorites.sorted {
+                               guard let aFavDate = $0.attributes.favoritedAt,
+                                     let bFavDate = $1.attributes.favoritedAt else {
+                                   return false
+                               }
+
+                               return aFavDate < bFavDate
+                           }))
         }
         if let unfavorites = temp[false] {
-            boardGroups.append(BoardGroup(name: "Other Boards", boards: unfavorites))
+            boardGroups.append(
+                BoardGroup(name: "Other Boards",
+                           boards: unfavorites.sorted { $0.attributes.name < $1.attributes.name }))
         }
         self.boardGroups = boardGroups
         self.tableView.reloadData()
