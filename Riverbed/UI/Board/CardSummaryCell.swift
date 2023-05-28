@@ -55,9 +55,7 @@ class CardSummaryCell: UITableViewCell {
                 print("Could not find label for element \(element.id)")
                 return
             }
-            if let value = card.attributes.fieldValues[element.id],
-               let value = value // undo multiple levels of optional
-            {
+            if let value = singularizeOptionality(card.attributes.fieldValues[element.id]) {
                 label.text = element.formatString(from: value)
             } else {
                 label.text = ""
