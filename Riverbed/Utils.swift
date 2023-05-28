@@ -20,3 +20,29 @@ func singularizeOptionality<T>(_ value: T??) -> T? {
     // alternative: return value ?? nil
     // see https://stackoverflow.com/a/33049398/477480
 }
+
+func checkConditions(fieldValues: [String: FieldValue?],
+                     conditions: [Condition]?,
+                     elements: [Element]) -> Bool {
+    guard let conditions = conditions else {
+        return true
+    }
+
+    return conditions.allSatisfy { (condition) in
+        guard let field = condition.field,
+              let query = condition.query,
+              field != "" else {
+            return true
+        }
+
+        let fieldObject = elements.first { $0.id == field }
+        guard let dataType = fieldObject?.attributes.dataType else {
+            return true
+        }
+        var value: FieldValue?
+        if let tempValue = fieldValues[field] {
+            value = tempValue // attempt to handle a double optional
+        }
+        return query.match(value: value, dataType: dataType, options: condition.options)
+    }
+}

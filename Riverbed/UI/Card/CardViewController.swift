@@ -32,10 +32,9 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
         let filteredElements = elements.filter { (element) in
             if let showConditions = element.attributes.showConditions {
-                // TODO: move this function somewhere more central for both column cards and elements
-                return Card.checkConditions(fieldValues: card.attributes.fieldValues,
-                                            conditions: showConditions,
-                                            elements: elements)
+                return checkConditions(fieldValues: card.attributes.fieldValues,
+                                       conditions: showConditions,
+                                       elements: elements)
             } else {
                 return true
             }

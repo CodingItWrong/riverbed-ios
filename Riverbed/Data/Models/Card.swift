@@ -96,32 +96,6 @@ extension Card {
         return group(cards: sortedCards, by: cardGrouping, elements: elements)
     }
 
-    static func checkConditions(fieldValues: [String: FieldValue?],
-                                conditions: [Condition]?,
-                                elements: [Element]) -> Bool {
-        guard let conditions = conditions else {
-            return true
-        }
-
-        return conditions.allSatisfy { (condition) in
-            guard let field = condition.field,
-                  let query = condition.query,
-                  field != "" else {
-                return true
-            }
-
-            let fieldObject = elements.first { $0.id == field }
-            guard let dataType = fieldObject?.attributes.dataType else {
-                return true
-            }
-            var value: FieldValue?
-            if let tempValue = fieldValues[field] {
-                value = tempValue // attempt to handle a double optional
-            }
-            return query.match(value: value, dataType: dataType, options: condition.options)
-        }
-    }
-
     private static func sort(cards: [Card],
                              by sortOrder: Column.SortOrder) -> [Card] {
         guard let field = sortOrder.field,
