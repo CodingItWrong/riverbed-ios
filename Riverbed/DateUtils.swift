@@ -12,6 +12,10 @@ struct DateUtils {
         return formatter
     }()
 
+    static func add(days: Int, to date: Date) -> Date? {
+        Calendar.current.date(byAdding: .day, value: days, to: date)
+    }
+
     static func date(fromServerString dateString: String?) -> Date? {
         guard let dateString = dateString else {
             return nil
