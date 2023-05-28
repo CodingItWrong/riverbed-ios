@@ -41,7 +41,7 @@ class CardSummaryCell: UITableViewCell {
         summaryElements.forEach { (element) in
             let label = UILabel()
             label.numberOfLines = 3
-            label.font = .preferredFont(forTextStyle: .body)
+            label.font = .preferredFont(forTextStyle: element.attributes.options?.textSize?.textStyle ?? .body)
 
             labels[element.id] = label
             fieldStack.addArrangedSubview(label)

@@ -47,6 +47,7 @@
 		03DC30462A23793800ABC4CB /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30452A23793800ABC4CB /* Command.swift */; };
 		03DC30482A23798E00ABC4CB /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30472A23798E00ABC4CB /* Value.swift */; };
 		03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304A2A23D86000ABC4CB /* BoardCell.swift */; };
+		03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304C2A23E10400ABC4CB /* TextSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		03DC30452A23793800ABC4CB /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		03DC30472A23798E00ABC4CB /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		03DC304A2A23D86000ABC4CB /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
+		03DC304C2A23E10400ABC4CB /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			children = (
 				03DC30452A23793800ABC4CB /* Command.swift */,
 				032F2C852A1AE806008208E9 /* Query.swift */,
+				03DC304C2A23E10400ABC4CB /* TextSize.swift */,
 				03DC30472A23798E00ABC4CB /* Value.swift */,
 			);
 			path = Enums;
@@ -478,6 +481,7 @@
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
+				03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */,
 				03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,

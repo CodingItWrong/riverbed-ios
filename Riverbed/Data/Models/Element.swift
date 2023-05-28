@@ -139,6 +139,7 @@ class Element: Codable, Equatable {
         var items: [Element.Item]?
         var actions: [Element.Action]?
         var initialSpecificValue: String? // TODO: handle geolocation too
+        var textSize: TextSize?
 
         enum CodingKeys: String, CodingKey {
             case multiline
@@ -147,6 +148,7 @@ class Element: Codable, Equatable {
             case items
             case actions
             case initialSpecificValue = "initial-specific-value"
+            case textSize = "text-size"
         }
     }
 
