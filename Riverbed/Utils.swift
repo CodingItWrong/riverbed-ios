@@ -46,3 +46,16 @@ func checkConditions(fieldValues: [String: FieldValue?],
         return query.match(value: value, dataType: dataType, options: condition.options)
     }
 }
+
+func domain(for urlString: String) -> String? {
+    guard let url = URL(string: urlString),
+          let hostName = url.host(percentEncoded: false) else {
+        return nil
+    }
+
+    if hostName.hasPrefix("www.") {
+        return String(hostName.dropFirst(4))
+    } else {
+        return hostName
+    }
+}

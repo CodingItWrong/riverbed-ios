@@ -47,7 +47,12 @@ class Element: Codable, Equatable {
         case let .string(stringValue):
             switch dataType {
             case .text:
-                return stringValue
+                if let abbreviateURLs = attributes.options?.abbreviateURLs,
+                   abbreviateURLs {
+                    return domain(for: stringValue)
+                } else {
+                    return stringValue
+                }
             case .number:
                 return stringValue
             case .date:
@@ -140,6 +145,7 @@ class Element: Codable, Equatable {
         var actions: [Element.Action]?
         var initialSpecificValue: String? // TODO: handle geolocation too
         var textSize: TextSize?
+        var abbreviateURLs: Bool?
 
         enum CodingKeys: String, CodingKey {
             case multiline
@@ -149,6 +155,7 @@ class Element: Codable, Equatable {
             case actions
             case initialSpecificValue = "initial-specific-value"
             case textSize = "text-size"
+            case abbreviateURLs = "abbreviate-urls"
         }
     }
 
