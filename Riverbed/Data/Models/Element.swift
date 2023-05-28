@@ -73,7 +73,7 @@ class Element: Codable, Equatable {
         }
     }
 
-    func sortValue(from value: FieldValue?) -> String? {
+    func sortValue(from value: FieldValue?) -> (any Comparable)? {
         guard let dataType = attributes.dataType else {
             return nil
         }
@@ -86,9 +86,10 @@ class Element: Codable, Equatable {
             case .text, .number, .date, .dateTime:
                 return stringValue
             case .choice:
-                return attributes.options?.choices?.first { (choice) in
+                let index: Int? = attributes.options?.choices?.firstIndex(where: { (choice) in
                     choice.id == stringValue
-                }?.label
+                })
+                return index
             case .geolocation:
                 return nil
             }

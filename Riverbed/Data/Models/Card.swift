@@ -179,7 +179,14 @@ extension Card {
             guard let aValue = groupField.sortValue(from: lhs.value) else { return true }
             guard let bValue = groupField.sortValue(from: rhs.value) else { return false }
 
-            return aValue > bValue
+            if let aString = aValue as? String, let bString = bValue as? String {
+                return aString < bString
+            }
+            if let aInt = aValue as? Int, let bInt = bValue as? Int {
+                return aInt < bInt
+            }
+
+            preconditionFailure("Unexpected types of sort values")
         }
 
         switch direction {
