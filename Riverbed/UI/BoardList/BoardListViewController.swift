@@ -4,7 +4,7 @@ protocol BoardListDelegate: AnyObject {
     func didSelect(board: Board)
 }
 
-class BoardListViewController: UITableViewController {
+class BoardListViewController: UITableViewController, BoardCellDelegate {
 
     weak var delegate: BoardListDelegate?
 
@@ -78,9 +78,8 @@ class BoardListViewController: UITableViewController {
             withIdentifier: String(describing: BoardCell.self),
             for: indexPath) as? BoardCell else { preconditionFailure("Unexpected cell class") }
         let board = board(for: indexPath)
-
-        cell.boardNameLabel.text = board.attributes.name
-
+        cell.board = board
+        cell.delegate = self
         return cell
     }
 
@@ -93,6 +92,23 @@ class BoardListViewController: UITableViewController {
 
     private func board(for indexPath: IndexPath) -> Board {
         boardGroups[indexPath.section].boards[indexPath.row]
+    }
+
+    func toggleFavorite(_ board: Board) {
+        let newFavoritedAt = board.attributes.favoritedAt == nil ? Date() : nil
+
+        let updatedAttributes = Board.Attributes(name: board.attributes.name,
+                                                 icon: board.attributes.icon,
+                                                 colorTheme: board.attributes.colorTheme,
+                                                 favoritedAt: newFavoritedAt)
+        boardStore.update(board, with: updatedAttributes) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loadBoards()
+            case let .failure(error):
+                print("Error toggling board favorite: \(String(describing: error))")
+            }
+        }
     }
 
     class BoardGroup {

@@ -573,27 +573,38 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BoardCell" id="LQl-hv-CIr" customClass="BoardCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="430" height="43.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LQl-hv-CIr" id="kze-h4-r2O">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvY-Ap-mK4">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="42" height="21.666666666666671"/>
+                                            <rect key="frame" x="20" y="10.999999999999998" width="42" height="21.333333333333329"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SOJ-6x-NmI">
+                                            <rect key="frame" x="383.66666666666669" y="4.3333333333333321" width="34.333333333333314" height="35"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="tinted" image="star" catalog="system" cornerStyle="capsule"/>
+                                            <connections>
+                                                <action selector="toggleFavorite:" destination="LQl-hv-CIr" eventType="touchUpInside" id="3Qf-xL-1La"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="SOJ-6x-NmI" firstAttribute="trailing" secondItem="kze-h4-r2O" secondAttribute="trailingMargin" constant="8" id="Cc1-ab-mLz"/>
                                         <constraint firstItem="PvY-Ap-mK4" firstAttribute="top" secondItem="kze-h4-r2O" secondAttribute="topMargin" id="JxH-R1-Xha"/>
+                                        <constraint firstItem="SOJ-6x-NmI" firstAttribute="centerY" secondItem="kze-h4-r2O" secondAttribute="centerY" id="Tfj-87-7a7"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="PvY-Ap-mK4" secondAttribute="bottom" id="Ye4-iP-Sku"/>
                                         <constraint firstItem="PvY-Ap-mK4" firstAttribute="leading" secondItem="kze-h4-r2O" secondAttribute="leadingMargin" id="jGo-IP-PUG"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="boardNameLabel" destination="PvY-Ap-mK4" id="zzs-YB-y29"/>
+                                    <outlet property="favoriteButton" destination="SOJ-6x-NmI" id="Ayo-p9-Fpc"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -663,6 +674,7 @@
     <resources>
         <image name="arrow.triangle.turn.up.right.circle" catalog="system" width="128" height="123"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="trash" catalog="system" width="117" height="128"/>
         <image name="wrench.adjustable" catalog="system" width="128" height="124"/>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
