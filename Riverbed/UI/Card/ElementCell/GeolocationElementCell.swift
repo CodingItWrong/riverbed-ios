@@ -14,6 +14,12 @@ class GeolocationElementCell: UITableViewCell,
     private var requestedLocation = false
 
     private var element: Element?
+    private var coordinate: CLLocationCoordinate2D? {
+        didSet {
+            updateUIForCoordinate()
+            passUpdatedValueToDelegate()
+        }
+    }
 
     enum ValueKey: String {
         case latitude = "lat"
@@ -56,14 +62,15 @@ class GeolocationElementCell: UITableViewCell,
             latitudeTextField.text = ""
             longitudeTextField.text = ""
         }
-        updateMapFromCoordinate()
 
-        updateLocationButtonEnabledness()
+        updateCoordinateFromTextFields()
     }
 
     @IBAction func getDirections() {
-        // TODO: implement
-        print("getDirections")
+        guard let coordinate = coordinate else { return }
+
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate))
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -71,20 +78,29 @@ class GeolocationElementCell: UITableViewCell,
 
         let isEnabled = !editing
 
-        [
-            directionsButton,
-            latitudeTextField,
-            longitudeTextField
-        ].forEach { $0.isEnabled = isEnabled }
+        latitudeTextField.isEnabled = isEnabled
+        longitudeTextField.isEnabled = isEnabled
+
         updateLocationButtonEnabledness()
+        updateDirectionButtonEnabledness()
 
         mapView.isZoomEnabled = isEnabled
         mapView.isScrollEnabled = isEnabled
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        updateMapFromCoordinate()
-        passUpdatedValueToDelegate()
+        updateCoordinateFromTextFields()
+    }
+
+    func updateCoordinateFromTextFields() {
+        if let latitudeString = latitudeTextField.text,
+           let longitudeString = longitudeTextField.text,
+           let latitudeDouble = Double(latitudeString),
+           let longitudeDouble = Double(longitudeString) {
+            coordinate = CLLocationCoordinate2D(latitude: latitudeDouble, longitude: longitudeDouble)
+        } else {
+            coordinate = nil
+        }
     }
 
     @objc func didTapOnMapView(sender: UITapGestureRecognizer) {
@@ -98,8 +114,15 @@ class GeolocationElementCell: UITableViewCell,
         latitudeTextField.text = String(format: "%.5f", coordinate.latitude)
         longitudeTextField.text = String(format: "%.5f", coordinate.longitude)
 
+        updateCoordinateFromTextFields()
+    }
+
+    // MARK: - updating UI
+
+    func updateUIForCoordinate() {
         updateMapFromCoordinate()
-        passUpdatedValueToDelegate()
+        updateLocationButtonEnabledness()
+        updateDirectionButtonEnabledness()
     }
 
     func updateMapFromCoordinate() {
@@ -121,21 +144,29 @@ class GeolocationElementCell: UITableViewCell,
 
     }
 
-    func passUpdatedValueToDelegate() {
-        guard let element = element else { return }
+    func updateLocationButtonEnabledness() {
+        if isEditing {
+            currentLocationButton.isEnabled = false
+            return
+        }
 
-        if let latitudeString = latitudeTextField.text,
-           let longitudeString = longitudeTextField.text {
-            let coords = FieldValue.dictionary([
-                ValueKey.latitude.rawValue: latitudeString,
-                ValueKey.longitude.rawValue: longitudeString
-            ])
-            delegate?.update(value: coords, for: element)
-        } else {
-            delegate?.update(value: nil, for: element)
+        let status = locationManager.authorizationStatus
+        switch status {
+        case .denied, .restricted:
+            currentLocationButton.isEnabled = false
+        case .notDetermined, .authorizedAlways, .authorizedWhenInUse:
+            currentLocationButton.isEnabled = true
+        @unknown default:
+            print("Got an unexpected authorization status: \(String(describing: status))")
+            currentLocationButton.isEnabled = true
         }
     }
 
+    func updateDirectionButtonEnabledness() {
+        directionsButton.isEnabled = !isEditing && coordinate != nil
+    }
+
+    // MARK: - current location
     @IBAction func getCurrentLocation() {
         locationManager.delegate = self
         let status = locationManager.authorizationStatus
@@ -168,23 +199,6 @@ class GeolocationElementCell: UITableViewCell,
         }
     }
 
-    func updateLocationButtonEnabledness() {
-        if !isEditing {
-            currentLocationButton.isEnabled = false
-        }
-
-        let status = locationManager.authorizationStatus
-        switch status {
-        case .denied, .restricted:
-            currentLocationButton.isEnabled = false
-        case .notDetermined, .authorizedAlways, .authorizedWhenInUse:
-            currentLocationButton.isEnabled = true
-        @unknown default:
-            print("Got an unexpected authorization status: \(String(describing: status))")
-            currentLocationButton.isEnabled = true
-        }
-    }
-
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         // delegate method sometimes called pre-emptively, like upon early instantiation
@@ -197,12 +211,27 @@ class GeolocationElementCell: UITableViewCell,
         latitudeTextField.text = String(format: "%.5f", coordinate.latitude)
         longitudeTextField.text = String(format: "%.5f", coordinate.longitude)
 
-        updateMapFromCoordinate()
-        passUpdatedValueToDelegate()
+        self.coordinate = coordinate
     }
 
     func locationManager(_ manager: CLLocationManager,
                          didFailWithError error: Error) {
         print("Error getting location: \(String(describing: error))")
+    }
+
+    // MARK: - saving data
+
+    func passUpdatedValueToDelegate() {
+        guard let element = element else { return }
+
+        if let coordinate = coordinate {
+            let coords = FieldValue.dictionary([
+                ValueKey.latitude.rawValue: String(format: "%.5f", coordinate.latitude),
+                ValueKey.longitude.rawValue: String(format: "%.5f", coordinate.longitude)
+            ])
+            delegate?.update(value: coords, for: element)
+        } else {
+            delegate?.update(value: nil, for: element)
+        }
     }
 }
