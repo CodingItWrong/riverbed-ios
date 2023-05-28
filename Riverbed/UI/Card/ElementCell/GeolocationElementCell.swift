@@ -1,9 +1,15 @@
 import UIKit
 import MapKit
+import CoreLocation
 
-class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate {
+class GeolocationElementCell: UITableViewCell,
+                              ElementCell,
+                              UITextFieldDelegate,
+                              CLLocationManagerDelegate {
 
     weak var delegate: ElementCellDelegate?
+
+    private let locationManager = CLLocationManager()
 
     private var element: Element?
 
@@ -29,6 +35,7 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
 
     func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
+        locationManager.delegate = self
 
         elementLabel.text = element.attributes.name
 
@@ -49,11 +56,8 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
             longitudeTextField.text = ""
         }
         updateMapFromCoordinate()
-    }
 
-    @IBAction func getCurrentLocation() {
-        // TODO: implement
-        print("getCurrentLocation")
+        updateLocationButtonEnabledness()
     }
 
     @IBAction func getDirections() {
@@ -67,11 +71,11 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
         let isEnabled = !editing
 
         [
-            currentLocationButton,
             directionsButton,
             latitudeTextField,
             longitudeTextField
         ].forEach { $0.isEnabled = isEnabled }
+        updateLocationButtonEnabledness()
 
         mapView.isZoomEnabled = isEnabled
         mapView.isScrollEnabled = isEnabled
@@ -129,5 +133,69 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
         } else {
             delegate?.update(value: nil, for: element)
         }
+    }
+
+    @IBAction func getCurrentLocation() {
+        let status = locationManager.authorizationStatus
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .denied, .restricted:
+            preconditionFailure("Button should have been disabled")
+        @unknown default:
+            print("Got an unexpected authorization status: \(String(describing: status))")
+        }
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        updateLocationButtonEnabledness()
+
+        let status = locationManager.authorizationStatus
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .notDetermined:
+            print("Still getting 'not determined' status after a change")
+        case .denied, .restricted:
+            print("Location permission was denied")
+        @unknown default:
+            print("Got an unexpected authorization status: \(String(describing: status))")
+        }
+    }
+
+    func updateLocationButtonEnabledness() {
+        if !isEditing {
+            currentLocationButton.isEnabled = false
+        }
+
+        let status = locationManager.authorizationStatus
+        switch status {
+        case .denied, .restricted:
+            currentLocationButton.isEnabled = false
+        case .notDetermined, .authorizedAlways, .authorizedWhenInUse:
+            currentLocationButton.isEnabled = true
+        @unknown default:
+            print("Got an unexpected authorization status: \(String(describing: status))")
+            currentLocationButton.isEnabled = true
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        let coordinate = location.coordinate
+
+        latitudeTextField.text = String(format: "%.5f", coordinate.latitude)
+        longitudeTextField.text = String(format: "%.5f", coordinate.longitude)
+
+        updateMapFromCoordinate()
+        passUpdatedValueToDelegate()
+    }
+
+    func locationManager(_ manager: CLLocationManager,
+                         didFailWithError error: Error) {
+        print("Error getting location: \(String(describing: error))")
     }
 }

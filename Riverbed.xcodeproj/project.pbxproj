@@ -649,6 +649,7 @@
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -677,6 +678,7 @@
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
