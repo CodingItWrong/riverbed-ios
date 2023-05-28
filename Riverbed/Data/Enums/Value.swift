@@ -13,7 +13,7 @@ enum Value: String, Codable {
         }
     }
 
-    func call(fieldDataType: Element.DataType, options: Element.Options) -> FieldValue? {
+    func call(fieldDataType: Element.DataType, options: Element.Options?) -> FieldValue? {
         switch self {
         case .empty: return .none
         case .now:
@@ -42,7 +42,7 @@ enum Value: String, Codable {
                 return nil
             }
         case .specificValue:
-            if let stringValue = options.initialSpecificValue {
+            if let stringValue = options?.initialSpecificValue {
                 return .string(stringValue)
             } else {
                 return nil

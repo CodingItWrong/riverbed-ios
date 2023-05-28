@@ -17,9 +17,24 @@ class CardStore {
         task.resume()
     }
 
-    func create(on board: Board, completion: @escaping (Result<Card, Error>) -> Void) {
+    func create(on board: Board, with elements: [Element], completion: @escaping (Result<Card, Error>) -> Void) {
+        let fieldsWithInitialValues = elements.filter { (element) in
+            element.attributes.elementType == .field &&
+            element.attributes.initialValue != nil
+        }
+
+        var initialFieldValues = [String: FieldValue?]()
+        fieldsWithInitialValues.forEach { (field) in
+            guard let initialValue = field.attributes.initialValue,
+                  let dataType = field.attributes.dataType else { return }
+
+            let resolvedValue = initialValue.call(fieldDataType: dataType,
+                                                  options: field.attributes.options)
+            initialFieldValues[field.id] = resolvedValue
+        }
+
         let card = NewCard(
-            attributes: Card.Attributes(fieldValues: [:]),
+            attributes: Card.Attributes(fieldValues: initialFieldValues),
             relationships: NewCard.Relationships(
                 boardData: JsonApiData(
                     data: JsonApiResourceIdentifier(type: "boards", id: board.id)

@@ -155,7 +155,7 @@ class BoardViewController: UIViewController,
     }
 
     @IBAction func addCard(_ sender: UIBarButtonItem) {
-        cardStore.create(on: board) { [weak self] (result) in
+        cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
                 self?.cardSelected(card)

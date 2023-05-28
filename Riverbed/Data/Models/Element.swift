@@ -117,6 +117,7 @@ class Element: Codable, Equatable {
         var displayOrder: Int?
         var showConditions: [Condition]?
         var readOnly: Bool
+        var initialValue: Value?
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -127,6 +128,7 @@ class Element: Codable, Equatable {
             case displayOrder = "display-order"
             case showConditions = "show-conditions"
             case readOnly = "read-only"
+            case initialValue = "initial-value"
         }
     }
 
