@@ -31,8 +31,10 @@ class Element: Codable, Equatable {
     }
 
     static func areInIncreasingOrder(lhs: Element, rhs: Element) -> Bool {
-        guard let lhsOrder = lhs.attributes.displayOrder else { return true }
+        // these two defaults seem to keep elements in the order returned when all are missing a display order
+        guard let lhsOrder = lhs.attributes.displayOrder else { return false }
         guard let rhsOrder = rhs.attributes.displayOrder else { return true }
+
         return lhsOrder < rhsOrder
     }
 
