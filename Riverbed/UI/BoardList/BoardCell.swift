@@ -8,6 +8,7 @@ class BoardCell: UITableViewCell {
 
     weak var delegate: BoardCellDelegate?
 
+    @IBOutlet private var boardIcon: UIImageView!
     @IBOutlet private var boardNameLabel: UILabel!
     @IBOutlet private var favoriteButton: UIButton!
 
@@ -21,6 +22,7 @@ class BoardCell: UITableViewCell {
 
     func updateUIForBoard() {
         boardNameLabel.text = board.attributes.name
+        boardIcon.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
         if isFavorite {
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)

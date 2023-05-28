@@ -13,12 +13,12 @@ class Board: Codable {
 
     class Attributes: Codable {
         var name: String
-        var icon: String?
+        var icon: Icon?
         var colorTheme: String?
         var favoritedAt: Date?
 
         init(name: String,
-             icon: String? = nil,
+             icon: Icon? = nil,
              colorTheme: String? = nil,
              favoritedAt: Date? = nil) {
             self.name = name
