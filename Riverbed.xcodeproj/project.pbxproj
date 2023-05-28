@@ -161,6 +161,7 @@
 		03027DF42A13DF9D0063EE24 /* Riverbed */ = {
 			isa = PBXGroup;
 			children = (
+				03027DFB2A13DF9D0063EE24 /* Main.storyboard */,
 				03027DF52A13DF9D0063EE24 /* AppDelegate.swift */,
 				03944AA02A1AAE0000639AC7 /* DateUtils.swift */,
 				03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */,
@@ -171,7 +172,6 @@
 				03027DFE2A13DF9E0063EE24 /* Assets.xcassets */,
 				03027E032A13DF9E0063EE24 /* Info.plist */,
 				03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */,
-				03027DFB2A13DF9D0063EE24 /* Main.storyboard */,
 			);
 			path = Riverbed;
 			sourceTree = "<group>";

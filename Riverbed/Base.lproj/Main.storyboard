@@ -121,7 +121,7 @@
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" id="l7D-o0-FYJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Board" id="z2e-de-ATP">
+                    <navigationItem key="navigationItem" title="Board" largeTitleDisplayMode="never" id="z2e-de-ATP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nBP-Fy-yRm">
                             <connections>
                                 <action selector="addCard:" destination="Flc-lf-CdM" id="I8U-94-bja"/>
@@ -609,8 +609,8 @@
         <scene sceneID="qOO-d0-zbc">
             <objects>
                 <navigationController id="0jh-il-39t" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EXD-Bs-f7b">
-                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="EXD-Bs-f7b">
+                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
