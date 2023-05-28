@@ -96,9 +96,9 @@ extension Card {
         return group(cards: sortedCards, by: cardGrouping, elements: elements)
     }
 
-    private static func checkConditions(fieldValues: [String: FieldValue?],
-                                        conditions: [Condition]?,
-                                        elements: [Element]) -> Bool {
+    static func checkConditions(fieldValues: [String: FieldValue?],
+                                conditions: [Condition]?,
+                                elements: [Element]) -> Bool {
         guard let conditions = conditions else {
             return true
         }

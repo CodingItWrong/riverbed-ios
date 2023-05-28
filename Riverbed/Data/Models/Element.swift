@@ -115,6 +115,7 @@ class Element: Codable, Equatable {
         var showInSummary: Bool
         var options: Element.Options?
         var displayOrder: Int?
+        var showConditions: [Condition]?
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -123,6 +124,7 @@ class Element: Codable, Equatable {
             case showInSummary = "show-in-summary"
             case options
             case displayOrder = "display-order"
+            case showConditions = "show-conditions"
         }
     }
 

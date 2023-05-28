@@ -226,8 +226,8 @@
 				0342FC702A17960000CB8075 /* Board.swift */,
 				0342FC7F2A17C24100CB8075 /* Card.swift */,
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
-				038BBC2F2A1811C900BB2284 /* Element.swift */,
 				032F2C872A1AEA17008208E9 /* Condition.swift */,
+				038BBC2F2A1811C900BB2284 /* Element.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

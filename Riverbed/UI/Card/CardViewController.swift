@@ -12,16 +12,35 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
     var cardStore: CardStore!
 
-    var elements = [Element]()
+    var elements = [Element]() {
+        didSet {
+            updateElementsToShow()
+        }
+    }
     var card: Card! { // will always be set in segue
         didSet {
             fieldValues = card.attributes.fieldValues
+            updateElementsToShow()
         }
     }
     var fieldValues = [String: FieldValue?]()
 
-    var sortedElements: [Element] {
-        elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+    var elementsToShow = [Element]()
+
+    func updateElementsToShow() {
+        guard let card = card else { return }
+
+        let filteredElements = elements.filter { (element) in
+            if let showConditions = element.attributes.showConditions {
+                // TODO: move this function somewhere more central for both column cards and elements
+                return Card.checkConditions(fieldValues: card.attributes.fieldValues,
+                                            conditions: showConditions,
+                                            elements: elements)
+            } else {
+                return true
+            }
+        }
+        elementsToShow = filteredElements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,11 +64,11 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        elements.count
+        elementsToShow.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = sortedElements[indexPath.row]
+        let element = elementsToShow[indexPath.row]
         let cellType = cellType(for: element)
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: String(describing: cellType),
