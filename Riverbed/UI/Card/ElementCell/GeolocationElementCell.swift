@@ -9,7 +9,9 @@ class GeolocationElementCell: UITableViewCell,
 
     weak var delegate: ElementCellDelegate?
 
-    private let locationManager = CLLocationManager()
+    private lazy var locationManager = CLLocationManager()
+
+    private var requestedLocation = false
 
     private var element: Element?
 
@@ -35,7 +37,6 @@ class GeolocationElementCell: UITableViewCell,
 
     func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
-        locationManager.delegate = self
 
         elementLabel.text = element.attributes.name
 
@@ -136,11 +137,13 @@ class GeolocationElementCell: UITableViewCell,
     }
 
     @IBAction func getCurrentLocation() {
+        locationManager.delegate = self
         let status = locationManager.authorizationStatus
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
         case .authorizedAlways, .authorizedWhenInUse:
+            requestedLocation = true
             locationManager.requestLocation()
         case .denied, .restricted:
             preconditionFailure("Button should have been disabled")
@@ -184,6 +187,10 @@ class GeolocationElementCell: UITableViewCell,
 
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
+        // delegate method sometimes called pre-emptively, like upon early instantiation
+        guard requestedLocation == true else { return }
+        requestedLocation = false
+
         guard let location = locations.first else { return }
         let coordinate = location.coordinate
 
