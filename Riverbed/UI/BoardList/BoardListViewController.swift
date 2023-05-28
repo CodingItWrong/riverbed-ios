@@ -74,12 +74,12 @@ class BoardListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: UITableViewCell.self),
-            for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: BoardCell.self),
+            for: indexPath) as? BoardCell else { preconditionFailure("Unexpected cell class") }
         let board = board(for: indexPath)
 
-        cell.textLabel?.text = board.attributes.name
+        cell.boardNameLabel.text = board.attributes.name
 
         return cell
     }
