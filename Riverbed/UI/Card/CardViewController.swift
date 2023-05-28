@@ -79,6 +79,10 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
 
     private func cellType(for element: Element) -> UITableViewCell.Type {
+        if element.attributes.readOnly {
+            return ReadOnlyElementCell.self
+        }
+
         switch element.attributes.elementType {
         case .button: return ButtonElementCell.self
         case .buttonMenu: return ButtonMenuElementCell.self

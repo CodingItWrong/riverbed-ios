@@ -116,6 +116,7 @@ class Element: Codable, Equatable {
         var options: Element.Options?
         var displayOrder: Int?
         var showConditions: [Condition]?
+        var readOnly: Bool
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -125,13 +126,22 @@ class Element: Codable, Equatable {
             case options
             case displayOrder = "display-order"
             case showConditions = "show-conditions"
+            case readOnly = "read-only"
         }
     }
 
     class Options: Codable {
         var multiline: Bool?
+        var showLabelWhenReadOnly: Bool?
         var choices: [Element.Choice]?
         var items: [Element.Item]?
+
+        enum CodingKeys: String, CodingKey {
+            case multiline
+            case showLabelWhenReadOnly = "show-label-when-read-only"
+            case choices
+            case items
+        }
     }
 
     class Choice: Codable, Equatable {
