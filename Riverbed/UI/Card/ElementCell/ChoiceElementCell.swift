@@ -9,7 +9,7 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var valuePopUpButton: UIButton!
 
-    func update(for element: Element, and card: Card) {
+    func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
 
         let choices: [Element.Choice?] = [nil] + (element.attributes.options?.choices ?? [])

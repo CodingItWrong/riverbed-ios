@@ -6,7 +6,6 @@ protocol CardViewControllerDelegate: AnyObject {
 }
 
 class CardViewController: UITableViewController, ElementCellDelegate {
-
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
 
@@ -74,7 +73,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             for: indexPath) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
         cell.delegate = self
-        cell.update(for: element, and: card)
+        cell.update(for: element, and: card, allElements: elements)
         return cell
     }
 
@@ -169,6 +168,14 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     func update(value: FieldValue?, for element: Element) {
         fieldValues[element.id] = value
         print("UPDATED \(String(describing: element.attributes.name)) to \(String(describing: value))")
+    }
+
+    func update(values: [String: FieldValue?], dismiss: Bool) {
+        fieldValues = values
+
+        if dismiss {
+            self.dismiss(animated: true)
+        }
     }
 
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {

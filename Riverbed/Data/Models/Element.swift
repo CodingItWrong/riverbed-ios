@@ -135,12 +135,90 @@ class Element: Codable, Equatable {
         var showLabelWhenReadOnly: Bool?
         var choices: [Element.Choice]?
         var items: [Element.Item]?
+        var actions: [Element.Action]?
+        var initialSpecificValue: String? // TODO: handle geolocation too
 
         enum CodingKeys: String, CodingKey {
             case multiline
             case showLabelWhenReadOnly = "show-label-when-read-only"
             case choices
             case items
+            case actions
+            case initialSpecificValue = "initial-specific-value"
+        }
+    }
+
+    class Action: Codable {
+        var command: Command?
+        var field: String?
+        var value: Value?
+
+        func call(elements: [Element], fieldValues: [String: FieldValue?]) -> [String: FieldValue?] {
+            switch command {
+            case .none: return fieldValues
+            case .setValue:
+                guard let field = field else {
+                    print("Field for SET VALUE command not set")
+                    return fieldValues
+                }
+                guard let fieldObject = elements.first(where: { $0.id == field }) else {
+                    print("Field for SET VALUE command not found")
+                    return fieldValues
+                }
+                guard let dataType = fieldObject.attributes.dataType else {
+                    print("Field data type for SET VALUE command not set")
+                    return fieldValues
+                }
+                guard let options = fieldObject.attributes.options else {
+                    print("Field options for SET VALUE command not set")
+                    return fieldValues
+                }
+                guard let value = value else {
+                    print("Value for SET VALUE command not set")
+                    return fieldValues
+                }
+
+                let concreteValue = value.call(fieldDataType: dataType, options: options)
+                var newFieldValues = fieldValues // arrays have value semantics, so it's copied
+                newFieldValues[field] = concreteValue
+                return newFieldValues
+            case .addDays:
+                // TODO: to implement
+                return fieldValues
+//                guard let value = value else {
+//                    print("Value for SET VALUE command not set")
+//                    return fieldValues
+//                }
+//
+//                let now = Date()
+//                guard let field = field else {
+//                    print("Field for SET VALUE command not set")
+//                    return fieldValues
+//                }
+//                guard let fieldObject = elements.first(where: { $0.id == field }) else {
+//                    print("Field for SET VALUE command not found")
+//                    return fieldValues
+//                }
+//
+//                guard let numDays = Int(value) else {
+//                    print("Invalid number of days: \(numDays)")
+//                    return fieldValues
+//                }
+//
+//                var updatedDate: Date!
+//                switch fieldObject.attributes.dataType {
+//                case .date:
+//                    let startDate = DateUtils.date(fromServerString: fieldValues[field])
+//                    updatedDate = DateUtils.addDays(startDate, Int())
+//                case .dateTime:
+//                    let startDate = DateTimeUtils.date(fromServerString: fieldValues[field])
+//                default:
+//                    print("Invalide data type for ADD DAYS")
+//                    return fieldValues
+//                }
+//
+//                let updatedDate =
+            }
         }
     }
 

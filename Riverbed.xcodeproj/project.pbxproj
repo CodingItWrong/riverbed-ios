@@ -44,6 +44,8 @@
 		03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */; };
 		03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688C2A1CC78F00597D9E /* CardTests.swift */; };
 		03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */; };
+		03DC30462A23793800ABC4CB /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30452A23793800ABC4CB /* Command.swift */; };
+		03DC30482A23798E00ABC4CB /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30472A23798E00ABC4CB /* Value.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedSplitViewController.swift; sourceTree = "<group>"; };
 		03D6688C2A1CC78F00597D9E /* CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTests.swift; sourceTree = "<group>"; };
 		03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyElementCell.swift; sourceTree = "<group>"; };
+		03DC30452A23793800ABC4CB /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		03DC30472A23798E00ABC4CB /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +196,9 @@
 		032F2C842A1AE7FD008208E9 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				03DC30452A23793800ABC4CB /* Command.swift */,
 				032F2C852A1AE806008208E9 /* Query.swift */,
+				03DC30472A23798E00ABC4CB /* Value.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -433,11 +439,13 @@
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
+				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
 				03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */,
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
+				03DC30462A23793800ABC4CB /* Command.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
 				03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */,
 				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,

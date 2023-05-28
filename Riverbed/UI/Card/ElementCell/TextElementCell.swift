@@ -11,7 +11,7 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     @IBOutlet private(set) var valueTextField: UITextField!
     @IBOutlet private(set) var valueTextView: UITextView!
 
-    func update(for element: Element, and card: Card) {
+    func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
 
         [valueTextField, valueTextView].forEach { (field) in

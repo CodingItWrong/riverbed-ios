@@ -22,7 +22,12 @@ struct DateTimeUtils {
     }
 
     static func humanString(fromServerString dateString: String?) -> String? {
-        guard let dateTime = dateTime(fromServerString: dateString) else {
+        let dateTime = dateTime(fromServerString: dateString)
+        return humanString(from: dateTime)
+    }
+
+    static func humanString(from dateTime: Date?) -> String? {
+        guard let dateTime = dateTime else {
             return nil
         }
 

@@ -27,7 +27,7 @@ class GeolocationElementCell: UITableViewCell, ElementCell, UITextFieldDelegate 
 
     private let pin = MKPointAnnotation()
 
-    func update(for element: Element, and card: Card) {
+    func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
 
         elementLabel.text = element.attributes.name

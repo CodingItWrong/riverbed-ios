@@ -6,7 +6,7 @@ class ReadOnlyElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet var valueLabel: UILabel!
 
-    func update(for element: Element, and card: Card) {
+    func update(for element: Element, and card: Card, allElements: [Element]) {
         if let value = singularizeOptionality(card.attributes.fieldValues[element.id]) {
             let formattedValue = element.formatString(from: value)
 

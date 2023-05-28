@@ -35,7 +35,7 @@ class DateElementCell: UITableViewCell, ElementCell {
         }
     }
 
-    func update(for element: Element, and card: Card) {
+    func update(for element: Element, and card: Card, allElements: [Element]) {
         self.element = element
 
         elementLabel.text = element.attributes.name
