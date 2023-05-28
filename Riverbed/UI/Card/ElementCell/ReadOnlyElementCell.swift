@@ -2,7 +2,7 @@ import UIKit
 
 class ReadOnlyElementCell: UITableViewCell, ElementCell {
 
-    var delegate: ElementCellDelegate? // not used
+    weak var delegate: ElementCellDelegate? // not used
 
     @IBOutlet var valueLabel: UILabel!
 
