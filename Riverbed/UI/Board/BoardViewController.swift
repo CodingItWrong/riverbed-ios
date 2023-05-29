@@ -35,9 +35,12 @@ class BoardViewController: UIViewController,
         appearance.titleTextAttributes = [.foregroundColor: tintColor]
         navigationItem.standardAppearance = appearance
 
-        UIButton.appearance().tintColor = tintColor // also affects plus button on iPhone only
-        UIDatePicker.appearance().tintColor = tintColor
-
+        [
+            UIButton.appearance(), // also affects plus button on iPhone only
+            UIDatePicker.appearance(),
+            UITextField.appearance(),
+            UITextView.appearance()
+        ].forEach { $0.tintColor = tintColor }
     }
 
     var sortedColumns: [Column] {
