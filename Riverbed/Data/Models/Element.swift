@@ -216,10 +216,13 @@ class Element: Codable, Equatable {
                 switch fieldObject.attributes.dataType {
                 case .date:
                     var startDate: Date!
-                    if case let .string(fieldValue) = fieldValues[field] {
-                        startDate = DateUtils.date(fromServerString: fieldValue)
+                    let now = Date()
+                    if case let .string(fieldValue) = fieldValues[field],
+                       let serverDate = DateUtils.date(fromServerString: fieldValue),
+                       serverDate > now {
+                        startDate = serverDate
                     } else {
-                        startDate = Date()
+                        startDate = now
                     }
                     let updatedDate = DateUtils.add(days: numDays, to: startDate)
                     updatedValue = DateUtils.serverString(from: updatedDate)
