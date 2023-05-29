@@ -146,6 +146,7 @@ class Element: Codable, Equatable {
         var initialSpecificValue: String? // TODO: handle geolocation too
         var textSize: TextSize?
         var abbreviateURLs: Bool?
+        var linkURLs: Bool?
 
         enum CodingKeys: String, CodingKey {
             case multiline
@@ -156,6 +157,7 @@ class Element: Codable, Equatable {
             case initialSpecificValue = "initial-specific-value"
             case textSize = "text-size"
             case abbreviateURLs = "abbreviate-urls"
+            case linkURLs = "link-urls"
         }
     }
 
