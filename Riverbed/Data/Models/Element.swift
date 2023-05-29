@@ -164,7 +164,9 @@ class Element: Codable, Equatable {
     class Action: Codable {
         var command: Command?
         var field: String?
-        var value: String? // TODO: handle the fact that the "value" field here is used in two different ways for the different commands
+
+        // TODO: handle the fact that the "value" field here is used in two different ways for the different commands
+        var value: String?
 
         func call(elements: [Element], fieldValues: [String: FieldValue?]) -> [String: FieldValue?] {
             switch command {

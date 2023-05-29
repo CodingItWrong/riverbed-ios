@@ -45,7 +45,8 @@ class CardSummaryCell: UITableViewCell {
                 var configuration = UIButton.Configuration.plain()
                 configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
                 link.configuration = configuration
-                link.titleLabel?.font = .preferredFont(forTextStyle: element.attributes.options?.textSize?.textStyle ?? .body)
+                let textStyle = element.attributes.options?.textSize?.textStyle ?? .body
+                link.titleLabel?.font = .preferredFont(forTextStyle: textStyle)
                 link.contentHorizontalAlignment = .leading
                 link.addTarget(self,
                                action: #selector(handleLinkClick(_:)),
