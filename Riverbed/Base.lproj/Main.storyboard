@@ -185,14 +185,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="20.333333969116211"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOY-fb-qRq">
-                                            <rect key="frame" x="25.000000000000004" y="0.0" width="41.333333333333343" height="20.333333333333332"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOY-fb-qRq">
+                                            <rect key="frame" x="25" y="0.0" width="380" height="20.333333333333332"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oOY-fb-qRq" secondAttribute="trailing" constant="5" id="1aU-qj-WtW"/>
                                         <constraint firstItem="oOY-fb-qRq" firstAttribute="leading" secondItem="ihw-YY-55y" secondAttribute="leadingMargin" constant="5" id="9j0-Uo-aT9"/>
                                         <constraint firstItem="oOY-fb-qRq" firstAttribute="top" secondItem="ihw-YY-55y" secondAttribute="top" id="XDP-YF-e1c"/>
                                         <constraint firstAttribute="bottom" secondItem="oOY-fb-qRq" secondAttribute="bottom" id="yCi-De-C2M"/>
@@ -290,7 +291,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="36"/>
                                                 </datePicker>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HY-f3-oe8">
-                                                    <rect key="frame" x="238.33333333333331" y="8" width="65" height="20.333333333333329"/>
+                                                    <rect key="frame" x="238.33333333333331" y="7.9999999999999982" width="65" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -307,7 +308,7 @@
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSK-fL-18s">
-                                            <rect key="frame" x="360.33333333333331" y="5" width="49.666666666666686" height="34.333333333333329"/>
+                                            <rect key="frame" x="360.33333333333331" y="5" width="49.666666666666686" height="34.333333333333336"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
                                             <connections>
