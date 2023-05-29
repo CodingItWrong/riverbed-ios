@@ -49,6 +49,7 @@
 		03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304A2A23D86000ABC4CB /* BoardCell.swift */; };
 		03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304C2A23E10400ABC4CB /* TextSize.swift */; };
 		03DC304F2A23E72100ABC4CB /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304E2A23E72100ABC4CB /* Icon.swift */; };
+		03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		03DC304A2A23D86000ABC4CB /* BoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardCell.swift; sourceTree = "<group>"; };
 		03DC304C2A23E10400ABC4CB /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
 		03DC304E2A23E72100ABC4CB /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				03DC304C2A23E10400ABC4CB /* TextSize.swift */,
 				03DC30472A23798E00ABC4CB /* Value.swift */,
 				03DC304E2A23E72100ABC4CB /* Icon.swift */,
+				03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
+				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
 				03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */,
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,

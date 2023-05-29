@@ -23,6 +23,7 @@ class BoardCell: UITableViewCell {
     func updateUIForBoard() {
         boardNameLabel.text = board.attributes.name
         boardIcon.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
+        boardIcon.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
         if isFavorite {
             favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
