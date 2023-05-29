@@ -35,8 +35,8 @@ class BoardViewController: UIViewController,
         appearance.titleTextAttributes = [.foregroundColor: tintColor]
         navigationItem.standardAppearance = appearance
 
-        // normal buttons; also affects plus button on iPhone only
-        UIButton.appearance().tintColor = tintColor
+        UIButton.appearance().tintColor = tintColor // also affects plus button on iPhone only
+        UIDatePicker.appearance().tintColor = tintColor
 
     }
 
