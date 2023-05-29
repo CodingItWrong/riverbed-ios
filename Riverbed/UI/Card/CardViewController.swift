@@ -167,7 +167,6 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
     func update(value: FieldValue?, for element: Element) {
         fieldValues[element.id] = value
-        print("UPDATED \(String(describing: element.attributes.name)) to \(String(describing: value))")
     }
 
     func update(values: [String: FieldValue?], dismiss: Bool) {
