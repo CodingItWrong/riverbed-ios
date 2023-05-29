@@ -35,7 +35,7 @@ class DateElementCell: UITableViewCell, ElementCell {
         }
     }
 
-    func update(for element: Element, and card: Card, allElements: [Element]) {
+    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.element = element
 
         elementLabel.text = element.attributes.name
@@ -49,7 +49,7 @@ class DateElementCell: UITableViewCell, ElementCell {
             preconditionFailure("Unexpected data type: \(String(describing: element.attributes.dataType))")
         }
 
-        let value = card.attributes.fieldValues[element.id]
+        let value = fieldValues[element.id]
         if case let .string(stringValue) = value {
             if let date = parseDate(from: stringValue) {
                 valueDatePicker.date = date

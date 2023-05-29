@@ -11,7 +11,7 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     @IBOutlet private(set) var valueTextField: UITextField!
     @IBOutlet private(set) var valueTextView: UITextView!
 
-    func update(for element: Element, and card: Card, allElements: [Element]) {
+    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.element = element
 
         [valueTextField, valueTextView].forEach { (field) in
@@ -23,7 +23,7 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
         updateFormFieldShown(for: element)
         elementLabel.text = element.attributes.name
 
-        let value = card.attributes.fieldValues[element.id]
+        let value = fieldValues[element.id]
         if case let .string(stringValue) = value {
             valueTextField.text = stringValue
             valueTextView.text = stringValue

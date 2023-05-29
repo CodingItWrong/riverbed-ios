@@ -10,10 +10,10 @@ class ButtonElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var button: UIButton!
 
-    func update(for element: Element, and card: Card, allElements: [Element]) {
+    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.buttonElement = element
         self.allElements = allElements
-        self.fieldValues = card.attributes.fieldValues
+        self.fieldValues = fieldValues
 
         button.setTitle(element.attributes.name, for: .normal)
     }

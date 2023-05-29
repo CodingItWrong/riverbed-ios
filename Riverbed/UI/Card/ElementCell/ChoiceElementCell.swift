@@ -9,17 +9,17 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var valuePopUpButton: UIButton!
 
-    func update(for element: Element, and card: Card, allElements: [Element]) {
+    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.element = element
 
         let choices: [Element.Choice?] = [nil] + (element.attributes.options?.choices ?? [])
         let currentChoice = choices.first { (choice) in
             if let choice = choice {
-                guard let value = card.attributes.fieldValues[element.id],
+                guard let value = fieldValues[element.id],
                       case let .string(stringValue) = value else { return false }
                 return choice.id == stringValue
             } else {
-                return card.attributes.fieldValues[element.id] == nil
+                return fieldValues[element.id] == nil
             }
         }
 

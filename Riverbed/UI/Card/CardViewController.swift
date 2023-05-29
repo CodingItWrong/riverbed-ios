@@ -73,7 +73,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             for: indexPath) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
         cell.delegate = self
-        cell.update(for: element, and: card, allElements: elements)
+        cell.update(for: element, allElements: elements, fieldValues: fieldValues)
         return cell
     }
 

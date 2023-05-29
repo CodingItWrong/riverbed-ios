@@ -8,5 +8,5 @@ protocol ElementCellDelegate: AnyObject {
 protocol ElementCell: UITableViewCell {
     var delegate: ElementCellDelegate? { get set }
 
-    func update(for element: Element, and card: Card, allElements: [Element])
+    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?])
 }
