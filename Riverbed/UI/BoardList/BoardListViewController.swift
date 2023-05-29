@@ -4,7 +4,7 @@ protocol BoardListDelegate: AnyObject {
     func didSelect(board: Board)
 }
 
-class BoardListViewController: UITableViewController, BoardCellDelegate {
+class BoardListViewController: UITableViewController {
 
     weak var delegate: BoardListDelegate?
 
@@ -79,7 +79,6 @@ class BoardListViewController: UITableViewController, BoardCellDelegate {
             for: indexPath) as? BoardCell else { preconditionFailure("Unexpected cell class") }
         let board = board(for: indexPath)
         cell.board = board
-        cell.delegate = self
         return cell
     }
 
@@ -95,6 +94,21 @@ class BoardListViewController: UITableViewController, BoardCellDelegate {
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let board = board(for: indexPath)
+
+        let isFavorite = board.attributes.favoritedAt != nil
+        let title = isFavorite ? "Unfavorite" : "Favorite"
+        let toggleFavoriteAction = UIContextualAction(style: .normal, title: title) {
+            _, _, _ in
+            self.toggleFavorite(board)
+        }
+
+        return UISwipeActionsConfiguration(actions: [toggleFavoriteAction])
     }
 
     private func board(for indexPath: IndexPath) -> Board {
