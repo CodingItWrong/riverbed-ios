@@ -6,6 +6,7 @@ protocol CardViewControllerDelegate: AnyObject {
 }
 
 class CardViewController: UITableViewController, ElementCellDelegate {
+
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
 
@@ -103,9 +104,11 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         if isEditing {
             setEditing(false, animated: true)
             sender.setImage(UIImage(systemName: "wrench"), for: .normal)
+            sender.accessibilityLabel = "Edit Elements"
         } else {
             setEditing(true, animated: true)
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            sender.accessibilityLabel = "Finish Editing Elements"
         }
     }
 
