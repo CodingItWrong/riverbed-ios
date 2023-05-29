@@ -67,6 +67,7 @@ class BoardViewController: UIViewController,
     @objc func loadBoardData(_ sender: UIRefreshControl? = nil) {
         navigationItem.title = board.attributes.name
 
+        print("LOADING CARDS")
         cardStore.all(for: board) { (result) in
             // TODO: do this after all the loads complete
             // Deferred or async/await?
