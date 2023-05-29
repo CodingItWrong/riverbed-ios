@@ -70,7 +70,11 @@ enum Query: String, Codable {
                 return false
             }
         case .isEmpty:
-            return value == nil
+            switch value {
+            case let .string(stringValue): return stringValue == ""
+            case .none: return true
+            default: return false
+            }
         case .isEmptyOrEquals:
             return Query.isEmpty.match(value: value, dataType: dataType, options: options) ||
                    Query.equals.match(value: value, dataType: dataType, options: options)
