@@ -167,6 +167,13 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
     func update(value: FieldValue?, for element: Element) {
         fieldValues[element.id] = value
+        recomputeTableCellSizes()
+    }
+
+    func recomputeTableCellSizes() {
+        // see https://stackoverflow.com/a/5659468/477480
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func update(values: [String: FieldValue?], dismiss: Bool) {
