@@ -85,6 +85,13 @@ class BoardListViewController: UITableViewController, BoardCellDelegate {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let board = board(for: indexPath)
+
+        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+
+        // back button; has to be here since it takes it from the primary nav controller
+        // also affects plus button on iPhone only
+        navigationController?.navigationBar.tintColor = tintColor
+
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
         tableView.deselectRow(at: indexPath, animated: true)

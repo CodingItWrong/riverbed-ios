@@ -18,9 +18,26 @@ class BoardViewController: UIViewController,
 
     var board: Board! {
         didSet {
+            configureTint()
             clearBoardData()
             loadBoardData()
         }
+    }
+
+    func configureTint() {
+        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+
+        // plus button on iPad
+        navigationController?.navigationBar.tintColor = tintColor
+
+        // navigation bar title
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: tintColor]
+        navigationItem.standardAppearance = appearance
+
+        // normal buttons; also affects plus button on iPhone only
+        UIButton.appearance().tintColor = tintColor
+
     }
 
     var sortedColumns: [Column] {
