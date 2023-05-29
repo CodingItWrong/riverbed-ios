@@ -46,12 +46,12 @@ struct DateUtils {
 
     static func isMonthOffset(_ dateString: String?, by numMonths: Int) -> Bool {
         guard let date = date(fromServerString: dateString),
-              let offsetDate = Calendar.current.date(byAdding: .month, value: numMonths, to: date) else {
+              let offsetDate = Calendar.current.date(byAdding: .month, value: numMonths, to: Date()) else {
             return false
         }
+        let dateComponents = Calendar.current.dateComponents([.year, .month], from: date)
         let offsetComponents = Calendar.current.dateComponents([.year, .month], from: offsetDate)
-        let nowComponents = Calendar.current.dateComponents([.year, .month], from: Date())
 
-        return offsetComponents == nowComponents
+        return dateComponents == offsetComponents
     }
 }
