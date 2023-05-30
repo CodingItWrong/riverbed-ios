@@ -131,7 +131,7 @@ class BoardViewController: UIViewController,
         if self.traitCollection.horizontalSizeClass == .compact {
             width = view.bounds.width
         } else {
-            width = 300
+            width = 400
         }
         let height = collectionView.frame.size.height
             - collectionView.safeAreaInsets.top
