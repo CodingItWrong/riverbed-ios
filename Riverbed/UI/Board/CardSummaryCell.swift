@@ -75,7 +75,7 @@ class CardSummaryCell: UITableViewCell {
 
             var labelText: String!
             if let value = singularizeOptionality(card.attributes.fieldValues[element.id]) {
-                labelText = element.formatString(from: value)
+                labelText = element.formatString(from: value) ?? ""
             } else {
                 labelText = ""
             }
