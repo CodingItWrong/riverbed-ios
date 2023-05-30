@@ -5,13 +5,11 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
     weak var delegate: ElementCellDelegate?
 
     var allElements: [Element]!
-    var fieldValues: [String: FieldValue?]!
 
     @IBOutlet private(set) var menuButton: UIButton!
 
     func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.allElements = allElements
-        self.fieldValues = fieldValues
 
         menuButton.setTitle(element.attributes.name, for: .normal)
         let items = element.attributes.options?.items ?? []
@@ -26,6 +24,8 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
     func tappedItem(_ item: Element.Item) {
         guard let delegate,
               let actions = item.actions else { return }
+
+        var fieldValues = delegate.fieldValues // get the latest at the time it executes
 
         actions.forEach { (action) in
             fieldValues = action.call(elements: allElements, fieldValues: fieldValues)

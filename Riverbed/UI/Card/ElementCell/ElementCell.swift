@@ -1,6 +1,8 @@
 import UIKit
 
 protocol ElementCellDelegate: AnyObject {
+    var fieldValues: [String: FieldValue?] { get }
+
     func update(value: FieldValue?, for element: Element)
     func update(values: [String: FieldValue?], dismiss: Bool)
 }

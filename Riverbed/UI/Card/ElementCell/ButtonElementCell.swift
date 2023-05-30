@@ -6,20 +6,21 @@ class ButtonElementCell: UITableViewCell, ElementCell {
 
     var buttonElement: Element!
     var allElements: [Element]!
-    var fieldValues: [String: FieldValue?]!
 
     @IBOutlet private(set) var button: UIButton!
 
     func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         self.buttonElement = element
         self.allElements = allElements
-        self.fieldValues = fieldValues
+        // self.fieldValues = fieldValues // no; needs to be the latest ones
 
         button.setTitle(element.attributes.name, for: .normal)
     }
 
     @IBAction func clickButton(_ sender: UIButton) {
         guard let delegate else { return }
+
+        var fieldValues = delegate.fieldValues // get the latest at the time it executes
 
         buttonElement.attributes.options?.actions?.forEach { (action) in
             fieldValues = action.call(elements: allElements, fieldValues: fieldValues)
