@@ -8,16 +8,7 @@ class ReadOnlyElementCell: UITableViewCell, ElementCell {
 
     func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
         if let value = singularizeOptionality(fieldValues[element.id]) {
-            let formattedValue = element.formatString(from: value)
-
-            // TODO: summary may need to take this into account too, in which case this could live in a helper
-            if let showLabelWhenReadOnly = element.attributes.options?.showLabelWhenReadOnly,
-               showLabelWhenReadOnly,
-               let fieldName = element.attributes.name {
-                valueLabel.text = "\(fieldName): \(formattedValue ?? "")"
-            } else {
-                valueLabel.text = formattedValue
-            }
+            valueLabel.text = element.formatString(from: value)
         } else {
             valueLabel.text = ""
         }

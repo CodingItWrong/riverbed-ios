@@ -43,40 +43,50 @@ class Element: Codable, Equatable {
             return nil
         }
 
-        switch value {
-        case let .string(stringValue):
-            switch dataType {
-            case .text:
-                if let abbreviateURLs = attributes.options?.abbreviateURLs,
-                   abbreviateURLs {
-                    return domain(for: stringValue)
-                } else {
+        let formattedValue = {
+            switch value {
+            case let .string(stringValue):
+                switch dataType {
+                case .text:
+                    if let abbreviateURLs = attributes.options?.abbreviateURLs,
+                       abbreviateURLs {
+                        return domain(for: stringValue)
+                    } else {
+                        return stringValue
+                    }
+                case .number:
                     return stringValue
+                case .date:
+                    return DateUtils.humanString(fromServerString: stringValue) ?? ""
+                case .dateTime:
+                    return DateTimeUtils.humanString(fromServerString: stringValue) ?? ""
+                case .choice:
+                    return attributes.options?.choices?.first { (choice) in
+                        choice.id == stringValue
+                    }?.label
+                case .geolocation:
+                    return nil
                 }
-            case .number:
-                return stringValue
-            case .date:
-                return DateUtils.humanString(fromServerString: stringValue) ?? ""
-            case .dateTime:
-                return DateTimeUtils.humanString(fromServerString: stringValue) ?? ""
-            case .choice:
-                return attributes.options?.choices?.first { (choice) in
-                    choice.id == stringValue
-                }?.label
-            case .geolocation:
-                return nil
-            }
-        case let .dictionary(dictValue):
-            switch dataType {
-            case .geolocation:
-                if let lat = dictValue["lat"],
-                   let lng = dictValue["lng"] {
-                    return "(\(lat), \(lng))"
+            case let .dictionary(dictValue):
+                switch dataType {
+                case .geolocation:
+                    if let lat = dictValue["lat"],
+                       let lng = dictValue["lng"] {
+                        return "(\(lat), \(lng))"
+                    }
+                    return nil
+                default:
+                    return nil
                 }
-                return nil
-            default:
-                return nil
             }
+        }()
+
+        if let showLabelWhenReadOnly = attributes.options?.showLabelWhenReadOnly,
+           showLabelWhenReadOnly,
+           let fieldName = attributes.name {
+            return "\(fieldName): \(formattedValue ?? "")"
+        } else {
+            return formattedValue
         }
     }
 
