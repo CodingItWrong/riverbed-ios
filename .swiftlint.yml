@@ -3,6 +3,9 @@ disabled_rules:
   - cyclomatic_complexity
   - todo
 
+opt_in_rules:
+  - accessibility_label_for_image
+
 nesting:
   # Allows nested objects under JSON:API types, with CodingKeys nested under that
   type_level: 2
