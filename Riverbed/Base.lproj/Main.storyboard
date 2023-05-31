@@ -304,7 +304,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8CG-QQ-bKV">
                                             <rect key="frame" x="57" y="4" width="303.33333333333331" height="36"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MKn-jP-lea">
+                                                <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MKn-jP-lea">
                                                     <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="36"/>
                                                 </datePicker>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8HY-f3-oe8">
@@ -317,7 +317,7 @@
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="8HY-f3-oe8" secondAttribute="trailing" id="62n-PN-Uif"/>
-                                                <constraint firstAttribute="trailing" secondItem="MKn-jP-lea" secondAttribute="trailing" id="HEs-94-UY3"/>
+                                                <constraint firstAttribute="trailing" secondItem="MKn-jP-lea" secondAttribute="trailing" id="B4J-pz-5b4"/>
                                                 <constraint firstAttribute="bottom" secondItem="MKn-jP-lea" secondAttribute="bottom" id="bk0-Sq-SU0"/>
                                                 <constraint firstItem="8HY-f3-oe8" firstAttribute="centerY" secondItem="8CG-QQ-bKV" secondAttribute="centerY" id="fGD-sa-RWD"/>
                                                 <constraint firstItem="MKn-jP-lea" firstAttribute="top" secondItem="8CG-QQ-bKV" secondAttribute="top" id="oPK-GN-3jZ"/>
