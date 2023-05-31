@@ -50,7 +50,7 @@ func checkConditions(fieldValues: [String: FieldValue?],
 func domain(for urlString: String) -> String? {
     guard let url = URL(string: urlString),
           let hostName = url.host(percentEncoded: false) else {
-        return nil
+        return urlString
     }
 
     if hostName.hasPrefix("www.") {
