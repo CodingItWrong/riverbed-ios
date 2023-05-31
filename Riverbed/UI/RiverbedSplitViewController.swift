@@ -11,8 +11,14 @@ class RiverbedSplitViewController: UISplitViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        show(.primary) // start in board list on phone
-        // TODO: do not animate
+        // go to board list on iPhone without animation
+        guard let leftNavController = viewControllers.first as? UINavigationController else {
+            preconditionFailure("Couldn't get left nav controller")
+        }
+        leftNavController.popViewController(animated: false)
+
+        // show sidebar on iPad
+        show(.primary)
     }
 
 }
