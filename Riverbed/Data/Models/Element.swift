@@ -81,7 +81,8 @@ class Element: Codable, Equatable {
             }
         }()
 
-        if let showLabelWhenReadOnly = attributes.options?.showLabelWhenReadOnly,
+        if formattedValue != "",
+           let showLabelWhenReadOnly = attributes.options?.showLabelWhenReadOnly,
            showLabelWhenReadOnly,
            let fieldName = attributes.name {
             return "\(fieldName): \(formattedValue ?? "")"
