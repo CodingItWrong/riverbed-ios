@@ -11,7 +11,16 @@ class GeolocationElementCell: UITableViewCell,
 
     private lazy var locationManager = CLLocationManager()
 
-    private var requestedLocation = false
+    private var requestedLocation = false {
+        didSet {
+            currentLocationButton.isHidden = requestedLocation
+            if requestedLocation {
+                currentLocationActivityIndicator.startAnimating()
+            } else {
+                currentLocationActivityIndicator.stopAnimating()
+            }
+        }
+    }
 
     private var element: Element?
     private var coordinate: CLLocationCoordinate2D? {
@@ -30,6 +39,7 @@ class GeolocationElementCell: UITableViewCell,
     @IBOutlet private(set) var latitudeTextField: UITextField!
     @IBOutlet private(set) var longitudeTextField: UITextField!
     @IBOutlet private(set) var currentLocationButton: UIButton!
+    @IBOutlet private(set) var currentLocationActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private(set) var directionsButton: UIButton!
     @IBOutlet private(set) var mapView: MKMapView! {
         didSet {

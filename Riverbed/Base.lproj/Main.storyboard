@@ -408,23 +408,23 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeolocationElementCell" id="0kc-k3-8rB" customClass="GeolocationElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="610.66665458679199" width="430" height="329.66665649414062"/>
+                                <rect key="frame" x="0.0" y="610.66665458679199" width="430" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0kc-k3-8rB" id="HDj-JD-nBc">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="329.66665649414062"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SId-UN-Tta" userLabel="Geolocation Layout Stack">
-                                            <rect key="frame" x="20" y="4" width="390" height="321.66666666666669"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="292"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ct1-t0-SHD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="79.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UP6-wN-eJG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="174" height="79.666666666666671"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="174" height="50"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KME-Lg-FxX">
-                                                                    <rect key="frame" x="6" y="0.0" width="31" height="79.666666666666671"/>
+                                                                    <rect key="frame" x="6" y="0.0" width="31" height="50"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -437,17 +437,33 @@
                                                                 <constraint firstItem="KME-Lg-FxX" firstAttribute="top" secondItem="UP6-wN-eJG" secondAttribute="top" id="oMC-ew-3zP"/>
                                                             </constraints>
                                                         </view>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vub-Ej-jfy">
-                                                            <rect key="frame" x="174" y="0.0" width="166.33333333333337" height="79.666666666666671"/>
-                                                            <accessibility key="accessibilityConfiguration" label="Get Current Location"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="location.circle" catalog="system"/>
-                                                            <connections>
-                                                                <action selector="getCurrentLocation" destination="0kc-k3-8rB" eventType="touchUpInside" id="c6H-C1-ydH"/>
-                                                            </connections>
-                                                        </button>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nqp-gL-mGg">
+                                                            <rect key="frame" x="174" y="0.0" width="50" height="50"/>
+                                                            <subviews>
+                                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="p2W-z1-PZz">
+                                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                                </activityIndicatorView>
+                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vub-Ej-jfy">
+                                                                    <rect key="frame" x="0.33333333333334281" y="8" width="49.666666666666664" height="34.333333333333336"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="Get Current Location"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="location.circle" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="getCurrentLocation" destination="0kc-k3-8rB" eventType="touchUpInside" id="c6H-C1-ydH"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="p2W-z1-PZz" firstAttribute="centerX" secondItem="Nqp-gL-mGg" secondAttribute="centerX" id="2h7-yB-y52"/>
+                                                                <constraint firstAttribute="width" constant="50" id="921-NY-Hjm"/>
+                                                                <constraint firstAttribute="height" constant="50" id="BsE-72-gmU"/>
+                                                                <constraint firstItem="Vub-Ej-jfy" firstAttribute="centerX" secondItem="Nqp-gL-mGg" secondAttribute="centerX" id="H9F-Dc-ZiV"/>
+                                                                <constraint firstItem="Vub-Ej-jfy" firstAttribute="centerY" secondItem="Nqp-gL-mGg" secondAttribute="centerY" id="R3n-BI-5wu"/>
+                                                                <constraint firstItem="p2W-z1-PZz" firstAttribute="centerY" secondItem="Nqp-gL-mGg" secondAttribute="centerY" id="UZ7-nI-hxc"/>
+                                                            </constraints>
+                                                        </view>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-hF-vkq">
-                                                            <rect key="frame" x="340.33333333333331" y="0.0" width="49.666666666666686" height="79.666666666666671"/>
+                                                            <rect key="frame" x="224" y="0.0" width="166" height="50"/>
                                                             <accessibility key="accessibilityConfiguration" label="Get Directions"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.turn.up.right.circle" catalog="system"/>
@@ -458,7 +474,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kbE-Qi-xiB">
-                                                    <rect key="frame" x="0.0" y="83.666666666666671" width="390" height="34"/>
+                                                    <rect key="frame" x="0.0" y="54" width="390" height="34"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="latitude" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N0x-ez-Iyq">
                                                             <rect key="frame" x="0.0" y="0.0" width="190" height="34"/>
@@ -481,7 +497,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Hj-NP-hJZ">
-                                                    <rect key="frame" x="0.0" y="121.66666666666669" width="390" height="200"/>
+                                                    <rect key="frame" x="0.0" y="92" width="390" height="200"/>
                                                     <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="pS2-MP-M6m"/>
@@ -499,6 +515,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="currentLocationActivityIndicator" destination="p2W-z1-PZz" id="RvN-sP-sH5"/>
                                     <outlet property="currentLocationButton" destination="Vub-Ej-jfy" id="1f3-fv-nIC"/>
                                     <outlet property="directionsButton" destination="HHA-hF-vkq" id="fyW-Ac-7yF"/>
                                     <outlet property="elementLabel" destination="KME-Lg-FxX" id="Vja-mS-7hM"/>
@@ -508,14 +525,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonElementCell" id="IdT-L5-GGF" customClass="ButtonElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="940.33331108093262" width="430" height="44"/>
+                                <rect key="frame" x="0.0" y="910.66665458679199" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IdT-L5-GGF" id="g5O-6O-Shq">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfK-pe-e7H">
-                                            <rect key="frame" x="20" y="4" width="390" height="36"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Name">
                                                 <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
@@ -537,14 +554,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonMenuElementCell" id="6rJ-ZI-fog" customClass="ButtonMenuElementCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="984.33331108093262" width="430" height="42.333332061767578"/>
+                                <rect key="frame" x="0.0" y="952.99998664855957" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rJ-ZI-fog" id="SoP-uJ-wvp">
                                     <rect key="frame" x="0.0" y="0.0" width="430" height="42.333332061767578"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Lf-Uvv">
-                                            <rect key="frame" x="20" y="4" width="390" height="36"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
                                             <menu key="menu" id="Dal-cB-Isn">
                                                 <children>
                                                     <command title="Item 1" id="BKd-R6-SjN"/>
