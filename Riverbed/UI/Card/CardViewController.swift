@@ -48,6 +48,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         if isCardDeleted {
             delegate?.cardWasDeleted(card)
         } else {
+            print("saving card with values \(String(describing: fieldValues))")
             cardStore.update(card, with: fieldValues) { [weak self] (result) in
                 guard let self = self else { return }
 
@@ -169,6 +170,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
 
     func update(value: FieldValue?, for element: Element) {
+        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
         fieldValues[element.id] = value
         recomputeTableCellSizes()
     }
