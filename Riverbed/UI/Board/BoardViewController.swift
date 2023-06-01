@@ -6,7 +6,9 @@ class BoardViewController: UIViewController,
                            UICollectionViewDelegateFlowLayout,
                            CardSummaryDelegate,
                            CardViewControllerDelegate {
+
     @IBOutlet var columnsCollectionView: UICollectionView!
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
 
     var cardStore: CardStore!
     var columnStore: ColumnStore!
@@ -18,6 +20,8 @@ class BoardViewController: UIViewController,
 
     var board: Board! {
         didSet {
+            navigationItem.title = board.attributes.name
+
             configureTint()
             clearBoardData()
             loadBoardData()
@@ -84,14 +88,31 @@ class BoardViewController: UIViewController,
         columnsCollectionView.reloadData()
     }
 
-    @objc func loadBoardData(_ sender: UIRefreshControl? = nil) {
-        navigationItem.title = board.attributes.name
+    @objc func refreshBoardData(_ sender: UIRefreshControl?) {
+        loadBoardData(from: sender)
+    }
+
+    func loadBoardData(from refreshControl: UIRefreshControl? = nil) {
+        if refreshControl == nil {
+            loadingIndicator.startAnimating()
+        }
+
+        var areCardsLoading = true
+        var areColumnsLoading = true
+        var areElementsLoading = true
+
+        func checkForLoadingDone() {
+            if !areCardsLoading && !areColumnsLoading && !areElementsLoading {
+                if let refreshControl = refreshControl {
+                    refreshControl.endRefreshing()
+                } else {
+                    loadingIndicator.stopAnimating()
+                }
+            }
+        }
 
         print("LOADING CARDS")
         cardStore.all(for: board) { (result) in
-            // TODO: do this after all the loads complete
-            // Deferred or async/await?
-            sender?.endRefreshing()
             switch result {
             case let .success(cards):
                 self.cards = cards
@@ -99,6 +120,8 @@ class BoardViewController: UIViewController,
             case let .failure(error):
                 print("Error loading cards: \(error)")
             }
+            areCardsLoading = false
+            checkForLoadingDone()
         }
         columnStore.all(for: board) { (result) in
             switch result {
@@ -108,6 +131,8 @@ class BoardViewController: UIViewController,
             case let .failure(error):
                 print("Error loading columns: \(error)")
             }
+            areColumnsLoading = false
+            checkForLoadingDone()
         }
         elementStore.all(for: board) { (result) in
             switch result {
@@ -117,6 +142,8 @@ class BoardViewController: UIViewController,
             case let .failure(error):
                 print("Error loading elements: \(error)")
             }
+            areElementsLoading = false
+            checkForLoadingDone()
         }
     }
 
@@ -158,7 +185,7 @@ class BoardViewController: UIViewController,
         if cell.tableView.refreshControl == nil {
             cell.tableView.refreshControl = UIRefreshControl()
             cell.tableView.refreshControl?.addTarget(self,
-                                                     action: #selector(self.loadBoardData),
+                                                     action: #selector(self.refreshBoardData(_:)),
                                                      for: .valueChanged)
         }
 
