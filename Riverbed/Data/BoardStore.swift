@@ -9,6 +9,7 @@ class BoardStore {
         request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, _, error) in
+            print(jsonData: data)
             let result = self.processBoardsResponse(data: data, error: error)
             OperationQueue.main.addOperation {
                 completion(result)
