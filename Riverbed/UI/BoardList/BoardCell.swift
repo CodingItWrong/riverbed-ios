@@ -10,7 +10,7 @@ class BoardCell: UITableViewCell {
     }
 
     func updateUIForBoard() {
-        boardNameLabel.text = board.attributes.name
+        boardNameLabel.text = board.attributes.name ?? "(unnamed board)"
         boardIcon.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
         boardIcon.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
     }
