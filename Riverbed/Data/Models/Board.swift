@@ -12,12 +12,12 @@ class Board: Codable {
     }
 
     class Attributes: Codable {
-        var name: String
+        var name: String?
         var icon: Icon?
         var colorTheme: ColorTheme?
         var favoritedAt: Date?
 
-        init(name: String,
+        init(name: String? = nil,
              icon: Icon? = nil,
              colorTheme: ColorTheme? = nil,
              favoritedAt: Date? = nil) {
@@ -46,5 +46,15 @@ class Board: Codable {
                 try container.encodeNil(forKey: .favoritedAt)
             }
         }
+    }
+}
+
+class NewBoard: Codable {
+    let type: String
+    var attributes: Board.Attributes
+
+    init(attributes: Board.Attributes) {
+        self.type = "boards"
+        self.attributes = attributes
     }
 }

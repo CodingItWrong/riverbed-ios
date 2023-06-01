@@ -34,7 +34,14 @@ class BoardListViewController: UITableViewController {
         if let unfavorites = temp[false] {
             boardGroups.append(
                 BoardGroup(name: "Other Boards",
-                           boards: unfavorites.sorted { $0.attributes.name < $1.attributes.name }))
+                           boards: unfavorites.sorted {
+                               guard let aName = $0.attributes.name,
+                                     let bName = $1.attributes.name else {
+                                   return false
+                               }
+
+                               return aName < bName
+                           }))
         }
         self.boardGroups = boardGroups
         self.tableView.reloadData()
@@ -82,9 +89,7 @@ class BoardListViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let board = board(for: indexPath)
-
+    func goTo(_ board: Board) {
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
         // back button; has to be here since it takes it from the primary nav controller
@@ -93,7 +98,13 @@ class BoardListViewController: UITableViewController {
 
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
+
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let board = board(for: indexPath)
+        goTo(board)
     }
 
     override func tableView(
@@ -128,6 +139,18 @@ class BoardListViewController: UITableViewController {
                 self?.loadBoards()
             case let .failure(error):
                 print("Error toggling board favorite: \(String(describing: error))")
+            }
+        }
+    }
+
+    @IBAction func createBoard() {
+        boardStore.create { [weak self] (result) in
+            switch result {
+            case let .success(board):
+                self?.goTo(board)
+                self?.loadBoards()
+            case let .failure(error):
+                print("Error creating board: \(String(describing: error))")
             }
         }
     }

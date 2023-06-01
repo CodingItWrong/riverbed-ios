@@ -10,12 +10,39 @@ class BoardStore {
 
         let task = session.dataTask(with: request) { (data, _, error) in
             print(jsonData: data)
-            let result = self.processBoardsResponse(data: data, error: error)
+            let result: Result<[Board], Error> = self.processResponse(data: data, error: error)
             OperationQueue.main.addOperation {
                 completion(result)
             }
         }
         task.resume()
+    }
+
+    func create(completion: @escaping (Result<Board, Error>) -> Void) {
+        let url = RiverbedAPI.boardsURL()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let newBoard = NewBoard(attributes: Board.Attributes())
+
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: newBoard))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (data, _, error) in
+                let result: Result<Board, Error> = self.processResponse(data: data, error: error)
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
     }
 
     func update(_ board: Board,
@@ -33,11 +60,9 @@ class BoardStore {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
             let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedBoard))
-            print(jsonData: requestBody)
             request.httpBody = requestBody
 
-            let task = session.dataTask(with: request) { (data, _, error) in
-                print(jsonData: data)
+            let task = session.dataTask(with: request) { (_, _, error) in
                 OperationQueue.main.addOperation {
                     if let error = error {
                         completion(.failure(error))
@@ -52,7 +77,7 @@ class BoardStore {
         }
     }
 
-    private func processBoardsResponse(data: Data?, error: Error?) -> Result<[Board], Error> {
+    private func processResponse<T: Codable>(data: Data?, error: Error?) -> Result<T, Error> {
         guard let data = data else {
             if let error = error {
                 return .failure(error)
@@ -64,8 +89,8 @@ class BoardStore {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let boardsResponse = try decoder.decode(RiverbedAPI.Response<[Board]>.self, from: data)
-            return .success(boardsResponse.data)
+            let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
+            return .success(cardsResponse.data)
         } catch {
             return .failure(error)
         }
