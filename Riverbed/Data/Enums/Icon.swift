@@ -34,21 +34,22 @@ enum Icon: String, Codable {
         }
     }
 
-    var image: UIImage {
+    // TODO: some of these are not in iOS 15
+    var image: UIImage? {
         switch self {
-        case .baseball: return UIImage(systemName: "baseball")!
-        case .bed: return UIImage(systemName: "bed.double")!
-        case .book: return UIImage(systemName: "book")!
-        case .chart: return UIImage(systemName: "chart.line.uptrend.xyaxis")!
-        case .checkbox: return UIImage(systemName: "checkmark.square")!
-        case .food: return UIImage(systemName: "takeoutbag.and.cup.and.straw")!
-        case .gamepad: return UIImage(systemName: "gamecontroller")!
-        case .link: return UIImage(systemName: "link")!
-        case .mapMarker: return UIImage(systemName: "mappin.and.ellipse")!
-        case .medicalBag: return UIImage(systemName: "cross.case")!
-        case .scaleBathroom: return UIImage(systemName: "scalemass")!
-        case .television: return UIImage(systemName: "play.tv")!
-        case .tree: return UIImage(systemName: "tree")!
+        case .baseball: return UIImage(systemName: "baseball")
+        case .bed: return UIImage(systemName: "bed.double")
+        case .book: return UIImage(systemName: "book")
+        case .chart: return UIImage(systemName: "chart.line.uptrend.xyaxis")
+        case .checkbox: return UIImage(systemName: "checkmark.square")
+        case .food: return UIImage(systemName: "takeoutbag.and.cup.and.straw")
+        case .gamepad: return UIImage(systemName: "gamecontroller")
+        case .link: return UIImage(systemName: "link")
+        case .mapMarker: return UIImage(systemName: "mappin.and.ellipse")
+        case .medicalBag: return UIImage(systemName: "cross.case")
+        case .scaleBathroom: return UIImage(systemName: "scalemass")
+        case .television: return UIImage(systemName: "play.tv")
+        case .tree: return UIImage(systemName: "tree")
         }
     }
 

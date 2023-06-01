@@ -49,13 +49,19 @@ func checkConditions(fieldValues: [String: FieldValue?],
 
 func domain(for urlString: String) -> String? {
     guard let url = URL(string: urlString),
-          let hostName = url.host(percentEncoded: false) else {
-        return urlString
-    }
+          let hostName = getHostName(for: url) else { return urlString }
 
     if hostName.hasPrefix("www.") {
         return String(hostName.dropFirst(4))
     } else {
         return hostName
+    }
+}
+
+private func getHostName(for url: URL) -> String? {
+    if #available(iOS 16, *) {
+        return url.host(percentEncoded: false)
+    } else {
+        return url.host
     }
 }
