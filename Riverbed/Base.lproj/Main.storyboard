@@ -255,7 +255,7 @@
                                                     <rect key="frame" x="0.0" y="55.666666666666657" width="390" height="34"/>
                                                     <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="9OW-c5-qMf" id="bfU-RT-bNg"/>
                                                     </connections>
@@ -266,7 +266,7 @@
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="9OW-c5-qMf" id="sec-23-irv"/>
                                                     </connections>
@@ -560,7 +560,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Lf-Uvv">
-                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="36"/>
                                             <menu key="menu" id="Dal-cB-Isn">
                                                 <children>
                                                     <command title="Item 1" id="BKd-R6-SjN"/>
