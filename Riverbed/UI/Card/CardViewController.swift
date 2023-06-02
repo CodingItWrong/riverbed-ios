@@ -19,11 +19,27 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
     var card: Card! { // will always be set in segue
         didSet {
-            fieldValues = card.attributes.fieldValues
-            updateElementsToShow()
+            loadFieldValues()
         }
     }
     var fieldValues = [String: FieldValue?]()
+
+    func loadFieldValues() {
+        // get latest values from server in case it's changed from the list view
+        cardStore.find(card.id) { [weak self] (result) in
+            switch result {
+            case let .success(updatedCard):
+                guard let self = self else { return }
+                self.fieldValues = updatedCard.attributes.fieldValues
+                self.updateElementsToShow()
+                self.tableView.reloadData()
+            case let .failure(error):
+                print("Error loading card: \(String(describing: error))")
+            }
+        }
+        fieldValues = card.attributes.fieldValues
+        updateElementsToShow()
+    }
 
     var elementsToShow = [Element]()
 

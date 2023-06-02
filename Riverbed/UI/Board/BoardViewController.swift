@@ -226,8 +226,8 @@ class BoardViewController: UIViewController,
 
             cardVC.delegate = self
             cardVC.elements = elements
+            cardVC.cardStore = cardStore // TODO: setter order dependency unfortunate
             cardVC.card = card
-            cardVC.cardStore = cardStore
         default:
             preconditionFailure("Unexpected segue")
         }

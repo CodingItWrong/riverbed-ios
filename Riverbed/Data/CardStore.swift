@@ -17,6 +17,20 @@ class CardStore {
         task.resume()
     }
 
+    func find(_ cardId: String, completion: @escaping (Result<Card, Error>) -> Void) {
+        let url = RiverbedAPI.cardURL(for: cardId)
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let task = session.dataTask(with: request) { (data, _, error) in
+            let result: Result<Card, Error> = self.processResponse(data: data, error: error)
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
+        }
+        task.resume()
+    }
+
     func create(on board: Board, with elements: [Element], completion: @escaping (Result<Card, Error>) -> Void) {
         let fieldsWithInitialValues = elements.filter { (element) in
             element.attributes.elementType == .field &&
