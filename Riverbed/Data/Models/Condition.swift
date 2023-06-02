@@ -7,5 +7,9 @@ class Condition: Codable {
 
     class Options: Codable {
         var value: String?
+
+        init(value: String?) {
+            self.value = value
+        }
     }
 }
