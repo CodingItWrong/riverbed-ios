@@ -22,9 +22,28 @@ final class UtilsTests: XCTestCase {
         XCTAssertEqual(singularizeOptionality(input), expectedOutput)
     }
 
-//    func shouldNotCompileDueToDoubleOptinoal() {
-//        if let input = dictionary["D"] {
-//            input.index(after: 0) // input is still optional
-//        }
-//    }
+    func test_domainFor_invalidUrl_shouldReturnStringUnchanged() {
+        let result = domain(for: "nonurl")
+        XCTAssertEqual(result, "nonurl")
+    }
+
+    func test_domainFor_urlWithNoHostName_shouldReturnStringUnchanged() {
+        let result = domain(for: "/path/to/file")
+        XCTAssertEqual(result, "/path/to/file")
+    }
+
+    func test_domainFor_rootDomain_shouldReturnFullDomain() {
+        let result = domain(for: "https://codingitwrong.com/books")
+        XCTAssertEqual(result, "codingitwrong.com")
+    }
+
+    func test_domainFor_subdomain_shouldReturnSubdomain() {
+        let result = domain(for: "https://api.riverbed.app/boards")
+        XCTAssertEqual(result, "api.riverbed.app")
+    }
+
+    func test_domainFor_wwwSubdomain_shouldReturnDomainOnly() {
+        let result = domain(for: "https://www.codingitwrong.com/books")
+        XCTAssertEqual(result, "codingitwrong.com")
+    }
 }
