@@ -278,6 +278,78 @@ final class QueryTests: XCTestCase {
         XCTAssertFalse(isMatch)
     }
 
+    // MARK: - is future
+
+    func test_match_isFuture_date_nil_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: nil,
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_date_invalidDate_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("not a date"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_date_dateTime_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("2999-01-01T00:00:00.000Z"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_date_past_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("1984-01-24"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_date_future_matches() {
+        let isMatch = Query.isFuture.match(value: .string("2999-01-01"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isFuture_dateTime_nil_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: nil,
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_dateTime_invalidDate_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("not a date"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_dateTime_date_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("2999-01-01"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_dateTime_past_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("1984-01-24T00:00:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_dateTime_future_matches() {
+        let isMatch = Query.isFuture.match(value: .string("2999-01-01T00:00:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
     // MARK: - is not empty
 
     func test_isNotEmpty_nil_doesNotMatch() {
@@ -300,4 +372,83 @@ final class QueryTests: XCTestCase {
                                           options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
+
+    // MARK: - is not future
+
+    func test_match_isNotFuture_date_nil_matches() {
+        // not a future date because it's not a date
+        let isMatch = Query.isNotFuture.match(value: nil,
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_date_invalidDate_matches() {
+        // not a future date because it's not a date
+        let isMatch = Query.isNotFuture.match(value: .string("not a date"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_date_dateTime_doesNotMatch() {
+        // not a future date because it's a datetime not a date
+        let isMatch = Query.isNotFuture.match(value: .string("2999-01-01T00:00:00.000Z"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_date_past_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("1984-01-24"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_date_future_doesNotMatch() {
+        let isMatch = Query.isNotFuture.match(value: .string("2999-01-01"),
+                                           dataType: .date,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isNotFuture_dateTime_nil_matches() {
+        // not a future datetime because it's not a datetime
+        let isMatch = Query.isNotFuture.match(value: nil,
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_dateTime_invalidDate_matches() {
+        // not a future datetime because it's not a datetime
+        let isMatch = Query.isNotFuture.match(value: .string("not a date"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_dateTime_date_matches() {
+        // not a future datetime because it's a date not a datetime
+        let isMatch = Query.isNotFuture.match(value: .string("2999-01-01"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_dateTime_past_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("1984-01-24T00:00:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_dateTime_future_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("2999-01-01T00:00:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
 }
