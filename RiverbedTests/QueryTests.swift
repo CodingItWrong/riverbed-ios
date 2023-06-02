@@ -227,6 +227,57 @@ final class QueryTests: XCTestCase {
         XCTAssertFalse(isMatch)
     }
 
+    // MARK: - is empty or equals
+
+    func test_match_isEmptyOrEquals_bothNil_matches() {
+        let isMatch = Query.isEmptyOrEquals.match(value: nil,
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: nil))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_onlyOptionNil_doesNotMatch() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .string("hello"),
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: nil))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_onlyValueNil_matches() {
+        let isMatch = Query.isEmptyOrEquals.match(value: nil,
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: "hello"))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_onlyValueEmptyString_matches() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .string(""),
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: "hello"))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_differentStrings_doesNotMatch() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: "b"))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_sameString_matches() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: "a"))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_differentCase_doesNotMatch() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
+                                                  dataType: .text,
+                                                  options: Condition.Options(value: "A"))
+        XCTAssertFalse(isMatch)
+    }
+
     // MARK: - is not empty
 
     func test_isNotEmpty_nil_doesNotMatch() {
