@@ -2,6 +2,8 @@
 import XCTest
 
 final class QueryTests: XCTestCase {
+    let dummyOptions = Condition.Options(value: "DUMMY")
+
     // MARK: - contains
 
     func test_contains_optionNil_matches() {
@@ -200,5 +202,51 @@ final class QueryTests: XCTestCase {
                                          options: Condition.Options(value: "A"))
 
         XCTAssertFalse(isMatch)
+    }
+
+    // MARK: - is empty
+
+    func test_isEmpty_nil_matches() {
+        let isMatch = Query.isEmpty.match(value: nil,
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_isEmpty_emptyString_matches() {
+        let isMatch = Query.isEmpty.match(value: .string(""),
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_isEmpty_nonEmptyString_doesNotMatch() {
+        let isMatch = Query.isEmpty.match(value: .string("a"),
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    // MARK: - is not empty
+
+    func test_isNotEmpty_nil_doesNotMatch() {
+        let isMatch = Query.isNotEmpty.match(value: nil,
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_isNotEmpty_emptyString_doesNotMatch() {
+        let isMatch = Query.isNotEmpty.match(value: .string(""),
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_isNotEmpty_nonEmptyString_matches() {
+        let isMatch = Query.isNotEmpty.match(value: .string("a"),
+                                          dataType: .text,
+                                          options: dummyOptions)
+        XCTAssertTrue(isMatch)
     }
 }
