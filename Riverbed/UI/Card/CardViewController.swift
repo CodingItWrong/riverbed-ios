@@ -49,9 +49,12 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             delegate?.cardWasDeleted(card)
         } else {
             print("saving card with values \(String(describing: fieldValues))")
-            cardStore.update(card, with: fieldValues) { [weak self] (result) in
-                guard let self = self else { return }
 
+            // capture card and delegate to attempt to make it less likely that delegate won't be called
+            guard let card = self.card else { return }
+            let delegate = self.delegate
+
+            cardStore.update(card, with: fieldValues) { (result) in
                 switch result {
                 case .success:
                     print("SAVED CARD \(card.id)")
