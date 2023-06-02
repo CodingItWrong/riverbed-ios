@@ -47,7 +47,7 @@ enum Query: String, Codable {
         case .contains:
             guard let optionValue = options?.value else { return true }
             guard case let .string(stringValue) = value else { return false }
-            return stringValue.lowercased().contains(optionValue)
+            return stringValue.lowercased().contains(optionValue.lowercased())
         case .doesNotContain:
             return !Query.contains.match(value: value, dataType: dataType, options: options)
         case .doesNotEqual:
