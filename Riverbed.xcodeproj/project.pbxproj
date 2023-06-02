@@ -30,6 +30,7 @@
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
+		03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03907BB22A29F7BC00203748 /* BaseStore.swift */; };
 		03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */; };
 		03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8C2A195FA900639AC7 /* ColumnCell.swift */; };
 		03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A8F2A195FF000639AC7 /* TextElementCell.swift */; };
@@ -98,6 +99,7 @@
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		03907BB22A29F7BC00203748 /* BaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseStore.swift; sourceTree = "<group>"; };
 		03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSummaryCell.swift; sourceTree = "<group>"; };
 		03944A8C2A195FA900639AC7 /* ColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCell.swift; sourceTree = "<group>"; };
 		03944A8F2A195FF000639AC7 /* TextElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextElementCell.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
 				038BBC2D2A1811C300BB2284 /* ElementStore.swift */,
+				03907BB22A29F7BC00203748 /* BaseStore.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 			files = (
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
+				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,

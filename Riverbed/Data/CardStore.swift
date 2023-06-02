@@ -1,15 +1,13 @@
 import Foundation
 
-class CardStore {
-    private let session = URLSession(configuration: .default)
-
+class CardStore: BaseStore {
     func all(for board: Board, completion: @escaping (Result<[Card], Error>) -> Void) {
         let url = RiverbedAPI.cardsURL(for: board)
         var request = URLRequest(url: url)
         request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
-        let task = session.dataTask(with: request) { (data, _, error) in
-            let result: Result<[Card], Error> = self.processResponse(data: data, error: error)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let result: Result<[Card], Error> = self.processResult((data, response, error))
             OperationQueue.main.addOperation {
                 completion(result)
             }
@@ -22,8 +20,8 @@ class CardStore {
         var request = URLRequest(url: url)
         request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
-        let task = session.dataTask(with: request) { (data, _, error) in
-            let result: Result<Card, Error> = self.processResponse(data: data, error: error)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let result: Result<Card, Error> = self.processResult((data, response, error))
             OperationQueue.main.addOperation {
                 completion(result)
             }
@@ -67,8 +65,8 @@ class CardStore {
             let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: card))
             request.httpBody = requestBody
 
-            let task = session.dataTask(with: request) { (data, _, error) in
-                let result: Result<Card, Error> = self.processResponse(data: data, error: error)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Card, Error> = self.processResult((data, response, error))
                 OperationQueue.main.addOperation {
                     completion(result)
                 }
@@ -126,23 +124,5 @@ class CardStore {
             }
         }
         task.resume()
-    }
-
-    private func processResponse<T: Codable>(data: Data?, error: Error?) -> Result<T, Error> {
-        guard let data = data else {
-            if let error = error {
-                return .failure(error)
-            } else {
-                return .failure(APIError.unknownError)
-            }
-        }
-
-        do {
-            let decoder = JSONDecoder()
-            let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
-            return .success(cardsResponse.data)
-        } catch {
-            return .failure(error)
-        }
     }
 }

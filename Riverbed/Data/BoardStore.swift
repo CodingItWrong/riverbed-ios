@@ -1,16 +1,14 @@
 import Foundation
 
-class BoardStore {
-    private let session = URLSession(configuration: .default)
-
+class BoardStore: BaseStore {
     func all(completion: @escaping (Result<[Board], Error>) -> Void) {
         let url = RiverbedAPI.boardsURL()
         var request = URLRequest(url: url)
         request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
-        let task = session.dataTask(with: request) { (data, _, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             print(jsonData: data)
-            let result: Result<[Board], Error> = self.processResponse(data: data, error: error)
+            let result: Result<[Board], Error> = self.processResult((data, response, error))
             OperationQueue.main.addOperation {
                 completion(result)
             }
@@ -33,8 +31,8 @@ class BoardStore {
             let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: newBoard))
             request.httpBody = requestBody
 
-            let task = session.dataTask(with: request) { (data, _, error) in
-                let result: Result<Board, Error> = self.processResponse(data: data, error: error)
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Board, Error> = self.processResult((data, response, error))
                 OperationQueue.main.addOperation {
                     completion(result)
                 }
@@ -74,25 +72,6 @@ class BoardStore {
             task.resume()
         } catch {
             completion(.failure(error))
-        }
-    }
-
-    private func processResponse<T: Codable>(data: Data?, error: Error?) -> Result<T, Error> {
-        guard let data = data else {
-            if let error = error {
-                return .failure(error)
-            } else {
-                return .failure(APIError.unknownError)
-            }
-        }
-
-        do {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
-            return .success(cardsResponse.data)
-        } catch {
-            return .failure(error)
         }
     }
 }
