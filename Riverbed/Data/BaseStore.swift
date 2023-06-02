@@ -52,11 +52,6 @@ class BaseStore {
             }
         }
 
-        // error getting data
-        guard let data = data else {
-            return .failure(APIError.unknownError)
-        }
-
         return .success(())
     }
 
