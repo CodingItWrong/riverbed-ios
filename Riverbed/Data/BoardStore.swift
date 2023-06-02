@@ -60,13 +60,10 @@ class BoardStore: BaseStore {
             let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedBoard))
             request.httpBody = requestBody
 
-            let task = session.dataTask(with: request) { (_, _, error) in
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Void, Error> = self.processVoidResult((data, response, error))
                 OperationQueue.main.addOperation {
-                    if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        completion(.success(()))
-                    }
+                    completion(result)
                 }
             }
             task.resume()
