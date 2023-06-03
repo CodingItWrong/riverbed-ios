@@ -613,6 +613,7 @@
                     </tableView>
                     <connections>
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
+                        <segue destination="9Mq-9O-jkC" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="dI3-fG-qS4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -623,6 +624,21 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1866.9767441860465" y="46.351931330472105"/>
+        </scene>
+        <!--Element View Controller-->
+        <scene sceneID="fa4-T5-f6f">
+            <objects>
+                <viewController id="9Mq-9O-jkC" customClass="ElementViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="flB-5v-7E5">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FNc-w3-HCL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CEN-iQ-y6s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2753" y="46"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="nfc-x6-vQt">

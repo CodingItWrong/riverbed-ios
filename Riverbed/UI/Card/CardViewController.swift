@@ -205,6 +205,19 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         view.endEditing(true)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "editElement":
+            guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
+            guard let elementVC = segue.destination as? ElementViewController else {
+                preconditionFailure("Expected an ElementViewController")
+            }
+            elementVC.element = element
+        default:
+            preconditionFailure("Unexpected segue")
+        }
+    }
+
     // MARK: - UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -248,6 +261,8 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt \(indexPath)")
+        let element = elementsToShow[indexPath.row]
+        performSegue(withIdentifier: "editElement", sender: element)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
