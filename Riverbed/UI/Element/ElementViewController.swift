@@ -1,6 +1,6 @@
 import UIKit
 
-class ElementViewController: UIViewController {
+class ElementViewController: UITableViewController {
 
     var element: Element!
 
