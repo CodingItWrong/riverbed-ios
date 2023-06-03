@@ -95,22 +95,6 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         }
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        elementsToShow.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = elementsToShow[indexPath.row]
-        let cellType = cellType(for: element)
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: cellType),
-            for: indexPath) as? ElementCell
-        else { preconditionFailure("Expected a \(String(describing: cellType))") }
-        cell.delegate = self
-        cell.update(for: element, allElements: elements, fieldValues: fieldValues)
-        return cell
-    }
-
     private func cellType(for element: Element) -> UITableViewCell.Type {
         if element.attributes.readOnly {
             return ReadOnlyElementCell.self
@@ -171,45 +155,6 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         present(alert, animated: true)
     }
 
-    override func tableView(_ tableView: UITableView,
-                            moveRowAt sourceIndexPath: IndexPath,
-                            to destinationIndexPath: IndexPath) {
-        if sourceIndexPath == destinationIndexPath {
-            return
-        }
-
-        // move in UI
-        let movedItem = elementsToShow[sourceIndexPath.row]
-        elementsToShow.remove(at: sourceIndexPath.row)
-        elementsToShow.insert(movedItem, at: destinationIndexPath.row)
-
-        // persist to server
-        elementStore.updateDisplayOrders(of: elementsToShow) { (result) in
-            if case let .failure(error) = result {
-                print("Error updating display orders: \(String(describing: error))")
-            }
-        }
-    }
-
-    override func tableView(
-        _ tableView: UITableView,
-        editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if tableView.isEditing {
-            return .delete
-        } else {
-            return .none // disable swipe-to-delete when not in editing mode
-        }
-    }
-
-    override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            elements.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
-
     func update(value: FieldValue?, for element: Element) {
         print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
         fieldValues[element.id] = value
@@ -254,6 +199,74 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
+    }
+
+    // MARK: - UITableViewDataSource
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        elementsToShow.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let element = elementsToShow[indexPath.row]
+        let cellType = cellType(for: element)
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: cellType),
+            for: indexPath) as? ElementCell
+        else { preconditionFailure("Expected a \(String(describing: cellType))") }
+        cell.delegate = self
+        cell.update(for: element, allElements: elements, fieldValues: fieldValues)
+        return cell
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+
+        // move in UI
+        let movedItem = elementsToShow[sourceIndexPath.row]
+        elementsToShow.remove(at: sourceIndexPath.row)
+        elementsToShow.insert(movedItem, at: destinationIndexPath.row)
+
+        // persist to server
+        elementStore.updateDisplayOrders(of: elementsToShow) { (result) in
+            if case let .failure(error) = result {
+                print("Error updating display orders: \(String(describing: error))")
+            }
+        }
+    }
+
+    // MARK: - UITableViewDelegate
+
+    override func tableView(
+        _ tableView: UITableView,
+        editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if tableView.isEditing {
+            return .delete
+        } else {
+            return .none // disable swipe-to-delete when not in editing mode
+        }
+    }
+
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let element = elementsToShow[indexPath.row]
+            elementStore.delete(element) { [weak self] (result) in
+                switch result {
+                case .success:
+                    guard let self = self else { return }
+                    elements.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                case let .failure(error):
+                    print("Error deleting element: \(String(describing: error))")
+                }
+            }
+        }
     }
 
 }

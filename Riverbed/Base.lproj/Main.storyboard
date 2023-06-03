@@ -620,7 +620,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="fs0-M9-WBu">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="fs0-M9-WBu">
                     <connections>
                         <action selector="dismissKeyboard:" destination="6X2-2e-DlT" id="x6y-g0-WM9"/>
                     </connections>
