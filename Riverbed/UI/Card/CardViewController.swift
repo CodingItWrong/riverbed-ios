@@ -64,6 +64,10 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.allowsSelection = false
+        tableView.allowsSelectionDuringEditing = true
+
         addElementButton.menu = UIMenu(children: [
             UIAction(title: "Add Field") { [weak self] _ in self?.addElement(of: .field) },
             UIAction(title: "Add Button") { [weak self] _ in self?.addElement(of: .button) },
@@ -240,6 +244,12 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     }
 
     // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
+        print("didSelectRowAt \(indexPath)")
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     override func tableView(
         _ tableView: UITableView,

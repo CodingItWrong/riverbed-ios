@@ -247,7 +247,7 @@
                                     <outlet property="valueLabel" destination="oOY-fb-qRq" id="R97-YV-BLL"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextElementCell" id="9OW-c5-qMf" customClass="TextElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextElementCell" id="9OW-c5-qMf" customClass="TextElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="114.33333396911621" width="430" height="366.66665649414062"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9OW-c5-qMf" id="KLB-U4-A1w">
@@ -267,7 +267,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="VuY-24-wb7" firstAttribute="leading" secondItem="SZO-Ll-fhe" secondAttribute="leading" constant="6" id="PZD-I0-FBY"/>
                                                         <constraint firstAttribute="bottom" secondItem="VuY-24-wb7" secondAttribute="bottom" id="QIA-yk-S8c"/>
@@ -312,7 +311,7 @@
                                     <outlet property="valueTextView" destination="URR-Lg-lqi" id="7mm-4C-OBS"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DateElementCell" id="5yA-sr-4kz" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateElementCell" id="5yA-sr-4kz" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="480.99999046325684" width="430" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5yA-sr-4kz" id="7Lx-wW-YaT">
@@ -338,7 +337,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="8HY-f3-oe8" secondAttribute="trailing" id="62n-PN-Uif"/>
                                                 <constraint firstAttribute="trailing" secondItem="MKn-jP-lea" secondAttribute="trailing" id="B4J-pz-5b4"/>
@@ -374,7 +372,7 @@
                                     <outlet property="valueDatePicker" destination="MKn-jP-lea" id="AaD-1B-pJc"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChoiceElementCell" id="sGL-Zn-LIB" customClass="ChoiceElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChoiceElementCell" id="sGL-Zn-LIB" customClass="ChoiceElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="524.99999046325684" width="430" height="85.666664123535156"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sGL-Zn-LIB" id="Bjd-gg-FZn">
@@ -394,7 +392,6 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="SJc-sR-lND" firstAttribute="top" secondItem="zuZ-T3-093" secondAttribute="top" id="74T-3p-iQV"/>
                                                         <constraint firstAttribute="trailing" secondItem="SJc-sR-lND" secondAttribute="trailing" constant="20" id="8yq-Nw-8Zc"/>
@@ -430,7 +427,7 @@
                                     <outlet property="valuePopUpButton" destination="h5C-sB-NIa" id="d3I-iB-TDb"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="GeolocationElementCell" id="0kc-k3-8rB" customClass="GeolocationElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GeolocationElementCell" id="0kc-k3-8rB" customClass="GeolocationElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="610.66665458679199" width="430" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0kc-k3-8rB" id="HDj-JD-nBc">
@@ -453,7 +450,6 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="KME-Lg-FxX" secondAttribute="bottom" id="0Im-lG-A25"/>
                                                                 <constraint firstItem="KME-Lg-FxX" firstAttribute="leading" secondItem="UP6-wN-eJG" secondAttribute="leading" constant="6" id="cyn-ZB-ax6"/>
@@ -547,7 +543,7 @@
                                     <outlet property="mapView" destination="4Hj-NP-hJZ" id="mjp-gF-pJu"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonElementCell" id="IdT-L5-GGF" customClass="ButtonElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonElementCell" id="IdT-L5-GGF" customClass="ButtonElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="910.66665458679199" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IdT-L5-GGF" id="g5O-6O-Shq">
@@ -576,7 +572,7 @@
                                     <outlet property="button" destination="PfK-pe-e7H" id="ykd-TY-yjQ"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ButtonMenuElementCell" id="6rJ-ZI-fog" customClass="ButtonMenuElementCell" customModule="Riverbed" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonMenuElementCell" id="6rJ-ZI-fog" customClass="ButtonMenuElementCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="952.99998664855957" width="430" height="42.333332061767578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6rJ-ZI-fog" id="SoP-uJ-wvp">
@@ -584,7 +580,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzL-Lf-Uvv">
-                                            <rect key="frame" x="20" y="4" width="390" height="36"/>
+                                            <rect key="frame" x="20" y="4" width="390" height="34.333333333333336"/>
                                             <menu key="menu" id="Dal-cB-Isn">
                                                 <children>
                                                     <command title="Item 1" id="BKd-R6-SjN"/>

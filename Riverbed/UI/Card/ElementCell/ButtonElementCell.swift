@@ -28,4 +28,9 @@ class ButtonElementCell: UITableViewCell, ElementCell {
         }
         delegate.update(values: fieldValues, dismiss: true)
     }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        button.isEnabled = !editing
+    }
 }

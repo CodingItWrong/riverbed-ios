@@ -114,6 +114,7 @@ class GeolocationElementCell: UITableViewCell,
     }
 
     @objc func didTapOnMapView(sender: UITapGestureRecognizer) {
+        if isEditing { return }
         guard case .ended = sender.state else { return } // may not be needed for single tap
 
         // get coordinate
