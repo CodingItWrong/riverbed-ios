@@ -10,6 +10,20 @@ func print(jsonData: Data?) {
     }
 }
 
+func print(codable: Codable?) {
+    guard let codable = codable else {
+        return
+    }
+
+    let encoder = JSONEncoder()
+    do {
+        let data = try encoder.encode(codable)
+        print(jsonData: data)
+    } catch {
+        print("error encoding")
+    }
+}
+
 func singularizeOptionality<T>(_ value: T??) -> T? {
     if let nestedOptional: T? = value {
         return nestedOptional

@@ -226,6 +226,7 @@ class BoardViewController: UIViewController,
 
             cardVC.delegate = self
             cardVC.elements = elements
+            cardVC.elementStore = elementStore
             cardVC.cardStore = cardStore // TODO: setter order dependency unfortunate
             cardVC.card = card
         default:

@@ -27,7 +27,7 @@ class Element: Codable, Equatable {
     }
 
     static func == (lhs: Element, rhs: Element) -> Bool {
-        lhs.id == rhs.id
+        lhs === rhs
     }
 
     static func areInIncreasingOrder(lhs: Element, rhs: Element) -> Bool {
@@ -134,6 +134,18 @@ class Element: Codable, Equatable {
         var showConditions: [Condition]?
         var readOnly: Bool
         var initialValue: Value?
+
+        init(shallowCloning original: Element.Attributes) {
+            self.name = original.name
+            self.elementType = original.elementType
+            self.dataType = original.dataType
+            self.showInSummary = original.showInSummary
+            self.options = original.options
+            self.displayOrder = original.displayOrder
+            self.showConditions = original.showConditions
+            self.readOnly = original.readOnly
+            self.initialValue = original.initialValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case name

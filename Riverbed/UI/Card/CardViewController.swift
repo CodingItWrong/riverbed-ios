@@ -11,6 +11,7 @@ class CardViewController: UITableViewController, ElementCellDelegate {
     private var isCardDeleted = false
 
     var cardStore: CardStore!
+    var elementStore: ElementStore!
 
     var elements = [Element]() {
         didSet {
@@ -163,10 +164,17 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             return
         }
 
-        // TODO: need to persist the new order to the server and resort from it
-        let movedItem = elements[sourceIndexPath.row]
-        elements.remove(at: sourceIndexPath.row)
-        elements.insert(movedItem, at: destinationIndexPath.row)
+        // move in UI
+        let movedItem = elementsToShow[sourceIndexPath.row]
+        elementsToShow.remove(at: sourceIndexPath.row)
+        elementsToShow.insert(movedItem, at: destinationIndexPath.row)
+
+        // persist to server
+        elementStore.updateDisplayOrders(of: elementsToShow) { (result) in
+            if case let .failure(error) = result {
+                print("Error updating display orders: \(String(describing: error))")
+            }
+        }
     }
 
     override func tableView(
