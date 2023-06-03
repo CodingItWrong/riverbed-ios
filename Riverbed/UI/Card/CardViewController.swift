@@ -7,12 +7,15 @@ protocol CardViewControllerDelegate: AnyObject {
 
 class CardViewController: UITableViewController, ElementCellDelegate {
 
+    @IBOutlet private var addElementButton: UIButton!
+
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
 
     var cardStore: CardStore!
     var elementStore: ElementStore!
 
+    var board: Board!
     var elements = [Element]() {
         didSet {
             updateElementsToShow()
@@ -57,6 +60,15 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             }
         }
         elementsToShow = filteredElements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        addElementButton.menu = UIMenu(children: [
+            UIAction(title: "Add Field") { [weak self] _ in self?.addElement(of: .field) },
+            UIAction(title: "Add Button") { [weak self] _ in self?.addElement(of: .button) },
+            UIAction(title: "Add Button Menu") { [weak self] _ in self?.addElement(of: .buttonMenu) }
+        ])
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -124,10 +136,12 @@ class CardViewController: UITableViewController, ElementCellDelegate {
         // TODO: voiceover
         if isEditing {
             setEditing(false, animated: true)
+            addElementButton.isHidden = true
             sender.setImage(UIImage(systemName: "wrench"), for: .normal)
             sender.accessibilityLabel = "Edit Elements"
         } else {
             setEditing(true, animated: true)
+            addElementButton.isHidden = false
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
             sender.accessibilityLabel = "Finish Editing Elements"
         }
@@ -213,6 +227,28 @@ class CardViewController: UITableViewController, ElementCellDelegate {
 
         if dismiss {
             self.dismiss(animated: true)
+        }
+    }
+
+    func addElement(of elementType: Element.ElementType) {
+        elementStore.create(of: elementType, on: board) { [weak self] (result) in
+            switch result {
+            case let .failure(error):
+                print("Error adding element: \(String(describing: error))")
+            case .success:
+                guard let self = self else { return }
+                self.elementStore.all(for: self.board) { [weak self] (result) in
+                    guard let self = self else { return }
+                    switch result {
+                    case let .success(elements):
+                        self.elements = elements
+                        self.updateElementsToShow()
+                        self.tableView.reloadData()
+                    case let .failure(error):
+                        print("Error reloading elements: \(String(describing: error))")
+                    }
+                }
+            }
         }
     }
 

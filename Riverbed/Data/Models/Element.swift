@@ -135,6 +135,12 @@ class Element: Codable, Equatable {
         var readOnly: Bool
         var initialValue: Value?
 
+        init(elementType: Element.ElementType) {
+            self.elementType = elementType
+            self.showInSummary = false
+            self.readOnly = false
+        }
+
         init(shallowCloning original: Element.Attributes) {
             self.name = original.name
             self.elementType = original.elementType
@@ -286,5 +292,29 @@ class Element: Codable, Equatable {
     class Item: Codable {
         var name: String
         var actions: [Action]?
+    }
+}
+
+class NewElement: Codable {
+    let type: String
+    var attributes: Element.Attributes
+    var relationships: NewElement.Relationships?
+
+    init(attributes: Element.Attributes, relationships: NewElement.Relationships? = nil) {
+        self.type = "elements"
+        self.attributes = attributes
+        self.relationships = relationships
+    }
+
+    class Relationships: Codable {
+        var boardData: JsonApiData<JsonApiResourceIdentifier>?
+
+        init(boardData: JsonApiData<JsonApiResourceIdentifier>) {
+            self.boardData = boardData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case boardData = "board"
+        }
     }
 }

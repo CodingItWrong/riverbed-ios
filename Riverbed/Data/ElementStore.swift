@@ -15,6 +15,42 @@ class ElementStore: BaseStore {
         task.resume()
     }
 
+    func create(of elementType: Element.ElementType,
+                on board: Board,
+                completion: @escaping (Result<Element, Error>) -> Void) {
+        let url = RiverbedAPI.elementsURL()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let element = NewElement(
+            attributes: Element.Attributes(elementType: elementType),
+            relationships: NewElement.Relationships(
+                boardData: JsonApiData(
+                    data: JsonApiResourceIdentifier(type: "boards", id: board.id)
+                )
+            )
+        )
+
+        do {
+            let encoder = JSONEncoder()
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: element))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { [weak self] (data, response, error) in
+                guard let self = self else { return }
+                let result: Result<Element, Error> = self.processResult((data, response, error))
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func updateDisplayOrders(of elements: [Element],
                              completion: @escaping (Result<[Element], Error>) -> Void) {
         let elementsWithNewDisplayOrders = elements.enumerated().map { (index, element) in
