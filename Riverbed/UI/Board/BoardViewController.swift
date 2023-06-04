@@ -102,12 +102,14 @@ class BoardViewController: UIViewController,
         var areElementsLoading = true
 
         func checkForLoadingDone() {
-            if !areCardsLoading && !areColumnsLoading && !areElementsLoading {
+            let loadingDone = !areCardsLoading && !areColumnsLoading && !areElementsLoading
+            if loadingDone {
                 if let refreshControl = refreshControl {
                     refreshControl.endRefreshing()
                 } else {
                     loadingIndicator.stopAnimating()
                 }
+                self.columnsCollectionView.reloadData()
             }
         }
 
@@ -116,7 +118,6 @@ class BoardViewController: UIViewController,
             switch result {
             case let .success(cards):
                 self.cards = cards
-                self.columnsCollectionView.reloadData()
             case let .failure(error):
                 print("Error loading cards: \(error)")
             }
@@ -127,7 +128,6 @@ class BoardViewController: UIViewController,
             switch result {
             case let .success(columns):
                 self.columns = columns
-                self.columnsCollectionView.reloadData()
             case let .failure(error):
                 print("Error loading columns: \(error)")
             }
@@ -138,7 +138,6 @@ class BoardViewController: UIViewController,
             switch result {
             case let .success(elements):
                 self.elements = elements
-                self.columnsCollectionView.reloadData()
             case let .failure(error):
                 print("Error loading elements: \(error)")
             }
