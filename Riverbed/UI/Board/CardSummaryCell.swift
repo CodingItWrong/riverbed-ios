@@ -4,7 +4,7 @@ import UIKit
     func cardSelected(_ card: Card)
 }
 
-class CardSummaryCell: UITableViewCell {
+class CardSummaryCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var cardView: UIView! {
         didSet { configureCardView() }
     }
@@ -47,6 +47,7 @@ class CardSummaryCell: UITableViewCell {
                 textView.isScrollEnabled = false
                 textView.textContainer.lineFragmentPadding = 0
                 textView.textContainerInset = .zero
+                textView.delegate = self
 
                 elementViews[element.id] = textView
                 fieldStack.addArrangedSubview(textView)
@@ -107,6 +108,16 @@ class CardSummaryCell: UITableViewCell {
             }
         default:
             preconditionFailure("Unexpected field value: \(String(describing: fieldValue))")
+        }
+    }
+
+    // attempts to prevent text selection by immediately deselecting it
+    // see https://stackoverflow.com/a/62318084/477480
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if textView.selectedTextRange != nil {
+            textView.delegate = nil
+            textView.selectedTextRange = nil
+            textView.delegate = self
         }
     }
 }
