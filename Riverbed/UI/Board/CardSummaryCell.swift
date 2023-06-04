@@ -41,19 +41,15 @@ class CardSummaryCell: UITableViewCell {
         summaryElements.forEach { (element) in
             if let linkURLs = element.attributes.options?.linkURLs,
                linkURLs {
-                let link = UIButton()
-                var configuration = UIButton.Configuration.plain()
-                configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-                link.configuration = configuration
-                let textStyle = element.attributes.options?.textSize?.textStyle ?? .body
-                link.titleLabel?.font = .preferredFont(forTextStyle: textStyle)
-                link.contentHorizontalAlignment = .leading
-                link.addTarget(self,
-                               action: #selector(handleLinkClick(_:)),
-                               for: .touchUpInside)
+                let textView = UITextView()
+                textView.isUserInteractionEnabled = true
+                textView.isEditable = false
+                textView.isScrollEnabled = false
+                textView.textContainer.lineFragmentPadding = 0
+                textView.textContainerInset = .zero
 
-                elementViews[element.id] = link
-                fieldStack.addArrangedSubview(link)
+                elementViews[element.id] = textView
+                fieldStack.addArrangedSubview(textView)
             } else {
                 let label = UILabel()
                 label.numberOfLines = 3
@@ -74,7 +70,8 @@ class CardSummaryCell: UITableViewCell {
             }
 
             var labelText: String!
-            if let value = singularizeOptionality(card.attributes.fieldValues[element.id]) {
+            let value = singularizeOptionality(card.attributes.fieldValues[element.id])
+            if let value = value {
                 labelText = element.formatString(from: value) ?? ""
             } else {
                 labelText = ""
@@ -82,8 +79,14 @@ class CardSummaryCell: UITableViewCell {
 
             if let label = elementView as? UILabel {
                 label.text = labelText
-            } else if let link = elementView as? UIButton {
-                link.setTitle(labelText, for: .normal)
+            } else if let textView = elementView as? UITextView,
+                      case let .string(urlString) = value,
+                      let url = URL(string: urlString) {
+                let textStyle = element.attributes.options?.textSize?.textStyle ?? .body
+                textView.attributedText = NSAttributedString(string: labelText, attributes: [
+                    .font: UIFont.preferredFont(forTextStyle: textStyle),
+                    .link: url // NOTE: using a text view as link clicking did not work in label
+                ])
             }
         }
     }
