@@ -209,7 +209,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "editElement":
+        case "oldEditElement":
             guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
             guard let elementVC = segue.destination as? ElementViewController else {
                 preconditionFailure("Expected an ElementViewController")
@@ -217,6 +217,16 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             elementVC.element = element
             elementVC.elementStore = elementStore
             elementVC.delegate = self
+        case "editElement":
+            guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
+            guard let elementVC = segue.destination as? DynamicElementViewController else {
+                preconditionFailure("Expected an DynamicElementViewController")
+            }
+            elementVC.element = element
+            elementVC.elementStore = elementStore
+            elementVC.delegate = self
+        case "test":
+            print("test")
         default:
             preconditionFailure("Unexpected segue")
         }
@@ -271,6 +281,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                             didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt \(indexPath)")
         let element = elementsToShow[indexPath.row]
+//        performSegue(withIdentifier: "test", sender: element)
         performSegue(withIdentifier: "editElement", sender: element)
         tableView.deselectRow(at: indexPath, animated: true)
     }

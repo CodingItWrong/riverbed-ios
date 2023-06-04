@@ -43,6 +43,10 @@
 		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
 		03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
 		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
+		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
+		03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */; };
+		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
+		03C8F0832A2CA6BF00F6AF90 /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */; };
 		03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */; };
 		03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688C2A1CC78F00597D9E /* CardTests.swift */; };
 		03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */; };
@@ -114,6 +118,10 @@
 		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
 		03944AA02A1AAE0000639AC7 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
+		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicElementViewController.swift; sourceTree = "<group>"; };
+		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
+		03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
 		03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedSplitViewController.swift; sourceTree = "<group>"; };
 		03D6688C2A1CC78F00597D9E /* CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTests.swift; sourceTree = "<group>"; };
 		03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyElementCell.swift; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 				03944A892A195F5100639AC7 /* Board */,
 				03944A8E2A195FE100639AC7 /* Card */,
 				03EAFF352A2B59900086EC0B /* Element */,
+				03C8F07B2A2C9E8900F6AF90 /* Form */,
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 			);
 			path = UI;
@@ -303,6 +312,16 @@
 			path = ElementCell;
 			sourceTree = "<group>";
 		};
+		03C8F07B2A2C9E8900F6AF90 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */,
+				03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */,
+				03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */,
+			);
+			path = Form;
+			sourceTree = "<group>";
+		};
 		03DC30492A23D85500ABC4CB /* BoardList */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				03EAFF362A2B599E0086EC0B /* ElementViewController.swift */,
+				03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */,
 			);
 			path = Element;
 			sourceTree = "<group>";
@@ -487,8 +507,10 @@
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03DC30462A23793800ABC4CB /* Command.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
+				03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */,
 				03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */,
 				038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */,
+				03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */,
 				032F2C862A1AE806008208E9 /* Query.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
@@ -504,6 +526,7 @@
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
+				03C8F0832A2CA6BF00F6AF90 /* TestTableViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
@@ -512,6 +535,7 @@
 				03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
+				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
