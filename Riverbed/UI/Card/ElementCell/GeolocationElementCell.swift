@@ -48,6 +48,7 @@ class GeolocationElementCell: UITableViewCell,
             mapView.addGestureRecognizer(tapRecognizer)
         }
     }
+    var mapViewHasBeenZoomed = false
 
     private let pin = MKPointAnnotation()
 
@@ -144,11 +145,19 @@ class GeolocationElementCell: UITableViewCell,
             let coordinate = CLLocationCoordinate2D(latitude: latitudeDouble,
                                                     longitude: longitudeDouble)
             pin.coordinate = coordinate
-            mapView.region = MKCoordinateRegion(
-                center: coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.01,
-                                       longitudeDelta: 0.01))
             mapView.addAnnotation(pin)
+
+            if mapViewHasBeenZoomed {
+                // preserve user-adjusted zoom after first time
+                mapView.centerCoordinate = coordinate
+            } else {
+                mapViewHasBeenZoomed = true
+                // set initial zoom level
+                mapView.region = MKCoordinateRegion(
+                    center: coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 0.01,
+                                           longitudeDelta: 0.01))
+            }
         } else {
             mapView.removeAnnotation(pin)
         }
