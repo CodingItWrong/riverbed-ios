@@ -18,6 +18,7 @@ class ElementViewController: UITableViewController,
     }
 
     @IBOutlet private var fieldNameField: UITextField!
+    @IBOutlet private var dataTypeButton: UIButton!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,6 +27,15 @@ class ElementViewController: UITableViewController,
 
     func updateUI() {
         fieldNameField.text = element.attributes.name
+
+        let menuItems = Element.DataType.allCases.sorted { (dataTypeA, dataTypeB) in
+            dataTypeA.label < dataTypeB.label
+        }.map { (dataType) in
+            let state: UIMenuElement.State = dataType == attributes.dataType ? .on : .off
+            return UIAction(title: dataType.label, state: state) { [weak self] _ in self?.choose(dataType: dataType) }
+        }
+
+        dataTypeButton.menu = UIMenu(children: menuItems)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,10 +53,16 @@ class ElementViewController: UITableViewController,
         }
     }
 
+    // MARK: - value change handlers
+
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if textField == fieldNameField {
             attributes.name = fieldNameField.text
         }
+    }
+
+    func choose(dataType: Element.DataType) {
+        attributes.dataType = dataType
     }
 
 }

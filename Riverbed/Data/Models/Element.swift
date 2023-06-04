@@ -7,13 +7,24 @@ class Element: Codable, Equatable {
         case buttonMenu = "button_menu"
     }
 
-    enum DataType: String, Codable {
+    enum DataType: String, Codable, CaseIterable {
         case text = "text"
         case date = "date"
         case number = "number"
         case dateTime = "datetime"
         case choice = "choice"
         case geolocation = "geolocation"
+
+        var label: String {
+            switch self {
+            case .text: return "Text"
+            case .date: return "Date"
+            case .number: return "Number"
+            case .dateTime: return "Date and Time"
+            case .choice: return "Choice"
+            case .geolocation: return "Geographic Location"
+            }
+        }
     }
 
     let type: String
