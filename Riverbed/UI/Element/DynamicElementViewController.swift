@@ -13,10 +13,16 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
     enum ElementRow: Int, CaseIterable {
         case fieldName = 0
+        case showLabelWhenReadOnly
+        case readOnly
+        case multipleLines
 
         var label: String {
             switch self {
             case .fieldName: return "Field Name"
+            case .showLabelWhenReadOnly: return "Show Label When Read-Only"
+            case .readOnly: return "Read-Only"
+            case .multipleLines: return "Multiple Lines"
             }
         }
     }
@@ -35,7 +41,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // for some reason a dynamic grouped table in a popover has this issue
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
@@ -95,6 +101,30 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
                 textFieldCell.textField.text = attributes.name
                 cell = textFieldCell
+            case .showLabelWhenReadOnly:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.options?.showLabelWhenReadOnly ?? false
+                cell = switchCell
+            case .readOnly:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.readOnly
+                cell = switchCell
+            case .multipleLines:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.options?.multiline ?? false
+                cell = switchCell
             }
         }
 
@@ -106,16 +136,27 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
 
-        switch formCell {
-        case let textFieldCell as TextFieldCell:
-            switch (indexPath.section, indexPath.row) {
-            case (Section.element.rawValue, ElementRow.fieldName.rawValue):
-                attributes.name = textFieldCell.textField.text
-            default:
-                preconditionFailure("Unexpected index path")
+        switch (indexPath.section, indexPath.row) {
+        case (Section.element.rawValue, ElementRow.fieldName.rawValue):
+            guard let textFieldCell = formCell as? TextFieldCell else { preconditionFailure("Expected a TextFieldCell") }
+            attributes.name = textFieldCell.textField.text
+        case (Section.element.rawValue, ElementRow.showLabelWhenReadOnly.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            if attributes.options == nil {
+                attributes.options = Element.Options()
             }
+            attributes.options?.showLabelWhenReadOnly = switchCell.switchControl.isOn
+        case (Section.element.rawValue, ElementRow.readOnly.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            attributes.readOnly = switchCell.switchControl.isOn
+        case (Section.element.rawValue, ElementRow.multipleLines.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            if attributes.options == nil {
+                attributes.options = Element.Options()
+            }
+            attributes.options?.multiline = switchCell.switchControl.isOn
         default:
-            preconditionFailure("Unexpected form cell class")
+            preconditionFailure("Unexpected index path")
         }
     }
 
