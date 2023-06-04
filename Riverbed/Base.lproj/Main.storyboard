@@ -747,6 +747,23 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YUp-SZ-56e" id="cxU-CC-5d1">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Read-Only" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="we9-16-HSZ">
+                                                    <rect key="frame" x="20" y="14.666666666666664" width="60" height="14.333333333333336"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JO6-7K-LM1">
+                                                    <rect key="frame" x="321" y="6.3333333333333321" width="51" height="30.999999999999996"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="JO6-7K-LM1" firstAttribute="trailing" secondItem="cxU-CC-5d1" secondAttribute="trailingMargin" id="Hbp-1X-XlX"/>
+                                                <constraint firstItem="we9-16-HSZ" firstAttribute="leading" secondItem="cxU-CC-5d1" secondAttribute="leadingMargin" id="nOd-vg-I8F"/>
+                                                <constraint firstItem="JO6-7K-LM1" firstAttribute="centerY" secondItem="cxU-CC-5d1" secondAttribute="centerY" id="naQ-yw-dQO"/>
+                                                <constraint firstItem="we9-16-HSZ" firstAttribute="centerY" secondItem="cxU-CC-5d1" secondAttribute="centerY" id="yJx-2m-1V2"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="wcF-rE-bfm">
@@ -824,6 +841,7 @@
                     <connections>
                         <outlet property="dataTypeButton" destination="IMZ-G7-D89" id="xd5-06-TAk"/>
                         <outlet property="fieldNameField" destination="CSd-uh-Gob" id="sta-HT-Qxk"/>
+                        <outlet property="readOnlySwitch" destination="JO6-7K-LM1" id="qEY-rg-HIs"/>
                         <outlet property="showLabelWhenReadOnlySwitch" destination="FaC-W5-9Om" id="mKy-lz-tMB"/>
                     </connections>
                 </tableViewController>

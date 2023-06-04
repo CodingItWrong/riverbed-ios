@@ -20,12 +20,16 @@ class ElementViewController: UITableViewController,
     @IBOutlet private var fieldNameField: UITextField!
     @IBOutlet private var dataTypeButton: UIButton!
     @IBOutlet private var showLabelWhenReadOnlySwitch: UISwitch!
+    @IBOutlet private var readOnlySwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         showLabelWhenReadOnlySwitch.addTarget(self,
                                               action: #selector(updateShowLabelWhenReadOnly(_:)),
                                               for: .valueChanged)
+        readOnlySwitch.addTarget(self,
+                                 action: #selector(updateReadOnly(_:)),
+                                 for: .valueChanged)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,6 +40,7 @@ class ElementViewController: UITableViewController,
     func updateUI() {
         fieldNameField.text = element.attributes.name
         showLabelWhenReadOnlySwitch.isOn = element.attributes.options?.showLabelWhenReadOnly ?? false
+        readOnlySwitch.isOn = element.attributes.readOnly
 
         let menuItems = Element.DataType.allCases.sorted { (dataTypeA, dataTypeB) in
             dataTypeA.label < dataTypeB.label
@@ -82,6 +87,10 @@ class ElementViewController: UITableViewController,
         }
 
         options.showLabelWhenReadOnly = showLabelWhenReadOnlySwitch.isOn
+    }
+
+    @objc func updateReadOnly(_ sender: UISwitch) {
+        attributes.readOnly = readOnlySwitch.isOn
     }
 
 }
