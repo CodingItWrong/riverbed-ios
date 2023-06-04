@@ -21,6 +21,7 @@ class BoardViewController: UIViewController,
     var board: Board! {
         didSet {
             navigationItem.title = board.attributes.name
+            navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             configureTint()
             clearBoardData()
@@ -110,6 +111,7 @@ class BoardViewController: UIViewController,
                     loadingIndicator.stopAnimating()
                 }
                 self.columnsCollectionView.reloadData()
+                navigationItem.rightBarButtonItem?.isEnabled = true
             }
         }
 
