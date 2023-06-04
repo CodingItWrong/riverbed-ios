@@ -5,8 +5,7 @@ protocol CardViewControllerDelegate: AnyObject {
     func cardWasDeleted(_ card: Card)
 }
 
-class CardViewController: UITableViewController, ElementCellDelegate {
-
+class CardViewController: UITableViewController, ElementCellDelegate, ElementViewControllerDelegate {
     @IBOutlet private var addElementButton: UIButton!
 
     weak var delegate: CardViewControllerDelegate?
@@ -185,18 +184,21 @@ class CardViewController: UITableViewController, ElementCellDelegate {
             case let .failure(error):
                 print("Error adding element: \(String(describing: error))")
             case .success:
-                guard let self = self else { return }
-                self.elementStore.all(for: self.board) { [weak self] (result) in
-                    guard let self = self else { return }
-                    switch result {
-                    case let .success(elements):
-                        self.elements = elements
-                        self.updateElementsToShow()
-                        self.tableView.reloadData()
-                    case let .failure(error):
-                        print("Error reloading elements: \(String(describing: error))")
-                    }
-                }
+                self?.reloadElements()
+            }
+        }
+    }
+
+    func reloadElements() {
+        elementStore.all(for: board) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case let .success(elements):
+                self.elements = elements
+                self.updateElementsToShow()
+                self.tableView.reloadData()
+            case let .failure(error):
+                print("Error reloading elements: \(String(describing: error))")
             }
         }
     }
@@ -213,9 +215,16 @@ class CardViewController: UITableViewController, ElementCellDelegate {
                 preconditionFailure("Expected an ElementViewController")
             }
             elementVC.element = element
+            elementVC.elementStore = elementStore
+            elementVC.delegate = self
         default:
             preconditionFailure("Unexpected segue")
         }
+    }
+
+    func elementDidUpdate(_ element: Element) {
+        // TODO: reload elements in the board as well; maybe just do that when this VC dismisses, instead of automatically propagating
+        reloadElements()
     }
 
     // MARK: - UITableViewDataSource

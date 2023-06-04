@@ -51,6 +51,34 @@ class ElementStore: BaseStore {
         }
     }
 
+    func update(_ element: Element,
+                with attributes: Element.Attributes,
+                completion: @escaping (Result<Void, Error>) -> Void) {
+        let url = RiverbedAPI.elementURL(for: element)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let updatedElement = Element(id: element.id, attributes: attributes)
+
+        do {
+            let encoder = JSONEncoder()
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedElement))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Void, Error> = self.processVoidResult((data, response, error))
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func updateDisplayOrders(of elements: [Element],
                              completion: @escaping (Result<[Element], Error>) -> Void) {
         let elementsWithNewDisplayOrders = elements.enumerated().map { (index, element) in
