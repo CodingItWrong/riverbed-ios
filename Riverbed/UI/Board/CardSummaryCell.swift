@@ -80,14 +80,17 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
 
             if let label = elementView as? UILabel {
                 label.text = labelText
-            } else if let textView = elementView as? UITextView,
-                      case let .string(urlString) = value,
-                      let url = URL(string: urlString) {
-                let textStyle = element.attributes.options?.textSize?.textStyle ?? .body
-                textView.attributedText = NSAttributedString(string: labelText, attributes: [
-                    .font: UIFont.preferredFont(forTextStyle: textStyle),
-                    .link: url // NOTE: using a text view as link clicking did not work in label
-                ])
+            } else if let textView = elementView as? UITextView {
+                if case let .string(urlString) = value,
+                   let url = URL(string: urlString) {
+                    let textStyle = element.attributes.options?.textSize?.textStyle ?? .body
+                    textView.attributedText = NSAttributedString(string: labelText, attributes: [
+                        .font: UIFont.preferredFont(forTextStyle: textStyle),
+                        .link: url // NOTE: using a text view as link clicking did not work in label
+                    ])
+                } else {
+                    textView.attributedText = NSAttributedString(string: "")
+                }
             }
         }
     }
