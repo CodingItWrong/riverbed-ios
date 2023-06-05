@@ -223,12 +223,12 @@
 		032F2C842A1AE7FD008208E9 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */,
 				03DC30452A23793800ABC4CB /* Command.swift */,
+				03DC304E2A23E72100ABC4CB /* Icon.swift */,
 				032F2C852A1AE806008208E9 /* Query.swift */,
 				03DC304C2A23E10400ABC4CB /* TextSize.swift */,
 				03DC30472A23798E00ABC4CB /* Value.swift */,
-				03DC304E2A23E72100ABC4CB /* Icon.swift */,
-				03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";

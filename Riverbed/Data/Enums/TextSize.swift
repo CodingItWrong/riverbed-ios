@@ -1,6 +1,6 @@
 import UIKit
 
-enum TextSize: String, Codable {
+enum TextSize: String, Codable, CaseIterable {
     case titleLarge
     case titleMedium
     case titleSmall
@@ -30,4 +30,6 @@ enum TextSize: String, Codable {
         case .bodySmall: return .subheadline
         }
     }
+
+    static let defaultTextSize = TextSize.bodyLarge
 }

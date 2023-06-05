@@ -33,12 +33,14 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
     enum SummaryViewRow: Int, CaseIterable {
         case showField = 0
+        case textSize
         case linkURLs
         case abbreviateURLs
 
         var label: String {
             switch self {
             case .showField: return "Show Field"
+            case .textSize: return "Text Size"
             case .linkURLs: return "Link URLs"
             case .abbreviateURLs: return "Abbreviate URLs"
             }
@@ -124,7 +126,9 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
                 popUpButtonCell.delegate = self
                 let dataTypes = Element.DataType.allCases.sorted { $0.label < $1.label }
                 popUpButtonCell.configure(options: dataTypes.map { (dataType) in
-                    PopUpButtonCell.Option(title: dataType.label, value: dataType, isSelected: attributes.dataType == dataType) }
+                    PopUpButtonCell.Option(title: dataType.label,
+                                           value: dataType,
+                                           isSelected: attributes.dataType == dataType) }
                 )
                 cell = popUpButtonCell
             case .showLabelWhenReadOnly:
@@ -163,6 +167,19 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.showInSummary
                 cell = switchCell
+            case .textSize:
+                guard let popUpButtonCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: PopUpButtonCell.self),
+                    for: indexPath) as? PopUpButtonCell else { preconditionFailure("Expected a PopUpButtonCell") }
+                popUpButtonCell.label.text = rowEnum.label
+                popUpButtonCell.delegate = self
+                let selectedTextSize = attributes.options?.textSize ?? TextSize.defaultTextSize
+                popUpButtonCell.configure(options: TextSize.allCases.map { (textSize) in
+                    PopUpButtonCell.Option(title: textSize.label,
+                                           value: textSize,
+                                           isSelected: textSize == selectedTextSize) }
+                )
+                cell = popUpButtonCell
             case .linkURLs:
                 guard let switchCell = tableView.dequeueReusableCell(
                     withIdentifier: String(describing: SwitchCell.self),
@@ -219,6 +236,14 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         case (Section.summaryView.rawValue, SummaryViewRow.showField.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
             attributes.showInSummary = switchCell.switchControl.isOn
+        case (Section.summaryView.rawValue, SummaryViewRow.textSize.rawValue):
+            guard let popUpButtonCell = formCell as? PopUpButtonCell else { preconditionFailure("Expected a PopUpButtonCell") }
+            if attributes.options == nil {
+                attributes.options = Element.Options()
+            }
+            guard let textSize = popUpButtonCell.selectedValue as? TextSize
+            else { preconditionFailure("Expected a TextSize") }
+            attributes.options?.textSize = textSize
         case (Section.summaryView.rawValue, SummaryViewRow.linkURLs.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
             if attributes.options == nil {
