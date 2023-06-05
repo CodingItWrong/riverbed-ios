@@ -4,6 +4,8 @@ protocol ElementViewControllerDelegate: AnyObject {
     func elementDidUpdate(_ element: Element)
 }
 
+// TODO: delete after DynamicElementViewController is working
+// keep until then in case needed
 class ElementViewController: UITableViewController,
                              UITextFieldDelegate {
 

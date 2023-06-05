@@ -38,6 +38,7 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
         case .number:
             valueTextField.keyboardType = .decimalPad
             // TODO: disallow entering alphabetic characters with a bluetooth keyboard
+            // TODO: check multiline numeric (as rare as it might be)
         default:
             // TODO: remove this when all cases covered
             valueTextField.keyboardType = .default

@@ -1,5 +1,7 @@
 import UIKit
 
+// TODO: delete after DynamicElementViewController is working
+// keep until then in case needed
 class TestTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         1
