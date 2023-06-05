@@ -32,8 +32,8 @@ class BoardViewController: UIViewController,
     func configureTint() {
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
-        // plus button on iPad
-        navigationController?.navigationBar.tintColor = tintColor
+        navigationController?.navigationBar.tintColor = tintColor // plus button on iPad
+        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
 
         // navigation bar title
         let appearance = UINavigationBarAppearance()
