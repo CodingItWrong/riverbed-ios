@@ -83,10 +83,6 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         Section.allCases.count
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        40
-    }
-
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         Section(rawValue: section)?.label
     }
