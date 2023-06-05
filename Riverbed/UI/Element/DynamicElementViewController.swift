@@ -3,10 +3,12 @@ import UIKit
 class DynamicElementViewController: UITableViewController, FormCellDelegate {
     enum Section: Int, CaseIterable {
         case element = 0
+        case summaryView
 
         var label: String {
             switch self {
             case .element: return "Element"
+            case .summaryView: return "Summary View"
             }
         }
     }
@@ -23,6 +25,20 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             case .showLabelWhenReadOnly: return "Show Label When Read-Only"
             case .readOnly: return "Read-Only"
             case .multipleLines: return "Multiple Lines"
+            }
+        }
+    }
+
+    enum SummaryViewRow: Int, CaseIterable {
+        case showField = 0
+        case linkURLs
+        case abbreviateURLs
+
+        var label: String {
+            switch self {
+            case .showField: return "Show Field"
+            case .linkURLs: return "Link URLs"
+            case .abbreviateURLs: return "Abbreviate URLs"
             }
         }
     }
@@ -79,6 +95,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         guard let sectionEnum = Section(rawValue: section) else { preconditionFailure("Unexpected section") }
         switch sectionEnum {
         case .element: return ElementRow.allCases.count
+        case .summaryView: return SummaryViewRow.allCases.count
         }
     }
 
@@ -126,6 +143,34 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
                 switchCell.switchControl.isOn = attributes.options?.multiline ?? false
                 cell = switchCell
             }
+        case .summaryView:
+            guard let rowEnum = SummaryViewRow(rawValue: indexPath.row) else { preconditionFailure("Unexpected row") }
+            switch rowEnum {
+            case .showField:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.showInSummary
+                cell = switchCell
+            case .linkURLs:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.options?.linkURLs ?? false
+                cell = switchCell
+            case .abbreviateURLs:
+                guard let switchCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+                else { preconditionFailure("Expected a SwitchCell") }
+                switchCell.label.text = rowEnum.label
+                switchCell.delegate = self
+                switchCell.switchControl.isOn = attributes.options?.abbreviateURLs ?? false
+                cell = switchCell
+            }
         }
 
         return cell
@@ -138,7 +183,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
         switch (indexPath.section, indexPath.row) {
         case (Section.element.rawValue, ElementRow.fieldName.rawValue):
-            guard let textFieldCell = formCell as? TextFieldCell else { preconditionFailure("Expected a TextFieldCell") }
+            guard let textFieldCell = formCell as? TextFieldCell
+            else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
         case (Section.element.rawValue, ElementRow.showLabelWhenReadOnly.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
@@ -155,6 +201,21 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
                 attributes.options = Element.Options()
             }
             attributes.options?.multiline = switchCell.switchControl.isOn
+        case (Section.summaryView.rawValue, SummaryViewRow.showField.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            attributes.showInSummary = switchCell.switchControl.isOn
+        case (Section.summaryView.rawValue, SummaryViewRow.linkURLs.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            if attributes.options == nil {
+                attributes.options = Element.Options()
+            }
+            attributes.options?.linkURLs = switchCell.switchControl.isOn
+        case (Section.summaryView.rawValue, SummaryViewRow.abbreviateURLs.rawValue):
+            guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
+            if attributes.options == nil {
+                attributes.options = Element.Options()
+            }
+            attributes.options?.abbreviateURLs = switchCell.switchControl.isOn
         default:
             preconditionFailure("Unexpected index path")
         }
