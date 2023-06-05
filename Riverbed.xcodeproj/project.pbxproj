@@ -48,6 +48,7 @@
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
 		03C8F0832A2CA6BF00F6AF90 /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */; };
 		03C8F0852A2CFF9300F6AF90 /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */; };
+		03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0862A2DF48600F6AF90 /* PopUpButtonCell.swift */; };
 		03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */; };
 		03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6688C2A1CC78F00597D9E /* CardTests.swift */; };
 		03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */; };
@@ -124,6 +125,7 @@
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
 		03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
 		03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
+		03C8F0862A2DF48600F6AF90 /* PopUpButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpButtonCell.swift; sourceTree = "<group>"; };
 		03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedSplitViewController.swift; sourceTree = "<group>"; };
 		03D6688C2A1CC78F00597D9E /* CardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTests.swift; sourceTree = "<group>"; };
 		03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnlyElementCell.swift; sourceTree = "<group>"; };
@@ -318,9 +320,10 @@
 			isa = PBXGroup;
 			children = (
 				03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */,
+				03C8F0862A2DF48600F6AF90 /* PopUpButtonCell.swift */,
+				03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */,
 				03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */,
 				03C8F0822A2CA6BF00F6AF90 /* TestTableViewController.swift */,
-				03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
 				03C8F0832A2CA6BF00F6AF90 /* TestTableViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
+				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
 				03DC304F2A23E72100ABC4CB /* Icon.swift in Sources */,

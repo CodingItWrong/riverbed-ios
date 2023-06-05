@@ -15,6 +15,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
     enum ElementRow: Int, CaseIterable {
         case fieldName = 0
+        case dataType
         case showLabelWhenReadOnly
         case readOnly
         case multipleLines
@@ -22,6 +23,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         var label: String {
             switch self {
             case .fieldName: return "Field Name"
+            case .dataType: return "Data Type"
             case .showLabelWhenReadOnly: return "Show Label When Read-Only"
             case .readOnly: return "Read-Only"
             case .multipleLines: return "Multiple Lines"
@@ -105,8 +107,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             switch rowEnum {
             case .fieldName:
                 guard let textFieldCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
-                else { preconditionFailure("Expected a TextFieldCell") }
+                    withIdentifier: String(describing: TextFieldCell.self),
+                    for: indexPath) as? TextFieldCell else { preconditionFailure("Expected a TextFieldCell") }
 
                 // TODO: maybe set these on a FormCell base class
                 textFieldCell.label.text = rowEnum.label
@@ -114,26 +116,37 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
 
                 textFieldCell.textField.text = attributes.name
                 cell = textFieldCell
+            case .dataType:
+                guard let popUpButtonCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: PopUpButtonCell.self),
+                    for: indexPath) as? PopUpButtonCell else { preconditionFailure("Expected a PopUpButtonCell") }
+                popUpButtonCell.label.text = rowEnum.label
+                popUpButtonCell.delegate = self
+                let dataTypes = Element.DataType.allCases.sorted { $0.label < $1.label }
+                popUpButtonCell.configure(options: dataTypes.map { (dataType) in
+                    PopUpButtonCell.Option(title: dataType.label, value: dataType, isSelected: attributes.dataType == dataType) }
+                )
+                cell = popUpButtonCell
             case .showLabelWhenReadOnly:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.options?.showLabelWhenReadOnly ?? false
                 cell = switchCell
             case .readOnly:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.readOnly
                 cell = switchCell
             case .multipleLines:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.options?.multiline ?? false
@@ -144,24 +157,24 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             switch rowEnum {
             case .showField:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.showInSummary
                 cell = switchCell
             case .linkURLs:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.options?.linkURLs ?? false
                 cell = switchCell
             case .abbreviateURLs:
                 guard let switchCell = tableView.dequeueReusableCell(
-                    withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
-                else { preconditionFailure("Expected a SwitchCell") }
+                    withIdentifier: String(describing: SwitchCell.self),
+                    for: indexPath) as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 switchCell.label.text = rowEnum.label
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.options?.abbreviateURLs ?? false
@@ -182,6 +195,12 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
+        case (Section.element.rawValue, ElementRow.dataType.rawValue):
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            guard let dataType = popUpButtonCell.selectedValue as? Element.DataType
+            else { preconditionFailure("Expected an Element.DataType") }
+            attributes.dataType = dataType
         case (Section.element.rawValue, ElementRow.showLabelWhenReadOnly.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
             if attributes.options == nil {

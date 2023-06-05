@@ -708,13 +708,44 @@
                                     <outlet property="switchControl" destination="7yU-ua-VBL" id="xcS-9m-sjF"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OvP-cz-QjG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PopUpButtonCell" id="OvP-cz-QjG" customClass="PopUpButtonCell" customModule="Riverbed" customModuleProvider="target">
                                 <rect key="frame" x="20" y="183.33332824707031" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OvP-cz-QjG" id="lvp-Pi-ez5">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGO-sz-JDZ">
+                                            <rect key="frame" x="20" y="14.666666666666664" width="31" height="14.333333333333336"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-vq-PJg">
+                                            <rect key="frame" x="283" y="4.6666666666666679" width="87" height="34.333333333333329"/>
+                                            <menu key="menu" id="LrQ-Mg-05G">
+                                                <children>
+                                                    <command title="Item 1" id="OtX-pl-R0B"/>
+                                                    <command title="Item 2" id="l9c-uR-HwH"/>
+                                                </children>
+                                            </menu>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="gray" title="Button">
+                                                <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                            </buttonConfiguration>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gaD-vq-PJg" secondAttribute="trailing" id="19E-HO-OXk"/>
+                                        <constraint firstItem="eGO-sz-JDZ" firstAttribute="centerY" secondItem="lvp-Pi-ez5" secondAttribute="centerY" id="6F0-OS-cLo"/>
+                                        <constraint firstItem="eGO-sz-JDZ" firstAttribute="leading" secondItem="lvp-Pi-ez5" secondAttribute="leadingMargin" id="vFc-Ru-tA0"/>
+                                        <constraint firstItem="gaD-vq-PJg" firstAttribute="centerY" secondItem="lvp-Pi-ez5" secondAttribute="centerY" id="zAq-DO-eDu"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="eGO-sz-JDZ" id="Q0L-4C-p7O"/>
+                                    <outlet property="popUpButton" destination="gaD-vq-PJg" id="4fv-hz-9l5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
