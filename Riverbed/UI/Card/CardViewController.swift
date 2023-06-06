@@ -101,21 +101,8 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     private func cellType(for element: Element) -> UITableViewCell.Type {
         if element.attributes.readOnly {
             return ReadOnlyElementCell.self
-        }
-
-        switch element.attributes.elementType {
-        case .button: return ButtonElementCell.self
-        case .buttonMenu: return ButtonMenuElementCell.self
-        case .field:
-            switch element.attributes.dataType {
-            case .choice: return ChoiceElementCell.self
-            case .date: return DateElementCell.self
-            case .dateTime: return DateElementCell.self
-            case .geolocation: return GeolocationElementCell.self
-            case .number: return TextElementCell.self
-            case .text: return TextElementCell.self
-            case .none: return TextElementCell.self
-            }
+        } else {
+            return elementCellType(for: element)
         }
     }
 
@@ -251,7 +238,8 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             for: indexPath) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
         cell.delegate = self
-        cell.update(for: element, allElements: elements, fieldValues: fieldValues)
+        let fieldValue = singularizeOptionality(fieldValues[element.id])
+        cell.update(for: element, allElements: elements, fieldValue: fieldValue)
         return cell
     }
 

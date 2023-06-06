@@ -1,6 +1,7 @@
 import UIKit
 
-class DynamicElementViewController: UITableViewController, FormCellDelegate {
+class DynamicElementViewController: UITableViewController, FormCellDelegate, ElementCellDelegate {
+
     enum Section: Int, CaseIterable {
         case element = 0
         case summaryView
@@ -16,6 +17,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
     enum ElementRow: Int, CaseIterable {
         case fieldName = 0
         case dataType
+        case initialValue
+        case concreteInitialValue
         case showLabelWhenReadOnly
         case readOnly
         case multipleLines
@@ -24,6 +27,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             switch self {
             case .fieldName: return "Field Name"
             case .dataType: return "Data Type"
+            case .initialValue: return "Initial Value"
+            case .concreteInitialValue: return "Initial Value"
             case .showLabelWhenReadOnly: return "Show Label When Read-Only"
             case .readOnly: return "Read-Only"
             case .multipleLines: return "Multiple Lines"
@@ -81,7 +86,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         }
     }
 
-    // MARK: - table view data source
+    // MARK: - table view data source and immediate helpers
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         Section.allCases.count
@@ -97,6 +102,19 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
         case .element: return ElementRow.allCases.count
         case .summaryView: return SummaryViewRow.allCases.count
         }
+    }
+
+    private func tableView(_ tableView: UITableView,
+                           dequeueOrRegisterReusableCellWithIdentifier identifier: String) -> UITableViewCell {
+        // the signature without indexPath seems to be the one that allows an optional
+        if let cell = tableView.dequeueReusableCell(withIdentifier: identifier) {
+            return cell
+        }
+
+        tableView.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
+        else { preconditionFailure("Could not dequeue cell after registering: \(identifier)") }
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,6 +147,35 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
                     PopUpButtonCell.Option(title: dataType.label,
                                            value: dataType,
                                            isSelected: attributes.dataType == dataType) }
+                )
+                cell = popUpButtonCell
+            case .concreteInitialValue:
+                guard let usesConcreteValue = attributes.initialValue?.usesConcreteValue,
+                      usesConcreteValue else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath)
+                    return cell
+                }
+
+                let cellType = elementCellType(for: element)
+                guard let cell = self.tableView(tableView,
+                                                dequeueOrRegisterReusableCellWithIdentifier: String(describing: cellType)) as? ElementCell
+                else { preconditionFailure("Expected an ElementCell") }
+                cell.delegate = self
+                cell.update(for: element,
+                            allElements: [],
+                            fieldValue: attributes.options?.initialSpecificValue)
+                return cell
+            case .initialValue:
+                guard let popUpButtonCell = tableView.dequeueReusableCell(
+                    withIdentifier: String(describing: PopUpButtonCell.self),
+                    for: indexPath) as? PopUpButtonCell else { preconditionFailure("Expected a PopUpButtonCell") }
+                popUpButtonCell.label.text = rowEnum.label
+                popUpButtonCell.delegate = self
+                let values = Value.allCases.sorted { $0.label < $1.label }
+                popUpButtonCell.configure(options: values.map { (valueEntry) in
+                    PopUpButtonCell.Option(title: valueEntry.label,
+                                           value: valueEntry,
+                                           isSelected: attributes.initialValue == valueEntry) }
                 )
                 cell = popUpButtonCell
             case .showLabelWhenReadOnly:
@@ -218,46 +265,65 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate {
             guard let dataType = popUpButtonCell.selectedValue as? Element.DataType
             else { preconditionFailure("Expected an Element.DataType") }
             attributes.dataType = dataType
+        case (Section.element.rawValue, ElementRow.initialValue.rawValue):
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            guard let initialValue = popUpButtonCell.selectedValue as? Value
+            else { preconditionFailure("Expected a Value") }
+            attributes.initialValue = initialValue
+            tableView.reloadData() // can trigger hide or show of initial specific value row
         case (Section.element.rawValue, ElementRow.showLabelWhenReadOnly.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
-            if attributes.options == nil {
-                attributes.options = Element.Options()
-            }
+            ensureOptionsPresent()
             attributes.options?.showLabelWhenReadOnly = switchCell.switchControl.isOn
         case (Section.element.rawValue, ElementRow.readOnly.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
             attributes.readOnly = switchCell.switchControl.isOn
         case (Section.element.rawValue, ElementRow.multipleLines.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
-            if attributes.options == nil {
-                attributes.options = Element.Options()
-            }
+            ensureOptionsPresent()
             attributes.options?.multiline = switchCell.switchControl.isOn
         case (Section.summaryView.rawValue, SummaryViewRow.showField.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
             attributes.showInSummary = switchCell.switchControl.isOn
         case (Section.summaryView.rawValue, SummaryViewRow.textSize.rawValue):
-            guard let popUpButtonCell = formCell as? PopUpButtonCell else { preconditionFailure("Expected a PopUpButtonCell") }
-            if attributes.options == nil {
-                attributes.options = Element.Options()
-            }
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
             guard let textSize = popUpButtonCell.selectedValue as? TextSize
             else { preconditionFailure("Expected a TextSize") }
+            ensureOptionsPresent()
             attributes.options?.textSize = textSize
         case (Section.summaryView.rawValue, SummaryViewRow.linkURLs.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
-            if attributes.options == nil {
-                attributes.options = Element.Options()
-            }
+            ensureOptionsPresent()
             attributes.options?.linkURLs = switchCell.switchControl.isOn
         case (Section.summaryView.rawValue, SummaryViewRow.abbreviateURLs.rawValue):
             guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
-            if attributes.options == nil {
-                attributes.options = Element.Options()
-            }
+            ensureOptionsPresent()
             attributes.options?.abbreviateURLs = switchCell.switchControl.isOn
         default:
             preconditionFailure("Unexpected index path")
+        }
+    }
+
+    // MARK: - element cell delegate for concrete initial value
+
+    var fieldValues = [String: FieldValue?]()
+
+    func update(value: FieldValue?, for element: Element) {
+        ensureOptionsPresent()
+        attributes.options?.initialSpecificValue = value
+    }
+
+    func update(values: [String: FieldValue?], dismiss: Bool) {
+        preconditionFailure("Unexpected update(values:dismiss:) call")
+    }
+
+    // MARK: - private helpers
+
+    private func ensureOptionsPresent() {
+        if attributes.options == nil {
+            attributes.options = Element.Options()
         }
     }
 

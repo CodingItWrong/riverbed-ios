@@ -8,7 +8,7 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var menuButton: UIButton!
 
-    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
+    func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.allElements = allElements
 
         menuButton.setTitle(element.attributes.name, for: .normal)

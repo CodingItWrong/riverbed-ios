@@ -1,6 +1,6 @@
 import Foundation
 
-enum Value: String, Codable {
+enum Value: String, Codable, CaseIterable {
     case empty = "empty"
     case now = "now"
     case specificValue = "specific_value"
@@ -11,6 +11,10 @@ enum Value: String, Codable {
         case .now: return "now"
         case .specificValue: return "specific value"
         }
+    }
+
+    var usesConcreteValue: Bool {
+        self == .specificValue
     }
 
     func call(fieldDataType: Element.DataType, options: Element.Options?) -> FieldValue? {
@@ -42,11 +46,7 @@ enum Value: String, Codable {
                 return nil
             }
         case .specificValue:
-            if let stringValue = options?.initialSpecificValue {
-                return .string(stringValue)
-            } else {
-                return nil
-            }
+            return options?.initialSpecificValue
         }
     }
 }

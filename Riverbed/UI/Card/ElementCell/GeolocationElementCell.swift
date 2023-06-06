@@ -52,7 +52,7 @@ class GeolocationElementCell: UITableViewCell,
 
     private let pin = MKPointAnnotation()
 
-    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
+    func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.element = element
 
         elementLabel.text = element.attributes.name
@@ -63,8 +63,7 @@ class GeolocationElementCell: UITableViewCell,
             field?.layer.borderColor = UIColor.separator.cgColor
         }
 
-        let value = fieldValues[element.id]
-        if case let .dictionary(dictValue) = value,
+        if case let .dictionary(dictValue) = fieldValue,
            let latitudeString = dictValue[ValueKey.latitude.rawValue],
            let longitudeString = dictValue[ValueKey.longitude.rawValue] {
             latitudeTextField.text = latitudeString

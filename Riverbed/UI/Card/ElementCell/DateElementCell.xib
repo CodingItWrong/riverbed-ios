@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="eVR-Co-4fW" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="83"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVR-Co-4fW" id="TCf-Cj-njC">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uYh-Ca-sp6">
+                        <rect key="frame" x="20" y="4" width="353" height="75"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-ci-XKM">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="14.333333333333334"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OP-Og-IFg">
+                                <rect key="frame" x="0.0" y="18.333333333333332" width="353" height="56.666666666666671"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR">
+                                        <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="56.666666666666664"/>
+                                        <subviews>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
+                                                <rect key="frame" x="0.0" y="11.333333333333332" width="303.33333333333331" height="34.333333333333343"/>
+                                            </datePicker>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJd-OW-4X9">
+                                                <rect key="frame" x="238.33333333333331" y="18.333333333333336" width="65" height="20.333333333333336"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Fqo-XC-9cV" secondAttribute="trailing" id="60v-9Y-lu8"/>
+                                            <constraint firstItem="Fqo-XC-9cV" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="PEE-b6-788"/>
+                                            <constraint firstAttribute="trailing" secondItem="QJd-OW-4X9" secondAttribute="trailing" id="nJ2-I6-QrO"/>
+                                            <constraint firstItem="QJd-OW-4X9" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="sE1-cN-t0V"/>
+                                            <constraint firstItem="Fqo-XC-9cV" firstAttribute="leading" secondItem="4NA-uv-pPR" secondAttribute="leading" id="yKC-Zz-QtK"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
+                                        <rect key="frame" x="303.33333333333331" y="0.0" width="49.666666666666686" height="56.666666666666664"/>
+                                        <accessibility key="accessibilityConfiguration" label="Clear Date"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="toggleDate:" destination="eVR-Co-4fW" eventType="touchUpInside" id="kEn-ZJ-96L"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ID4-E4-QMb" secondAttribute="trailing" id="5Cg-qC-oyB"/>
+                                    <constraint firstItem="ID4-E4-QMb" firstAttribute="top" secondItem="5OP-Og-IFg" secondAttribute="top" id="8Kt-jV-OeX"/>
+                                    <constraint firstItem="ID4-E4-QMb" firstAttribute="leading" secondItem="4NA-uv-pPR" secondAttribute="trailing" id="DPX-EI-NPj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ID4-E4-QMb" secondAttribute="bottom" id="rGt-Ep-9vW"/>
+                                    <constraint firstAttribute="bottom" secondItem="4NA-uv-pPR" secondAttribute="bottom" id="rMG-Ol-yo0"/>
+                                    <constraint firstItem="4NA-uv-pPR" firstAttribute="top" secondItem="5OP-Og-IFg" secondAttribute="top" id="w8e-zG-NfW"/>
+                                    <constraint firstItem="4NA-uv-pPR" firstAttribute="leading" secondItem="5OP-Og-IFg" secondAttribute="leading" id="zbg-cG-OVl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uYh-Ca-sp6" firstAttribute="leading" secondItem="TCf-Cj-njC" secondAttribute="leadingMargin" id="L04-ra-M2k"/>
+                    <constraint firstAttribute="bottom" secondItem="uYh-Ca-sp6" secondAttribute="bottom" constant="4" id="LYj-iY-8qm"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="uYh-Ca-sp6" secondAttribute="trailing" id="Pua-Zb-ClH"/>
+                    <constraint firstItem="uYh-Ca-sp6" firstAttribute="top" secondItem="TCf-Cj-njC" secondAttribute="top" constant="4" id="hNV-j0-ZbV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="elementLabel" destination="p2l-ci-XKM" id="wgH-G1-NYD"/>
+                <outlet property="noValueLabel" destination="QJd-OW-4X9" id="HUB-zr-d52"/>
+                <outlet property="toggleDateButton" destination="ID4-E4-QMb" id="8Rc-MV-iPv"/>
+                <outlet property="valueDatePicker" destination="Fqo-XC-9cV" id="ZV0-az-Tjt"/>
+            </connections>
+            <point key="canvasLocation" x="223.66412213740458" y="6.6901408450704229"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

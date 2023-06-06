@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xzP-cT-Et6" customClass="ChoiceElementCell" customModule="Riverbed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xzP-cT-Et6" id="qUL-O9-BQa">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-eu-MVd">
+                        <rect key="frame" x="20" y="4" width="353" height="36"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-mk-8uX">
+                                <rect key="frame" x="0.0" y="0.0" width="262" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-Tm-LKf">
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="36"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="rzc-Tm-LKf" firstAttribute="leading" secondItem="Amb-mk-8uX" secondAttribute="leading" id="Feu-xl-Y92"/>
+                                    <constraint firstAttribute="trailing" secondItem="rzc-Tm-LKf" secondAttribute="trailing" id="G3s-Or-aM1"/>
+                                    <constraint firstItem="rzc-Tm-LKf" firstAttribute="top" secondItem="Amb-mk-8uX" secondAttribute="top" id="ORF-Ir-1md"/>
+                                    <constraint firstAttribute="bottom" secondItem="rzc-Tm-LKf" secondAttribute="bottom" id="g9b-8O-xAK"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBc-HZ-lIE">
+                                <rect key="frame" x="282" y="0.0" width="71" height="36"/>
+                                <menu key="menu" id="U8x-QR-DVM">
+                                    <children>
+                                        <command title="Item 1" id="Cv1-SV-JCa"/>
+                                        <command title="Item 2" id="CCw-yg-dq7"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                </buttonConfiguration>
+                            </button>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="BOB-eu-MVd" secondAttribute="trailing" id="ZRc-Tv-l52"/>
+                    <constraint firstItem="BOB-eu-MVd" firstAttribute="leading" secondItem="qUL-O9-BQa" secondAttribute="leadingMargin" id="Zv1-TB-0Nl"/>
+                    <constraint firstAttribute="bottom" secondItem="BOB-eu-MVd" secondAttribute="bottom" constant="4" id="uDL-mE-P1L"/>
+                    <constraint firstItem="BOB-eu-MVd" firstAttribute="top" secondItem="qUL-O9-BQa" secondAttribute="top" constant="4" id="uT9-8B-ggr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="elementLabel" destination="rzc-Tm-LKf" id="bsV-Ol-OUE"/>
+                <outlet property="valuePopUpButton" destination="EBc-HZ-lIE" id="ZZK-sQ-1BR"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="-9"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

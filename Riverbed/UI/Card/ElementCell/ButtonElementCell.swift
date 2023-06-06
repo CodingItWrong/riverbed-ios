@@ -9,10 +9,9 @@ class ButtonElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var button: UIButton!
 
-    func update(for element: Element, allElements: [Element], fieldValues: [String: FieldValue?]) {
+    func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.buttonElement = element
         self.allElements = allElements
-        // self.fieldValues = fieldValues // no; needs to be the latest ones
 
         button.setTitle(element.attributes.name, for: .normal)
     }

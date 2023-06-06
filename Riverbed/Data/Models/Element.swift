@@ -183,7 +183,7 @@ class Element: Codable, Equatable {
         var choices: [Element.Choice]?
         var items: [Element.Item]?
         var actions: [Element.Action]?
-        var initialSpecificValue: String? // TODO: handle geolocation too
+        var initialSpecificValue: FieldValue?
         var textSize: TextSize?
         var abbreviateURLs: Bool?
         var linkURLs: Bool?
