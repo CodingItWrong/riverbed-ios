@@ -4,8 +4,16 @@ struct DateTimeUtils {
     static let serverDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }()
+
+//    does not work with JSONDecoder
+//    static let serverISO8601DateTimeFormatter: ISO8601DateFormatter = {
+//        let formatter = ISO8601DateFormatter()
+//        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+//        return formatter
+//    }()
 
     private static let humanDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -43,7 +51,9 @@ struct DateTimeUtils {
             return nil
         }
 
-        return DateTimeUtils.serverDateTimeFormatter.string(from: date)
+        let result = DateTimeUtils.serverDateTimeFormatter.string(from: date)
+        // split out for debug interception
+        return result
     }
 
     static func isCurrentMonth(_ dateString: String?) -> Bool {
