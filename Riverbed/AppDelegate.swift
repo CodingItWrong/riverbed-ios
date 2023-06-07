@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let deleteCardCommand = UIKeyCommand(title: "Delete Card",
                                              action: #selector(CardViewController.deleteCard(_:)),
-                                             input: "\u{8}", // delete key,
+                                             input: UIKeyCommand.inputDelete,
                                              modifierFlags: .command)
         let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
         builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
