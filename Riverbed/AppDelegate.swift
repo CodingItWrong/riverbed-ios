@@ -28,6 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                              modifierFlags: .command)
         let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
         builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
+
+        let closeModalCommand = UIKeyCommand(title: "Close Card",
+                                             action: #selector(CardViewController.dismissVC(_:)),
+                                             input: UIKeyCommand.inputEscape)
+        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
+        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
     }
 
     // MARK: UISceneSession Lifecycle

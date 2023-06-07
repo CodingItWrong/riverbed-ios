@@ -152,6 +152,10 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         present(alert, animated: true)
     }
 
+    @objc func dismissVC(_ sender: Any?) {
+        dismiss(animated: true)
+    }
+
     func update(value: FieldValue?, for element: Element) {
         print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
         fieldValues[element.id] = value
