@@ -29,6 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
         builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
 
+        let refreshCommand = UIKeyCommand(title: "Refresh Board",
+                                          action: #selector(BoardViewController.refreshBoardData(_:)),
+                                          input: "r",
+                                          modifierFlags: .command)
+        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
+        builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
+
         let closeModalCommand = UIKeyCommand(title: "Close Card",
                                              action: #selector(CardViewController.dismissVC(_:)),
                                              input: UIKeyCommand.inputEscape)

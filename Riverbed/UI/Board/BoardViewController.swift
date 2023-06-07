@@ -187,8 +187,9 @@ class BoardViewController: UIViewController,
         }
     }
 
-    @objc func refreshBoardData(_ sender: UIRefreshControl?) {
-        loadBoardData(from: sender)
+    @objc func refreshBoardData(_ sender: Any?) {
+        let refreshControl = sender as? UIRefreshControl
+        loadBoardData(from: refreshControl)
     }
 
     // MARK: - app-specific delegates
