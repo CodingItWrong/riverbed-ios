@@ -27,6 +27,7 @@
 		0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
 		0342FC802A17C24100CB8075 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
 		0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC812A17C2D300CB8075 /* CardStore.swift */; };
+		034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */; };
 		034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */; };
 		034D09DD2A2F4DD600106EE1 /* ChoiceElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */; };
 		034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */; };
@@ -107,6 +108,7 @@
 		0342FC7D2A17B7CE00CB8075 /* Column.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Column.swift; sourceTree = "<group>"; };
 		0342FC7F2A17C24100CB8075 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0342FC812A17C2D300CB8075 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
+		034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+DequeueOrRegisterCell.swift"; sourceTree = "<group>"; };
 		034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextElementCell.xib; sourceTree = "<group>"; };
 		034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceElementCell.xib; sourceTree = "<group>"; };
 		034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateElementCell.xib; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				03EAFF352A2B59900086EC0B /* Element */,
 				03C8F07B2A2C9E8900F6AF90 /* Form */,
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
+				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
 				03C8F0832A2CA6BF00F6AF90 /* TestTableViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
+				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,

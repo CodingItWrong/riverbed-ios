@@ -104,19 +104,6 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         }
     }
 
-    private func tableView(_ tableView: UITableView,
-                           dequeueOrRegisterReusableCellWithIdentifier identifier: String) -> UITableViewCell {
-        // the signature without indexPath seems to be the one that allows an optional
-        if let cell = tableView.dequeueReusableCell(withIdentifier: identifier) {
-            return cell
-        }
-
-        tableView.register(UINib(nibName: identifier, bundle: nil), forCellReuseIdentifier: identifier)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier)
-        else { preconditionFailure("Could not dequeue cell after registering: \(identifier)") }
-        return cell
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell!
         guard let sectionEnum = Section(rawValue: indexPath.section) else { preconditionFailure("Unexpected section") }
@@ -157,9 +144,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 }
 
                 let cellType = elementCellType(for: element)
-                guard let cell = self.tableView(
-                    tableView,
-                    dequeueOrRegisterReusableCellWithIdentifier: String(describing: cellType)) as? ElementCell
+                guard let cell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: cellType)) as? ElementCell
                 else { preconditionFailure("Expected an ElementCell") }
                 cell.delegate = self
                 cell.update(for: element,

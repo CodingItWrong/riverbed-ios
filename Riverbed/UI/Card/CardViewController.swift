@@ -234,9 +234,8 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elementsToShow[indexPath.row]
         let cellType = cellType(for: element)
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: String(describing: cellType),
-            for: indexPath) as? ElementCell
+        guard let cell = tableView.dequeueOrRegisterReusableCell(
+            withIdentifier: String(describing: cellType)) as? ElementCell
         else { preconditionFailure("Expected a \(String(describing: cellType))") }
         cell.delegate = self
         let fieldValue = singularizeOptionality(fieldValues[element.id])

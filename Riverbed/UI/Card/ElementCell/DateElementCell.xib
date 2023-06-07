@@ -20,23 +20,35 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uYh-Ca-sp6">
                         <rect key="frame" x="20" y="4" width="353" height="75"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-ci-XKM">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="14.333333333333334"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykz-Ih-ueH">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-ci-XKM">
+                                        <rect key="frame" x="6" y="0.0" width="347" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="p2l-ci-XKM" firstAttribute="top" secondItem="ykz-Ih-ueH" secondAttribute="top" id="Lhs-Kl-vh3"/>
+                                    <constraint firstItem="p2l-ci-XKM" firstAttribute="leading" secondItem="ykz-Ih-ueH" secondAttribute="leading" constant="6" id="QnY-dX-fbu"/>
+                                    <constraint firstAttribute="trailing" secondItem="p2l-ci-XKM" secondAttribute="trailing" id="aXz-Mw-HTG"/>
+                                    <constraint firstAttribute="bottom" secondItem="p2l-ci-XKM" secondAttribute="bottom" id="bnC-nl-5zT"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OP-Og-IFg">
-                                <rect key="frame" x="0.0" y="18.333333333333332" width="353" height="56.666666666666671"/>
+                                <rect key="frame" x="0.0" y="25" width="353" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR">
-                                        <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="56.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="50"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
-                                                <rect key="frame" x="0.0" y="11.333333333333332" width="303.33333333333331" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="8" width="303.33333333333331" height="34.333333333333336"/>
                                             </datePicker>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJd-OW-4X9">
-                                                <rect key="frame" x="238.33333333333331" y="18.333333333333336" width="65" height="20.333333333333336"/>
+                                                <rect key="frame" x="238.33333333333331" y="14.999999999999998" width="65" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -51,7 +63,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
-                                        <rect key="frame" x="303.33333333333331" y="0.0" width="49.666666666666686" height="56.666666666666664"/>
+                                        <rect key="frame" x="303.33333333333331" y="0.0" width="49.666666666666686" height="50"/>
                                         <accessibility key="accessibilityConfiguration" label="Clear Date"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
