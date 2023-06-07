@@ -157,8 +157,9 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 }
 
                 let cellType = elementCellType(for: element)
-                guard let cell = self.tableView(tableView,
-                                                dequeueOrRegisterReusableCellWithIdentifier: String(describing: cellType)) as? ElementCell
+                guard let cell = self.tableView(
+                    tableView,
+                    dequeueOrRegisterReusableCellWithIdentifier: String(describing: cellType)) as? ElementCell
                 else { preconditionFailure("Expected an ElementCell") }
                 cell.delegate = self
                 cell.update(for: element,

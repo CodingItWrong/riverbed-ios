@@ -83,7 +83,8 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
             } else if let textView = elementView as? UITextView {
                 if case let .string(urlString) = value,
                    let url = URL(string: urlString) {
-                    let textStyle = element.attributes.options?.textSize?.textStyle ?? TextSize.defaultTextSize.textStyle
+                    let textStyle =
+                        element.attributes.options?.textSize?.textStyle ?? TextSize.defaultTextSize.textStyle
                     textView.attributedText = NSAttributedString(string: labelText, attributes: [
                         .font: UIFont.preferredFont(forTextStyle: textStyle),
                         .link: url // NOTE: using a text view as link clicking did not work in label

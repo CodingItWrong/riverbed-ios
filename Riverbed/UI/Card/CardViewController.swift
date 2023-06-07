@@ -220,7 +220,8 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     }
 
     func elementDidUpdate(_ element: Element) {
-        // TODO: reload elements in the board as well; maybe just do that when this VC dismisses, instead of automatically propagating
+        // TODO: reload elements in the board as well
+        // maybe just do that when this VC dismisses, instead of automatically propagating
         reloadElements()
     }
 
