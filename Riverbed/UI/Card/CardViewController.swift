@@ -126,21 +126,28 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Delete",
-                                      style: .destructive) {[weak self] _ in
-            guard let self = self else { return }
+        // .destructive does not bind to Return key on macOS even when preferredAction
+        let deleteActionStyle: UIAlertAction.Style = .default
 
-            cardStore.delete(card) { [weak self] (result) in
-                switch result {
-                case .success:
-                    self?.isCardDeleted = true
-                    self?.dismiss(animated: true)
-                case let .failure(error):
-                    print("Error deleting card: \(String(describing: error))")
-                }
-            }
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        let deleteAction = UIAlertAction(title: "Delete",
+                                         style: deleteActionStyle) {[weak self] _ in
+               guard let self = self else { return }
+
+               cardStore.delete(card) { [weak self] (result) in
+                   switch result {
+                   case .success:
+                       self?.isCardDeleted = true
+                       self?.dismiss(animated: true)
+                   case let .failure(error):
+                       print("Error deleting card: \(String(describing: error))")
+                   }
+               }
+           }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = deleteAction
 
         present(alert, animated: true)
     }
