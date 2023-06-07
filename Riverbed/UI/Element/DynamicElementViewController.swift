@@ -19,7 +19,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
     }
 
     enum ElementRow: Int, CaseIterable {
-        case fieldName = 0
+        case elementName = 0
         case dataType
         case initialValue
         case concreteInitialValue
@@ -29,7 +29,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
 
         var label: String {
             switch self {
-            case .fieldName: return "Field Name"
+            case .elementName: return "Field Name"
             case .dataType: return "Data Type"
             case .initialValue: return "Initial Value"
             case .concreteInitialValue: return "Initial Value"
@@ -116,13 +116,13 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         case .element:
             guard let rowEnum = ElementRow(rawValue: indexPath.row) else { preconditionFailure("Unexpected row") }
             switch rowEnum {
-            case .fieldName:
+            case .elementName:
                 guard let textFieldCell = tableView.dequeueReusableCell(
                     withIdentifier: String(describing: TextFieldCell.self),
                     for: indexPath) as? TextFieldCell else { preconditionFailure("Expected a TextFieldCell") }
 
                 // TODO: maybe set these on a FormCell base class
-                textFieldCell.label.text = rowEnum.label
+                textFieldCell.label.text = "\(element.attributes.elementType.label) Label"
                 textFieldCell.delegate = self
 
                 textFieldCell.textField.text = attributes.name
@@ -246,7 +246,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
 
         switch (indexPath.section, indexPath.row) {
-        case (Section.element.rawValue, ElementRow.fieldName.rawValue):
+        case (Section.element.rawValue, ElementRow.elementName.rawValue):
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
