@@ -41,10 +41,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OP-Og-IFg">
                                 <rect key="frame" x="0.0" y="25" width="353" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR">
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR" userLabel="Date Picker Container">
                                         <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="50"/>
                                         <subviews>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
+                                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
                                                 <rect key="frame" x="0.0" y="8" width="303.33333333333331" height="34.333333333333336"/>
                                             </datePicker>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJd-OW-4X9">
@@ -59,10 +59,9 @@
                                             <constraint firstItem="Fqo-XC-9cV" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="PEE-b6-788"/>
                                             <constraint firstAttribute="trailing" secondItem="QJd-OW-4X9" secondAttribute="trailing" id="nJ2-I6-QrO"/>
                                             <constraint firstItem="QJd-OW-4X9" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="sE1-cN-t0V"/>
-                                            <constraint firstItem="Fqo-XC-9cV" firstAttribute="leading" secondItem="4NA-uv-pPR" secondAttribute="leading" id="yKC-Zz-QtK"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
                                         <rect key="frame" x="303.33333333333331" y="0.0" width="49.666666666666686" height="50"/>
                                         <accessibility key="accessibilityConfiguration" label="Clear Date"/>
                                         <state key="normal" title="Button"/>
