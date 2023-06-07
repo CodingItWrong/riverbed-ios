@@ -26,9 +26,13 @@ class BoardViewController: UIViewController,
         return button
     }()
 
-    var board: Board! {
+    var board: Board? {
         didSet {
-            titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
+            if let board = board {
+                titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
+            } else {
+                titleButton.configuration?.title = "(choose or create a board)"
+            }
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             configureTint()
@@ -74,6 +78,8 @@ class BoardViewController: UIViewController,
     }
 
     func loadBoardData(from refreshControl: UIRefreshControl? = nil) {
+        guard let board = board else { return }
+
         if refreshControl == nil {
             loadingIndicator.startAnimating()
         }
@@ -131,6 +137,8 @@ class BoardViewController: UIViewController,
     // MARK: - layout and visuals
 
     func configureTint() {
+        guard let board = board else { return }
+
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
         navigationController?.navigationBar.tintColor = tintColor // plus button on iPad
@@ -177,6 +185,8 @@ class BoardViewController: UIViewController,
     }
 
     @IBAction func addCard(_ sender: Any?) {
+        guard let board = board else { return }
+
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
