@@ -157,6 +157,7 @@ class BoardListViewController: UITableViewController,
     }
 
     func didDelete(board: Board) {
+        splitViewController?.show(.primary) // for views where it isn't always shown: iPhone and iPad portrait
         loadBoards()
     }
 
