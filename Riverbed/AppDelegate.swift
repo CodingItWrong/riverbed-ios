@@ -11,6 +11,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    override func buildMenu(with builder: UIMenuBuilder) {
+        super.buildMenu(with: builder)
+        guard builder.system == .main else { return }
+
+        let newCommand = UIKeyCommand(title: "New Card",
+                                      action: #selector(BoardViewController.chooseAddCardMenuItem(_:)),
+                                      input: "n",
+                                      modifierFlags: .command)
+        let newCommandMenu = UIMenu(options: .displayInline, children: [newCommand])
+        builder.insertChild(newCommandMenu, atStartOfMenu: .file)
+    }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication,
