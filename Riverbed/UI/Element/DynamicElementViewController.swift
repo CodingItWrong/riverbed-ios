@@ -56,8 +56,8 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         }
     }
 
-    enum SummaryViewRow: Int, CaseIterable {
-        case showField = 0
+    enum SummaryViewRow: CaseIterable {
+        case showField
         case textSize
         case linkURLs
         case abbreviateURLs
@@ -217,7 +217,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 cell = switchCell
             }
         case .summaryView:
-            guard let rowEnum = SummaryViewRow(rawValue: indexPath.row) else { preconditionFailure("Unexpected row") }
+            let rowEnum = SummaryViewRow.allCases[indexPath.row]
             switch rowEnum {
             case .showField:
                 guard let switchCell = tableView.dequeueReusableCell(
@@ -304,7 +304,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 preconditionFailure("Unexpected valueDidChange for concreteInitialValue")
             }
         case .summaryView:
-            let summaryViewRowEnum = SummaryViewRow(rawValue: indexPath.row)
+            let summaryViewRowEnum = SummaryViewRow.allCases[indexPath.row]
             switch summaryViewRowEnum {
             case .showField:
                 guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
@@ -324,8 +324,6 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 ensureOptionsPresent()
                 attributes.options?.abbreviateURLs = switchCell.switchControl.isOn
-            case .none:
-                preconditionFailure("Unexpected row for Summary View section: \(indexPath.row)")
             }
         }
     }
