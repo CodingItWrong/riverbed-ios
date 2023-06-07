@@ -5,6 +5,8 @@ class Board: Codable {
     var id: String
     var attributes: Board.Attributes
 
+    static var defaultName: String { "(unnamed board)" }
+
     init(id: String, attributes: Board.Attributes) {
         self.type = "boards"
         self.id = id

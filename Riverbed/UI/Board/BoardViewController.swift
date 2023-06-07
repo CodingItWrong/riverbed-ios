@@ -22,7 +22,7 @@ class BoardViewController: UIViewController,
 
     var board: Board! {
         didSet {
-            titleButton.configuration?.title = board.attributes.name
+            titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             configureTint()
