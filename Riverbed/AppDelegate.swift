@@ -15,12 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.buildMenu(with: builder)
         guard builder.system == .main else { return }
 
-        let newCommand = UIKeyCommand(title: "New Card",
-                                      action: #selector(BoardViewController.chooseAddCardMenuItem(_:)),
-                                      input: "n",
-                                      modifierFlags: .command)
-        let newCommandMenu = UIMenu(options: .displayInline, children: [newCommand])
-        builder.insertChild(newCommandMenu, atStartOfMenu: .file)
+        let newCardCommand = UIKeyCommand(title: "New Card",
+                                          action: #selector(BoardViewController.chooseAddCardMenuItem(_:)),
+                                          input: "n",
+                                          modifierFlags: .command)
+        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: [newCardCommand])
+        builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
+
+        let deleteCardCommand = UIKeyCommand(title: "Delete Card",
+                                             action: #selector(CardViewController.deleteCard(_:)),
+                                             input: "\u{8}", // delete key,
+                                             modifierFlags: .command)
+        let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
+        builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
     }
 
     // MARK: UISceneSession Lifecycle

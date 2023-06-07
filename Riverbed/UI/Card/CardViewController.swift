@@ -121,7 +121,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
     }
 
-    @IBAction func deleteCard(_ sender: UIButton) {
+    @IBAction func deleteCard(_ sender: Any?) {
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
