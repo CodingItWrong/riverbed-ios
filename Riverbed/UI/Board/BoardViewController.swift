@@ -18,7 +18,11 @@ class BoardViewController: UIViewController,
     var columns = [Column]()
     var elements = [Element]()
 
-    private var titleButton = UIButton(configuration: .plain())
+    private var titleButton: UIButton = {
+        let button = UIButton(configuration: .plain())
+        button.showsMenuAsPrimaryAction = true
+        return button
+    }()
 
     var board: Board! {
         didSet {
@@ -62,6 +66,11 @@ class BoardViewController: UIViewController,
         super.viewDidLoad()
 
         navigationItem.titleView = titleButton
+
+        let menu = UIMenu(children: [
+            UIAction(title: "Delete", attributes: [.destructive]) { _ in print("delete") }
+        ])
+        titleButton.menu = menu
     }
 
     override func viewWillLayoutSubviews() {
