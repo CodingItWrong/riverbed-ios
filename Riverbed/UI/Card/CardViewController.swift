@@ -67,11 +67,10 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = true
 
-        addElementButton.menu = UIMenu(children: [
-            UIAction(title: "Add Field") { [weak self] _ in self?.addElement(of: .field) },
-            UIAction(title: "Add Button") { [weak self] _ in self?.addElement(of: .button) },
-            UIAction(title: "Add Button Menu") { [weak self] _ in self?.addElement(of: .buttonMenu) }
-        ])
+        let actions = Element.ElementType.allCases.map { (elementType) in
+            UIAction(title: "Add \(elementType.label)") { [weak self] _ in self?.addElement(of: elementType) }
+        }
+        addElementButton.menu = UIMenu(children: actions)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

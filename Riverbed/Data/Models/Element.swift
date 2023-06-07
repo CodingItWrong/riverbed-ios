@@ -1,10 +1,18 @@
 import Foundation
 
 class Element: Codable, Equatable {
-    enum ElementType: String, Codable {
+    enum ElementType: String, Codable, CaseIterable {
         case field = "field"
         case button = "button"
         case buttonMenu = "button_menu"
+
+        var label: String {
+            switch self {
+            case .field: return "Field"
+            case .button: return "Button"
+            case .buttonMenu: return "Button Menu"
+            }
+        }
     }
 
     enum DataType: String, Codable, CaseIterable {
