@@ -40,6 +40,7 @@ class BoardViewController: UIViewController,
             } else {
                 titleButton.configuration?.title = "(choose or create a board)"
             }
+            titleButton.sizeToFit()
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             configureTint()
