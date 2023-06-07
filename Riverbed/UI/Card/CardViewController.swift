@@ -156,7 +156,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     }
 
     func update(value: FieldValue?, for element: Element) {
-        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
+//        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
         fieldValues[element.id] = value
         recomputeTableCellSizes()
     }
