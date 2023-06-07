@@ -20,7 +20,8 @@ class ButtonElementCell: UITableViewCell, ElementCell {
         guard let delegate else { return }
 
         var fieldValues = delegate.fieldValues // get the latest at the time it executes
-        print("tapped button \(sender.titleLabel?.text), fieldValues \(String(describing: fieldValues))")
+        print("tapped button \(String(describing: sender.titleLabel?.text)), " +
+              "fieldValues \(String(describing: fieldValues))")
 
         buttonElement.attributes.options?.actions?.forEach { (action) in
             fieldValues = action.call(elements: allElements, fieldValues: fieldValues)

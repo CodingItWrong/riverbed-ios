@@ -28,6 +28,9 @@
 		0342FC802A17C24100CB8075 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
 		0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC812A17C2D300CB8075 /* CardStore.swift */; };
 		034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */; };
+		034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655052A30857100F6AEEE /* ButtonElementCell.xib */; };
+		034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655072A30865B00F6AEEE /* ButtonMenuElementCell.xib */; };
+		0346550A2A3086DC00F6AEEE /* ReadOnlyElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655092A3086DC00F6AEEE /* ReadOnlyElementCell.xib */; };
 		034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */; };
 		034D09DD2A2F4DD600106EE1 /* ChoiceElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */; };
 		034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */; };
@@ -109,6 +112,9 @@
 		0342FC7F2A17C24100CB8075 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		0342FC812A17C2D300CB8075 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
 		034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+DequeueOrRegisterCell.swift"; sourceTree = "<group>"; };
+		034655052A30857100F6AEEE /* ButtonElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonElementCell.xib; sourceTree = "<group>"; };
+		034655072A30865B00F6AEEE /* ButtonMenuElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonMenuElementCell.xib; sourceTree = "<group>"; };
+		034655092A3086DC00F6AEEE /* ReadOnlyElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadOnlyElementCell.xib; sourceTree = "<group>"; };
 		034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextElementCell.xib; sourceTree = "<group>"; };
 		034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceElementCell.xib; sourceTree = "<group>"; };
 		034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateElementCell.xib; sourceTree = "<group>"; };
@@ -316,7 +322,9 @@
 			isa = PBXGroup;
 			children = (
 				03944A9A2A19860400639AC7 /* ButtonElementCell.swift */,
+				034655052A30857100F6AEEE /* ButtonElementCell.xib */,
 				03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */,
+				034655072A30865B00F6AEEE /* ButtonMenuElementCell.xib */,
 				03944A932A19737E00639AC7 /* ChoiceElementCell.swift */,
 				034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */,
 				03944A912A1960AD00639AC7 /* DateElementCell.swift */,
@@ -325,6 +333,7 @@
 				03944A972A19788F00639AC7 /* GeolocationElementCell.swift */,
 				034D09E02A2F507000106EE1 /* GeolocationElementCell.xib */,
 				03DC30432A23746B00ABC4CB /* ReadOnlyElementCell.swift */,
+				034655092A3086DC00F6AEEE /* ReadOnlyElementCell.xib */,
 				03944A8F2A195FF000639AC7 /* TextElementCell.swift */,
 				034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */,
 			);
@@ -469,8 +478,11 @@
 			files = (
 				03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */,
 				03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */,
+				0346550A2A3086DC00F6AEEE /* ReadOnlyElementCell.xib in Resources */,
 				034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */,
 				034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */,
+				034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */,
+				034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */,
 				03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */,
 				034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */,
 				034D09DD2A2F4DD600106EE1 /* ChoiceElementCell.xib in Resources */,
