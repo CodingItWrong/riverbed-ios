@@ -243,6 +243,12 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // macOS allows drag-to-reorder when not in editing mode.
+        // This overrides it so we can only drag rows when editing.
+        isEditing
+    }
+
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath) {
