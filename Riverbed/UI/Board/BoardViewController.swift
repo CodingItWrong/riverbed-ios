@@ -18,9 +18,11 @@ class BoardViewController: UIViewController,
     var columns = [Column]()
     var elements = [Element]()
 
+    private var titleButton = UIButton(configuration: .plain())
+
     var board: Board! {
         didSet {
-            navigationItem.title = board.attributes.name
+            titleButton.configuration?.title = board.attributes.name
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             configureTint()
@@ -58,6 +60,8 @@ class BoardViewController: UIViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.titleView = titleButton
     }
 
     override func viewWillLayoutSubviews() {
