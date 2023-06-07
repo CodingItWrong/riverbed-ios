@@ -65,7 +65,12 @@ class BoardViewController: UIViewController,
         navigationItem.titleView = titleButton
 
         let menu = UIMenu(children: [
-            UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in self?.deleteBoard() }
+            UIAction(title: "Board Settings") { [weak self] _ in
+                self?.performSegue(withIdentifier: "editBoard", sender: nil)
+            },
+            UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
+                self?.deleteBoard()
+            }
         ])
         titleButton.menu = menu
     }
@@ -329,6 +334,14 @@ class BoardViewController: UIViewController,
             cardVC.elementStore = elementStore
             cardVC.cardStore = cardStore // TODO: setter order dependency unfortunate
             cardVC.card = card
+
+        case "editBoard":
+            guard let editBoardVC = segue.destination as? EditBoardViewController else {
+                preconditionFailure("Expected EditBoardViewController")
+            }
+
+            editBoardVC.board = board
+
         default:
             preconditionFailure("Unexpected segue")
         }

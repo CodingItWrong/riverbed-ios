@@ -31,6 +31,7 @@
 		034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655052A30857100F6AEEE /* ButtonElementCell.xib */; };
 		034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655072A30865B00F6AEEE /* ButtonMenuElementCell.xib */; };
 		0346550A2A3086DC00F6AEEE /* ReadOnlyElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034655092A3086DC00F6AEEE /* ReadOnlyElementCell.xib */; };
+		0346550C2A30AE6900F6AEEE /* EditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346550B2A30AE6900F6AEEE /* EditBoardViewController.swift */; };
 		034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */; };
 		034D09DD2A2F4DD600106EE1 /* ChoiceElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */; };
 		034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */; };
@@ -113,6 +114,7 @@
 		034655052A30857100F6AEEE /* ButtonElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonElementCell.xib; sourceTree = "<group>"; };
 		034655072A30865B00F6AEEE /* ButtonMenuElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonMenuElementCell.xib; sourceTree = "<group>"; };
 		034655092A3086DC00F6AEEE /* ReadOnlyElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadOnlyElementCell.xib; sourceTree = "<group>"; };
+		0346550B2A30AE6900F6AEEE /* EditBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardViewController.swift; sourceTree = "<group>"; };
 		034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextElementCell.xib; sourceTree = "<group>"; };
 		034D09DC2A2F4DD600106EE1 /* ChoiceElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceElementCell.xib; sourceTree = "<group>"; };
 		034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateElementCell.xib; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				0342FC722A17B51A00CB8075 /* BoardViewController.swift */,
 				03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */,
 				03944A8C2A195FA900639AC7 /* ColumnCell.swift */,
+				0346550B2A30AE6900F6AEEE /* EditBoardViewController.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
 				03944A962A1976C400639AC7 /* ElementCell.swift in Sources */,
+				0346550C2A30AE6900F6AEEE /* EditBoardViewController.swift in Sources */,
 				03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */,
 				0342FC752A17B68200CB8075 /* ColumnStore.swift in Sources */,
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
