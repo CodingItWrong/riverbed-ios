@@ -4,7 +4,8 @@ protocol BoardListDelegate: AnyObject {
     func didSelect(board: Board)
 }
 
-class BoardListViewController: UITableViewController {
+class BoardListViewController: UITableViewController,
+                               BoardDelegate {
 
     weak var delegate: BoardListDelegate?
 
@@ -153,6 +154,10 @@ class BoardListViewController: UITableViewController {
                 print("Error creating board: \(String(describing: error))")
             }
         }
+    }
+
+    func didDelete(board: Board) {
+        loadBoards()
     }
 
     class BoardGroup {

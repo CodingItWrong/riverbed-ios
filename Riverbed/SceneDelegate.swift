@@ -29,12 +29,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
         else { fatalError("Expected a BoardViewController") }
 
-        boardListVC.boardStore = BoardStore()
+        let boardStore = BoardStore()
+
+        boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 
+        boardVC.boardStore = boardStore
         boardVC.cardStore = CardStore()
         boardVC.columnStore = ColumnStore()
         boardVC.elementStore = ElementStore()
+        boardVC.delegate = boardListVC
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

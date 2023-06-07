@@ -1,5 +1,9 @@
 import UIKit
 
+protocol BoardDelegate: AnyObject {
+    func didDelete(board: Board)
+}
+
 class BoardViewController: UIViewController,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout,
@@ -9,9 +13,12 @@ class BoardViewController: UIViewController,
 
     // MARK: - properties
 
+    weak var delegate: BoardDelegate?
+
     @IBOutlet var columnsCollectionView: UICollectionView!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
 
+    var boardStore: BoardStore!
     var cardStore: CardStore!
     var columnStore: ColumnStore!
     var elementStore: ElementStore!
@@ -57,7 +64,7 @@ class BoardViewController: UIViewController,
         navigationItem.titleView = titleButton
 
         let menu = UIMenu(children: [
-            UIAction(title: "Delete", attributes: [.destructive]) { _ in print("delete") }
+            UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in self?.deleteBoard() }
         ])
         titleButton.menu = menu
     }
@@ -200,6 +207,39 @@ class BoardViewController: UIViewController,
     @objc func refreshBoardData(_ sender: Any?) {
         let refreshControl = sender as? UIRefreshControl
         loadBoardData(from: refreshControl)
+    }
+
+    func deleteBoard() {
+        guard let board = board else { return }
+
+        let boardDescriptor = board.attributes.name ?? "this board"
+        let message = "Are you sure you want to delete \(boardDescriptor)? " +
+                      "All data will be lost and cannot be recovered."
+        let alert = UIAlertController(title: "Delete Board?",
+                                      message: message,
+                                      preferredStyle: .alert)
+
+        let deleteAction = UIAlertAction(title: "Delete",
+                                         style: .default) {[weak self] _ in
+               guard let self = self else { return }
+
+               boardStore.delete(board) { [weak self] (result) in
+                   switch result {
+                   case .success:
+                       self?.delegate?.didDelete(board: board)
+                       self?.board = nil
+                   case let .failure(error):
+                       print("Error deleting card: \(String(describing: error))")
+                   }
+               }
+           }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = deleteAction
+
+        present(alert, animated: true)
     }
 
     // MARK: - app-specific delegates
