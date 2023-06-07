@@ -1,11 +1,13 @@
 import UIKit
 
 class BoardViewController: UIViewController,
-                           BoardListDelegate,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout,
+                           BoardListDelegate,
                            CardSummaryDelegate,
                            CardViewControllerDelegate {
+
+    // MARK: - properties
 
     @IBOutlet var columnsCollectionView: UICollectionView!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
@@ -35,25 +37,6 @@ class BoardViewController: UIViewController,
         }
     }
 
-    func configureTint() {
-        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-
-        navigationController?.navigationBar.tintColor = tintColor // plus button on iPad
-        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
-
-        // navigation bar title
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: tintColor]
-        navigationItem.standardAppearance = appearance
-
-        [
-            UIButton.appearance(), // also affects plus button on iPhone only
-            UIDatePicker.appearance(),
-            UITextField.appearance(),
-            UITextView.appearance()
-        ].forEach { $0.tintColor = tintColor }
-    }
-
     var sortedColumns: [Column] {
         columns.sorted { (lhs, rhs) in
             guard let lhsOrder = lhs.attributes.displayOrder else { return false }
@@ -61,6 +44,8 @@ class BoardViewController: UIViewController,
             return lhsOrder < rhsOrder
         }
     }
+
+    // MARK: - lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,26 +58,12 @@ class BoardViewController: UIViewController,
         titleButton.menu = menu
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-
-        configureForCurrentSizeClass()
-        columnsCollectionView.collectionViewLayout.invalidateLayout()
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         clearBoardData()
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        configureForCurrentSizeClass()
-    }
-
-    func didSelect(board: Board) {
-        // TODO: consider if we need to reload the Board from the server
-        self.board = board
-    }
+    // MARK: - data management
 
     func clearBoardData() {
         cards = []
@@ -100,10 +71,6 @@ class BoardViewController: UIViewController,
         elements = []
 
         columnsCollectionView.reloadData()
-    }
-
-    @objc func refreshBoardData(_ sender: UIRefreshControl?) {
-        loadBoardData(from: sender)
     }
 
     func loadBoardData(from refreshControl: UIRefreshControl? = nil) {
@@ -161,6 +128,99 @@ class BoardViewController: UIViewController,
         }
     }
 
+    // MARK: - layout and visuals
+
+    func configureTint() {
+        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+
+        navigationController?.navigationBar.tintColor = tintColor // plus button on iPad
+        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
+
+        // navigation bar title
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: tintColor]
+        navigationItem.standardAppearance = appearance
+
+        [
+            UIButton.appearance(), // also affects plus button on iPhone only
+            UIDatePicker.appearance(),
+            UITextField.appearance(),
+            UITextView.appearance()
+        ].forEach { $0.tintColor = tintColor }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        configureForCurrentSizeClass()
+        columnsCollectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        configureForCurrentSizeClass()
+    }
+
+    func configureForCurrentSizeClass() {
+        let isPagingEnabled = self.traitCollection.horizontalSizeClass == .compact
+//        print("configureForCurrentSizeClass, isPagingEnabled = \(isPagingEnabled)")
+        columnsCollectionView.isPagingEnabled = isPagingEnabled
+    }
+
+    // MARK: - actions
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(chooseAddCardMenuItem(_:)) {
+            return navigationItem.rightBarButtonItem?.isEnabled ?? false
+        } else {
+            return super.canPerformAction(action, withSender: sender)
+        }
+    }
+
+    @IBAction func tapAddCardButton(_ sender: UIBarButtonItem) {
+        addCard()
+    }
+
+    @objc func chooseAddCardMenuItem(_ sender: UICommand) {
+        addCard()
+    }
+
+    func addCard() {
+        cardStore.create(on: board, with: elements) { [weak self] (result) in
+            switch result {
+            case let .success(card):
+                self?.cardSelected(card)
+            case let .failure(error):
+                print("Error creating card: \(String(describing: error))")
+            }
+        }
+    }
+
+    @objc func refreshBoardData(_ sender: UIRefreshControl?) {
+        loadBoardData(from: sender)
+    }
+
+    // MARK: - app-specific delegates
+
+    func didSelect(board: Board) {
+        // TODO: consider if we need to reload the Board from the server
+        self.board = board
+    }
+
+    func cardSelected(_ card: Card) {
+        performSegue(withIdentifier: "showCardDetail", sender: card)
+    }
+
+    func cardDidUpdate(_ card: Card) {
+        // Could consider only reloading the cards
+        loadBoardData()
+    }
+
+    func cardWasDeleted(_ card: Card) {
+        loadBoardData()
+    }
+
+    // MARK: - collection view data source and delegate
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         columns.count
     }
@@ -206,42 +266,7 @@ class BoardViewController: UIViewController,
         return cell
     }
 
-    func configureForCurrentSizeClass() {
-        let isPagingEnabled = self.traitCollection.horizontalSizeClass == .compact
-//        print("configureForCurrentSizeClass, isPagingEnabled = \(isPagingEnabled)")
-        columnsCollectionView.isPagingEnabled = isPagingEnabled
-    }
-
-    func cardSelected(_ card: Card) {
-        performSegue(withIdentifier: "showCardDetail", sender: card)
-    }
-
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(chooseAddCardMenuItem(_:)) {
-            return navigationItem.rightBarButtonItem?.isEnabled ?? false
-        } else {
-            return super.canPerformAction(action, withSender: sender)
-        }
-    }
-
-    @IBAction func tapAddCardButton(_ sender: UIBarButtonItem) {
-        addCard()
-    }
-
-    @objc func chooseAddCardMenuItem(_ sender: UICommand) {
-        addCard()
-    }
-
-    func addCard() {
-        cardStore.create(on: board, with: elements) { [weak self] (result) in
-            switch result {
-            case let .success(card):
-                self?.cardSelected(card)
-            case let .failure(error):
-                print("Error creating card: \(String(describing: error))")
-            }
-        }
-    }
+    // MARK: - segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -263,15 +288,6 @@ class BoardViewController: UIViewController,
         default:
             preconditionFailure("Unexpected segue")
         }
-    }
-
-    func cardDidUpdate(_ card: Card) {
-        // Could consider only reloading the cards
-        loadBoardData()
-    }
-
-    func cardWasDeleted(_ card: Card) {
-        loadBoardData()
     }
 
 }
