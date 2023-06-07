@@ -1,5 +1,9 @@
 import UIKit
 
+protocol ElementViewControllerDelegate: AnyObject {
+    func elementDidUpdate(_ element: Element)
+}
+
 class DynamicElementViewController: UITableViewController, FormCellDelegate, ElementCellDelegate {
 
     enum Section: Int, CaseIterable {

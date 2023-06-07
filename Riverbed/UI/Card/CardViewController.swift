@@ -207,14 +207,6 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "oldEditElement":
-            guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
-            guard let elementVC = segue.destination as? ElementViewController else {
-                preconditionFailure("Expected an ElementViewController")
-            }
-            elementVC.element = element
-            elementVC.elementStore = elementStore
-            elementVC.delegate = self
         case "editElement":
             guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
             guard let elementVC = segue.destination as? DynamicElementViewController else {
