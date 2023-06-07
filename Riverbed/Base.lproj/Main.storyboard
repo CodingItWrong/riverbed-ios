@@ -229,7 +229,6 @@
                     <connections>
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
                         <segue destination="L8W-Ge-coK" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
-                        <segue destination="1DM-Zo-EAA" kind="presentation" identifier="test" modalPresentationStyle="formSheet" id="YRf-1x-yjt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -394,34 +393,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-be-HJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2720" y="46"/>
-        </scene>
-        <!--Test Table View Controller-->
-        <scene sceneID="EiR-bO-4C5">
-            <objects>
-                <tableViewController id="1DM-Zo-EAA" customClass="TestTableViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="xV8-Zg-EF2">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" id="Dge-b9-2Yd">
-                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="43.666667938232422"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dge-b9-2Yd" id="DfN-K8-zJc">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="1DM-Zo-EAA" id="uK2-Eg-cDE"/>
-                            <outlet property="delegate" destination="1DM-Zo-EAA" id="fwD-0A-0Do"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hGN-c8-uDH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2703" y="777"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="nfc-x6-vQt">
