@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard builder.system == .main else { return }
 
         let newCardCommand = UIKeyCommand(title: "New Card",
-                                          action: #selector(BoardViewController.chooseAddCardMenuItem(_:)),
+                                          action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: .command)
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: [newCardCommand])

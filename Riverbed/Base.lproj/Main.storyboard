@@ -148,7 +148,7 @@
                     <navigationItem key="navigationItem" title="Board" largeTitleDisplayMode="never" id="z2e-de-ATP">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nBP-Fy-yRm">
                             <connections>
-                                <action selector="tapAddCardButton:" destination="Flc-lf-CdM" id="c6G-Sz-RKI"/>
+                                <action selector="addCard:" destination="Flc-lf-CdM" id="Hka-ru-rF8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

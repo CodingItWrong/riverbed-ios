@@ -169,22 +169,14 @@ class BoardViewController: UIViewController,
     // MARK: - actions
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(chooseAddCardMenuItem(_:)) {
+        if action == #selector(addCard(_:)) {
             return navigationItem.rightBarButtonItem?.isEnabled ?? false
         } else {
             return super.canPerformAction(action, withSender: sender)
         }
     }
 
-    @IBAction func tapAddCardButton(_ sender: UIBarButtonItem) {
-        addCard()
-    }
-
-    @objc func chooseAddCardMenuItem(_ sender: UICommand) {
-        addCard()
-    }
-
-    func addCard() {
+    @IBAction func addCard(_ sender: Any?) {
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
