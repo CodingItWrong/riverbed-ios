@@ -349,6 +349,7 @@ class BoardViewController: UIViewController,
 
             editBoardVC.delegate = self
             editBoardVC.board = board
+            editBoardVC.elements = elements
             editBoardVC.boardStore = boardStore
 
         default:

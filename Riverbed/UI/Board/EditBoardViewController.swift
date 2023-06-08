@@ -13,8 +13,8 @@ class EditBoardViewController: UITableViewController,
 //        case icon
         case cardCreateWebhook
         case cardUpdateWebhook
-//        case shareURLField
-//        case shareTitleField
+        case shareURLField
+        case shareTitleField
 
         var label: String {
             switch self {
@@ -23,8 +23,8 @@ class EditBoardViewController: UITableViewController,
 //            case .icon: return "Icon"
             case .cardCreateWebhook: return "Card Create Webhook"
             case .cardUpdateWebhook: return "Card Update Webhook"
-//            case .shareURLField: return "Share URL Field"
-//            case .shareTitleField: return "Share Title Field"
+            case .shareURLField: return "Share URL Field"
+            case .shareTitleField: return "Share Title Field"
             }
         }
     }
@@ -38,6 +38,13 @@ class EditBoardViewController: UITableViewController,
             attributes = board.attributes
         }
     }
+
+    var elements: [Element] = [] {
+        didSet {
+            fields = elements.filter { $0.attributes.elementType == .field }
+        }
+    }
+    var fields: [Element] = []
 
     // MARK: - view controller lifecycle
 
@@ -94,6 +101,28 @@ class EditBoardViewController: UITableViewController,
             textFieldCell.delegate = self
             textFieldCell.textField.text = attributes.options?.webhooks?.cardUpdate
             return textFieldCell
+
+        case .shareURLField:
+            guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+
+            popUpButtonCell.label.text = rowEnum.label
+            popUpButtonCell.delegate = self
+            let urlField = fields.first { $0.id == attributes.options?.share?.urlField }
+            popUpButtonCell.configure(options: fieldOptions(selecting: urlField))
+            return popUpButtonCell
+
+        case .shareTitleField:
+            guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+
+            popUpButtonCell.label.text = rowEnum.label
+            popUpButtonCell.delegate = self
+            let titleField = fields.first { $0.id == attributes.options?.share?.titleField }
+            popUpButtonCell.configure(options: fieldOptions(selecting: titleField))
+            return popUpButtonCell
         }
     }
 
@@ -108,20 +137,56 @@ class EditBoardViewController: UITableViewController,
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
+
         case .cardCreateWebhook:
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             ensureWebhooks()
             attributes?.options?.webhooks?.cardCreate = textFieldCell.textField.text
+
         case .cardUpdateWebhook:
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             ensureWebhooks()
             attributes.options?.webhooks?.cardUpdate = textFieldCell.textField.text
+
+        case .shareURLField:
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            ensureShare()
+            guard let urlField = popUpButtonCell.selectedValue as? Element
+            else { preconditionFailure("Expected an Element") }
+            attributes.options?.share?.urlField = urlField.id
+
+        case .shareTitleField:
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            ensureShare()
+            guard let titleField = popUpButtonCell.selectedValue as? Element
+            else { preconditionFailure("Expected an Element") }
+            attributes.options?.share?.titleField = titleField.id
         }
     }
 
     // MARK: - helper methods
+
+    private func fieldOptions(selecting selectedField: Element?) -> [PopUpButtonCell.Option] {
+        let emptyOption = PopUpButtonCell.Option(title: "(none)", value: nil, isSelected: selectedField == nil)
+        let options = fields.map { (field) in
+            let isSelected = selectedField == field
+            return PopUpButtonCell.Option(title: field.attributes.name ?? "", value: field, isSelected: isSelected)
+        }
+        return [emptyOption] + options
+    }
+
+    private func ensureShare() {
+        if attributes.options == nil {
+            attributes.options = Board.Options()
+        }
+        if attributes?.options?.share == nil {
+            attributes.options?.share = Board.Share()
+        }
+    }
 
     private func ensureWebhooks() {
         if attributes.options == nil {

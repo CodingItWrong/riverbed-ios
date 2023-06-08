@@ -23,7 +23,7 @@ class PopUpButtonCell: UITableViewCell {
 
     struct Option {
         let title: String
-        let value: Any
+        let value: Any?
         let isSelected: Bool
     }
 

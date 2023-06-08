@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etS-96-nM5">
-                        <rect key="frame" x="6" y="21" width="31" height="14.333333333333336"/>
+                        <rect key="frame" x="26" y="21" width="31" height="14.333333333333336"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                 <constraints>
                     <constraint firstItem="olu-0v-O4k" firstAttribute="top" secondItem="fl9-pb-YPg" secondAttribute="top" constant="4" id="3Q3-aK-yWN"/>
                     <constraint firstAttribute="bottom" secondItem="olu-0v-O4k" secondAttribute="bottom" constant="4" id="8Ya-Zd-Rqj"/>
-                    <constraint firstItem="etS-96-nM5" firstAttribute="leading" secondItem="fl9-pb-YPg" secondAttribute="leading" constant="6" id="fwV-Zq-goP"/>
+                    <constraint firstItem="etS-96-nM5" firstAttribute="leading" secondItem="fl9-pb-YPg" secondAttribute="leadingMargin" constant="6" id="fwV-Zq-goP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="olu-0v-O4k" secondAttribute="trailing" id="hJF-MS-WDx"/>
                     <constraint firstItem="etS-96-nM5" firstAttribute="centerY" secondItem="fl9-pb-YPg" secondAttribute="centerY" id="oRZ-C2-Cjp"/>
                 </constraints>
