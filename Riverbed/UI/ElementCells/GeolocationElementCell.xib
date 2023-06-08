@@ -51,6 +51,9 @@
                                                 <accessibility key="accessibilityConfiguration" label="Get Current Location"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="location.circle" catalog="system"/>
+                                                <connections>
+                                                    <action selector="getCurrentLocation" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="C2O-Cz-tuC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -67,6 +70,9 @@
                                         <accessibility key="accessibilityConfiguration" label="Get Directions"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.turn.up.right.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="getDirections" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="FIR-tW-W9p"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
