@@ -11,8 +11,8 @@ class EditBoardViewController: UITableViewController,
         case name
 //        case colorTheme
 //        case icon
-//        case cardCreateWebhook
-//        case cardUpdateWebhook
+        case cardCreateWebhook
+        case cardUpdateWebhook
 //        case shareURLField
 //        case shareTitleField
 
@@ -21,8 +21,8 @@ class EditBoardViewController: UITableViewController,
             case .name: return "Board Name"
 //            case .colorTheme: return "Color Theme"
 //            case .icon: return "Icon"
-//            case .cardCreateWebhook: return "Card Create Webhook"
-//            case .cardUpdateWebhook: return "Card Update Webhook"
+            case .cardCreateWebhook: return "Card Create Webhook"
+            case .cardUpdateWebhook: return "Card Update Webhook"
 //            case .shareURLField: return "Share URL Field"
 //            case .shareTitleField: return "Share Title Field"
             }
@@ -70,9 +70,29 @@ class EditBoardViewController: UITableViewController,
                 withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
 
-            textFieldCell.label.text = "Board Name"
+            textFieldCell.label.text = rowEnum.label
             textFieldCell.delegate = self
             textFieldCell.textField.text = attributes.name
+            return textFieldCell
+
+        case .cardCreateWebhook:
+            guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
+            else { preconditionFailure("Expected a TextFieldCell") }
+
+            textFieldCell.label.text = rowEnum.label
+            textFieldCell.delegate = self
+            textFieldCell.textField.text = attributes.options?.webhooks?.cardCreate
+            return textFieldCell
+
+        case .cardUpdateWebhook:
+            guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
+            else { preconditionFailure("Expected a TextFieldCell") }
+
+            textFieldCell.label.text = rowEnum.label
+            textFieldCell.delegate = self
+            textFieldCell.textField.text = attributes.options?.webhooks?.cardUpdate
             return textFieldCell
         }
     }
@@ -88,6 +108,27 @@ class EditBoardViewController: UITableViewController,
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
+        case .cardCreateWebhook:
+            guard let textFieldCell = formCell as? TextFieldCell
+            else { preconditionFailure("Expected a TextFieldCell") }
+            ensureWebhooks()
+            attributes?.options?.webhooks?.cardCreate = textFieldCell.textField.text
+        case .cardUpdateWebhook:
+            guard let textFieldCell = formCell as? TextFieldCell
+            else { preconditionFailure("Expected a TextFieldCell") }
+            ensureWebhooks()
+            attributes.options?.webhooks?.cardUpdate = textFieldCell.textField.text
+        }
+    }
+
+    // MARK: - helper methods
+
+    private func ensureWebhooks() {
+        if attributes.options == nil {
+            attributes.options = Board.Options()
+        }
+        if attributes?.options?.webhooks == nil {
+            attributes.options?.webhooks = Board.Webhooks()
         }
     }
 
