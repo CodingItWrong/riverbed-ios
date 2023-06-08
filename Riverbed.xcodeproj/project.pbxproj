@@ -37,6 +37,9 @@
 		034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09DE2A2F4EB900106EE1 /* DateElementCell.xib */; };
 		034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 034D09E02A2F507000106EE1 /* GeolocationElementCell.xib */; };
 		035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */; };
+		036D82082A3153880064F05B /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D82072A3153880064F05B /* TextFieldCell.xib */; };
+		036D820A2A3154200064F05B /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D82092A3154200064F05B /* SwitchCell.xib */; };
+		036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -121,6 +124,9 @@
 		034D09E02A2F507000106EE1 /* GeolocationElementCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeolocationElementCell.xib; sourceTree = "<group>"; };
 		035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilsTests.swift; sourceTree = "<group>"; };
 		035C3E9C2A1D91DF00760AE5 /* Riverbed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Riverbed.xctestplan; sourceTree = "<group>"; };
+		036D82072A3153880064F05B /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		036D82092A3154200064F05B /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
+		036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpButtonCell.xib; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -344,8 +350,11 @@
 			children = (
 				03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */,
 				03C8F0862A2DF48600F6AF90 /* PopUpButtonCell.swift */,
+				036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */,
 				03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */,
+				036D82092A3154200064F05B /* SwitchCell.xib */,
 				03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */,
+				036D82072A3153880064F05B /* TextFieldCell.xib */,
 			);
 			path = Form;
 			sourceTree = "<group>";
@@ -478,8 +487,11 @@
 				0346550A2A3086DC00F6AEEE /* ReadOnlyElementCell.xib in Resources */,
 				034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */,
 				034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */,
+				036D820A2A3154200064F05B /* SwitchCell.xib in Resources */,
 				034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */,
+				036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */,
 				034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */,
+				036D82082A3153880064F05B /* TextFieldCell.xib in Resources */,
 				03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */,
 				034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */,
 				034D09DD2A2F4DD600106EE1 /* ChoiceElementCell.xib in Resources */,

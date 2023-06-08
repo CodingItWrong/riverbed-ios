@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="104" id="STG-qt-len" customClass="TextFieldCell" customModule="Riverbed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="104"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="STG-qt-len" id="Yu3-RB-geA">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="104"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XlD-Hh-a8a">
+                        <rect key="frame" x="20" y="4" width="353" height="96"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-Ex-ayw">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-VG-ey2">
+                                        <rect key="frame" x="6" y="0.0" width="347" height="62"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Alp-VG-ey2" firstAttribute="top" secondItem="IU0-Ex-ayw" secondAttribute="top" id="80d-pa-bBR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Alp-VG-ey2" secondAttribute="trailing" id="Kgd-qd-Qfc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Alp-VG-ey2" secondAttribute="bottom" id="RjF-zh-SzI"/>
+                                    <constraint firstItem="Alp-VG-ey2" firstAttribute="leading" secondItem="IU0-Ex-ayw" secondAttribute="leading" constant="6" id="fFX-nS-i84"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K34-Kf-Lyg">
+                                <rect key="frame" x="0.0" y="62" width="353" height="34"/>
+                                <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="XlD-Hh-a8a" secondAttribute="trailing" id="1ea-wd-RA8"/>
+                    <constraint firstItem="XlD-Hh-a8a" firstAttribute="leading" secondItem="Yu3-RB-geA" secondAttribute="leadingMargin" id="OJa-He-wcd"/>
+                    <constraint firstItem="XlD-Hh-a8a" firstAttribute="top" secondItem="Yu3-RB-geA" secondAttribute="top" constant="4" id="pP7-73-gxk"/>
+                    <constraint firstAttribute="bottom" secondItem="XlD-Hh-a8a" secondAttribute="bottom" constant="4" id="qo0-8t-O5d"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="Alp-VG-ey2" id="KFF-gK-fkp"/>
+                <outlet property="textField" destination="K34-Kf-Lyg" id="U69-iy-YS0"/>
+            </connections>
+            <point key="canvasLocation" x="-373.28244274809157" y="-42.253521126760567"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemFillColor">
+            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

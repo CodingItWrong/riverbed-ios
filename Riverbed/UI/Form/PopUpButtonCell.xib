@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="nz8-z4-e5p" customClass="PopUpButtonCell" customModule="Riverbed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nz8-z4-e5p" id="fl9-pb-YPg">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etS-96-nM5">
+                        <rect key="frame" x="6" y="21" width="31" height="14.333333333333336"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olu-0v-O4k">
+                        <rect key="frame" x="286" y="4" width="87" height="48"/>
+                        <menu key="menu" id="11C-kj-lEh">
+                            <children>
+                                <command title="Item 1" id="NwC-fm-QO0"/>
+                                <command title="Item 2" id="x9P-Zn-uWr"/>
+                            </children>
+                        </menu>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="olu-0v-O4k" firstAttribute="top" secondItem="fl9-pb-YPg" secondAttribute="top" constant="4" id="3Q3-aK-yWN"/>
+                    <constraint firstAttribute="bottom" secondItem="olu-0v-O4k" secondAttribute="bottom" constant="4" id="8Ya-Zd-Rqj"/>
+                    <constraint firstItem="etS-96-nM5" firstAttribute="leading" secondItem="fl9-pb-YPg" secondAttribute="leading" constant="6" id="fwV-Zq-goP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="olu-0v-O4k" secondAttribute="trailing" id="hJF-MS-WDx"/>
+                    <constraint firstItem="etS-96-nM5" firstAttribute="centerY" secondItem="fl9-pb-YPg" secondAttribute="centerY" id="oRZ-C2-Cjp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="etS-96-nM5" id="hEh-ZD-sae"/>
+                <outlet property="popUpButton" destination="olu-0v-O4k" id="dnx-xS-rLy"/>
+            </connections>
+            <point key="canvasLocation" x="432.82442748091603" y="-40.140845070422536"/>
+        </tableViewCell>
+    </objects>
+</document>
