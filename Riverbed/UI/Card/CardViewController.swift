@@ -200,10 +200,6 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
     }
 
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "editElement":

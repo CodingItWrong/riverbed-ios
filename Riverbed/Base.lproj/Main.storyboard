@@ -245,16 +245,16 @@
         <scene sceneID="wnt-6z-bVb">
             <objects>
                 <tableViewController id="SN4-mf-Wm1" customClass="EditBoardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Rg8-O5-Ma2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Rg8-O5-Ma2">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PCA-jZ-9SZ">
-                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="430" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PCA-jZ-9SZ" id="ta5-jj-xhG">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -262,10 +262,16 @@
                         <connections>
                             <outlet property="dataSource" destination="SN4-mf-Wm1" id="ui3-zh-5U9"/>
                             <outlet property="delegate" destination="SN4-mf-Wm1" id="wKV-8X-vGd"/>
+                            <outletCollection property="gestureRecognizers" destination="B1U-gG-MLN" appends="YES" id="sjc-DL-Rd0"/>
                         </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vM2-oB-GOC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="B1U-gG-MLN">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="SN4-mf-Wm1" id="v8U-2a-1RI"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1836" y="783"/>
         </scene>

@@ -40,6 +40,7 @@
 		036D82082A3153880064F05B /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D82072A3153880064F05B /* TextFieldCell.xib */; };
 		036D820A2A3154200064F05B /* SwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D82092A3154200064F05B /* SwitchCell.xib */; };
 		036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */; };
+		036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -127,6 +128,7 @@
 		036D82072A3153880064F05B /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		036D82092A3154200064F05B /* SwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCell.xib; sourceTree = "<group>"; };
 		036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpButtonCell.xib; sourceTree = "<group>"; };
+		036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardDismissing.swift"; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				03C8F07B2A2C9E8900F6AF90 /* Form */,
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
+				036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
 				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
+				036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

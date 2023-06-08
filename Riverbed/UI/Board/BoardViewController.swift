@@ -9,7 +9,8 @@ class BoardViewController: UIViewController,
                            UICollectionViewDelegateFlowLayout,
                            BoardListDelegate,
                            CardSummaryDelegate,
-                           CardViewControllerDelegate {
+                           CardViewControllerDelegate,
+                           EditBoardViewControllerDelegate {
 
     // MARK: - properties
 
@@ -268,6 +269,12 @@ class BoardViewController: UIViewController,
         loadBoardData()
     }
 
+    func boardDidUpdate(_ board: Board) {
+        self.board = board
+        // TODO: probably don't actually need to reload child objects at this point
+        // but maybe nice for fresh data
+    }
+
     // MARK: - collection view data source and delegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -340,7 +347,9 @@ class BoardViewController: UIViewController,
                 preconditionFailure("Expected EditBoardViewController")
             }
 
+            editBoardVC.delegate = self
             editBoardVC.board = board
+            editBoardVC.boardStore = boardStore
 
         default:
             preconditionFailure("Unexpected segue")
