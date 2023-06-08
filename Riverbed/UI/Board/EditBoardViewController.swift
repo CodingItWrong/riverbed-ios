@@ -9,8 +9,8 @@ class EditBoardViewController: UITableViewController,
 
     enum Row: CaseIterable {
         case name
-//        case colorTheme
-//        case icon
+        case colorTheme
+        case icon
         case cardCreateWebhook
         case cardUpdateWebhook
         case shareURLField
@@ -19,8 +19,8 @@ class EditBoardViewController: UITableViewController,
         var label: String {
             switch self {
             case .name: return "Board Name"
-//            case .colorTheme: return "Color Theme"
-//            case .icon: return "Icon"
+            case .colorTheme: return "Color Theme"
+            case .icon: return "Icon"
             case .cardCreateWebhook: return "Card Create Webhook"
             case .cardUpdateWebhook: return "Card Update Webhook"
             case .shareURLField: return "Share URL Field"
@@ -82,6 +82,32 @@ class EditBoardViewController: UITableViewController,
             textFieldCell.textField.text = attributes.name
             return textFieldCell
 
+        case .colorTheme:
+            guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+
+            popUpButtonCell.label.text = rowEnum.label
+            popUpButtonCell.delegate = self
+            let options = ColorTheme.allCases.map { (colorTheme) in
+                PopUpButtonCell.Option(title: colorTheme.label, value: colorTheme, isSelected: colorTheme == attributes.colorTheme)
+            }
+            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: attributes.colorTheme == nil))
+            return popUpButtonCell
+
+        case .icon:
+            guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+
+            popUpButtonCell.label.text = rowEnum.label
+            popUpButtonCell.delegate = self
+            let options = Icon.allCases.map { (icon) in
+                PopUpButtonCell.Option(title: icon.label, value: icon, isSelected: icon == attributes.icon)
+            }
+            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: attributes.icon == nil))
+            return popUpButtonCell
+
         case .cardCreateWebhook:
             guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
                 withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
@@ -138,6 +164,22 @@ class EditBoardViewController: UITableViewController,
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
 
+        case .colorTheme:
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            ensureShare()
+            guard let colorTheme = popUpButtonCell.selectedValue as? ColorTheme
+            else { preconditionFailure("Expected a ColorTheme") }
+            attributes.colorTheme = colorTheme
+
+        case .icon:
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            ensureShare()
+            guard let icon = popUpButtonCell.selectedValue as? Icon
+            else { preconditionFailure("Expected an Icon") }
+            attributes.icon = icon
+
         case .cardCreateWebhook:
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
@@ -170,13 +212,17 @@ class EditBoardViewController: UITableViewController,
 
     // MARK: - helper methods
 
+    private func withEmptyOption(_ options: [PopUpButtonCell.Option], isSelected: Bool) -> [PopUpButtonCell.Option] {
+        let emptyOption = PopUpButtonCell.Option(title: "(none)", value: nil, isSelected: isSelected)
+        return [emptyOption] + options
+    }
+
     private func fieldOptions(selecting selectedField: Element?) -> [PopUpButtonCell.Option] {
-        let emptyOption = PopUpButtonCell.Option(title: "(none)", value: nil, isSelected: selectedField == nil)
         let options = fields.map { (field) in
             let isSelected = selectedField == field
             return PopUpButtonCell.Option(title: field.attributes.name ?? "", value: field, isSelected: isSelected)
         }
-        return [emptyOption] + options
+        return withEmptyOption(options, isSelected: selectedField == nil)
     }
 
     private func ensureShare() {

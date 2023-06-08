@@ -1,6 +1,6 @@
 import UIKit
 
-enum ColorTheme: String, Codable {
+enum ColorTheme: String, Codable, CaseIterable {
     case red
     case orange
     case yellow

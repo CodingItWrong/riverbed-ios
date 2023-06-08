@@ -1,6 +1,6 @@
 import UIKit
 
-enum Icon: String, Codable {
+enum Icon: String, Codable, CaseIterable {
     // TODO: rename keys to platform-agnostic conceptual
     case baseball
     case bed = "bed-king-outline"
