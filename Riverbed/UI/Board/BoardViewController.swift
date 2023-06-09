@@ -47,7 +47,7 @@ class BoardViewController: UIViewController,
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             if board?.id != oldValue?.id {
-                // do not configure tint when updating board
+                // do not configure tint when saving updates to the current board
                 configureTint()
             }
 
