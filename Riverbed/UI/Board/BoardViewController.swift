@@ -33,6 +33,7 @@ class BoardViewController: UIViewController,
     private var titleButton: UIButton = {
         let button = UIButton(configuration: .plain())
         button.showsMenuAsPrimaryAction = true
+        button.configuration?.imagePadding = 5
         return button
     }()
 
@@ -43,13 +44,20 @@ class BoardViewController: UIViewController,
             } else {
                 titleButton.configuration?.title = "(choose or create a board)"
             }
-            titleButton.sizeToFit()
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
             if board?.id != oldValue?.id {
-                // do not configure tint when saving updates to the current board
+                // do not update tint or icon when saving updates to the current board
                 configureTint()
+                if let board = board {
+                    let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
+                    // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
+                    titleButton.setImage(image, for: .normal)
+                } else {
+                    titleButton.setImage(nil, for: .normal)
+                }
             }
+            titleButton.sizeToFit()
 
             clearBoardData()
             loadBoardData()
