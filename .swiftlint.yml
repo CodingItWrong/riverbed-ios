@@ -9,6 +9,8 @@ disabled_rules:
 opt_in_rules:
   - accessibility_label_for_image
 
+large_tuple: 3
+
 nesting:
   # Allows nested objects under JSON:API types, with CodingKeys nested under that
   type_level: 2
