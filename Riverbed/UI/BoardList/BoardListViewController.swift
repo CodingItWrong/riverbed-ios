@@ -161,24 +161,35 @@ class BoardListViewController: UITableViewController,
         }
     }
 
-    func updateTint(for board: Board) {
-        print("BoardViewController.updateTint")
-        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+    func updateTint(for board: Board?) {
+        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+        print("BoardListViewController.updateTint to \(tintColor)")
 
         // iPhone: affects all navigation bar elements (maybe because it's one navigation bar that's shared
         navigationController?.navigationBar.tintColor = tintColor
+
+        [
+            UIButton.appearance(), // this breaks iphone only
+            UIDatePicker.appearance(),
+            UISwitch.appearance(),
+            UITextField.appearance(),
+            UITextView.appearance()
+        ].forEach { $0.tintColor = tintColor }
     }
 
     // MARK: - app-specific delegates
 
     func didUpdate(board: Board) {
-        updateTint(for: board)
         loadBoards()
     }
 
     func didDelete(board: Board) {
         splitViewController?.show(.primary) // for views where it isn't always shown: iPhone and iPad portrait
         loadBoards()
+    }
+
+    func didDismiss(board: Board) {
+        updateTint(for: nil)
     }
 
 }

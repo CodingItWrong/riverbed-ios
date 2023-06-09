@@ -3,6 +3,7 @@ import UIKit
 protocol BoardDelegate: AnyObject {
     func didUpdate(board: Board)
     func didDelete(board: Board)
+    func didDismiss(board: Board)
 }
 
 class BoardViewController: UIViewController,
@@ -45,7 +46,11 @@ class BoardViewController: UIViewController,
             titleButton.sizeToFit()
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
 
-            configureTint()
+            if board?.id != oldValue?.id {
+                // do not configure tint when updating board
+                configureTint()
+            }
+
             clearBoardData()
             loadBoardData()
         }
@@ -75,6 +80,14 @@ class BoardViewController: UIViewController,
             }
         ])
         titleButton.menu = menu
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let board = board else { return }
+
+        // hass to be *before* the main view shows, for the button color change to show
+        delegate?.didDismiss(board: board)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -152,6 +165,7 @@ class BoardViewController: UIViewController,
     // MARK: - layout and visuals
 
     func configureTint() {
+        // do not run while VC is showing; issue on iPhone only where updating button tint breaks nav bar
         print("BoardViewController.configureTint")
         guard let board = board else { return }
 
@@ -159,21 +173,6 @@ class BoardViewController: UIViewController,
 
         // iPad and Mac: affects all navigation bar elements (because a separate nav controller
         navigationController?.navigationBar.tintColor = tintColor
-
-//        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
-//
-        // Or does this break iPhone?
-        [
-//            UIButton.appearance(), // also affects plus button on iPhone only
-            UIDatePicker.appearance(),
-            UISwitch.appearance(),
-            UITextField.appearance(),
-            UITextView.appearance()
-        ].forEach { $0.tintColor = tintColor }
-//
-//        navigationItem.titleView?.setNeedsDisplay() // see if this forces tint update
-//        navigationItem.rightBarButtonItem?.customView?.setNeedsDisplay()
-//        navigationController?.navigationBar.setNeedsDisplay()
     }
 
     override func viewWillLayoutSubviews() {
