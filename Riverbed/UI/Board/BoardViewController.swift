@@ -163,12 +163,13 @@ class BoardViewController: UIViewController,
 //        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
 //
         // Or does this break iPhone?
-//        [
+        [
 //            UIButton.appearance(), // also affects plus button on iPhone only
-//            UIDatePicker.appearance(),
-//            UITextField.appearance(),
-//            UITextView.appearance()
-//        ].forEach { $0.tintColor = tintColor }
+            UIDatePicker.appearance(),
+            UISwitch.appearance(),
+            UITextField.appearance(),
+            UITextView.appearance()
+        ].forEach { $0.tintColor = tintColor }
 //
 //        navigationItem.titleView?.setNeedsDisplay() // see if this forces tint update
 //        navigationItem.rightBarButtonItem?.customView?.setNeedsDisplay()
