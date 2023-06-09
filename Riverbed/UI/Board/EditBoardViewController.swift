@@ -110,7 +110,8 @@ class EditBoardViewController: UITableViewController,
                                        value: icon,
                                        isSelected: icon == attributes.icon)
             }
-            popUpButtonCell.configure(options: withEmptyOption(options, image: Icon.defaultBoardImage, isSelected: attributes.icon == nil))
+            popUpButtonCell.configure(
+                options: withEmptyOption(options, image: Icon.defaultBoardImage, isSelected: attributes.icon == nil))
             return popUpButtonCell
 
         case .cardCreateWebhook:

@@ -163,12 +163,14 @@ class BoardListViewController: UITableViewController,
 
     // So, here's what's going on with tints.
     //
-    // On iPad and Mac, setting the tint for navigation items and UIButtons works fine: you can do it as soon as the board is updated.
-    // On iPhone, there is a problem. If UIButton's appearance has a tintColor set, then changing the navigation bar tint won't affect the shown navigation bar
+    // On iPad and Mac, setting the tint for navigation items and UIButtons works fine:
+    // you can do it as soon as the board is updated.
+    // On iPhone, there is a problem. If UIButton's appearance has a tintColor set,
+    // then changing the navigation bar tint won't affect the shown navigation bar.
     // The solution I've found is to only update the tint when initially loading and dismissing a board.
     //
-    // Something else to keep in mind for future work: iPad and Mac have separate navigationControllers for the two columns,
-    // whereas on iPhone there is only one.
+    // Something else to keep in mind for future work: iPad and Mac have separate navigationControllers
+    // for the two columns, whereas on iPhone there is only one.
     func updateTint(for board: Board?) {
         let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
         print("BoardListViewController.updateTint to \(tintColor)")
