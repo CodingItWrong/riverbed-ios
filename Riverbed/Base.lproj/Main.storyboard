@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="7"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,11 +18,11 @@
             <objects>
                 <viewController storyboardIdentifier="BoardViewController" id="Flc-lf-CdM" customClass="BoardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wLI-0p-YwG">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-zJ-9RT" userLabel="Columns Collection View">
-                                <rect key="frame" x="0.0" y="103" width="430" height="829"/>
+                                <rect key="frame" x="0.0" y="74" width="1024" height="1292"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="lSJ-PT-g4j">
                                     <size key="itemSize" width="454" height="1014"/>
@@ -32,14 +32,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="SQU-q4-32P" customClass="ColumnCell" customModule="Riverbed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="-109.66666666666667" width="454" height="1014"/>
+                                        <rect key="frame" x="0.0" y="129" width="454" height="1014"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DyP-Tp-E0D">
                                             <rect key="frame" x="0.0" y="0.0" width="454" height="1014"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
-                                                    <rect key="frame" x="190" y="7.9999999999999982" width="74" height="26.333333333333329"/>
+                                                    <rect key="frame" x="190" y="8" width="74" height="26.5"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                     </accessibility>
@@ -48,7 +48,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-8l-pIW">
-                                                    <rect key="frame" x="0.0" y="42.333333333333314" width="454" height="971.66666666666674"/>
+                                                    <rect key="frame" x="0.0" y="42.5" width="454" height="971.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="97" id="hME-cL-Pxl" customClass="CardSummaryCell" customModule="Riverbed" customModuleProvider="target">
@@ -124,6 +124,31 @@
                                             <outlet property="title" destination="d3b-ht-uh0" id="7y0-IA-9zx"/>
                                         </connections>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UICollectionViewCell" id="du6-vV-Mh4">
+                                        <rect key="frame" x="454" y="129" width="454" height="1014"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
+                                            <rect key="frame" x="0.0" y="0.0" width="454" height="1014"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
+                                                    <rect key="frame" x="159" y="8" width="136.5" height="34.5"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
+                                                        <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
+                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="addColumn:" destination="Flc-lf-CdM" eventType="touchUpInside" id="ybm-fU-Yp3"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="14Q-xw-yRO" firstAttribute="centerX" secondItem="Eev-Kz-oZH" secondAttribute="centerX" id="NJy-gv-7ql"/>
+                                                <constraint firstItem="14Q-xw-yRO" firstAttribute="top" secondItem="Eev-Kz-oZH" secondAttribute="topMargin" id="T3t-sH-czp"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="Flc-lf-CdM" id="n1F-KY-e0I"/>
@@ -131,7 +156,7 @@
                                 </connections>
                             </collectionView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Loading Indicator">
-                                <rect key="frame" x="402" y="870" width="20" height="20"/>
+                                <rect key="frame" x="996" y="1318" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
@@ -168,16 +193,16 @@
             <objects>
                 <tableViewController id="6X2-2e-DlT" customClass="CardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hc2-xZ-QHt">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="c9u-eZ-pbZ">
-                            <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Edit Button">
-                                    <rect key="frame" x="320" y="5" width="54" height="34.333333333333336"/>
+                                    <rect key="frame" x="470" y="5" width="54" height="34"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="wrench.adjustable" catalog="system"/>
@@ -186,7 +211,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
-                                    <rect key="frame" x="374" y="0.0" width="48" height="44"/>
+                                    <rect key="frame" x="524" y="0.0" width="48" height="44"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete Card"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
@@ -195,7 +220,7 @@
                                     </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-rV-DUI">
-                                    <rect key="frame" x="273" y="5" width="47" height="34.333333333333336"/>
+                                    <rect key="frame" x="423" y="5" width="47" height="34"/>
                                     <accessibility key="accessibilityConfiguration" label="Add Element"/>
                                     <menu key="menu" id="bh6-0w-My0">
                                         <children>
@@ -246,7 +271,7 @@
             <objects>
                 <tableViewController id="SN4-mf-Wm1" customClass="EditBoardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Rg8-O5-Ma2">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -270,19 +295,19 @@
             <objects>
                 <tableViewController id="L8W-Ge-coK" customClass="DynamicElementViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="0IY-iI-bnT">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="922"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="0.0" id="778-aW-mbD">
-                                <rect key="frame" x="20" y="55.333332061767578" width="390" height="1.1920928955078125e-07"/>
+                                <rect key="frame" x="20" y="55.5" width="540" height="1.1920928955078125e-07"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="778-aW-mbD" id="TDV-Zw-yDZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="1.1920928955078125e-07"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="1.1920928955078125e-07"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RL8-Th-don">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="0.0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" id="chR-Gx-RmF"/>
@@ -319,15 +344,15 @@
             <objects>
                 <tableViewController storyboardIdentifier="BoardListViewController" clearsSelectionOnViewWillAppear="NO" id="Xbv-Bx-k48" customClass="BoardListViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="H84-EZ-Zau">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="NtQ-8c-uET">
-                            <rect key="frame" x="0.0" y="120.66666793823242" width="430" height="44"/>
+                            <rect key="frame" x="0.0" y="129" width="420" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glh-1H-yo8">
-                                    <rect key="frame" x="8" y="18" width="414" height="18"/>
+                                    <rect key="frame" x="8" y="18" width="404" height="18"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Add Board" imagePadding="5">
                                         <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
@@ -348,17 +373,17 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BoardCell" id="LQl-hv-CIr" customClass="BoardCell" customModule="Riverbed" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="430" height="42.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="420" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LQl-hv-CIr" id="kze-h4-r2O">
-                                    <rect key="frame" x="0.0" y="0.0" width="399.66666666666669" height="42.666667938232422"/>
+                                    <rect key="frame" x="100" y="0.0" width="293.5" height="51"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zfB-rh-WqM" userLabel="Board Icon Container">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="42.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="51"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R7X-BR-NfM" userLabel="Board Icon">
-                                                    <rect key="frame" x="37.333333333333336" y="9.6666666666666643" width="25.333333333333336" height="24"/>
+                                                    <rect key="frame" x="37.5" y="13.5" width="25" height="24"/>
                                                     <color key="tintColor" systemColor="labelColor"/>
                                                     <imageReference key="image" image="square.dashed" catalog="system" symbolScale="large"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium" weight="semibold">
@@ -373,7 +398,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvY-Ap-mK4">
-                                            <rect key="frame" x="100" y="11.000000000000002" width="291.66666666666669" height="20.666666666666671"/>
+                                            <rect key="frame" x="100" y="15" width="285.5" height="21"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -416,7 +441,7 @@
             <objects>
                 <navigationController id="0jh-il-39t" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="EXD-Bs-f7b">
-                        <rect key="frame" x="0.0" y="59" width="430" height="96"/>
+                        <rect key="frame" x="0.0" y="24" width="420" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -446,7 +471,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HOC-y5-2k9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mus-ux-xi1">
-                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

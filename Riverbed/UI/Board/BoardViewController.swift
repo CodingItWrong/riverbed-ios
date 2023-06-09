@@ -223,6 +223,10 @@ class BoardViewController: UIViewController,
         }
     }
 
+    @IBAction func addColumn(_ sender: Any?) {
+        print("add column")
+    }
+
     @objc func refreshBoardData(_ sender: Any?) {
         let refreshControl = sender as? UIRefreshControl
         loadBoardData(from: refreshControl)
@@ -291,7 +295,7 @@ class BoardViewController: UIViewController,
     // MARK: - collection view data source and delegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        columns.count
+        columns.count + (board == nil ? 0 : 1)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -314,9 +318,16 @@ class BoardViewController: UIViewController,
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // add column
+        if indexPath.row >= sortedColumns.count {
+            return columnsCollectionView.dequeueReusableCell(
+                withReuseIdentifier: String(describing: UICollectionViewCell.self),
+                for: indexPath)
+        }
+
         guard let cell = columnsCollectionView.dequeueReusableCell(
             withReuseIdentifier: String(describing: ColumnCell.self),
-            for: indexPath) as? ColumnCell else { preconditionFailure("Unexpected cell class") }
+            for: indexPath) as? ColumnCell else { preconditionFailure("Expected a ColumnCell") }
 
         let column = sortedColumns[indexPath.row]
 
