@@ -90,7 +90,9 @@ class EditBoardViewController: UITableViewController,
             popUpButtonCell.label.text = rowEnum.label
             popUpButtonCell.delegate = self
             let options = ColorTheme.allCases.map { (colorTheme) in
-                PopUpButtonCell.Option(title: colorTheme.label, value: colorTheme, isSelected: colorTheme == attributes.colorTheme)
+                PopUpButtonCell.Option(title: colorTheme.label,
+                                       value: colorTheme,
+                                       isSelected: colorTheme == attributes.colorTheme)
             }
             popUpButtonCell.configure(options: withEmptyOption(options, isSelected: attributes.colorTheme == nil))
             return popUpButtonCell
@@ -103,9 +105,12 @@ class EditBoardViewController: UITableViewController,
             popUpButtonCell.label.text = rowEnum.label
             popUpButtonCell.delegate = self
             let options = Icon.allCases.map { (icon) in
-                PopUpButtonCell.Option(title: icon.label, value: icon, isSelected: icon == attributes.icon)
+                PopUpButtonCell.Option(title: icon.label,
+                                       image: icon.image,
+                                       value: icon,
+                                       isSelected: icon == attributes.icon)
             }
-            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: attributes.icon == nil))
+            popUpButtonCell.configure(options: withEmptyOption(options, image: Icon.defaultBoardImage, isSelected: attributes.icon == nil))
             return popUpButtonCell
 
         case .cardCreateWebhook:
@@ -212,8 +217,10 @@ class EditBoardViewController: UITableViewController,
 
     // MARK: - helper methods
 
-    private func withEmptyOption(_ options: [PopUpButtonCell.Option], isSelected: Bool) -> [PopUpButtonCell.Option] {
-        let emptyOption = PopUpButtonCell.Option(title: "(none)", value: nil, isSelected: isSelected)
+    private func withEmptyOption(_ options: [PopUpButtonCell.Option],
+                                 image: UIImage? = nil,
+                                 isSelected: Bool) -> [PopUpButtonCell.Option] {
+        let emptyOption = PopUpButtonCell.Option(title: "(none)", image: image, value: nil, isSelected: isSelected)
         return [emptyOption] + options
     }
 
