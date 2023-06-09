@@ -168,7 +168,7 @@ class EditBoardViewController: UITableViewController,
             guard let popUpButtonCell = formCell as? PopUpButtonCell
             else { preconditionFailure("Expected a PopUpButtonCell") }
             ensureShare()
-            guard let colorTheme = popUpButtonCell.selectedValue as? ColorTheme
+            guard let colorTheme = popUpButtonCell.selectedValue as? ColorTheme?
             else { preconditionFailure("Expected a ColorTheme") }
             attributes.colorTheme = colorTheme
 
@@ -176,7 +176,7 @@ class EditBoardViewController: UITableViewController,
             guard let popUpButtonCell = formCell as? PopUpButtonCell
             else { preconditionFailure("Expected a PopUpButtonCell") }
             ensureShare()
-            guard let icon = popUpButtonCell.selectedValue as? Icon
+            guard let icon = popUpButtonCell.selectedValue as? Icon?
             else { preconditionFailure("Expected an Icon") }
             attributes.icon = icon
 

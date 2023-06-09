@@ -91,12 +91,7 @@ class BoardListViewController: UITableViewController,
     }
 
     func goTo(_ board: Board) {
-        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-
-        // back button; has to be here since it takes it from the primary nav controller
-        // also affects plus button on iPhone only
-        navigationController?.navigationBar.tintColor = tintColor
-
+        updateTint(for: board)
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
 
@@ -156,11 +151,6 @@ class BoardListViewController: UITableViewController,
         }
     }
 
-    func didDelete(board: Board) {
-        splitViewController?.show(.primary) // for views where it isn't always shown: iPhone and iPad portrait
-        loadBoards()
-    }
-
     class BoardGroup {
         var name: String
         var boards: [Board]
@@ -169,6 +159,26 @@ class BoardListViewController: UITableViewController,
             self.name = name
             self.boards = boards
         }
+    }
+
+    func updateTint(for board: Board) {
+        print("BoardViewController.updateTint")
+        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+
+        // iPhone: affects all navigation bar elements (maybe because it's one navigation bar that's shared
+        navigationController?.navigationBar.tintColor = tintColor
+    }
+
+    // MARK: - app-specific delegates
+
+    func didUpdate(board: Board) {
+        updateTint(for: board)
+        loadBoards()
+    }
+
+    func didDelete(board: Board) {
+        splitViewController?.show(.primary) // for views where it isn't always shown: iPhone and iPad portrait
+        loadBoards()
     }
 
 }

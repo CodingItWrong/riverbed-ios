@@ -1,6 +1,7 @@
 import UIKit
 
 protocol BoardDelegate: AnyObject {
+    func didUpdate(board: Board)
     func didDelete(board: Board)
 }
 
@@ -151,24 +152,27 @@ class BoardViewController: UIViewController,
     // MARK: - layout and visuals
 
     func configureTint() {
+        print("BoardViewController.configureTint")
         guard let board = board else { return }
 
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
-        navigationController?.navigationBar.tintColor = tintColor // plus button on iPad
-        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
+        // iPad and Mac: affects all navigation bar elements (because a separate nav controller
+        navigationController?.navigationBar.tintColor = tintColor
 
-        // navigation bar title
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [.foregroundColor: tintColor]
-        navigationItem.standardAppearance = appearance
-
-        [
-            UIButton.appearance(), // also affects plus button on iPhone only
-            UIDatePicker.appearance(),
-            UITextField.appearance(),
-            UITextView.appearance()
-        ].forEach { $0.tintColor = tintColor }
+//        navigationItem.leftBarButtonItem?.tintColor = tintColor // back button on iPad portrait
+//
+        // Or does this break iPhone?
+//        [
+//            UIButton.appearance(), // also affects plus button on iPhone only
+//            UIDatePicker.appearance(),
+//            UITextField.appearance(),
+//            UITextView.appearance()
+//        ].forEach { $0.tintColor = tintColor }
+//
+//        navigationItem.titleView?.setNeedsDisplay() // see if this forces tint update
+//        navigationItem.rightBarButtonItem?.customView?.setNeedsDisplay()
+//        navigationController?.navigationBar.setNeedsDisplay()
     }
 
     override func viewWillLayoutSubviews() {
@@ -271,6 +275,7 @@ class BoardViewController: UIViewController,
 
     func boardDidUpdate(_ board: Board) {
         self.board = board
+        delegate?.didUpdate(board: board) // propagate the change
         // TODO: probably don't actually need to reload child objects at this point
         // but maybe nice for fresh data
     }
