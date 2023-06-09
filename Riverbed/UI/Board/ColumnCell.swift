@@ -3,12 +3,13 @@ import UIKit
 class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var title: UILabel!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var columnMenuButton: UIButton!
 
     @IBOutlet weak var delegate: CardSummaryDelegate?
 
     var column: Column? {
         didSet {
-            title.text = column?.attributes.name ?? ""
+            title.text = column?.attributes.name ?? "(column)"
             updateCardGroups()
         }
     }
@@ -72,6 +73,14 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     private func card(for indexPath: IndexPath) -> Card {
         cardGroups[indexPath.section].cards[indexPath.row]
+    }
+
+    @IBAction func showColumnSettings(_ sender: Any?) {
+        print("showColumnSettings")
+    }
+
+    @IBAction func deleteColumn(_ sender: Any?) {
+        print("deleteColumn")
     }
 }
 

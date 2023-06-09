@@ -38,17 +38,50 @@
                                             <rect key="frame" x="0.0" y="0.0" width="454" height="1014"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
-                                                    <rect key="frame" x="190" y="8" width="74" height="26.5"/>
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <accessibilityTraits key="traits" staticText="YES" header="YES"/>
-                                                    </accessibility>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
+                                                    <rect key="frame" x="8" y="8" width="438" height="42.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
+                                                            <rect key="frame" x="8" y="8" width="74" height="26.5"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" staticText="YES" header="YES"/>
+                                                            </accessibility>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
+                                                            <rect key="frame" x="87" y="8" width="19" height="27"/>
+                                                            <accessibility key="accessibilityConfiguration" label="Column Menu"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <menu key="menu" id="Qhg-nT-Rdv">
+                                                                <children>
+                                                                    <command title="Column Settings" id="K1Q-Nc-KrP" userLabel="Column Settings">
+                                                                        <connections>
+                                                                            <action selector="showColumnSettings:" destination="SQU-q4-32P" id="4t4-DI-j4v"/>
+                                                                        </connections>
+                                                                    </command>
+                                                                    <command title="Delete Column" id="BWJ-fR-fQz" userLabel="Delete Column">
+                                                                        <menuElementAttributes key="attributes" destructive="YES"/>
+                                                                        <connections>
+                                                                            <action selector="deleteColumn:" destination="SQU-q4-32P" id="aqo-v5-hkV"/>
+                                                                        </connections>
+                                                                    </command>
+                                                                </children>
+                                                            </menu>
+                                                            <state key="normal" image="ellipsis" catalog="system"/>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="Cqb-rb-Iuq" firstAttribute="leading" secondItem="d3b-ht-uh0" secondAttribute="trailing" constant="5" id="4Vp-P6-ua2"/>
+                                                        <constraint firstItem="d3b-ht-uh0" firstAttribute="bottom" secondItem="BkZ-Cr-bSx" secondAttribute="bottomMargin" id="6be-Z5-IgX"/>
+                                                        <constraint firstItem="d3b-ht-uh0" firstAttribute="leading" secondItem="BkZ-Cr-bSx" secondAttribute="leadingMargin" id="7cs-DW-n8p"/>
+                                                        <constraint firstItem="Cqb-rb-Iuq" firstAttribute="centerY" secondItem="d3b-ht-uh0" secondAttribute="centerY" id="asQ-Ki-s2M"/>
+                                                        <constraint firstItem="d3b-ht-uh0" firstAttribute="top" secondItem="BkZ-Cr-bSx" secondAttribute="topMargin" id="zW7-FL-E9H"/>
+                                                    </constraints>
+                                                </view>
                                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TOV-8l-pIW">
-                                                    <rect key="frame" x="0.0" y="42.5" width="454" height="971.5"/>
+                                                    <rect key="frame" x="0.0" y="50.5" width="454" height="963.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <prototypes>
                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="97" id="hME-cL-Pxl" customClass="CardSummaryCell" customModule="Riverbed" customModuleProvider="target">
@@ -110,16 +143,18 @@
                                                 </tableView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BkZ-Cr-bSx" secondAttribute="trailing" id="1ph-gF-tCr"/>
                                                 <constraint firstAttribute="trailing" secondItem="TOV-8l-pIW" secondAttribute="trailing" id="2R1-zo-7uk"/>
-                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="centerX" secondItem="DyP-Tp-E0D" secondAttribute="centerX" id="ZLT-Ri-DvX"/>
-                                                <constraint firstItem="TOV-8l-pIW" firstAttribute="top" secondItem="d3b-ht-uh0" secondAttribute="bottom" constant="8" id="ast-9i-ECs"/>
-                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="topMargin" id="b2S-6H-uMe"/>
+                                                <constraint firstItem="TOV-8l-pIW" firstAttribute="top" secondItem="BkZ-Cr-bSx" secondAttribute="bottom" id="e1u-EW-Nym"/>
                                                 <constraint firstAttribute="bottom" secondItem="TOV-8l-pIW" secondAttribute="bottom" id="ehW-Cf-AbE"/>
                                                 <constraint firstItem="TOV-8l-pIW" firstAttribute="leading" secondItem="DyP-Tp-E0D" secondAttribute="leading" id="kVK-Sq-VhQ"/>
+                                                <constraint firstItem="BkZ-Cr-bSx" firstAttribute="leading" secondItem="DyP-Tp-E0D" secondAttribute="leadingMargin" id="pgz-oV-3bp"/>
+                                                <constraint firstItem="BkZ-Cr-bSx" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="topMargin" id="zba-td-dBd"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="454" height="1014"/>
                                         <connections>
+                                            <outlet property="columnMenuButton" destination="Cqb-rb-Iuq" id="TCk-M4-BbI"/>
                                             <outlet property="tableView" destination="TOV-8l-pIW" id="jWc-h9-Sa0"/>
                                             <outlet property="title" destination="d3b-ht-uh0" id="7y0-IA-9zx"/>
                                         </connections>
@@ -186,7 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxX-OE-SJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1133.0645161290322" y="46.866725507502203"/>
+            <point key="canvasLocation" x="1132.6171875" y="46.559297218155194"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="STQ-hI-8uB">
@@ -486,6 +521,7 @@
     </scenes>
     <color key="tintColor" systemColor="systemPurpleColor"/>
     <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.dashed" catalog="system" width="128" height="114"/>
         <image name="trash" catalog="system" width="117" height="128"/>
