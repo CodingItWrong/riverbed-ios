@@ -14,4 +14,38 @@ class ColumnStore: BaseStore {
         }
         task.resume()
     }
+
+    func create(on board: Board, completion: @escaping (Result<Column, Error>) -> Void) {
+        let url = RiverbedAPI.columnsURL()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let newBoard = NewColumn(
+            attributes: Column.Attributes(),
+            relationships: NewColumn.Relationships(
+                boardData: JsonApiData(
+                    data: JsonApiResourceIdentifier(type: "boards", id: board.id)
+                )
+            )
+        )
+
+        do {
+            let encoder = JSONEncoder()
+            encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: newBoard))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Column, Error> = self.processResult((data, response, error))
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
 }

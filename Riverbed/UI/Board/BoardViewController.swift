@@ -224,7 +224,16 @@ class BoardViewController: UIViewController,
     }
 
     @IBAction func addColumn(_ sender: Any?) {
-        print("add column")
+        guard let board = board else { return }
+
+        columnStore.create(on: board) { [weak self] (result) in
+            switch result {
+            case .success:
+                self?.loadBoardData()
+            case let .failure(error):
+                print("Error creating column: \(String(describing: error))")
+            }
+        }
     }
 
     @objc func refreshBoardData(_ sender: Any?) {

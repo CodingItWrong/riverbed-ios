@@ -12,7 +12,7 @@ class Column: Codable {
     }
 
     class Attributes: Codable {
-        var name: String
+        var name: String?
         var cardInclusionConditions: [Condition]?
         var cardGrouping: SortOrder?
         var cardSortOrder: SortOrder?
@@ -26,7 +26,7 @@ class Column: Codable {
             case displayOrder = "display-order"
         }
 
-        init(name: String,
+        init(name: String? = nil,
              cardInclusionConditions: [Condition]? = nil,
              cardGrouping: SortOrder? = nil,
              cardSortOrder: SortOrder? = nil,
@@ -47,5 +47,29 @@ class Column: Codable {
     enum Direction: String, Codable {
         case ascending = "ASCENDING"
         case descending = "DESCENDING"
+    }
+}
+
+class NewColumn: Codable {
+    let type: String
+    var attributes: Column.Attributes
+    var relationships: NewColumn.Relationships?
+
+    init(attributes: Column.Attributes, relationships: NewColumn.Relationships? = nil) {
+        self.type = "columns"
+        self.attributes = attributes
+        self.relationships = relationships
+    }
+
+    class Relationships: Codable {
+        var boardData: JsonApiData<JsonApiResourceIdentifier>?
+
+        init(boardData: JsonApiData<JsonApiResourceIdentifier>) {
+            self.boardData = boardData
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case boardData = "board"
+        }
     }
 }
