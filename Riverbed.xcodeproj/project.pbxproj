@@ -10,6 +10,10 @@
 		03010CC62A34840900EF32D1 /* EditColumnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CC52A34840900EF32D1 /* EditColumnViewController.swift */; };
 		03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CC72A348C9200EF32D1 /* SortByCell.swift */; };
 		03010CCA2A348C9A00EF32D1 /* SortByCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CC92A348C9A00EF32D1 /* SortByCell.xib */; };
+		03010CCC2A34943500EF32D1 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CCB2A34943500EF32D1 /* SummaryCell.swift */; };
+		03010CCE2A34948400EF32D1 /* SummaryFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CCD2A34948400EF32D1 /* SummaryFunction.swift */; };
+		03010CD02A34957B00EF32D1 /* SummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CCF2A34957B00EF32D1 /* SummaryCell.xib */; };
+		03010CD22A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */; };
 		03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF52A13DF9D0063EE24 /* AppDelegate.swift */; };
 		03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */; };
 		03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFB2A13DF9D0063EE24 /* Main.storyboard */; };
@@ -96,6 +100,10 @@
 		03010CC52A34840900EF32D1 /* EditColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnViewController.swift; sourceTree = "<group>"; };
 		03010CC72A348C9200EF32D1 /* SortByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortByCell.swift; sourceTree = "<group>"; };
 		03010CC92A348C9A00EF32D1 /* SortByCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortByCell.xib; sourceTree = "<group>"; };
+		03010CCB2A34943500EF32D1 /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
+		03010CCD2A34948400EF32D1 /* SummaryFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryFunction.swift; sourceTree = "<group>"; };
+		03010CCF2A34957B00EF32D1 /* SummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCell.xib; sourceTree = "<group>"; };
+		03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenuElementState+StateForIsSelected.swift"; sourceTree = "<group>"; };
 		03027DF22A13DF9D0063EE24 /* Riverbed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riverbed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027DF52A13DF9D0063EE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -263,6 +271,7 @@
 				03DC30452A23793800ABC4CB /* Command.swift */,
 				03DC304E2A23E72100ABC4CB /* Icon.swift */,
 				032F2C852A1AE806008208E9 /* Query.swift */,
+				03010CCD2A34948400EF32D1 /* SummaryFunction.swift */,
 				03DC304C2A23E10400ABC4CB /* TextSize.swift */,
 				03DC30472A23798E00ABC4CB /* Value.swift */,
 			);
@@ -282,6 +291,7 @@
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
 				036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */,
+				03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -371,6 +381,8 @@
 				036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */,
 				03010CC72A348C9200EF32D1 /* SortByCell.swift */,
 				03010CC92A348C9A00EF32D1 /* SortByCell.xib */,
+				03010CCB2A34943500EF32D1 /* SummaryCell.swift */,
+				03010CCF2A34957B00EF32D1 /* SummaryCell.xib */,
 				03C8F0842A2CFF9300F6AF90 /* SwitchCell.swift */,
 				036D82092A3154200064F05B /* SwitchCell.xib */,
 				03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */,
@@ -506,6 +518,7 @@
 				03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */,
 				03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */,
 				0346550A2A3086DC00F6AEEE /* ReadOnlyElementCell.xib in Resources */,
+				03010CD02A34957B00EF32D1 /* SummaryCell.xib in Resources */,
 				034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */,
 				034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */,
 				036D820A2A3154200064F05B /* SwitchCell.xib in Resources */,
@@ -561,6 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03010CCE2A34948400EF32D1 /* SummaryFunction.swift in Sources */,
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
@@ -598,11 +612,13 @@
 				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
+				03010CCC2A34943500EF32D1 /* SummaryCell.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
 				03DC304F2A23E72100ABC4CB /* Icon.swift in Sources */,
 				03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */,
 				03C8F0852A2CFF9300F6AF90 /* SwitchCell.swift in Sources */,
 				03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */,
+				03010CD22A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
 				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,

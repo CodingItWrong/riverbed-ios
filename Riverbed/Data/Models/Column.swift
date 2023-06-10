@@ -17,6 +17,7 @@ class Column: Codable {
         var cardGrouping: SortOrder?
         var cardSortOrder: SortOrder?
         var displayOrder: Int?
+        var summary: Summary?
 
         enum CodingKeys: String, CodingKey {
             case name
@@ -24,24 +25,21 @@ class Column: Codable {
             case cardGrouping = "card-grouping"
             case cardSortOrder = "card-sort-order"
             case displayOrder = "display-order"
+            case summary
         }
 
         init(name: String? = nil,
              cardInclusionConditions: [Condition]? = nil,
              cardGrouping: SortOrder? = nil,
              cardSortOrder: SortOrder? = nil,
-             displayOrder: Int? = nil) {
+             displayOrder: Int? = nil,
+             summary: Summary? = nil) {
             self.name = name
             self.cardInclusionConditions = cardInclusionConditions
             self.cardGrouping = cardGrouping
             self.cardSortOrder = cardSortOrder
             self.displayOrder = displayOrder
         }
-    }
-
-    class SortOrder: Codable {
-        var field: String?
-        var direction: Direction?
     }
 
     enum Direction: String, Codable {
@@ -54,6 +52,16 @@ class Column: Codable {
             case .descending: return "Descending"
             }
         }
+    }
+
+    class SortOrder: Codable {
+        var field: String?
+        var direction: Direction?
+    }
+
+    class Summary: Codable {
+        var function: SummaryFunction?
+        var field: String?
     }
 }
 

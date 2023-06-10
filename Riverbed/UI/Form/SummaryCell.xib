@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="62" id="FrU-hH-GtG" customClass="SummaryCell" customModule="Riverbed" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="62"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FrU-hH-GtG" id="1BN-iV-d64">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iW3-fc-kGL" userLabel="Cell Layout">
+                        <rect key="frame" x="20" y="4" width="353" height="54"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYT-eI-SQ1">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="19.666666666666668"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-tR-8RB">
+                                        <rect key="frame" x="6" y="0.0" width="31" height="19.666666666666668"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="mgc-tR-8RB" firstAttribute="top" secondItem="BYT-eI-SQ1" secondAttribute="top" id="12m-iJ-PzS"/>
+                                    <constraint firstAttribute="bottom" secondItem="mgc-tR-8RB" secondAttribute="bottom" id="9TD-px-fJo"/>
+                                    <constraint firstItem="mgc-tR-8RB" firstAttribute="leading" secondItem="BYT-eI-SQ1" secondAttribute="leading" constant="6" id="U0D-6f-dYZ"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-5i-3ZG" userLabel="Button Layout">
+                                <rect key="frame" x="0.0" y="19.666666666666668" width="353" height="34.333333333333329"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zoh-Vo-G9w">
+                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="34.333333333333336"/>
+                                        <menu key="menu" id="lsQ-ti-3Vd">
+                                            <children>
+                                                <command title="Item 1" id="ODV-Dn-jev"/>
+                                                <command title="Item 2" id="PXA-sD-azH"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lST-eD-Bid">
+                                        <rect key="frame" x="180.66666666666663" y="0.0" width="172.33333333333337" height="34.333333333333336"/>
+                                        <menu key="menu" id="pNc-6v-QaO">
+                                            <children>
+                                                <command title="Item 1" id="Qwe-iH-GBE"/>
+                                                <command title="Item 2" id="pZj-XJ-lsC"/>
+                                            </children>
+                                        </menu>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="iW3-fc-kGL" secondAttribute="trailing" id="6NC-n1-gx7"/>
+                    <constraint firstItem="iW3-fc-kGL" firstAttribute="leading" secondItem="1BN-iV-d64" secondAttribute="leadingMargin" id="NPt-OE-q0s"/>
+                    <constraint firstItem="iW3-fc-kGL" firstAttribute="top" secondItem="1BN-iV-d64" secondAttribute="top" constant="4" id="hiL-jb-yI6"/>
+                    <constraint firstAttribute="bottom" secondItem="iW3-fc-kGL" secondAttribute="bottom" constant="4" id="xPN-ei-Ign"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="fieldButton" destination="lST-eD-Bid" id="XfT-nL-xK4"/>
+                <outlet property="functionButton" destination="Zoh-Vo-G9w" id="DMt-zp-Pet"/>
+                <outlet property="label" destination="mgc-tR-8RB" id="brC-Av-jeo"/>
+            </connections>
+            <point key="canvasLocation" x="101.5267175572519" y="-64.788732394366207"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

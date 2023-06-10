@@ -11,12 +11,14 @@ class EditColumnViewController: UITableViewController,
         case name
         case sortOrder
         case grouping
+        case summary
 
         var label: String {
             switch self {
             case .name: return "Column Name"
             case .sortOrder: return "Sort Order"
             case .grouping: return "Grouping"
+            case .summary: return "Summary"
             }
         }
     }
@@ -92,6 +94,16 @@ class EditColumnViewController: UITableViewController,
             sortByCell.configure(column.attributes.cardGrouping, fields: fields)
             return sortByCell
 
+        case .summary:
+            guard let summaryCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: SummaryCell.self)) as? SummaryCell
+            else { preconditionFailure("Expected a SummaryCell") }
+
+            summaryCell.label.text = rowEnum.label
+            summaryCell.delegate = self
+            summaryCell.configure(column.attributes.summary, fields: fields)
+            return summaryCell
+
         }
     }
 
@@ -110,14 +122,29 @@ class EditColumnViewController: UITableViewController,
         case .sortOrder:
             guard let sortByCell = formCell as? SortByCell
             else { preconditionFailure("Expected a SortByCell") }
+            if attributes.cardSortOrder == nil {
+                attributes.cardSortOrder = Column.SortOrder()
+            }
             attributes.cardSortOrder?.field = sortByCell.selectedField?.id
             attributes.cardSortOrder?.direction = sortByCell.selectedDirection
 
         case .grouping:
             guard let sortByCell = formCell as? SortByCell
             else { preconditionFailure("Expected a SortByCell") }
+            if attributes.cardGrouping == nil {
+                attributes.cardGrouping = Column.SortOrder()
+            }
             attributes.cardGrouping?.field = sortByCell.selectedField?.id
             attributes.cardGrouping?.direction = sortByCell.selectedDirection
+
+        case .summary:
+            guard let summaryCell = formCell as? SummaryCell
+            else { preconditionFailure("Expected a SummaryCell") }
+            if attributes.summary == nil {
+                attributes.summary = Column.Summary()
+            }
+            attributes.summary?.function = summaryCell.selectedFunction
+            attributes.summary?.field = summaryCell.selectedField?.id
         }
     }
 
