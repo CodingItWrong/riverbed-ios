@@ -25,7 +25,7 @@ class EditColumnViewController: UITableViewController,
     }
 
     var columnStore: ColumnStore!
-    var delegate: EditColumnViewControllerDelegate?
+    weak var delegate: EditColumnViewControllerDelegate?
 
     // MARK: - view controller lifecycle
 
