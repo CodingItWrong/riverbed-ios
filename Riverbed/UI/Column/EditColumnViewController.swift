@@ -9,10 +9,14 @@ class EditColumnViewController: UITableViewController,
 
     enum Row: CaseIterable {
         case name
+        case sortOrder
+        case grouping
 
         var label: String {
             switch self {
             case .name: return "Column Name"
+            case .sortOrder: return "Sort Order"
+            case .grouping: return "Grouping"
             }
         }
     }
@@ -22,6 +26,10 @@ class EditColumnViewController: UITableViewController,
         didSet {
             attributes = column.attributes
         }
+    }
+    var elements: [Element] = []
+    var fields: [Element] {
+        elements.filter { $0.attributes.elementType == .field }
     }
 
     var columnStore: ColumnStore!
@@ -62,6 +70,28 @@ class EditColumnViewController: UITableViewController,
             textFieldCell.delegate = self
             textFieldCell.textField.text = attributes.name
             return textFieldCell
+
+        case .sortOrder:
+            let cell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: SortByCell.self))
+            guard let sortByCell = cell as? SortByCell
+            else { preconditionFailure("Expected a SortByCell") }
+
+            sortByCell.label.text = rowEnum.label
+            sortByCell.delegate = self
+            sortByCell.configure(column.attributes.cardSortOrder, fields: fields)
+            return sortByCell
+
+        case .grouping:
+            guard let sortByCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: SortByCell.self)) as? SortByCell
+            else { preconditionFailure("Expected a SortByCell") }
+
+            sortByCell.label.text = rowEnum.label
+            sortByCell.delegate = self
+            sortByCell.configure(column.attributes.cardGrouping, fields: fields)
+            return sortByCell
+
         }
     }
 
@@ -76,6 +106,18 @@ class EditColumnViewController: UITableViewController,
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
+
+        case .sortOrder:
+            guard let sortByCell = formCell as? SortByCell
+            else { preconditionFailure("Expected a SortByCell") }
+            attributes.cardSortOrder?.field = sortByCell.selectedField?.id
+            attributes.cardSortOrder?.direction = sortByCell.selectedDirection
+
+        case .grouping:
+            guard let sortByCell = formCell as? SortByCell
+            else { preconditionFailure("Expected a SortByCell") }
+            attributes.cardGrouping?.field = sortByCell.selectedField?.id
+            attributes.cardGrouping?.direction = sortByCell.selectedDirection
         }
     }
 

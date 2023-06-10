@@ -47,6 +47,13 @@ class Column: Codable {
     enum Direction: String, Codable {
         case ascending = "ASCENDING"
         case descending = "DESCENDING"
+
+        var label: String {
+            switch self {
+            case .ascending: return "Ascending"
+            case .descending: return "Descending"
+            }
+        }
     }
 }
 

@@ -431,6 +431,7 @@ class BoardViewController: UIViewController,
             guard let column = sender as? Column else { preconditionFailure("Expected a Column") }
 
             editColumnVC.column = column
+            editColumnVC.elements = elements
             editColumnVC.columnStore = columnStore
             editColumnVC.delegate = self
 
