@@ -22,7 +22,7 @@ class BoardStore: BaseStore {
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
 
-        let newBoard = NewBoard(attributes: Board.Attributes())
+        let newBoard = NewBoard(attributes: Board.Attributes(options: Board.Options()))
 
         do {
             let encoder = JSONEncoder()
