@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ElementViewControllerDelegate: AnyObject {
-    func elementDidUpdate(_ element: Element)
+    func didUpdate(_ element: Element)
 }
 
 class DynamicElementViewController: UITableViewController, FormCellDelegate, ElementCellDelegate {
@@ -99,7 +99,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
             switch result {
             case .success:
                 print("SAVED ELEMENT \(element.id)")
-                self?.delegate?.elementDidUpdate(element)
+                self?.delegate?.didUpdate(element)
             case let .failure(error):
                 print("Error saving card: \(String(describing: error))")
             }

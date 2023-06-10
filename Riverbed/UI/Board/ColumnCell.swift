@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
-    func cardSelected(_ card: Card)
+    func didSelect(_ card: Card)
     func edit(_ column: Column)
     func delete(_ column: Column)
 }
@@ -73,7 +73,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let card = card(for: indexPath)
-        delegate?.cardSelected(card)
+        delegate?.didSelect(card)
         tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
     }
 

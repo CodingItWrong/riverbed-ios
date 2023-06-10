@@ -1,8 +1,8 @@
 import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
-    func cardDidUpdate(_ card: Card)
-    func cardWasDeleted(_ card: Card)
+    func didUpdate(_ card: Card)
+    func didDelete(_ card: Card)
 }
 
 class CardViewController: UITableViewController, ElementCellDelegate, ElementViewControllerDelegate {
@@ -77,7 +77,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         super.viewWillDisappear(animated)
 
         if isCardDeleted {
-            delegate?.cardWasDeleted(card)
+            delegate?.didDelete(card)
         } else {
             print("saving card with values \(String(describing: fieldValues))")
 
@@ -89,7 +89,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                 switch result {
                 case .success:
                     print("SAVED CARD \(card.id)")
-                    delegate?.cardDidUpdate(card)
+                    delegate?.didUpdate(card)
                 case let .failure(error):
                     print("Error saving card: \(String(describing: error))")
                 }
@@ -217,7 +217,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
     }
 
-    func elementDidUpdate(_ element: Element) {
+    func didUpdate(_ element: Element) {
         // TODO: reload elements in the board as well
         // maybe just do that when this VC dismisses, instead of automatically propagating
         reloadElements()

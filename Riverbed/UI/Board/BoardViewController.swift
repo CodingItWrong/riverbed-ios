@@ -217,7 +217,7 @@ class BoardViewController: UIViewController,
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
-                self?.cardSelected(card)
+                self?.didSelect(card)
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
             }
@@ -282,16 +282,16 @@ class BoardViewController: UIViewController,
         self.board = board
     }
 
-    func cardSelected(_ card: Card) {
+    func didSelect(_ card: Card) {
         performSegue(withIdentifier: "showCardDetail", sender: card)
     }
 
-    func cardDidUpdate(_ card: Card) {
+    func didUpdate(_ card: Card) {
         // Could consider only reloading the cards
         loadBoardData()
     }
 
-    func cardWasDeleted(_ card: Card) {
+    func didDelete(_ card: Card) {
         loadBoardData()
     }
 
@@ -329,7 +329,7 @@ class BoardViewController: UIViewController,
         present(alert, animated: true)
     }
 
-    func boardDidUpdate(_ board: Board) {
+    func didUpdate(_ board: Board) {
         self.board = board
         delegate?.didUpdate(board: board) // propagate the change
         // TODO: probably don't actually need to reload child objects at this point
