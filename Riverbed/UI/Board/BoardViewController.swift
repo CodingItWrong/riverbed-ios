@@ -12,7 +12,8 @@ class BoardViewController: UIViewController,
                            BoardListDelegate,
                            ColumnCellDelegate,
                            CardViewControllerDelegate,
-                           EditBoardViewControllerDelegate {
+                           EditBoardViewControllerDelegate,
+                           EditColumnViewControllerDelegate {
 
     // MARK: - properties
 
@@ -335,6 +336,10 @@ class BoardViewController: UIViewController,
         // but maybe nice for fresh data
     }
 
+    func didUpdate(_ column: Column) {
+        loadBoardData()
+    }
+
     // MARK: - collection view data source and delegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -426,6 +431,8 @@ class BoardViewController: UIViewController,
             guard let column = sender as? Column else { preconditionFailure("Expected a Column") }
 
             editColumnVC.column = column
+            editColumnVC.columnStore = columnStore
+            editColumnVC.delegate = self
 
         default:
             preconditionFailure("Unexpected segue")

@@ -58,7 +58,7 @@ class EditBoardViewController: UITableViewController,
                 print("SAVED BOARD \(board.id)")
                 self?.delegate?.boardDidUpdate(board)
             case let .failure(error):
-                print("Error saving card: \(String(describing: error))")
+                print("Error saving board: \(String(describing: error))")
             }
         }
     }

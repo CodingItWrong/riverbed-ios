@@ -49,6 +49,34 @@ class ColumnStore: BaseStore {
         }
     }
 
+    func update(_ column: Column,
+                with updatedAttributes: Column.Attributes,
+                completion: @escaping (Result<Void, Error>) -> Void) {
+        let url = RiverbedAPI.columnURL(for: column.id)
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let updatedColumn = Column(id: column.id, attributes: updatedAttributes)
+
+        do {
+            let encoder = JSONEncoder()
+            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedColumn))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Void, Error> = self.processVoidResult((data, response, error))
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func delete(_ column: Column, completion: @escaping (Result<Void, Error>) -> Void) {
         let url = RiverbedAPI.columnURL(for: column.id)
         var request = URLRequest(url: url)
