@@ -7,6 +7,7 @@ protocol CardViewControllerDelegate: AnyObject {
 
 class CardViewController: UITableViewController, ElementCellDelegate, ElementViewControllerDelegate {
     @IBOutlet private var addElementButton: UIButton!
+    @IBOutlet private var deleteButton: UIButton!
 
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
@@ -71,6 +72,11 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             UIAction(title: "Add \(elementType.label)") { [weak self] _ in self?.addElement(of: elementType) }
         }
         addElementButton.menu = UIMenu(children: actions)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        deleteButton.tintColor = .systemRed
     }
 
     override func viewWillDisappear(_ animated: Bool) {

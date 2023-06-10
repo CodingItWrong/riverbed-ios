@@ -249,6 +249,7 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
                                     <rect key="frame" x="358" y="0.0" width="48" height="44"/>
                                     <accessibility key="accessibilityConfiguration" label="Delete Card"/>
+                                    <color key="tintColor" systemColor="systemRedColor"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
                                     <connections>
@@ -290,6 +291,7 @@
                     </tableView>
                     <connections>
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
+                        <outlet property="deleteButton" destination="89r-lJ-Gxe" id="sta-0S-ivy"/>
                         <segue destination="L8W-Ge-coK" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
                     </connections>
                 </tableViewController>
@@ -555,6 +557,9 @@
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
