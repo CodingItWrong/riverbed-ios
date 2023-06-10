@@ -10,7 +10,7 @@ class BoardViewController: UIViewController,
                            UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout,
                            BoardListDelegate,
-                           CardSummaryDelegate,
+                           ColumnCellDelegate,
                            CardViewControllerDelegate,
                            EditBoardViewControllerDelegate {
 
@@ -292,6 +292,36 @@ class BoardViewController: UIViewController,
 
     func cardWasDeleted(_ card: Card) {
         loadBoardData()
+    }
+
+    func delete(_ column: Column) {
+        let columnDescriptor = column.attributes.name ?? "this board"
+        let message = "Are you sure you want to delete \(columnDescriptor)? " +
+                      "Cards in this column will still be available in other columns."
+        let alert = UIAlertController(title: "Delete Column?",
+                                      message: message,
+                                      preferredStyle: .alert)
+
+        let deleteAction = UIAlertAction(title: "Delete",
+                                         style: .destructive) {[weak self] _ in
+            guard let self = self else { return }
+
+            columnStore?.delete(column) { [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.loadBoardData()
+                case let .failure(error):
+                    print("Error creating column: \(String(describing: error))")
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = deleteAction
+
+        present(alert, animated: true)
     }
 
     func boardDidUpdate(_ board: Board) {

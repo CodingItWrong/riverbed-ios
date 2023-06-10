@@ -48,4 +48,19 @@ class ColumnStore: BaseStore {
             completion(.failure(error))
         }
     }
+
+    func delete(_ column: Column, completion: @escaping (Result<Void, Error>) -> Void) {
+        let url = RiverbedAPI.columnURL(for: column.id)
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let result: Result<Void, Error> = self.processVoidResult((data, response, error))
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
+        }
+        task.resume()
+    }
 }

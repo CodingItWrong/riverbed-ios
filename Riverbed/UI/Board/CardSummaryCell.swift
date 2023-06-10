@@ -1,9 +1,5 @@
 import UIKit
 
-@objc protocol CardSummaryDelegate: AnyObject {
-    func cardSelected(_ card: Card)
-}
-
 class CardSummaryCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet var cardView: UIView! {
         didSet { configureCardView() }

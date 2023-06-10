@@ -1,11 +1,16 @@
 import UIKit
 
+protocol ColumnCellDelegate: AnyObject {
+    func cardSelected(_ card: Card)
+    func delete(_ column: Column)
+}
+
 class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet var title: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var columnMenuButton: UIButton!
 
-    @IBOutlet weak var delegate: CardSummaryDelegate?
+    weak var delegate: ColumnCellDelegate?
 
     var column: Column? {
         didSet {
@@ -80,7 +85,9 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     }
 
     @IBAction func deleteColumn(_ sender: Any?) {
-        print("deleteColumn")
+        guard let delegate = delegate,
+              let column = column else { return }
+        delegate.delete(column)
     }
 }
 
