@@ -2,6 +2,7 @@ import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
     func cardSelected(_ card: Card)
+    func edit(_ column: Column)
     func delete(_ column: Column)
 }
 
@@ -81,7 +82,9 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     }
 
     @IBAction func showColumnSettings(_ sender: Any?) {
-        print("showColumnSettings")
+        guard let delegate = delegate,
+              let column = column else { return }
+        delegate.edit(column)
     }
 
     @IBAction func deleteColumn(_ sender: Any?) {

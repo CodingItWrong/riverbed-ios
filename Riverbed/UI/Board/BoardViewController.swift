@@ -294,6 +294,10 @@ class BoardViewController: UIViewController,
         loadBoardData()
     }
 
+    func edit(_ column: Column) {
+        performSegue(withIdentifier: "editColumn", sender: column)
+    }
+
     func delete(_ column: Column) {
         let columnDescriptor = column.attributes.name ?? "this board"
         let message = "Are you sure you want to delete \(columnDescriptor)? " +
@@ -414,6 +418,14 @@ class BoardViewController: UIViewController,
             editBoardVC.board = board
             editBoardVC.elements = elements
             editBoardVC.boardStore = boardStore
+
+        case "editColumn":
+            guard let editColumnVC = segue.destination as? EditColumnViewController else {
+                preconditionFailure("Expected EditColumnViewController")
+            }
+            guard let column = sender as? Column else { preconditionFailure("Expected a Column") }
+
+            editColumnVC.column = column
 
         default:
             preconditionFailure("Unexpected segue")
