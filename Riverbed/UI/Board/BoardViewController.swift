@@ -253,7 +253,7 @@ class BoardViewController: UIViewController,
                                       preferredStyle: .alert)
 
         let deleteAction = UIAlertAction(title: "Delete",
-                                         style: .default) {[weak self] _ in
+                                         style: .destructive) {[weak self] _ in
                guard let self = self else { return }
 
                boardStore.delete(board) { [weak self] (result) in

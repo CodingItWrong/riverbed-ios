@@ -126,10 +126,10 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                                       preferredStyle: .alert)
 
         // .destructive does not bind to Return key on macOS even when preferredAction
-        let deleteActionStyle: UIAlertAction.Style = .default
+//        let deleteActionStyle: UIAlertAction.Style = .default
 
         let deleteAction = UIAlertAction(title: "Delete",
-                                         style: deleteActionStyle) {[weak self] _ in
+                                         style: .destructive) {[weak self] _ in
                guard let self = self else { return }
 
                cardStore.delete(card) { [weak self] (result) in
