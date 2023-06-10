@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="18.333333333333329" width="353" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="laD-wy-ZvP" id="SSr-t6-92Y"/>
                                 </connections>

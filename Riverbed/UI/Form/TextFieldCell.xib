@@ -42,7 +42,7 @@
                                 <rect key="frame" x="0.0" y="62" width="353" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="STG-qt-len" id="pNB-7b-Cz2"/>
                                 </connections>
