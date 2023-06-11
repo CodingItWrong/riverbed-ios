@@ -264,6 +264,10 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
 
     // MARK: - form cell delegate
 
+    func didPressButton(inFormCell formCell: UITableViewCell) {
+        preconditionFailure("Unexpected call to didPressButton(inFormCell:)")
+    }
+
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
         let sectionEnum = sectionCases[indexPath.section]

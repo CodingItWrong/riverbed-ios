@@ -17,14 +17,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XlD-Hh-a8a">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="XlD-Hh-a8a">
                         <rect key="frame" x="20" y="4" width="353" height="96"/>
                         <subviews>
                             <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IU0-Ex-ayw">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="62"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="58"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Alp-VG-ey2">
-                                        <rect key="frame" x="6" y="0.0" width="347" height="62"/>
+                                        <rect key="frame" x="6" y="0.0" width="347" height="58"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

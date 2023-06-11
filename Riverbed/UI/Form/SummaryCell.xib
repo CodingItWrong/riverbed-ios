@@ -18,14 +18,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="62"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iW3-fc-kGL" userLabel="Cell Layout">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iW3-fc-kGL" userLabel="Cell Layout">
                         <rect key="frame" x="20" y="4" width="353" height="54"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYT-eI-SQ1">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="19.666666666666668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="15.666666666666666"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-tR-8RB">
-                                        <rect key="frame" x="6" y="0.0" width="31" height="19.666666666666668"/>
+                                        <rect key="frame" x="6" y="0.0" width="31" height="15.666666666666666"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

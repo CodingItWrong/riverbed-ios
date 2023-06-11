@@ -160,6 +160,10 @@ class EditBoardViewController: UITableViewController,
 
     // MARK: - form cell delegate
 
+    func didPressButton(inFormCell formCell: UITableViewCell) {
+        preconditionFailure("Unexpected call to didPressButton(inFormCell:)")
+    }
+
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
         let rowEnum = Row.allCases[indexPath.row]

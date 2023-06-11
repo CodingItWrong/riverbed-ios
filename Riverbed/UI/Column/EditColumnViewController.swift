@@ -9,6 +9,7 @@ class EditColumnViewController: UITableViewController,
 
     enum Row: CaseIterable {
         case name
+        case cardsToInclude
         case sortOrder
         case grouping
         case summary
@@ -16,6 +17,7 @@ class EditColumnViewController: UITableViewController,
         var label: String {
             switch self {
             case .name: return "Column Name"
+            case .cardsToInclude: return "Cards to Include"
             case .sortOrder: return "Sort Order"
             case .grouping: return "Grouping"
             case .summary: return "Summary"
@@ -73,10 +75,21 @@ class EditColumnViewController: UITableViewController,
             textFieldCell.textField.text = attributes.name
             return textFieldCell
 
+        case .cardsToInclude:
+            guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: ButtonCell.self)) as? ButtonCell
+            else { preconditionFailure("Expected a ButtonCell") }
+
+            buttonCell.delegate = self
+            buttonCell.label.text = rowEnum.label
+            let conditionCount = attributes.cardInclusionConditions?.count ?? 0
+            let buttonTitle = conditionCount > 0 ? "\(conditionCount) conditions" : "All cards"
+            buttonCell.button.setTitle(buttonTitle, for: .normal)
+            return buttonCell
+
         case .sortOrder:
-            let cell = tableView.dequeueOrRegisterReusableCell(
-                withIdentifier: String(describing: SortByCell.self))
-            guard let sortByCell = cell as? SortByCell
+            guard let sortByCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: SortByCell.self)) as? SortByCell
             else { preconditionFailure("Expected a SortByCell") }
 
             sortByCell.label.text = rowEnum.label
@@ -109,6 +122,19 @@ class EditColumnViewController: UITableViewController,
 
     // MARK: app-specific delegates
 
+    func didPressButton(inFormCell formCell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: formCell) else { return }
+        let rowEnum = Row.allCases[indexPath.row]
+
+        switch rowEnum {
+        case .cardsToInclude:
+            print("TODO: edit conditions")
+
+        default:
+            preconditionFailure("Unexpected form cell \(rowEnum)")
+        }
+    }
+
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
         let rowEnum = Row.allCases[indexPath.row]
@@ -118,6 +144,9 @@ class EditColumnViewController: UITableViewController,
             guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
             attributes.name = textFieldCell.textField.text
+
+        case .cardsToInclude:
+            preconditionFailure("Unexpected form cell cardsToInclude")
 
         case .sortOrder:
             guard let sortByCell = formCell as? SortByCell

@@ -14,6 +14,8 @@
 		03010CCE2A34948400EF32D1 /* SummaryFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CCD2A34948400EF32D1 /* SummaryFunction.swift */; };
 		03010CD02A34957B00EF32D1 /* SummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CCF2A34957B00EF32D1 /* SummaryCell.xib */; };
 		03010CD22A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */; };
+		03010CD42A35D59E00EF32D1 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD32A35D59E00EF32D1 /* ButtonCell.swift */; };
+		03010CD62A35D5A900EF32D1 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CD52A35D5A900EF32D1 /* ButtonCell.xib */; };
 		03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF52A13DF9D0063EE24 /* AppDelegate.swift */; };
 		03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */; };
 		03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFB2A13DF9D0063EE24 /* Main.storyboard */; };
@@ -104,6 +106,8 @@
 		03010CCD2A34948400EF32D1 /* SummaryFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryFunction.swift; sourceTree = "<group>"; };
 		03010CCF2A34957B00EF32D1 /* SummaryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SummaryCell.xib; sourceTree = "<group>"; };
 		03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenuElementState+StateForIsSelected.swift"; sourceTree = "<group>"; };
+		03010CD32A35D59E00EF32D1 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		03010CD52A35D5A900EF32D1 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		03027DF22A13DF9D0063EE24 /* Riverbed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riverbed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027DF52A13DF9D0063EE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -376,6 +380,8 @@
 		03C8F07B2A2C9E8900F6AF90 /* Form */ = {
 			isa = PBXGroup;
 			children = (
+				03010CD32A35D59E00EF32D1 /* ButtonCell.swift */,
+				03010CD52A35D5A900EF32D1 /* ButtonCell.xib */,
 				03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */,
 				03C8F0862A2DF48600F6AF90 /* PopUpButtonCell.swift */,
 				036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */,
@@ -525,6 +531,7 @@
 				034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */,
 				036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */,
 				034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */,
+				03010CD62A35D5A900EF32D1 /* ButtonCell.xib in Resources */,
 				036D82082A3153880064F05B /* TextFieldCell.xib in Resources */,
 				03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */,
 				034D09DB2A2EA3F600106EE1 /* TextElementCell.xib in Resources */,
@@ -601,6 +608,7 @@
 				0342FC7E2A17B7CE00CB8075 /* Column.swift in Sources */,
 				0342FC712A17960000CB8075 /* Board.swift in Sources */,
 				0342FC7C2A17B71000CB8075 /* RiverbedAPI.swift in Sources */,
+				03010CD42A35D59E00EF32D1 /* ButtonCell.swift in Sources */,
 				03010CC62A34840900EF32D1 /* EditColumnViewController.swift in Sources */,
 				03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */,
 				0342FC802A17C24100CB8075 /* Card.swift in Sources */,
