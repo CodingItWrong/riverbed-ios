@@ -425,7 +425,10 @@ class BoardViewController: UIViewController,
             editBoardVC.boardStore = boardStore
 
         case "editColumn":
-            guard let editColumnVC = segue.destination as? EditColumnViewController else {
+            guard let navigationVC = segue.destination as? UINavigationController else {
+                preconditionFailure("Expected UINavigationController")
+            }
+            guard let editColumnVC = navigationVC.viewControllers.first as? EditColumnViewController else {
                 preconditionFailure("Expected EditColumnViewController")
             }
             guard let column = sender as? Column else { preconditionFailure("Expected a Column") }

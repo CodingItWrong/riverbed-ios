@@ -42,6 +42,7 @@ class EditColumnViewController: UITableViewController,
     // MARK: - view controller lifecycle
 
     override func viewWillDisappear(_ animated: Bool) {
+        // note that this runs both when the modal is dismissed and when pushing a VC on the navigation stack
         super.viewWillDisappear(animated)
 
         guard let column = column else { return }
@@ -128,7 +129,7 @@ class EditColumnViewController: UITableViewController,
 
         switch rowEnum {
         case .cardsToInclude:
-            print("TODO: edit conditions")
+            performSegue(withIdentifier: "cardsToInclude", sender: self)
 
         default:
             preconditionFailure("Unexpected form cell \(rowEnum)")

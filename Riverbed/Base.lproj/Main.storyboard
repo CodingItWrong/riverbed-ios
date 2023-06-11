@@ -217,7 +217,7 @@
                         <outlet property="loadingIndicator" destination="ONw-m3-two" id="Eug-Xc-wzE"/>
                         <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
                         <segue destination="SN4-mf-Wm1" kind="presentation" identifier="editBoard" modalPresentationStyle="formSheet" id="RVW-Pl-hBX"/>
-                        <segue destination="5MK-Za-Wbs" kind="presentation" identifier="editColumn" modalPresentationStyle="formSheet" id="Eo8-M9-iRK"/>
+                        <segue destination="zqR-CJ-8Qs" kind="presentation" identifier="editColumn" modalPresentationStyle="formSheet" id="Eo8-M9-iRK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxX-OE-SJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,9 +302,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1866.9767441860465" y="46.351931330472105"/>
+            <point key="canvasLocation" x="2604" y="-626"/>
         </scene>
-        <!--Edit Column View Controller-->
+        <!--Edit Column-->
         <scene sceneID="hE7-GH-1I4">
             <objects>
                 <tableViewController id="5MK-Za-Wbs" customClass="EditColumnViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
@@ -316,10 +316,43 @@
                             <outlet property="delegate" destination="5MK-Za-Wbs" id="RKe-E5-rU6"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Edit Column" id="Ivd-qC-ZOc"/>
+                    <connections>
+                        <segue destination="U7h-wc-2y0" kind="show" identifier="cardsToInclude" id="a1h-7Y-iTO"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mY0-jd-SI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="808"/>
+            <point key="canvasLocation" x="3503" y="779"/>
+        </scene>
+        <!--Cards to Show-->
+        <scene sceneID="Gz4-gH-JkA">
+            <objects>
+                <tableViewController id="U7h-wc-2y0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8FP-Em-TOF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="EBq-R6-YOG">
+                                <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EBq-R6-YOG" id="GYc-ZV-K0h">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U7h-wc-2y0" id="ThD-hD-2V2"/>
+                            <outlet property="delegate" destination="U7h-wc-2y0" id="DbO-7Q-6Eq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Cards to Show" id="d0y-2D-Mq5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-0W-W7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4377" y="779"/>
         </scene>
         <!--Edit Board View Controller-->
         <scene sceneID="wnt-6z-bVb">
@@ -343,7 +376,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="710" y="808"/>
+            <point key="canvasLocation" x="2604" y="52"/>
         </scene>
         <!--Dynamic Element View Controller-->
         <scene sceneID="wF7-ij-G1M">
@@ -392,7 +425,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2720" y="46"/>
+            <point key="canvasLocation" x="3504" y="-626"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="nfc-x6-vQt">
@@ -489,7 +522,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUP-Vb-vlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1133" y="-605"/>
+            <point key="canvasLocation" x="1132" y="-1015"/>
         </scene>
         <!--Sidebar Navigation Controller-->
         <scene sceneID="qOO-d0-zbc">
@@ -505,7 +538,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nm-gB-MZl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="-605"/>
+            <point key="canvasLocation" x="359" y="-1015"/>
         </scene>
         <!--Riverbed Split View Controller-->
         <scene sceneID="Qj7-Jx-4Av">
@@ -537,6 +570,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5E-wZ-Eoj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="360.48387096774195" y="46.866725507502203"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="02X-JV-d8S">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqR-CJ-8Qs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YWy-Vk-Baf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5MK-Za-Wbs" kind="relationship" relationship="rootViewController" id="l6E-Gu-72S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GI3-Li-KPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2603" y="779"/>
         </scene>
     </scenes>
     <color key="tintColor" systemColor="systemPurpleColor"/>
