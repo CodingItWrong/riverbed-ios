@@ -16,6 +16,7 @@
 		03010CD22A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */; };
 		03010CD42A35D59E00EF32D1 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD32A35D59E00EF32D1 /* ButtonCell.swift */; };
 		03010CD62A35D5A900EF32D1 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CD52A35D5A900EF32D1 /* ButtonCell.xib */; };
+		03010CD82A35DAB300EF32D1 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */; };
 		03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF52A13DF9D0063EE24 /* AppDelegate.swift */; };
 		03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */; };
 		03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFB2A13DF9D0063EE24 /* Main.storyboard */; };
@@ -108,6 +109,7 @@
 		03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIMenuElementState+StateForIsSelected.swift"; sourceTree = "<group>"; };
 		03010CD32A35D59E00EF32D1 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		03010CD52A35D5A900EF32D1 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
 		03027DF22A13DF9D0063EE24 /* Riverbed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riverbed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027DF52A13DF9D0063EE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				03EAFF352A2B59900086EC0B /* Element */,
 				03944A992A1985EA00639AC7 /* ElementCells */,
 				03C8F07B2A2C9E8900F6AF90 /* Form */,
+				03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */,
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
 				036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */,
@@ -633,6 +636,7 @@
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 				03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */,
 				036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */,
+				03010CD82A35DAB300EF32D1 /* ConditionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

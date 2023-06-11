@@ -178,4 +178,19 @@ class EditColumnViewController: UITableViewController,
         }
     }
 
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "cardsToInclude":
+            guard let conditionsVC = segue.destination as? ConditionsViewController else {
+                preconditionFailure("Expected a ConditionsViewController")
+            }
+            conditionsVC.conditions = column.attributes.cardInclusionConditions ?? []
+            conditionsVC.elements = elements
+        default:
+            preconditionFailure("Unexpected segue \(segue.identifier)")
+        }
+    }
+
 }
