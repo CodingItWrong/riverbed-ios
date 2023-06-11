@@ -33,12 +33,21 @@ class ConditionsViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let condition = conditions[indexPath.row]
+        let cell = tableView.cellForRow(at: indexPath)
+
+        performSegue(withIdentifier: "editCondition", sender: cell)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            print("delete condition")
+            conditions.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         default:
             preconditionFailure("Unexpected editing style \(editingStyle)")
         }
@@ -47,7 +56,26 @@ class ConditionsViewController: UITableViewController {
     // MARK: - actions
 
     @IBAction func addCondition(_ sender: Any?) {
-        print("add condition")
+        let newCondition = Condition()
+        conditions.append(newCondition)
+        let indexPath = IndexPath(row: conditions.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "editCondition":
+            guard let cell = sender as? UITableViewCell else {
+                preconditionFailure("Expected a UITableViewCell")
+            }
+            segue.destination.popoverPresentationController?.sourceView = cell
+            print("edit condition")
+
+        default:
+            preconditionFailure("Unexpected segue \(segue.identifier)")
+        }
     }
 
 }
