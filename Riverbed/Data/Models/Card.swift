@@ -68,27 +68,25 @@ class NewCard: NSObject, Codable {
 }
 
 extension Card {
-    static func group(cards: [Card], for column: Column, with elements: [Element]) -> [CardGroup] {
-        // filter
-        var filteredCards: [Card]
-        if let cardInclusionConditions = column.attributes.cardInclusionConditions {
-            filteredCards = cards.filter { (card) in
-                checkConditions(fieldValues: card.attributes.fieldValues,
-                                conditions: cardInclusionConditions,
-                                elements: elements)
-            }
-        } else {
-            filteredCards = cards
-        }
+    static func filter(cards: [Card], for column: Column, with elements: [Element]) -> [Card] {
+        guard let cardInclusionConditions = column.attributes.cardInclusionConditions else { return cards }
 
+        return cards.filter { (card) in
+            checkConditions(fieldValues: card.attributes.fieldValues,
+                            conditions: cardInclusionConditions,
+                            elements: elements)
+        }
+    }
+
+    static func group(cards: [Card], for column: Column, with elements: [Element]) -> [CardGroup] {
         // TODO: are choice labels used for choice fields?
 
         // sort
         var sortedCards: [Card]
         if let cardSortOrder = column.attributes.cardSortOrder {
-            sortedCards = sort(cards: filteredCards, by: cardSortOrder)
+            sortedCards = sort(cards: cards, by: cardSortOrder)
         } else {
-            sortedCards = filteredCards
+            sortedCards = cards
         }
 
         // group

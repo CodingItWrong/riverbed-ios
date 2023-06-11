@@ -15,23 +15,44 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     var column: Column? {
         didSet {
-            title.text = column?.attributes.name ?? "(column)"
-            updateCardGroups()
+            updateColumnTitle()
+        }
+    }
+    private func updateColumnTitle() {
+        guard let column = column else { return }
+
+        let titleText = column.attributes.name ?? "(column)"
+
+        if let summaryText = calculate(summary: column.attributes.summary) {
+            title.text = "\(titleText) (\(summaryText))"
+        } else {
+            title.text = titleText
         }
     }
     var cards = [Card]() {
-        didSet { updateCardGroups() }
+        didSet { updateFilteredCards() }
     }
     var elements = [Element]() {
-        didSet { updateCardGroups() }
+        didSet { updateFilteredCards() }
+    }
+
+    var filteredCards = [Card]() {
+        didSet {
+            updateColumnTitle()
+            updateCardGroups()
+        }
+    }
+    private func updateFilteredCards() {
+        guard let column = column else { return }
+
+        filteredCards = Card.filter(cards: cards, for: column, with: elements)
     }
 
     var cardGroups = [CardGroup]()
-
     private func updateCardGroups() {
         guard let column = column else { return }
 
-        cardGroups = Card.group(cards: cards, for: column, with: elements)
+        cardGroups = Card.group(cards: filteredCards, for: column, with: elements)
 
         tableView.reloadData()
     }
@@ -58,6 +79,30 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         }
 
         return groupField.formatString(from: groupValue)
+    }
+
+    private func calculate(summary: Column.Summary?) -> String? {
+        guard let summary = summary,
+              let summaryFunction = summary.function else { return nil }
+
+        switch summaryFunction {
+        case .count:
+            return String(filteredCards.count)
+        case .sum:
+            guard let summaryFieldId = summary.field else { return nil }
+            let values: [Decimal] = filteredCards
+                .map { (card) in
+                    if let value = singularizeOptionality(card.attributes.fieldValues[summaryFieldId]),
+                       case let .string(valueString) = value,
+                       let valueNumber = Decimal(string: valueString) {
+                        return valueNumber
+                    } else {
+                        return 0
+                    }
+                }
+            let sum = values.reduce(0, +)
+            return "\(sum)"
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
