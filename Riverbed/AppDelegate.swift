@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let newCardCommand = UIKeyCommand(title: "New Card",
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
-                                          modifierFlags: .command)
+                                          modifierFlags: [.command, .shift])
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: [newCardCommand])
         builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
 
