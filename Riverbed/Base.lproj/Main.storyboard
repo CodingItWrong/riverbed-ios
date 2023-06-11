@@ -311,9 +311,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="FDH-LI-szW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <connections>
                             <outlet property="dataSource" destination="5MK-Za-Wbs" id="DYE-Ss-P91"/>
                             <outlet property="delegate" destination="5MK-Za-Wbs" id="RKe-E5-rU6"/>
+                            <outletCollection property="gestureRecognizers" destination="daP-FE-wTQ" appends="YES" id="fIu-6O-BXR"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Column" id="Ivd-qC-ZOc"/>
@@ -322,6 +324,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mY0-jd-SI8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="daP-FE-wTQ">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="5MK-Za-Wbs" id="BDk-eL-Noz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3503" y="779"/>
         </scene>
