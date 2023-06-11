@@ -51,7 +51,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
-                                                            <rect key="frame" x="87" y="8" width="19" height="27"/>
+                                                            <rect key="frame" x="92" y="8" width="19" height="27"/>
                                                             <accessibility key="accessibilityConfiguration" label="Column Menu"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <menu key="menu" id="Qhg-nT-Rdv">
@@ -73,7 +73,7 @@
                                                         </button>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="Cqb-rb-Iuq" firstAttribute="leading" secondItem="d3b-ht-uh0" secondAttribute="trailing" constant="5" id="4Vp-P6-ua2"/>
+                                                        <constraint firstItem="Cqb-rb-Iuq" firstAttribute="leading" secondItem="d3b-ht-uh0" secondAttribute="trailing" constant="10" id="4Vp-P6-ua2"/>
                                                         <constraint firstItem="d3b-ht-uh0" firstAttribute="bottom" secondItem="BkZ-Cr-bSx" secondAttribute="bottomMargin" id="6be-Z5-IgX"/>
                                                         <constraint firstItem="d3b-ht-uh0" firstAttribute="leading" secondItem="BkZ-Cr-bSx" secondAttribute="leadingMargin" id="7cs-DW-n8p"/>
                                                         <constraint firstItem="Cqb-rb-Iuq" firstAttribute="centerY" secondItem="d3b-ht-uh0" secondAttribute="centerY" id="asQ-Ki-s2M"/>
