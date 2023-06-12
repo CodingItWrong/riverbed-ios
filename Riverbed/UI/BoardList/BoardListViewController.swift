@@ -128,7 +128,8 @@ class BoardListViewController: UITableViewController,
         let updatedAttributes = Board.Attributes(name: board.attributes.name,
                                                  icon: board.attributes.icon,
                                                  colorTheme: board.attributes.colorTheme,
-                                                 favoritedAt: newFavoritedAt)
+                                                 favoritedAt: newFavoritedAt,
+                                                 options: board.attributes.options)
         boardStore.update(board, with: updatedAttributes) { [weak self] (result) in
             switch result {
             case .success:
