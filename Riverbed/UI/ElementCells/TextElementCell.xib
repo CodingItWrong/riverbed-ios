@@ -30,7 +30,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="fnr-Ig-NzS" firstAttribute="top" secondItem="OsI-fJ-EUa" secondAttribute="top" id="OBR-WM-fEO"/>
                                     <constraint firstItem="fnr-Ig-NzS" firstAttribute="leading" secondItem="OsI-fJ-EUa" secondAttribute="leading" constant="6" id="eaY-Cc-TkK"/>
@@ -80,9 +79,6 @@
     <resources>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tertiarySystemFillColor">
             <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
