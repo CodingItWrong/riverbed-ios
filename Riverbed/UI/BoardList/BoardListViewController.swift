@@ -91,7 +91,7 @@ class BoardListViewController: UITableViewController,
     }
 
     func goTo(_ board: Board) {
-        updateTint(for: board)
+//        updateTint(for: board)
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
 
@@ -172,21 +172,23 @@ class BoardListViewController: UITableViewController,
     //
     // Something else to keep in mind for future work: iPad and Mac have separate navigationControllers
     // for the two columns, whereas on iPhone there is only one.
-    func updateTint(for board: Board?) {
-        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-        print("BoardListViewController.updateTint to \(tintColor)")
 
-        // iPhone: affects all navigation bar elements (maybe because it's one navigation bar that's shared
-        navigationController?.navigationBar.tintColor = tintColor
-
-        [
-            UIButton.appearance(), // this breaks iphone only
-            UIDatePicker.appearance(),
-            UISwitch.appearance(),
-            UITextField.appearance(),
-            UITextView.appearance()
-        ].forEach { $0.tintColor = tintColor }
-    }
+    // global tint editing not reliable
+//    func updateTint(for board: Board?) {
+//        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+//        print("BoardListViewController.updateTint to \(tintColor)")
+//
+//        // iPhone: affects all navigation bar elements (maybe because it's one navigation bar that's shared
+//        navigationController?.navigationBar.tintColor = tintColor
+//
+//        [
+//            UIButton.appearance(), // this breaks iphone only
+//            UIDatePicker.appearance(),
+//            UISwitch.appearance(),
+//            UITextField.appearance(),
+//            UITextView.appearance()
+//        ].forEach { $0.tintColor = tintColor }
+//    }
 
     // MARK: - app-specific delegates
 
@@ -200,7 +202,7 @@ class BoardListViewController: UITableViewController,
     }
 
     func didDismiss(board: Board) {
-        updateTint(for: nil)
+//        updateTint(for: nil)
     }
 
 }

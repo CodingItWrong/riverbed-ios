@@ -180,8 +180,12 @@ class BoardViewController: UIViewController,
 
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
+        titleButton.tintColor = tintColor
+//        titleButton.setImage(titleButton.image(for: .normal)?.withTintColor(tintColor), for: .normal)
+
+        // global tint editing is not reliable
         // iPad and Mac: affects all navigation bar elements (because a separate nav controller
-        navigationController?.navigationBar.tintColor = tintColor
+//        navigationController?.navigationBar.tintColor = tintColor
     }
 
     override func viewWillLayoutSubviews() {
