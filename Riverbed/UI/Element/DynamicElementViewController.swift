@@ -4,7 +4,10 @@ protocol ElementViewControllerDelegate: AnyObject {
     func didUpdate(_ element: Element)
 }
 
-class DynamicElementViewController: UITableViewController, FormCellDelegate, ElementCellDelegate {
+class DynamicElementViewController: UITableViewController,
+                                    ConditionsDelegate,
+                                    ElementCellDelegate,
+                                    FormCellDelegate {
 
     enum Section: CaseIterable {
         case element
@@ -34,12 +37,13 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         case showLabelWhenReadOnly
         case readOnly
         case multipleLines
+        case showConditions
 
         static func cases(for elementType: Element.ElementType) -> [ElementRow] {
             switch elementType {
             case .field: return allCases
-            case .button: return [.elementName]
-            case .buttonMenu: return [.elementName]
+            case .button: return [.elementName, .showConditions]
+            case .buttonMenu: return [.elementName, .showConditions]
             }
         }
 
@@ -52,6 +56,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
             case .showLabelWhenReadOnly: return "Show Label When Read-Only"
             case .readOnly: return "Read-Only"
             case .multipleLines: return "Multiple Lines"
+            case .showConditions: return "Show Conditions"
             }
         }
     }
@@ -81,6 +86,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
             attributes = element.attributes
         }
     }
+    var elements = [Element]()
 
     // MARK: - view controller lifecycle
 
@@ -218,6 +224,27 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 switchCell.delegate = self
                 switchCell.switchControl.isOn = attributes.options?.multiline ?? false
                 cell = switchCell
+            case .showConditions:
+                guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: ButtonCell.self)) as? ButtonCell
+                else { preconditionFailure("Expected a ButtonCell") }
+
+                buttonCell.delegate = self
+                buttonCell.label.text = rowEnum.label
+                let conditionCount = attributes.showConditions?.count ?? 0
+
+                let buttonTitle: String = {
+                    switch conditionCount {
+                    case 0:
+                        return "Always show"
+                    case 1:
+                        return "\(conditionCount) condition"
+                    default:
+                        return "\(conditionCount) conditions"
+                    }
+                }()
+                buttonCell.button.setTitle(buttonTitle, for: .normal)
+                return buttonCell
             }
         case .summaryView:
             let rowEnum = SummaryViewRow.allCases[indexPath.row]
@@ -265,10 +292,18 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         return cell
     }
 
-    // MARK: - form cell delegate
+    // MARK: - app-specific delegates
 
     func didPressButton(inFormCell formCell: UITableViewCell) {
-        preconditionFailure("Unexpected call to didPressButton(inFormCell:)")
+        guard let indexPath = tableView.indexPath(for: formCell) else { return }
+
+        let sectionEnum = Section.cases(for: element.attributes.elementType)[indexPath.section]
+        guard sectionEnum == .element else { preconditionFailure("Unexpected section \(indexPath.section)") }
+
+        let rowEnum = ElementRow.cases(for: element.attributes.elementType)[indexPath.row]
+        guard rowEnum == .showConditions else { preconditionFailure("Unexpected row \(indexPath.row)") }
+
+        performSegue(withIdentifier: "showConditions", sender: self)
     }
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
@@ -308,7 +343,9 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                 ensureOptionsPresent()
                 attributes.options?.multiline = switchCell.switchControl.isOn
             case .concreteInitialValue:
-                preconditionFailure("Unexpected valueDidChange for concreteInitialValue")
+                preconditionFailure("Unexpected valueDidChange for from cell concreteInitialValue")
+            case .showConditions:
+                preconditionFailure("Unexpected valueDidChange for form cell cardsToInclude")
             }
         case .summaryView:
             let summaryViewRowEnum = SummaryViewRow.allCases[indexPath.row]
@@ -335,8 +372,6 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         }
     }
 
-    // MARK: - element cell delegate for concrete initial value
-
     var fieldValues = [String: FieldValue?]()
 
     func update(value: FieldValue?, for element: Element) {
@@ -348,11 +383,33 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
         preconditionFailure("Unexpected update(values:dismiss:) call")
     }
 
+    func didUpdate(_ conditions: [Condition]) {
+        attributes.showConditions = conditions
+    }
+
     // MARK: - private helpers
 
     private func ensureOptionsPresent() {
         if attributes.options == nil {
             attributes.options = Element.Options()
+        }
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showConditions":
+            guard let conditionsVC = segue.destination as? ConditionsViewController else {
+                preconditionFailure("Expected a ConditionsViewController")
+            }
+
+            conditionsVC.navigationItem.title = "Show Conditions"
+            conditionsVC.conditions = attributes.showConditions ?? []
+            conditionsVC.elements = elements
+            conditionsVC.delegate = self
+        default:
+            preconditionFailure("Unexpected segue \(String(describing: segue.identifier))")
         }
     }
 

@@ -208,6 +208,7 @@ class EditColumnViewController: UITableViewController,
                 column.attributes.cardInclusionConditions = []
             }
 
+            conditionsVC.navigationItem.title = "Cards to Show"
             conditionsVC.conditions = column.attributes.cardInclusionConditions!
             conditionsVC.elements = elements
             conditionsVC.delegate = self

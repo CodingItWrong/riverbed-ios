@@ -292,7 +292,7 @@
                     <connections>
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
                         <outlet property="deleteButton" destination="89r-lJ-Gxe" id="sta-0S-ivy"/>
-                        <segue destination="L8W-Ge-coK" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
+                        <segue destination="viv-Vs-YnU" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,7 +302,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2604" y="-626"/>
+            <point key="canvasLocation" x="2603" y="1519"/>
         </scene>
         <!--Edit Column-->
         <scene sceneID="hE7-GH-1I4">
@@ -330,9 +330,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3503" y="779"/>
+            <point key="canvasLocation" x="4413" y="775"/>
         </scene>
-        <!--Cards to Show-->
+        <!--Conditions-->
         <scene sceneID="Gz4-gH-JkA">
             <objects>
                 <tableViewController id="U7h-wc-2y0" customClass="ConditionsViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
@@ -363,7 +363,7 @@
                             <outlet property="delegate" destination="U7h-wc-2y0" id="DbO-7Q-6Eq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Cards to Show" id="d0y-2D-Mq5">
+                    <navigationItem key="navigationItem" title="Conditions" id="d0y-2D-Mq5">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PvP-vI-JAU">
                             <connections>
                                 <action selector="addCondition:" destination="U7h-wc-2y0" id="Vk1-3p-QRq"/>
@@ -378,7 +378,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-0W-W7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4377" y="779"/>
+            <point key="canvasLocation" x="5379.7101449275369" y="1153.7946428571429"/>
         </scene>
         <!--EditConditionVC-->
         <scene sceneID="xqu-y9-6En">
@@ -414,7 +414,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5149" y="779"/>
+            <point key="canvasLocation" x="6208.6956521739139" y="1153.7946428571429"/>
         </scene>
         <!--Edit Board View Controller-->
         <scene sceneID="wnt-6z-bVb">
@@ -438,9 +438,9 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2604" y="52"/>
+            <point key="canvasLocation" x="2603" y="-23"/>
         </scene>
-        <!--Dynamic Element View Controller-->
+        <!--Edit Element-->
         <scene sceneID="wF7-ij-G1M">
             <objects>
                 <tableViewController id="L8W-Ge-coK" customClass="DynamicElementViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
@@ -479,6 +479,10 @@
                             <outletCollection property="gestureRecognizers" destination="vkI-wV-pUd" appends="YES" id="8Sy-yc-M5g"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Edit Element" id="3tG-6j-woF"/>
+                    <connections>
+                        <segue destination="U7h-wc-2y0" kind="show" identifier="showConditions" id="En7-Rs-8j7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-be-HJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="vkI-wV-pUd">
@@ -487,7 +491,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3504" y="-626"/>
+            <point key="canvasLocation" x="4413.04347826087" y="1518.75"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="nfc-x6-vQt">
@@ -649,9 +653,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GI3-Li-KPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2603" y="779"/>
+            <point key="canvasLocation" x="3513" y="775"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Hr6-RD-36R">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viv-Vs-YnU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ssp-xS-6bK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L8W-Ge-coK" kind="relationship" relationship="rootViewController" id="ip2-ER-zpP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hho-99-E5C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3502.898550724638" y="1518.75"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="En7-Rs-8j7"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

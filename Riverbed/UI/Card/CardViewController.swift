@@ -206,23 +206,6 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "editElement":
-            guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
-            guard let elementVC = segue.destination as? DynamicElementViewController else {
-                preconditionFailure("Expected an DynamicElementViewController")
-            }
-            elementVC.element = element
-            elementVC.elementStore = elementStore
-            elementVC.delegate = self
-        case "test":
-            print("test")
-        default:
-            preconditionFailure("Unexpected segue")
-        }
-    }
-
     func didUpdate(_ element: Element) {
         // TODO: reload elements in the board as well
         // maybe just do that when this VC dismisses, instead of automatically propagating
@@ -309,6 +292,30 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                     print("Error deleting element: \(String(describing: error))")
                 }
             }
+        }
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "editElement":
+            guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
+            guard let navigationVC = segue.destination as? UINavigationController else {
+                preconditionFailure("Expected UINavigationController")
+            }
+            guard let elementVC = navigationVC.viewControllers.first as? DynamicElementViewController else {
+                preconditionFailure("Expected EditColumnViewController")
+            }
+
+            elementVC.element = element
+            elementVC.elements = elements
+            elementVC.elementStore = elementStore
+            elementVC.delegate = self
+        case "test":
+            print("test")
+        default:
+            preconditionFailure("Unexpected segue")
         }
     }
 
