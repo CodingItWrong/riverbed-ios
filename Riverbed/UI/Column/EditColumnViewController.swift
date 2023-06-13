@@ -5,6 +5,7 @@ protocol EditColumnViewControllerDelegate: AnyObject {
 }
 
 class EditColumnViewController: UITableViewController,
+                                ConditionsDelegate,
                                 FormCellDelegate {
 
     enum Row: CaseIterable {
@@ -84,7 +85,17 @@ class EditColumnViewController: UITableViewController,
             buttonCell.delegate = self
             buttonCell.label.text = rowEnum.label
             let conditionCount = attributes.cardInclusionConditions?.count ?? 0
-            let buttonTitle = conditionCount > 0 ? "\(conditionCount) conditions" : "All cards"
+
+            let buttonTitle: String = {
+                switch conditionCount {
+                case 0:
+                    return "All cards"
+                case 1:
+                    return "\(conditionCount) condition"
+                default:
+                    return "\(conditionCount) conditions"
+                }
+            }()
             buttonCell.button.setTitle(buttonTitle, for: .normal)
             return buttonCell
 
@@ -121,7 +132,7 @@ class EditColumnViewController: UITableViewController,
         }
     }
 
-    // MARK: app-specific delegates
+    // MARK: - app-specific delegates
 
     func didPressButton(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
@@ -178,6 +189,12 @@ class EditColumnViewController: UITableViewController,
         }
     }
 
+    func didUpdate(_ conditions: [Condition]) {
+        print("EditColumnViewController didUpdate()")
+        column.attributes.cardInclusionConditions = conditions
+        tableView.reloadData()
+    }
+
     // MARK: - navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -186,10 +203,16 @@ class EditColumnViewController: UITableViewController,
             guard let conditionsVC = segue.destination as? ConditionsViewController else {
                 preconditionFailure("Expected a ConditionsViewController")
             }
-            conditionsVC.conditions = column.attributes.cardInclusionConditions ?? []
+
+            if column.attributes.cardInclusionConditions == nil {
+                column.attributes.cardInclusionConditions = []
+            }
+
+            conditionsVC.conditions = column.attributes.cardInclusionConditions!
             conditionsVC.elements = elements
+            conditionsVC.delegate = self
         default:
-            preconditionFailure("Unexpected segue \(segue.identifier)")
+            preconditionFailure("Unexpected segue \(String(describing: segue.identifier))")
         }
     }
 

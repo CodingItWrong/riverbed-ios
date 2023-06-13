@@ -8,7 +8,7 @@ class Condition: Codable {
     class Options: Codable {
         var value: String?
 
-        init(value: String?) {
+        init(value: String? = nil) {
             self.value = value
         }
     }

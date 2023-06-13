@@ -1,6 +1,6 @@
 import Foundation
 
-enum Query: String, Codable {
+enum Query: String, Codable, CaseIterable {
     case contains = "CONTAINS"
     case doesNotContain = "DOES_NOT_CONTAIN"
     case doesNotEqual = "DOES_NOT_EQUAL_VALUE"
@@ -37,7 +37,7 @@ enum Query: String, Codable {
 
     var showConcreteValueField: Bool {
         switch self {
-        case .isEmptyOrEquals, .equals, .doesNotEqual: return true
+        case .contains, .doesNotContain, .doesNotEqual, .equals, .isEmptyOrEquals: return true
         default: return false
         }
     }

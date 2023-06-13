@@ -17,6 +17,7 @@
 		03010CD42A35D59E00EF32D1 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD32A35D59E00EF32D1 /* ButtonCell.swift */; };
 		03010CD62A35D5A900EF32D1 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03010CD52A35D5A900EF32D1 /* ButtonCell.xib */; };
 		03010CD82A35DAB300EF32D1 /* ConditionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */; };
+		03010CDA2A362E2700EF32D1 /* EditConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CD92A362E2700EF32D1 /* EditConditionViewController.swift */; };
 		03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF52A13DF9D0063EE24 /* AppDelegate.swift */; };
 		03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */; };
 		03027DFD2A13DF9D0063EE24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFB2A13DF9D0063EE24 /* Main.storyboard */; };
@@ -110,6 +111,7 @@
 		03010CD32A35D59E00EF32D1 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		03010CD52A35D5A900EF32D1 /* ButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionsViewController.swift; sourceTree = "<group>"; };
+		03010CD92A362E2700EF32D1 /* EditConditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditConditionViewController.swift; sourceTree = "<group>"; };
 		03027DF22A13DF9D0063EE24 /* Riverbed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Riverbed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027DF52A13DF9D0063EE24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03027DF72A13DF9D0063EE24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,15 @@
 			path = Column;
 			sourceTree = "<group>";
 		};
+		03010CDB2A362E2E00EF32D1 /* Conditions */ = {
+			isa = PBXGroup;
+			children = (
+				03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */,
+				03010CD92A362E2700EF32D1 /* EditConditionViewController.swift */,
+			);
+			path = Conditions;
+			sourceTree = "<group>";
+		};
 		03027DE92A13DF9D0063EE24 = {
 			isa = PBXGroup;
 			children = (
@@ -291,10 +302,10 @@
 				03944A892A195F5100639AC7 /* Board */,
 				03944A8E2A195FE100639AC7 /* Card */,
 				03010CC42A3483F900EF32D1 /* Column */,
+				03010CDB2A362E2E00EF32D1 /* Conditions */,
 				03EAFF352A2B59900086EC0B /* Element */,
 				03944A992A1985EA00639AC7 /* ElementCells */,
 				03C8F07B2A2C9E8900F6AF90 /* Form */,
-				03010CD72A35DAB300EF32D1 /* ConditionsViewController.swift */,
 				03D6688A2A1CBA8A00597D9E /* RiverbedSplitViewController.swift */,
 				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
 				036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */,
@@ -594,6 +605,7 @@
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
 				03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */,
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
+				03010CDA2A362E2700EF32D1 /* EditConditionViewController.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				03DC30462A23793800ABC4CB /* Command.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,

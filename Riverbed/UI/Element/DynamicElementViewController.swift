@@ -87,7 +87,7 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // for some reason a dynamic grouped table in a popover has this issue
+        // for some reason a dynamic grouped table in a form sheet has this issue
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
     }
 
@@ -122,7 +122,10 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sectionCases[section] {
-        case .element: return ElementRow.cases(for: element.attributes.elementType).count
+        case .element:
+            let num = ElementRow.cases(for: element.attributes.elementType).count
+            print("number of rows: \(num)")
+            return num
         case .summaryView: return SummaryViewRow.allCases.count
         }
     }
@@ -162,6 +165,19 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                                            isSelected: attributes.dataType == dataType) }
                 )
                 cell = popUpButtonCell
+            case .initialValue:
+                guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+                else { preconditionFailure("Expected a PopUpButtonCell") }
+                popUpButtonCell.label.text = rowEnum.label
+                popUpButtonCell.delegate = self
+                let values = Value.allCases.sorted { $0.label < $1.label }
+                popUpButtonCell.configure(options: values.map { (valueEntry) in
+                    PopUpButtonCell.Option(title: valueEntry.label,
+                                           value: valueEntry,
+                                           isSelected: attributes.initialValue == valueEntry) }
+                )
+                cell = popUpButtonCell
             case .concreteInitialValue:
                 guard let usesConcreteValue = attributes.initialValue?.usesConcreteValue,
                       usesConcreteValue else {
@@ -178,19 +194,6 @@ class DynamicElementViewController: UITableViewController, FormCellDelegate, Ele
                             allElements: [],
                             fieldValue: attributes.options?.initialSpecificValue)
                 return cell
-            case .initialValue:
-                guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
-                    withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
-                else { preconditionFailure("Expected a PopUpButtonCell") }
-                popUpButtonCell.label.text = rowEnum.label
-                popUpButtonCell.delegate = self
-                let values = Value.allCases.sorted { $0.label < $1.label }
-                popUpButtonCell.configure(options: values.map { (valueEntry) in
-                    PopUpButtonCell.Option(title: valueEntry.label,
-                                           value: valueEntry,
-                                           isSelected: attributes.initialValue == valueEntry) }
-                )
-                cell = popUpButtonCell
             case .showLabelWhenReadOnly:
                 guard let switchCell = tableView.dequeueOrRegisterReusableCell(
                     withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
