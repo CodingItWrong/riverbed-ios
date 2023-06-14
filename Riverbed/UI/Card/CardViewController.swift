@@ -18,7 +18,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     var board: Board!
     var elements = [Element]() {
         didSet {
-            updateElementsToShow()
+            updateSortedElements()
         }
     }
     var card: Card! { // will always be set in segue
@@ -41,16 +41,24 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                 print("Error loading card: \(String(describing: error))")
             }
         }
+
+        // TODO: do we still want to set this immediately in addition to from the server?
         fieldValues = card.attributes.fieldValues
         updateElementsToShow()
     }
 
+    var sortedElements = [Element]()
     var elementsToShow = [Element]()
+
+    func updateSortedElements() {
+        sortedElements = elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+        updateElementsToShow()
+    }
 
     func updateElementsToShow() {
         guard let card = card else { return }
 
-        let filteredElements = elements.filter { (element) in
+        elementsToShow = sortedElements.filter { (element) in
             if let showConditions = element.attributes.showConditions {
                 return checkConditions(fieldValues: card.attributes.fieldValues,
                                        conditions: showConditions,
@@ -59,7 +67,6 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                 return true
             }
         }
-        elementsToShow = filteredElements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
     }
 
     override func viewDidLoad() {
@@ -124,6 +131,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
             sender.accessibilityLabel = "Finish Editing Elements"
         }
+        tableView.reloadData() // because editing shows all elements
     }
 
     @IBAction func deleteCard(_ sender: Any?) {
@@ -198,7 +206,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             switch result {
             case let .success(elements):
                 self.elements = elements
-                self.updateElementsToShow()
+                self.updateSortedElements()
                 self.tableView.reloadData()
             case let .failure(error):
                 print("Error reloading elements: \(String(describing: error))")
@@ -212,14 +220,15 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         reloadElements()
     }
 
-    // MARK: - UITableViewDataSource
+    // MARK: - table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        elementsToShow.count
+        (isEditing ? sortedElements : elementsToShow).count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = elementsToShow[indexPath.row]
+        let element = (isEditing ? sortedElements : elementsToShow)[indexPath.row]
+
         let cellType = cellType(for: element)
         guard let cell = tableView.dequeueOrRegisterReusableCell(
             withIdentifier: String(describing: cellType)) as? ElementCell
@@ -244,24 +253,23 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
 
         // move in UI
-        let movedItem = elementsToShow[sourceIndexPath.row]
-        elementsToShow.remove(at: sourceIndexPath.row)
-        elementsToShow.insert(movedItem, at: destinationIndexPath.row)
+        let movedItem = sortedElements[sourceIndexPath.row]
+        sortedElements.remove(at: sourceIndexPath.row)
+        sortedElements.insert(movedItem, at: destinationIndexPath.row)
+        updateElementsToShow()
 
         // persist to server
-        elementStore.updateDisplayOrders(of: elementsToShow) { (result) in
+        elementStore.updateDisplayOrders(of: sortedElements) { (result) in
             if case let .failure(error) = result {
                 print("Error updating display orders: \(String(describing: error))")
             }
         }
     }
 
-    // MARK: - UITableViewDelegate
-
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt \(indexPath)")
-        let element = elementsToShow[indexPath.row]
+        let element = sortedElements[indexPath.row]
 //        performSegue(withIdentifier: "test", sender: element)
         performSegue(withIdentifier: "editElement", sender: element)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -281,12 +289,13 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let element = elementsToShow[indexPath.row]
+            let element = sortedElements[indexPath.row]
             elementStore.delete(element) { [weak self] (result) in
                 switch result {
                 case .success:
                     guard let self = self else { return }
                     elements.remove(at: indexPath.row)
+                    updateSortedElements()
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 case let .failure(error):
                     print("Error deleting element: \(String(describing: error))")
