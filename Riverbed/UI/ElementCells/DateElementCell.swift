@@ -65,6 +65,7 @@ class DateElementCell: UITableViewCell, ElementCell {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         valueDatePicker.isEnabled = !editing
+        toggleDateButton.isEnabled = !editing
     }
 
     @IBAction func toggleDate(_ sender: UIButton) {
