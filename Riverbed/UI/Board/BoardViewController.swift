@@ -65,8 +65,10 @@ class BoardViewController: UIViewController,
         }
     }
 
-    var sortedColumns: [Column] {
-        columns.sorted { (lhs, rhs) in
+    var sortedColumns = [Column]()
+
+    func updateSortedColumns() {
+        sortedColumns = columns.sorted { (lhs, rhs) in
             guard let lhsOrder = lhs.attributes.displayOrder else { return false }
             guard let rhsOrder = rhs.attributes.displayOrder else { return true }
             return lhsOrder < rhsOrder
@@ -153,6 +155,7 @@ class BoardViewController: UIViewController,
             switch result {
             case let .success(columns):
                 self.columns = columns
+                self.updateSortedColumns()
             case let .failure(error):
                 print("Error loading columns: \(error)")
             }
@@ -396,6 +399,42 @@ class BoardViewController: UIViewController,
         }
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        moveItemAt sourceIndexPath: IndexPath,
+                        to destinationIndexPath: IndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+
+        // move in local data
+        let movedColumn = sortedColumns[sourceIndexPath.row]
+        sortedColumns.remove(at: sourceIndexPath.row)
+        sortedColumns.insert(movedColumn, at: destinationIndexPath.row)
+
+        // persist to server
+        columnStore.updateDisplayOrders(of: sortedColumns) { (result) in
+            if case let .failure(error) = result {
+                print("Error updating display orders: \(String(describing: error))")
+            }
+        }
+    }
+
+    @IBAction func moveColumn(_ gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case UIGestureRecognizer.State.began:
+            guard let selectedIndexPath = columnsCollectionView.indexPathForItem(
+                at: gesture.location(in: columnsCollectionView))
+            else { return }
+            columnsCollectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case UIGestureRecognizer.State.changed:
+            columnsCollectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case UIGestureRecognizer.State.ended:
+            columnsCollectionView.endInteractiveMovement()
+        default:
+            columnsCollectionView.cancelInteractiveMovement()
+        }
     }
 
     // MARK: - segues

@@ -24,6 +24,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-zJ-9RT" userLabel="Columns Collection View">
                                 <rect key="frame" x="0.0" y="92" width="414" height="804"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="lSJ-PT-g4j">
                                     <size key="itemSize" width="454" height="1014"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -188,6 +189,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="Flc-lf-CdM" id="n1F-KY-e0I"/>
                                     <outlet property="delegate" destination="Flc-lf-CdM" id="NHI-YI-tuN"/>
+                                    <outletCollection property="gestureRecognizers" destination="HFF-40-uci" appends="YES" id="aHl-1a-2QI"/>
                                 </connections>
                             </collectionView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Loading Indicator">
@@ -221,6 +223,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TxX-OE-SJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="HFF-40-uci">
+                    <connections>
+                        <action selector="moveColumn:" destination="Flc-lf-CdM" id="rWh-vs-s2W"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1132.6171875" y="46.559297218155194"/>
         </scene>

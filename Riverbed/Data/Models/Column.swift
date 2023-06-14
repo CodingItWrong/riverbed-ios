@@ -40,6 +40,14 @@ class Column: Codable {
             self.cardSortOrder = cardSortOrder
             self.displayOrder = displayOrder
         }
+
+        init(shallowCloning original: Column.Attributes) {
+            self.name = original.name
+            self.cardInclusionConditions = original.cardInclusionConditions
+            self.cardGrouping = original.cardGrouping
+            self.cardSortOrder = original.cardSortOrder
+            self.displayOrder = original.displayOrder
+        }
     }
 
     enum Direction: String, Codable {
