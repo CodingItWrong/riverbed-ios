@@ -1,5 +1,6 @@
 import Foundation
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 struct AttachmentHandler {
     func getURL(attachments: [Attachment], completion: @escaping (Result<URL, Error>) -> Void) {
@@ -9,7 +10,7 @@ struct AttachmentHandler {
         }
 
         // first, look for URL
-        let urlType = kUTTypeURL as String
+        let urlType = UTType.url.identifier as String
         if let attachment = attachments.first(where: { $0.hasItemConformingToTypeIdentifier(urlType) }) {
             attachment.loadItem(forTypeIdentifier: urlType) { (data, _) in
                 switch data {
@@ -26,7 +27,7 @@ struct AttachmentHandler {
         }
 
         // if no URL found, look for text
-        let plainTextType = kUTTypePlainText as String
+        let plainTextType = UTType.plainText.identifier as String
         if let attachment = attachments.first(where: { $0.hasItemConformingToTypeIdentifier(plainTextType) }) {
             attachment.loadItem(forTypeIdentifier: plainTextType) { (data, _) in
                 switch data {
