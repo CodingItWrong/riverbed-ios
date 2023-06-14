@@ -153,6 +153,7 @@
                                                 <constraint firstItem="BkZ-Cr-bSx" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="topMargin" id="zba-td-dBd"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <size key="customSize" width="454" height="1014"/>
                                         <connections>
                                             <outlet property="columnMenuButton" destination="Cqb-rb-Iuq" id="TCk-M4-BbI"/>
