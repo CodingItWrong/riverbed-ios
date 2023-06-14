@@ -438,6 +438,9 @@ class BoardViewController: UIViewController,
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+
+        segue.destination.view.tintColor = view.tintColor
+
         switch segue.identifier {
         case "showCardDetail":
             guard let cardVC = segue.destination as? CardViewController else {

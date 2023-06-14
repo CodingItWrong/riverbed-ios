@@ -307,6 +307,10 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     // MARK: - navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        segue.destination.view.tintColor = view.tintColor
+
         switch segue.identifier {
         case "editElement":
             guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }

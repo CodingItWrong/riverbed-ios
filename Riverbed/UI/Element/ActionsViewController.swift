@@ -82,6 +82,10 @@ class ActionsViewController: UITableViewController,
     // MARK: - navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        segue.destination.view.tintColor = view.tintColor
+
         switch segue.identifier {
         case "editAction":
             guard let cell = sender as? UITableViewCell else {
