@@ -93,17 +93,14 @@ class BoardViewController: UIViewController,
         titleButton.menu = menu
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        clearBoardData()
+
         guard let board = board else { return }
 
         // hass to be *before* the main view shows, for the button color change to show
         delegate?.didDismiss(board: board)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        clearBoardData()
     }
 
     // MARK: - data management
