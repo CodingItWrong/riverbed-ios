@@ -183,7 +183,7 @@ class BoardViewController: UIViewController,
 
         let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
 
-        titleButton.tintColor = tintColor
+//        titleButton.tintColor = tintColor
 //        titleButton.setImage(titleButton.image(for: .normal)?.withTintColor(tintColor), for: .normal)
 
         // global tint editing is not reliable
