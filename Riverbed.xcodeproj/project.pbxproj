@@ -1115,7 +1115,7 @@
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RiverbedShare;
+				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1141,7 +1141,7 @@
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = RiverbedShare;
+				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.3;
 				LD_RUNPATH_SEARCH_PATHS = (
