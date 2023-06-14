@@ -1,14 +1,15 @@
 import UIKit
 
-protocol ConditionsDelegate: AnyObject {
-    func didUpdate(_ conditions: [Condition])
+protocol ActionsDelegate: AnyObject {
+    func didUpdate(_ action: [Element.Action])
 }
 
-class ConditionsViewController: UITableViewController, EditConditionDelegate {
+class ActionsViewController: UITableViewController,
+                             EditActionDelegate {
 
-    weak var delegate: ConditionsDelegate?
+    weak var delegate: ActionsDelegate?
 
-    var conditions = [Condition]()
+    var actions = [Element.Action]()
     var elements = [Element]()
 
     // MARK: - vc lifecycle
@@ -20,18 +21,17 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
     // MARK: - table view data source and delegate
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        conditions.count
+        actions.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let condition = conditions[indexPath.row]
+        let action = actions[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "condition", for: indexPath)
 
-        if let query = condition.query,
-           let fieldId = condition.field,
+        if let command = action.command,
+           let fieldId = action.field,
            let field = elements.first(where: { $0.id == fieldId }) {
-            cell.textLabel?.text = "\(field.attributes.name ?? "(unnamed field") \(query.label)"
-            // TODO: show options
+            cell.textLabel?.text = "\(command.label) \(field.attributes.name ?? "(unnamed field)")"
         } else {
             cell.textLabel?.text = "(not configured)"
         }
@@ -41,7 +41,7 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        performSegue(withIdentifier: "editCondition", sender: cell)
+        performSegue(withIdentifier: "editAction", sender: cell)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -50,9 +50,9 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
                             forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            conditions.remove(at: indexPath.row)
+            actions.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            delegate?.didUpdate(conditions)
+            delegate?.didUpdate(actions)
         default:
             preconditionFailure("Unexpected editing style \(editingStyle)")
         }
@@ -60,12 +60,12 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
 
     // MARK: - actions
 
-    @IBAction func addCondition(_ sender: Any?) {
-        let newCondition = Condition()
-        conditions.append(newCondition)
-        let indexPath = IndexPath(row: conditions.count - 1, section: 0)
+    @IBAction func addAction(_ sender: Any?) {
+        let newAction = Element.Action()
+        actions.append(newAction)
+        let indexPath = IndexPath(row: actions.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-        delegate?.didUpdate(conditions)
+        delegate?.didUpdate(actions)
     }
 
     // MARK: - app-specific delegates
@@ -75,25 +75,29 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
         // may not need to do anything else since Condition is mutable
     }
 
+    func didUpdate(_ action: Element.Action) {
+        tableView.reloadData()
+    }
+
     // MARK: - navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "editCondition":
+        case "editAction":
             guard let cell = sender as? UITableViewCell else {
                 preconditionFailure("Expected a UITableViewCell")
             }
             guard let indexPath = tableView.indexPath(for: cell) else {
                 preconditionFailure("Could not find index path for cell")
             }
-            let condition = conditions[indexPath.row]
+            let action = actions[indexPath.row]
 
             segue.destination.popoverPresentationController?.sourceView = cell
-            guard let editConditionVC = segue.destination as? EditConditionViewController else {
-                preconditionFailure("Expected an EditConditionViewController")
+            guard let editConditionVC = segue.destination as? EditActionViewController else {
+                preconditionFailure("Expected an EditActionViewController")
             }
 
-            editConditionVC.condition = condition
+            editConditionVC.action = action
             editConditionVC.elements = elements
             editConditionVC.delegate = self
 

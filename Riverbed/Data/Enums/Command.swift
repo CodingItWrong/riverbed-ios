@@ -1,6 +1,6 @@
 import Foundation
 
-enum Command: String, Codable {
+enum Command: String, Codable, CaseIterable {
     case addDays = "ADD_DAYS"
     case setValue = "SET_VALUE"
 

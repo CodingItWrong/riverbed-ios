@@ -124,12 +124,6 @@ class EditConditionViewController: UITableViewController,
         }
     }
 
-    override func tableView(_ tableView: UITableView,
-                            willDisplay cell: UITableViewCell,
-                            forRowAt indexPath: IndexPath) {
-        print("willDisplay \(indexPath)")
-    }
-
     private func fieldOptions(selecting selectedField: Element?) -> [PopUpButtonCell.Option] {
         let options = fields.map { (field) in
             let isSelected = selectedField == field

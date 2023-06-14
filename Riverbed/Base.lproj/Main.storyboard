@@ -482,6 +482,7 @@
                     <navigationItem key="navigationItem" title="Edit Element" id="3tG-6j-woF"/>
                     <connections>
                         <segue destination="U7h-wc-2y0" kind="show" identifier="showConditions" id="En7-Rs-8j7"/>
+                        <segue destination="BJE-bq-Q3N" kind="show" identifier="actions" id="usA-OV-bnJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-be-HJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -672,6 +673,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hho-99-E5C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3502.898550724638" y="1518.75"/>
+        </scene>
+        <!--Actions-->
+        <scene sceneID="Azi-Tz-scf">
+            <objects>
+                <tableViewController id="BJE-bq-Q3N" customClass="ActionsViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="ETF-dq-Ec2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="4Sa-i4-unz" style="IBUITableViewCellStyleDefault" id="j8N-ug-WRi">
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8N-ug-WRi" id="dyA-f8-MTx">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Sa-i4-unz">
+                                            <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BJE-bq-Q3N" id="bfs-lz-Gev"/>
+                            <outlet property="delegate" destination="BJE-bq-Q3N" id="S0A-q5-L6V"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Actions" id="mai-Io-ac3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2X9-7D-Gfr">
+                            <connections>
+                                <action selector="addAction:" destination="BJE-bq-Q3N" id="18u-Wu-5lS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Qvh-os-Pmk" kind="popoverPresentation" identifier="editAction" popoverAnchorView="ETF-dq-Ec2" id="cfy-O3-zbQ">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BH9-yh-TuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5380" y="1884"/>
+        </scene>
+        <!--EditConditionVC-->
+        <scene sceneID="ekM-5q-FZk">
+            <objects>
+                <tableViewController id="Qvh-os-Pmk" userLabel="EditConditionVC" customClass="EditActionViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="utf-ze-gdq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="emptyCell" rowHeight="0.0" id="tbr-fd-dtw">
+                                <rect key="frame" x="20" y="55.5" width="374" height="1.1920928955078125e-07"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbr-fd-dtw" id="B2N-Cm-vzE">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="1.1920928955078125e-07"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Qvh-os-Pmk" id="erm-We-0VN"/>
+                            <outlet property="delegate" destination="Qvh-os-Pmk" id="h3f-gL-VIQ"/>
+                            <outletCollection property="gestureRecognizers" destination="zIY-Kx-ApM" appends="YES" id="zER-rg-d1W"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="225"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cVe-r6-EK3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zIY-Kx-ApM">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="Qvh-os-Pmk" id="XCS-yO-fe0"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="6209" y="1884"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
