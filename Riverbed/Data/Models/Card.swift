@@ -67,6 +67,17 @@ class NewCard: NSObject, Codable {
 
 }
 
+// when this was a struct, incrementally creating them didn't seem to work
+class CardGroup {
+    var value: FieldValue?
+    var cards: [Card]
+
+    init(value: FieldValue? = nil, cards: [Card]) {
+        self.value = value
+        self.cards = cards
+    }
+}
+
 extension Card {
     static func filter(cards: [Card], for column: Column, with elements: [Element]) -> [Card] {
         guard let cardInclusionConditions = column.attributes.cardInclusionConditions else { return cards }

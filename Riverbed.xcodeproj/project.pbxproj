@@ -27,6 +27,27 @@
 		031189652A2A02A400334B63 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031189642A2A02A400334B63 /* QueryTests.swift */; };
 		0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C32A393A420079576C /* ActionsViewController.swift */; };
 		0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C52A39C4B80079576C /* EditActionViewController.swift */; };
+		0328D1D12A39D6F70079576C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0328D1CF2A39D6F70079576C /* MainInterface.storyboard */; };
+		0328D1D52A39D6F70079576C /* RiverbedShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0328D1CB2A39D6F70079576C /* RiverbedShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0328D1DF2A39DB0C0079576C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DB2A39DB0C0079576C /* ShareViewController.swift */; };
+		0328D1E02A39DB0C0079576C /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DC2A39DB0C0079576C /* Attachment.swift */; };
+		0328D1E12A39DB0C0079576C /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */; };
+		0328D1E22A39DCC70079576C /* RiverbedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */; };
+		0328D1E32A39DDE80079576C /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC702A17960000CB8075 /* Board.swift */; };
+		0328D1E42A39DDEB0079576C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7F2A17C24100CB8075 /* Card.swift */; };
+		0328D1E52A39DDED0079576C /* Column.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7D2A17B7CE00CB8075 /* Column.swift */; };
+		0328D1E62A39DDF00079576C /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
+		0328D1E72A39DDFA0079576C /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
+		0328D1E82A39DE360079576C /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304E2A23E72100ABC4CB /* Icon.swift */; };
+		0328D1E92A39DE390079576C /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */; };
+		0328D1EA2A39DE470079576C /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30452A23793800ABC4CB /* Command.swift */; };
+		0328D1EB2A39DE4D0079576C /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
+		0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03010CCD2A34948400EF32D1 /* SummaryFunction.swift */; };
+		0328D1ED2A39DE510079576C /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304C2A23E10400ABC4CB /* TextSize.swift */; };
+		0328D1EE2A39DE540079576C /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30472A23798E00ABC4CB /* Value.swift */; };
+		0328D1EF2A39DE5C0079576C /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
+		0328D1F02A39DE5E0079576C /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
+		0328D1F12A39DE970079576C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC782A17B6D400CB8075 /* Utils.swift */; };
 		032F2C862A1AE806008208E9 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
 		032F2C882A1AEA17008208E9 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
 		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
@@ -100,7 +121,28 @@
 			remoteGlobalIDString = 03027DF12A13DF9D0063EE24;
 			remoteInfo = Riverbed;
 		};
+		0328D1D32A39D6F70079576C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03027DEA2A13DF9D0063EE24 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0328D1CA2A39D6F70079576C;
+			remoteInfo = RiverbedShare;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0328D1D92A39D6F70079576C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				0328D1D52A39D6F70079576C /* RiverbedShare.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		03010CC52A34840900EF32D1 /* EditColumnViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +169,12 @@
 		031189642A2A02A400334B63 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		0328D1C32A393A420079576C /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		0328D1C52A39C4B80079576C /* EditActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewController.swift; sourceTree = "<group>"; };
+		0328D1CB2A39D6F70079576C /* RiverbedShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RiverbedShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0328D1D02A39D6F70079576C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		0328D1D22A39D6F70079576C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0328D1DB2A39DB0C0079576C /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = ../../Hydrant/HydrantShare/ShareViewController.swift; sourceTree = "<group>"; };
+		0328D1DC2A39DB0C0079576C /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
+		0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
 		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		032F2C872A1AEA17008208E9 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +256,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0328D1C82A39D6F70079576C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -235,6 +290,7 @@
 				03027DF42A13DF9D0063EE24 /* Riverbed */,
 				03027E0B2A13DF9E0063EE24 /* RiverbedTests */,
 				03027E152A13DF9E0063EE24 /* RiverbedUITests */,
+				0328D1CC2A39D6F70079576C /* RiverbedShare */,
 				03027DF32A13DF9D0063EE24 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -245,6 +301,7 @@
 				03027DF22A13DF9D0063EE24 /* Riverbed.app */,
 				03027E082A13DF9E0063EE24 /* RiverbedTests.xctest */,
 				03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */,
+				0328D1CB2A39D6F70079576C /* RiverbedShare.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,6 +340,18 @@
 				03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */,
 			);
 			path = RiverbedUITests;
+			sourceTree = "<group>";
+		};
+		0328D1CC2A39D6F70079576C /* RiverbedShare */ = {
+			isa = PBXGroup;
+			children = (
+				0328D1DC2A39DB0C0079576C /* Attachment.swift */,
+				0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */,
+				0328D1D22A39D6F70079576C /* Info.plist */,
+				0328D1CF2A39D6F70079576C /* MainInterface.storyboard */,
+				0328D1DB2A39DB0C0079576C /* ShareViewController.swift */,
+			);
+			path = RiverbedShare;
 			sourceTree = "<group>";
 		};
 		032F2C842A1AE7FD008208E9 /* Enums */ = {
@@ -445,10 +514,12 @@
 				0342FC682A17930A00CB8075 /* ShellScript */,
 				03027DEF2A13DF9D0063EE24 /* Frameworks */,
 				03027DF02A13DF9D0063EE24 /* Resources */,
+				0328D1D92A39D6F70079576C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0328D1D42A39D6F70079576C /* PBXTargetDependency */,
 			);
 			name = Riverbed;
 			productName = Riverbed;
@@ -491,6 +562,23 @@
 			productReference = 03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		0328D1CA2A39D6F70079576C /* RiverbedShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0328D1D62A39D6F70079576C /* Build configuration list for PBXNativeTarget "RiverbedShare" */;
+			buildPhases = (
+				0328D1C72A39D6F70079576C /* Sources */,
+				0328D1C82A39D6F70079576C /* Frameworks */,
+				0328D1C92A39D6F70079576C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RiverbedShare;
+			productName = RiverbedShare;
+			productReference = 0328D1CB2A39D6F70079576C /* RiverbedShare.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -513,6 +601,9 @@
 						CreatedOnToolsVersion = 14.3;
 						TestTargetID = 03027DF12A13DF9D0063EE24;
 					};
+					0328D1CA2A39D6F70079576C = {
+						CreatedOnToolsVersion = 14.3;
+					};
 				};
 			};
 			buildConfigurationList = 03027DED2A13DF9D0063EE24 /* Build configuration list for PBXProject "Riverbed" */;
@@ -531,6 +622,7 @@
 				03027DF12A13DF9D0063EE24 /* Riverbed */,
 				03027E072A13DF9E0063EE24 /* RiverbedTests */,
 				03027E112A13DF9E0063EE24 /* RiverbedUITests */,
+				0328D1CA2A39D6F70079576C /* RiverbedShare */,
 			);
 		};
 /* End PBXProject section */
@@ -570,6 +662,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0328D1C92A39D6F70079576C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0328D1D12A39D6F70079576C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +778,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0328D1C72A39D6F70079576C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0328D1E02A39DB0C0079576C /* Attachment.swift in Sources */,
+				0328D1E72A39DDFA0079576C /* Condition.swift in Sources */,
+				0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */,
+				0328D1EE2A39DE540079576C /* Value.swift in Sources */,
+				0328D1E42A39DDEB0079576C /* Card.swift in Sources */,
+				0328D1E62A39DDF00079576C /* Element.swift in Sources */,
+				0328D1F02A39DE5E0079576C /* DateTimeUtils.swift in Sources */,
+				0328D1E22A39DCC70079576C /* RiverbedAPI.swift in Sources */,
+				0328D1E52A39DDED0079576C /* Column.swift in Sources */,
+				0328D1E32A39DDE80079576C /* Board.swift in Sources */,
+				0328D1EB2A39DE4D0079576C /* Query.swift in Sources */,
+				0328D1DF2A39DB0C0079576C /* ShareViewController.swift in Sources */,
+				0328D1E82A39DE360079576C /* Icon.swift in Sources */,
+				0328D1ED2A39DE510079576C /* TextSize.swift in Sources */,
+				0328D1EF2A39DE5C0079576C /* DateUtils.swift in Sources */,
+				0328D1E92A39DE390079576C /* ColorTheme.swift in Sources */,
+				0328D1E12A39DB0C0079576C /* AttachmentHandler.swift in Sources */,
+				0328D1F12A39DE970079576C /* Utils.swift in Sources */,
+				0328D1EA2A39DE470079576C /* Command.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -690,6 +816,11 @@
 			isa = PBXTargetDependency;
 			target = 03027DF12A13DF9D0063EE24 /* Riverbed */;
 			targetProxy = 03027E132A13DF9E0063EE24 /* PBXContainerItemProxy */;
+		};
+		0328D1D42A39D6F70079576C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0328D1CA2A39D6F70079576C /* RiverbedShare */;
+			targetProxy = 0328D1D32A39D6F70079576C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -708,6 +839,14 @@
 				03027E012A13DF9E0063EE24 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		0328D1CF2A39D6F70079576C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0328D1D02A39D6F70079576C /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -830,6 +969,7 @@
 		03027E1D2A13DF9E0063EE24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -860,6 +1000,7 @@
 		03027E1E2A13DF9E0063EE24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -966,6 +1107,56 @@
 			};
 			name = Release;
 		};
+		0328D1D72A39D6F70079576C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RiverbedShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RiverbedShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit.RiverbedShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0328D1D82A39D6F70079576C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RiverbedShare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RiverbedShare;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit.RiverbedShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1001,6 +1192,15 @@
 			buildConfigurations = (
 				03027E232A13DF9E0063EE24 /* Debug */,
 				03027E242A13DF9E0063EE24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0328D1D62A39D6F70079576C /* Build configuration list for PBXNativeTarget "RiverbedShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0328D1D72A39D6F70079576C /* Debug */,
+				0328D1D82A39D6F70079576C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -10,6 +10,7 @@ struct RiverbedAPI {
     }
 
     static let accessToken = "6dS9tQyWGS5FZ9L5w00mWmelbj1VfE4U2-enMm6oKOU"
+    static let apiKey = "KAhbB18D0QZBFXBCJKE4xJZYyaWkUTK25LWrqNMIXI2-FSqT5NgJpA-ermcllZG3s8mqioWkfZWNlUVwcOIGrw"
     private static let baseURL = URL(string: "http://localhost:3000/")
 
     static func boardsURL() -> URL {
@@ -60,6 +61,10 @@ struct RiverbedAPI {
         url(elementPath(element))
     }
 
+    static func webhookURL() -> URL {
+        url(webhookPath())
+    }
+
     // MARK: - private
 
     private static func url(_ path: String) -> URL {
@@ -108,6 +113,10 @@ struct RiverbedAPI {
 
     private static func elementsPath(_ board: Board) -> String {
         joinPathSegments(boardPath(board), "elements")
+    }
+
+    private static func webhookPath() -> String {
+        "/shares"
     }
 
     private static func joinPathSegments(_ pathSegments: String...) -> String {
