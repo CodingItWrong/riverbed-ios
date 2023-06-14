@@ -62,7 +62,8 @@ struct AttachmentHandler {
         let urlRegexString = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
         let regex = try NSRegularExpression(pattern: urlRegexString)
         let nsString = string as NSString
-        let matches = regex.matches(in: string, options: [], range: NSRange(location: 0, length: nsString.length)).map { nsString.substring(with: $0.range) }
+        let matches = regex.matches(in: string, options: [], range: NSRange(location: 0, length: nsString.length))
+                           .map { nsString.substring(with: $0.range) }
         if matches.count > 0 {
             return URL(string: matches[0])
         } else {
