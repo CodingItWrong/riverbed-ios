@@ -10,50 +10,46 @@ struct AttachmentHandler {
 
         // first, look for URL
         let urlType = kUTTypeURL as String
-        for attachment in attachments {
-            if attachment.hasItemConformingToTypeIdentifier(urlType) {
-                attachment.loadItem(forTypeIdentifier: urlType) { (data, _) in
-                    switch data {
-                    case let url as URL:
-                        // todo: figure out how to pass IUO error
-                        NSLog("Found attached URL \(url.absoluteString)")
-                        completion(.success(url))
-                    default:
-                        NSLog("Attachment said it was a URL, but did not return one")
-                        completion(.failure(ShareError.urlNotFound))
-                    }
+        if let attachment = attachments.first(where: { $0.hasItemConformingToTypeIdentifier(urlType) }) {
+            attachment.loadItem(forTypeIdentifier: urlType) { (data, _) in
+                switch data {
+                case let url as URL:
+                    // todo: figure out how to pass IUO error
+                    NSLog("Found attached URL \(url.absoluteString)")
+                    completion(.success(url))
+                default:
+                    NSLog("Attachment said it was a URL, but did not return one")
+                    completion(.failure(ShareError.urlNotFound))
                 }
-                return
             }
+            return
         }
 
         // if no URL found, look for text
         let plainTextType = kUTTypePlainText as String
-        for attachment in attachments {
-            if attachment.hasItemConformingToTypeIdentifier(plainTextType) {
-                attachment.loadItem(forTypeIdentifier: plainTextType) { (data, _) in
-                    switch data {
-                    case let urlString as String:
-                        NSLog("Found attached string \(urlString)")
-                        if let url = URL(string: urlString) {
-                            completion(.success(url))
-                            return
-                        } else if let url = try? self.getURL(fromString: urlString) {
-                            completion(.success(url))
-                            return
-                        } else {
-                            NSLog("There was a text attachment, but it was not a valid URL")
-                            // fall through
-                        }
-                    default:
-                        NSLog("Attachment said it was plain text, but did not return a String")
+        if let attachment = attachments.first(where: { $0.hasItemConformingToTypeIdentifier(plainTextType) }) {
+            attachment.loadItem(forTypeIdentifier: plainTextType) { (data, _) in
+                switch data {
+                case let urlString as String:
+                    NSLog("Found attached string \(urlString)")
+                    if let url = URL(string: urlString) {
+                        completion(.success(url))
+                        return
+                    } else if let url = try? self.getURL(fromString: urlString) {
+                        completion(.success(url))
+                        return
+                    } else {
+                        NSLog("There was a text attachment, but it was not a valid URL")
                         // fall through
                     }
-                    NSLog("No URL or plain text attachments found")
-                    completion(.failure(ShareError.urlNotFound))
+                default:
+                    NSLog("Attachment said it was plain text, but did not return a String")
+                    // fall through
                 }
-                return
+                NSLog("No URL or plain text attachments found")
+                completion(.failure(ShareError.urlNotFound))
             }
+            return
         }
 
         // if no URL or text found, fail
