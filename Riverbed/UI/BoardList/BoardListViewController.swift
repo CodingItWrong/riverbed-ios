@@ -7,6 +7,16 @@ protocol BoardListDelegate: AnyObject {
 class BoardListViewController: UITableViewController,
                                BoardDelegate {
 
+    class BoardGroup {
+        var name: String
+        var boards: [Board]
+
+        init(name: String, boards: [Board]) {
+            self.name = name
+            self.boards = boards
+        }
+    }
+
     weak var delegate: BoardListDelegate?
 
     var boardStore: BoardStore!
@@ -48,6 +58,13 @@ class BoardListViewController: UITableViewController,
         self.tableView.reloadData()
     }
 
+    func updateTint(for board: Board?) {
+        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+        splitViewController?.view.tintColor = tintColor // THIS SEEMS KEY
+    }
+
+    // MARK: - view lifecylce
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadBoards()
@@ -55,6 +72,8 @@ class BoardListViewController: UITableViewController,
                                        action: #selector(self.loadBoards),
                                        for: .valueChanged)
     }
+
+    // MARK: - data
 
     @objc func loadBoards() {
         boardStore.all { (result) in
@@ -68,6 +87,8 @@ class BoardListViewController: UITableViewController,
             }
         }
     }
+
+    // MARK: - table view data source and delegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         boardGroups.count
@@ -88,13 +109,6 @@ class BoardListViewController: UITableViewController,
         let board = board(for: indexPath)
         cell.board = board
         return cell
-    }
-
-    func goTo(_ board: Board) {
-        updateTint(for: board)
-        delegate?.didSelect(board: board)
-        splitViewController?.show(.secondary)
-
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -118,8 +132,12 @@ class BoardListViewController: UITableViewController,
         return UISwipeActionsConfiguration(actions: [toggleFavoriteAction])
     }
 
-    private func board(for indexPath: IndexPath) -> Board {
-        boardGroups[indexPath.section].boards[indexPath.row]
+    // MARK: - actions
+
+    func goTo(_ board: Board) {
+        updateTint(for: board)
+        delegate?.didSelect(board: board)
+        splitViewController?.show(.secondary)
     }
 
     func toggleFavorite(_ board: Board) {
@@ -152,44 +170,10 @@ class BoardListViewController: UITableViewController,
         }
     }
 
-    class BoardGroup {
-        var name: String
-        var boards: [Board]
+    // MARK: - private helpers
 
-        init(name: String, boards: [Board]) {
-            self.name = name
-            self.boards = boards
-        }
-    }
-
-    // So, here's what's going on with tints.
-    //
-    // On iPad and Mac, setting the tint for navigation items and UIButtons works fine:
-    // you can do it as soon as the board is updated.
-    // On iPhone, there is a problem. If UIButton's appearance has a tintColor set,
-    // then changing the navigation bar tint won't affect the shown navigation bar.
-    // The solution I've found is to only update the tint when initially loading and dismissing a board.
-    //
-    // Something else to keep in mind for future work: iPad and Mac have separate navigationControllers
-    // for the two columns, whereas on iPhone there is only one.
-
-    func updateTint(for board: Board?) {
-        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-//        print("BoardListViewController.updateTint to \(tintColor)")
-//
-//        // iPhone: affects all navigation bar elements (maybe because it's one navigation bar that's shared
-//        navigationController?.navigationBar.tintColor = tintColor
-//        navigationItem.leftBarButtonItem?.tintColor = tintColor
-        splitViewController?.view.tintColor = tintColor // THIS SEEMS KEY
-
-//
-//        [
-//            UIButton.appearance(), // this breaks iphone only
-//            UIDatePicker.appearance(),
-//            UISwitch.appearance(),
-//            UITextField.appearance(),
-//            UITextView.appearance()
-//        ].forEach { $0.tintColor = tintColor }
+    private func board(for indexPath: IndexPath) -> Board {
+        boardGroups[indexPath.section].boards[indexPath.row]
     }
 
     // MARK: - app-specific delegates
