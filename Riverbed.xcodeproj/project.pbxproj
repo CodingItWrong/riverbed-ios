@@ -90,6 +90,7 @@
 		03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */; };
 		03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
 		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
+		03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF642A3BD10B00B68109 /* SignInViewController.swift */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -218,6 +219,7 @@
 		03944A9C2A19877B00639AC7 /* ButtonMenuElementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuElementCell.swift; sourceTree = "<group>"; };
 		03944AA02A1AAE0000639AC7 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
+		03A3EF642A3BD10B00B68109 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 		0342FC6B2A17948300CB8075 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				03A3EF632A3BD10500B68109 /* Auth */,
 				03DC30492A23D85500ABC4CB /* BoardList */,
 				03944A892A195F5100639AC7 /* Board */,
 				03944A8E2A195FE100639AC7 /* Card */,
@@ -462,6 +465,14 @@
 				034D09DA2A2EA3F600106EE1 /* TextElementCell.xib */,
 			);
 			path = ElementCells;
+			sourceTree = "<group>";
+		};
+		03A3EF632A3BD10500B68109 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03A3EF642A3BD10B00B68109 /* SignInViewController.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		03C8F07B2A2C9E8900F6AF90 /* Form */ = {
@@ -756,6 +767,7 @@
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 				03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */,
 				036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */,
+				03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */,
 				03010CD82A35DAB300EF32D1 /* ConditionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

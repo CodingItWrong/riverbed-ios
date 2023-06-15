@@ -73,6 +73,16 @@ class BoardListViewController: UITableViewController,
                                        for: .valueChanged)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewController(
+            withIdentifier: String(describing: SignInViewController.self))
+
+//        present(loginVC, animated: true)
+    }
+
     // MARK: - data
 
     @objc func loadBoards() {

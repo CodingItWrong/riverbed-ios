@@ -631,6 +631,33 @@
             </objects>
             <point key="canvasLocation" x="-543" y="-257"/>
         </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="iMR-oP-X7s">
+            <objects>
+                <viewController storyboardIdentifier="SignInViewController" modalPresentationStyle="fullScreen" id="HVA-PA-HU7" customClass="SignInViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qHg-RZ-aSF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4zB-xj-QBS">
+                                <rect key="frame" x="169" y="127" width="76" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign in"/>
+                                <connections>
+                                    <action selector="signIn" destination="HVA-PA-HU7" eventType="touchUpInside" id="Rfe-SL-4dX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sBm-je-Cqs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="alF-dC-KLr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kav-WF-iFl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1907" y="-1015"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="SdV-Lv-FKT">
             <objects>
