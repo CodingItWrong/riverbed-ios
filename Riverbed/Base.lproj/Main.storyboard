@@ -249,7 +249,7 @@
                                     <rect key="frame" x="304" y="5" width="54" height="34"/>
                                     <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="wrench.adjustable" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="wrench" catalog="system"/>
                                     <connections>
                                         <action selector="toggleEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="uxc-QE-hoX"/>
                                     </connections>
@@ -776,7 +776,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.dashed" catalog="system" width="128" height="114"/>
         <image name="trash" catalog="system" width="117" height="128"/>
-        <image name="wrench.adjustable" catalog="system" width="128" height="124"/>
+        <image name="wrench" catalog="system" width="128" height="124"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
