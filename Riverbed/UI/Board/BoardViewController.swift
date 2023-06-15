@@ -42,24 +42,17 @@ class BoardViewController: UIViewController,
         didSet {
             if let board = board {
                 titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
+                splitViewController?.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+                let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
+                // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
+                titleButton.setImage(image, for: .normal)
+                titleButton.sizeToFit()
             } else {
                 titleButton.configuration?.title = "(choose or create a board)"
+                titleButton.setImage(nil, for: .normal)
             }
+
             navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
-
-            if board?.id != oldValue?.id {
-                // do not update tint or icon when saving updates to the current board
-                configureTint()
-                if let board = board {
-                    let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
-                    // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
-                    titleButton.setImage(image, for: .normal)
-                } else {
-                    titleButton.setImage(nil, for: .normal)
-                }
-            }
-            titleButton.sizeToFit()
-
             clearBoardData()
             loadBoardData()
         }
@@ -172,21 +165,6 @@ class BoardViewController: UIViewController,
     }
 
     // MARK: - layout and visuals
-
-    func configureTint() {
-        // do not run while VC is showing; issue on iPhone only where updating button tint breaks nav bar
-        print("BoardViewController.configureTint")
-        guard let board = board else { return }
-
-        let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-
-//        titleButton.tintColor = tintColor
-//        titleButton.setImage(titleButton.image(for: .normal)?.withTintColor(tintColor), for: .normal)
-
-        // global tint editing is not reliable
-        // iPad and Mac: affects all navigation bar elements (because a separate nav controller
-//        navigationController?.navigationBar.tintColor = tintColor
-    }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
