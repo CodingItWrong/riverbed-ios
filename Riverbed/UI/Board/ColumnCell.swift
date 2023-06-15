@@ -106,7 +106,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CardSummaryCell.self),
+                                                 for: indexPath)
 
         if let cell = cell as? CardSummaryCell {
             let card = card(for: indexPath)
