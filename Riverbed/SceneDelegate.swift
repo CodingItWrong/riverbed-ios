@@ -16,15 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new
         // (see `application:configurationForConnectingSceneSession` instead).
 
-//        guard let _ = (scene as? UIWindowScene) else { return }
-
-        guard let splitVC = window?.rootViewController as? UISplitViewController
-        else { fatalError("Expected a UISplitViewController") }
-        guard let leftNavController = splitVC.viewControllers.first as? UINavigationController
-        else { fatalError("Expected a UINavigationController") }
-        guard let rightNavController = splitVC.viewControllers.last as? UINavigationController
-        else { fatalError("Expected a UINavigationController") }
-
         guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
         else { fatalError("Expected a BoardListViewController") }
         guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
@@ -67,6 +58,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
         print("sceneWillEnterForeground")
+
+        guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
+        else { return } // dunno why this returns the wrong VC on iPhone on boot
+
+        boardVC.configureForForeground()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -74,6 +70,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
         print("sceneDidEnterBackground")
+    }
+
+    // MARK: - private helpers
+
+    var splitVC: UISplitViewController {
+        guard let splitVC = window?.rootViewController as? UISplitViewController
+        else { fatalError("Expected a UISplitViewController") }
+        return splitVC
+    }
+
+    var leftNavController: UINavigationController {
+        guard let leftNavController = splitVC.viewControllers.first as? UINavigationController
+        else { fatalError("Expected a UINavigationController") }
+        return leftNavController
+    }
+
+    var rightNavController: UINavigationController {
+        guard let rightNavController = splitVC.viewControllers.last as? UINavigationController
+        else { fatalError("Expected a UINavigationController") }
+        return rightNavController
     }
 
 }

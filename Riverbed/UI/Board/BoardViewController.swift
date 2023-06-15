@@ -96,6 +96,12 @@ class BoardViewController: UIViewController,
         delegate?.didDismiss(board: board)
     }
 
+    func configureForForeground() {
+        // title button is lost in background on iPad and we need to restore it here
+        navigationItem.titleView = nil
+        navigationItem.titleView = titleButton
+    }
+
     // MARK: - data management
 
     func clearBoardData() {
