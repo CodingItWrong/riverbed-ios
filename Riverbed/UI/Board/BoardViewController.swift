@@ -439,7 +439,7 @@ class BoardViewController: UIViewController,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        segue.destination.view.tintColor = view.tintColor
+        segue.destination.view.tintColor = splitViewController?.view.tintColor
 
         switch segue.identifier {
         case "showCardDetail":
