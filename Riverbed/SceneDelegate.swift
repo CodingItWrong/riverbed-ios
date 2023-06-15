@@ -16,6 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new
         // (see `application:configurationForConnectingSceneSession` instead).
 
+        print("session.stateRestorationActivity: \(String(describing: session.stateRestorationActivity))")
+
         guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
         else { fatalError("Expected a BoardListViewController") }
         guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
