@@ -15,13 +15,16 @@ class KeychainStore {
     static private let service = "app.riverbed.ios.keychain"
 
     func save(token: String, identifier: KeychainStore.Identifier, service: String = service) throws {
+        guard let tokenData = token.data(using: .utf8)
+        else { preconditionFailure("Could not convert string to data: \(token)") }
 
-        let attributes = [
+        let attributesDict = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
-            kSecAttrAccount: identifier,
-            kSecValueData: token
-        ] as CFDictionary
+            kSecAttrAccount: identifier.rawValue,
+            kSecValueData: tokenData
+        ] as [CFString: Any]
+        let attributes = attributesDict as CFDictionary
 
         let status = SecItemAdd(attributes, nil)
         guard status == errSecSuccess else {

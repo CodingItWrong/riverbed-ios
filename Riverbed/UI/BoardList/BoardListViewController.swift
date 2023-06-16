@@ -20,6 +20,7 @@ class BoardListViewController: UITableViewController,
 
     weak var delegate: BoardListDelegate?
 
+    var tokenSource: InMemoryTokenSource!
     var keychainStore: KeychainStore!
     var boardStore: BoardStore!
     var boards = [Board]()
@@ -69,35 +70,79 @@ class BoardListViewController: UITableViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadBoards()
         self.refreshControl?.addTarget(self,
                                        action: #selector(self.loadBoards),
                                        for: .valueChanged)
+
+        guard let menuButton = navigationItem.rightBarButtonItem else {
+            preconditionFailure("Expected a right bar button item")
+        }
+        menuButton.menu = UIMenu(children: [
+            UIAction(title: "Sign out") { _ in
+                self.signOut()
+                self.checkForSignInFormDisplay()
+            }
+        ])
+
+        loadAccessTokenFromKeychain()
+        loadBoards()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // TODO: this will rerun each time the VC shows
-//        do {
-//            try keychainStore.load(identifier: .accessToken)
-//        } catch {
-//            if let error = error as? KeychainStore.KeychainError {
-//                switch error {
-//                case .itemNotFound:
-//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let loginVC = storyboard.instantiateViewController(
-//                        withIdentifier: String(describing: SignInViewController.self))
-//                    present(loginVC, animated: true)
-//                case .duplicateItem:
-//                    preconditionFailure("Did not expect a duplicate item")
-//                case let .unexpectedStatus(status):
-//                    print("Unexpected status: \(status)")
-//                }
-//            } else {
-//                print("Error loading access token: \(String(describing: error))")
-//            }
-//        }
+        checkForSignInFormDisplay()
+    }
+
+    func signOut() {
+        do {
+            try keychainStore.delete(identifier: .accessToken)
+            tokenSource.accessToken = nil
+        } catch {
+            if let error = error as? KeychainStore.KeychainError {
+                switch error {
+                case .itemNotFound:
+                    preconditionFailure("No access token to delete")
+                case .duplicateItem:
+                    preconditionFailure("Did not expect a duplicate item")
+                case let .unexpectedStatus(status):
+                    print("Unexpected status: \(status)")
+                }
+            } else {
+                print("Error deleting access token: \(String(describing: error))")
+            }
+        }
+    }
+
+    func loadAccessTokenFromKeychain() {
+        do {
+            let accessToken = try keychainStore.load(identifier: .accessToken)
+            tokenSource.accessToken = accessToken
+        } catch {
+            if let error = error as? KeychainStore.KeychainError {
+                switch error {
+                case .itemNotFound:
+                    print("User not signed in")
+                case .duplicateItem:
+                    preconditionFailure("Did not expect a duplicate item")
+                case let .unexpectedStatus(status):
+                    print("Unexpected status: \(status)")
+                }
+            } else {
+                print("Error loading access token: \(String(describing: error))")
+            }
+        }
+    }
+
+    func checkForSignInFormDisplay() {
+        if tokenSource.accessToken == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let signInVC = storyboard.instantiateViewController(
+                withIdentifier: String(describing: SignInViewController.self)) as? SignInViewController
+            else { preconditionFailure("Expected a SignInViewController") }
+            signInVC.delegate = self
+            present(signInVC, animated: true)
+        }
     }
 
     // MARK: - data
@@ -221,6 +266,8 @@ class BoardListViewController: UITableViewController,
     func didReceive(accessToken: String) {
         do {
             try keychainStore.save(token: accessToken, identifier: .accessToken)
+            tokenSource.accessToken = accessToken
+            loadBoards()
         } catch {
             if let error = error as? KeychainStore.KeychainError {
                 switch error {

@@ -592,7 +592,15 @@
                             <outlet property="delegate" destination="Xbv-Bx-k48" id="ghd-SS-tms"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Boards" id="rxc-OO-zj3"/>
+                    <navigationItem key="navigationItem" title="My Boards" id="rxc-OO-zj3">
+                        <barButtonItem key="rightBarButtonItem" title="Menu" image="ellipsis" catalog="system" id="j1R-ml-ub0">
+                            <menu key="menu" title="Menu" id="qkU-1O-1Vw" userLabel="Menu">
+                                <children>
+                                    <command title="Sign Out" id="xIw-0O-vIV" userLabel="Sign Out"/>
+                                </children>
+                            </menu>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="D5Q-63-c09">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
