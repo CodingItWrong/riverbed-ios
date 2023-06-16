@@ -5,7 +5,8 @@ protocol BoardListDelegate: AnyObject {
 }
 
 class BoardListViewController: UITableViewController,
-                               BoardDelegate {
+                               BoardDelegate,
+                               SignInDelegate {
 
     class BoardGroup {
         var name: String
@@ -19,6 +20,7 @@ class BoardListViewController: UITableViewController,
 
     weak var delegate: BoardListDelegate?
 
+    var keychainStore: KeychainStore!
     var boardStore: BoardStore!
     var boards = [Board]()
 
@@ -76,11 +78,26 @@ class BoardListViewController: UITableViewController,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(
-            withIdentifier: String(describing: SignInViewController.self))
-
-//        present(loginVC, animated: true)
+        // TODO: this will rerun each time the VC shows
+//        do {
+//            try keychainStore.load(identifier: .accessToken)
+//        } catch {
+//            if let error = error as? KeychainStore.KeychainError {
+//                switch error {
+//                case .itemNotFound:
+//                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                    let loginVC = storyboard.instantiateViewController(
+//                        withIdentifier: String(describing: SignInViewController.self))
+//                    present(loginVC, animated: true)
+//                case .duplicateItem:
+//                    preconditionFailure("Did not expect a duplicate item")
+//                case let .unexpectedStatus(status):
+//                    print("Unexpected status: \(status)")
+//                }
+//            } else {
+//                print("Error loading access token: \(String(describing: error))")
+//            }
+//        }
     }
 
     // MARK: - data
@@ -199,6 +216,26 @@ class BoardListViewController: UITableViewController,
 
     func didDismiss(board: Board) {
         updateTint(for: nil)
+    }
+
+    func didReceive(accessToken: String) {
+        do {
+            try keychainStore.save(token: accessToken, identifier: .accessToken)
+        } catch {
+            if let error = error as? KeychainStore.KeychainError {
+                switch error {
+                case .itemNotFound:
+                    preconditionFailure("Did not expect an item not found error")
+                case .duplicateItem:
+                    preconditionFailure("Already have an access token stored")
+                case let .unexpectedStatus(status):
+                    print("Unexpected status: \(status)")
+                }
+            } else {
+                print("Error saving access token: \(String(describing: error))")
+            }
+
+        }
     }
 
 }

@@ -4,7 +4,7 @@ class BoardStore: BaseStore {
     func all(completion: @escaping (Result<[Board], Error>) -> Void) {
         let url = RiverbedAPI.boardsURL()
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<[Board], Error> = self.processResult((data, response, error))
@@ -20,7 +20,7 @@ class BoardStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let newBoard = NewBoard(attributes: Board.Attributes(options: Board.Options()))
 
@@ -49,7 +49,7 @@ class BoardStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let updatedBoard = Board(id: board.id, attributes: updatedAttributes)
 
@@ -75,7 +75,7 @@ class BoardStore: BaseStore {
         let url = RiverbedAPI.boardURL(board)
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<Void, Error> = self.processVoidResult((data, response, error))

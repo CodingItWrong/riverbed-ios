@@ -4,7 +4,7 @@ class ElementStore: BaseStore {
     func all(for board: Board, completion: @escaping (Result<[Element], Error>) -> Void) {
         let url = RiverbedAPI.elementsURL(for: board)
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<[Element], Error> = self.processResult((data, response, error))
@@ -22,7 +22,7 @@ class ElementStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let element = NewElement(
             attributes: Element.Attributes(elementType: elementType),
@@ -58,7 +58,7 @@ class ElementStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let updatedElement = Element(id: element.id, attributes: attributes)
 
@@ -99,7 +99,7 @@ class ElementStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         do {
             let encoder = JSONEncoder()
@@ -132,7 +132,7 @@ class ElementStore: BaseStore {
         let url = RiverbedAPI.elementURL(for: element)
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<Void, Error> = self.processVoidResult((data, response, error))

@@ -91,6 +91,10 @@
 		03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
 		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
 		03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF642A3BD10B00B68109 /* SignInViewController.swift */; };
+		03A3EF672A3BD37E00B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
+		03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF682A3BD9F200B68109 /* TokenSource.swift */; };
+		03A3EF6B2A3BDA1100B68109 /* InMemoryTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */; };
+		03A3EF6D2A3BDA3200B68109 /* HardCodedTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -220,6 +224,10 @@
 		03944AA02A1AAE0000639AC7 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
 		03A3EF642A3BD10B00B68109 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		03A3EF662A3BD37E00B68109 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		03A3EF682A3BD9F200B68109 /* TokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSource.swift; sourceTree = "<group>"; };
+		03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTokenSource.swift; sourceTree = "<group>"; };
+		03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedTokenSource.swift; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -396,11 +404,15 @@
 				0342FC7A2A17B70100CB8075 /* API */,
 				032F2C842A1AE7FD008208E9 /* Enums */,
 				0342FC6F2A1795F500CB8075 /* Models */,
+				03907BB22A29F7BC00203748 /* BaseStore.swift */,
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
 				038BBC2D2A1811C300BB2284 /* ElementStore.swift */,
-				03907BB22A29F7BC00203748 /* BaseStore.swift */,
+				03A3EF662A3BD37E00B68109 /* KeychainStore.swift */,
+				03A3EF682A3BD9F200B68109 /* TokenSource.swift */,
+				03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */,
+				03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -717,6 +729,7 @@
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
+				03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
@@ -753,6 +766,7 @@
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
+				03A3EF6B2A3BDA1100B68109 /* InMemoryTokenSource.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03010CCC2A34943500EF32D1 /* SummaryCell.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,
@@ -767,8 +781,10 @@
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 				03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */,
 				036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */,
+				03A3EF6D2A3BDA3200B68109 /* HardCodedTokenSource.swift in Sources */,
 				03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */,
 				03010CD82A35DAB300EF32D1 /* ConditionsViewController.swift in Sources */,
+				03A3EF672A3BD37E00B68109 /* KeychainStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

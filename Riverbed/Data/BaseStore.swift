@@ -3,6 +3,15 @@ import Foundation
 class BaseStore {
     let session = URLSession(configuration: .default)
 
+    private var tokenSource: TokenSource
+    var accessToken: String {
+        tokenSource.accessToken ?? "" // to avoid optional in string interpolation
+    }
+
+    init(tokenSource: TokenSource) {
+        self.tokenSource = tokenSource
+    }
+
     func processResult<T: Codable>(_ urlResult: (Data?, URLResponse?, Error?)) -> Result<T, Error> {
         let (data, response, error) = urlResult
 

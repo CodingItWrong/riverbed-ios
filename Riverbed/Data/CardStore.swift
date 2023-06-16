@@ -4,7 +4,7 @@ class CardStore: BaseStore {
     func all(for board: Board, completion: @escaping (Result<[Card], Error>) -> Void) {
         let url = RiverbedAPI.cardsURL(for: board)
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<[Card], Error> = self.processResult((data, response, error))
@@ -18,7 +18,7 @@ class CardStore: BaseStore {
     func find(_ cardId: String, completion: @escaping (Result<Card, Error>) -> Void) {
         let url = RiverbedAPI.cardURL(for: cardId)
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<Card, Error> = self.processResult((data, response, error))
@@ -58,7 +58,7 @@ class CardStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         do {
             let encoder = JSONEncoder()
@@ -84,7 +84,7 @@ class CardStore: BaseStore {
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let updatedCard = Card(id: card.id, attributes: Card.Attributes(fieldValues: fieldValues))
 
@@ -109,7 +109,7 @@ class CardStore: BaseStore {
         let url = RiverbedAPI.cardURL(for: card)
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
-        request.setValue("Bearer \(RiverbedAPI.accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
         let task = session.dataTask(with: request) { (data, response, error) in
             let result: Result<Void, Error> = self.processVoidResult((data, response, error))

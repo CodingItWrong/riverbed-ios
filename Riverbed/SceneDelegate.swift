@@ -23,15 +23,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
         else { fatalError("Expected a BoardViewController") }
 
-        let boardStore = BoardStore()
+        let keychainStore = KeychainStore()
+        let tokenSource = HardCodedTokenSource()
+        let boardStore = BoardStore(tokenSource: tokenSource)
 
+        boardListVC.keychainStore = keychainStore
         boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 
         boardVC.boardStore = boardStore
-        boardVC.cardStore = CardStore()
-        boardVC.columnStore = ColumnStore()
-        boardVC.elementStore = ElementStore()
+        boardVC.cardStore = CardStore(tokenSource: tokenSource)
+        boardVC.columnStore = ColumnStore(tokenSource: tokenSource)
+        boardVC.elementStore = ElementStore(tokenSource: tokenSource)
         boardVC.delegate = boardListVC
     }
 
