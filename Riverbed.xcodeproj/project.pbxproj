@@ -95,6 +95,7 @@
 		03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF682A3BD9F200B68109 /* TokenSource.swift */; };
 		03A3EF6B2A3BDA1100B68109 /* InMemoryTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */; };
 		03A3EF6D2A3BDA3200B68109 /* HardCodedTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */; };
+		03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -228,6 +229,7 @@
 		03A3EF682A3BD9F200B68109 /* TokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSource.swift; sourceTree = "<group>"; };
 		03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTokenSource.swift; sourceTree = "<group>"; };
 		03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardCodedTokenSource.swift; sourceTree = "<group>"; };
+		03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenSource.swift; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				03A3EF662A3BD37E00B68109 /* KeychainStore.swift */,
 				03A3EF682A3BD9F200B68109 /* TokenSource.swift */,
 				03A3EF6A2A3BDA1100B68109 /* InMemoryTokenSource.swift */,
+				03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */,
 				03A3EF6C2A3BDA3200B68109 /* HardCodedTokenSource.swift */,
 			);
 			path = Data;
@@ -730,6 +733,7 @@
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
 				03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */,
+				03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,

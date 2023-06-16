@@ -20,7 +20,7 @@ class BoardListViewController: UITableViewController,
 
     weak var delegate: BoardListDelegate?
 
-    var tokenSource: InMemoryTokenSource!
+    var tokenSource: WritableTokenSource!
     var keychainStore: KeychainStore!
     var boardStore: BoardStore!
     var boards = [Board]()
@@ -84,7 +84,6 @@ class BoardListViewController: UITableViewController,
             }
         ])
 
-        loadAccessTokenFromKeychain()
         loadBoards()
     }
 
@@ -95,43 +94,7 @@ class BoardListViewController: UITableViewController,
     }
 
     func signOut() {
-        do {
-            try keychainStore.delete(identifier: .accessToken)
-            tokenSource.accessToken = nil
-        } catch {
-            if let error = error as? KeychainStore.KeychainError {
-                switch error {
-                case .itemNotFound:
-                    preconditionFailure("No access token to delete")
-                case .duplicateItem:
-                    preconditionFailure("Did not expect a duplicate item")
-                case let .unexpectedStatus(status):
-                    print("Unexpected status: \(status)")
-                }
-            } else {
-                print("Error deleting access token: \(String(describing: error))")
-            }
-        }
-    }
-
-    func loadAccessTokenFromKeychain() {
-        do {
-            let accessToken = try keychainStore.load(identifier: .accessToken)
-            tokenSource.accessToken = accessToken
-        } catch {
-            if let error = error as? KeychainStore.KeychainError {
-                switch error {
-                case .itemNotFound:
-                    print("User not signed in")
-                case .duplicateItem:
-                    preconditionFailure("Did not expect a duplicate item")
-                case let .unexpectedStatus(status):
-                    print("Unexpected status: \(status)")
-                }
-            } else {
-                print("Error loading access token: \(String(describing: error))")
-            }
-        }
+        tokenSource.accessToken = nil
     }
 
     func checkForSignInFormDisplay() {
@@ -264,25 +227,8 @@ class BoardListViewController: UITableViewController,
     }
 
     func didReceive(accessToken: String) {
-        do {
-            try keychainStore.save(token: accessToken, identifier: .accessToken)
-            tokenSource.accessToken = accessToken
-            loadBoards()
-        } catch {
-            if let error = error as? KeychainStore.KeychainError {
-                switch error {
-                case .itemNotFound:
-                    preconditionFailure("Did not expect an item not found error")
-                case .duplicateItem:
-                    preconditionFailure("Already have an access token stored")
-                case let .unexpectedStatus(status):
-                    print("Unexpected status: \(status)")
-                }
-            } else {
-                print("Error saving access token: \(String(describing: error))")
-            }
-
-        }
+        tokenSource.accessToken = accessToken
+        loadBoards()
     }
 
 }
