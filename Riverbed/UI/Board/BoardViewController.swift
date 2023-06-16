@@ -109,6 +109,8 @@ class BoardViewController: UIViewController,
         columns = []
         elements = []
 
+        updateSortedColumns()
+
         columnsCollectionView.reloadData()
     }
 
