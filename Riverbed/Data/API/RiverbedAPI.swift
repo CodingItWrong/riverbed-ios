@@ -60,6 +60,10 @@ struct RiverbedAPI {
         url(elementPath(element))
     }
 
+    static func tokensURL() -> URL {
+        url(tokensPath())
+    }
+
     static func webhookURL() -> URL {
         url(webhookPath())
     }
@@ -112,6 +116,10 @@ struct RiverbedAPI {
 
     private static func elementsPath(_ board: Board) -> String {
         joinPathSegments(boardPath(board), "elements")
+    }
+
+    private static func tokensPath() -> String {
+        "/oauth/token"
     }
 
     private static func webhookPath() -> String {

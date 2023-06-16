@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let boardStore = BoardStore(tokenSource: tokenSource)
 
         boardListVC.tokenSource = tokenSource
-        boardListVC.keychainStore = keychainStore
+        boardListVC.tokenStore = TokenStore(tokenSource: tokenSource) // NOTE: tokenSource is unused here
         boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 

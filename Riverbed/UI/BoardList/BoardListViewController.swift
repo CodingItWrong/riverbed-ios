@@ -21,7 +21,7 @@ class BoardListViewController: UITableViewController,
     weak var delegate: BoardListDelegate?
 
     var tokenSource: WritableTokenSource!
-    var keychainStore: KeychainStore!
+    var tokenStore: TokenStore!
     var boardStore: BoardStore!
     var boards = [Board]()
 
@@ -104,6 +104,7 @@ class BoardListViewController: UITableViewController,
                 withIdentifier: String(describing: SignInViewController.self)) as? SignInViewController
             else { preconditionFailure("Expected a SignInViewController") }
             signInVC.delegate = self
+            signInVC.tokenStore = tokenStore
             present(signInVC, animated: true)
         }
     }

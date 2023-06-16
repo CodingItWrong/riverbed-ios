@@ -12,7 +12,8 @@ class BaseStore {
         self.tokenSource = tokenSource
     }
 
-    func processResult<T: Codable>(_ urlResult: (Data?, URLResponse?, Error?)) -> Result<T, Error> {
+    func processResult<T: Codable>(_ urlResult: (Data?, URLResponse?, Error?),
+                                   isRiverbedResponse: Bool = true) -> Result<T, Error> {
         let (data, response, error) = urlResult
 
         // error reported by URLSession
@@ -37,8 +38,13 @@ class BaseStore {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
-            return .success(cardsResponse.data)
+            if isRiverbedResponse {
+                let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
+                return .success(cardsResponse.data)
+            } else {
+                let cardsResponse = try decoder.decode(T.self, from: data)
+                return .success(cardsResponse)
+            }
         } catch {
             return .failure(error)
         }
