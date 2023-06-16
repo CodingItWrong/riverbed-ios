@@ -44,7 +44,6 @@ class TokenStore: BaseStore {
         do {
             let encoder = JSONEncoder()
             let requestBody = try encoder.encode(createTokenRequest)
-            print(jsonData: requestBody)
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
