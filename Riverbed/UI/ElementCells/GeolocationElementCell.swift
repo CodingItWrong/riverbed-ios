@@ -208,6 +208,8 @@ class GeolocationElementCell: UITableViewCell,
         let status = locationManager.authorizationStatus
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
+            print("Got authorized; now requesting location")
+            requestedLocation = true
             locationManager.requestLocation()
         case .notDetermined:
             print("Still getting 'not determined' status after a change")
