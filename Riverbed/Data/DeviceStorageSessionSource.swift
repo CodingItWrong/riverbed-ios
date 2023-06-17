@@ -1,7 +1,6 @@
 import Foundation
 
-// TODO: rename to SessionSource
-class KeychainTokenSource: WritableTokenSource {
+class DeviceStorageSessionSource: WritableSessionSource {
 
     private static let userIdKey = "RIVERBED_USER_ID"
 
@@ -31,16 +30,16 @@ class KeychainTokenSource: WritableTokenSource {
         didSet {
             if !isInitialized { return }
             if let userId = userId {
-                userDefaults.set(userId, forKey: KeychainTokenSource.userIdKey)
+                userDefaults.set(userId, forKey: DeviceStorageSessionSource.userIdKey)
             } else {
-                userDefaults.removeObject(forKey: KeychainTokenSource.userIdKey)
+                userDefaults.removeObject(forKey: DeviceStorageSessionSource.userIdKey)
             }
         }
     }
 
     private func loadFromStorage() {
         // user ID
-        userId = userDefaults.string(forKey: KeychainTokenSource.userIdKey)
+        userId = userDefaults.string(forKey: DeviceStorageSessionSource.userIdKey)
 
         // access token
         do {

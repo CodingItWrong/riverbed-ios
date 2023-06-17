@@ -20,7 +20,7 @@ class BoardListViewController: UITableViewController,
 
     weak var delegate: BoardListDelegate?
 
-    var tokenSource: WritableTokenSource!
+    var tokenSource: WritableSessionSource!
     var tokenStore: TokenStore!
     var boardStore: BoardStore!
     var userStore: UserStore!

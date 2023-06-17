@@ -1,11 +1,11 @@
 import Foundation
 
-protocol TokenSource {
+protocol SessionSource {
     var accessToken: String? { get }
     var userId: String? { get }
 }
 
-protocol WritableTokenSource: TokenSource {
+protocol WritableSessionSource: SessionSource {
     var accessToken: String? { get set }
     var userId: String? { get set }
 }

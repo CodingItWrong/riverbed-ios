@@ -95,8 +95,8 @@
 		03944AA32A1AAEDE00639AC7 /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
 		03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF642A3BD10B00B68109 /* SignInViewController.swift */; };
 		03A3EF672A3BD37E00B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
-		03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF682A3BD9F200B68109 /* TokenSource.swift */; };
-		03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */; };
+		03A3EF692A3BD9F200B68109 /* SessionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF682A3BD9F200B68109 /* SessionSource.swift */; };
+		03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */; };
 		03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF702A3C74F700B68109 /* TokenStore.swift */; };
 		03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
@@ -232,8 +232,8 @@
 		03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
 		03A3EF642A3BD10B00B68109 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		03A3EF662A3BD37E00B68109 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
-		03A3EF682A3BD9F200B68109 /* TokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSource.swift; sourceTree = "<group>"; };
-		03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenSource.swift; sourceTree = "<group>"; };
+		03A3EF682A3BD9F200B68109 /* SessionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSource.swift; sourceTree = "<group>"; };
+		03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStorageSessionSource.swift; sourceTree = "<group>"; };
 		03A3EF702A3C74F700B68109 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riverbed.entitlements; sourceTree = "<group>"; };
 		03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RiverbedShare.entitlements; sourceTree = "<group>"; };
@@ -420,10 +420,10 @@
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
+				03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */,
 				038BBC2D2A1811C300BB2284 /* ElementStore.swift */,
 				03A3EF662A3BD37E00B68109 /* KeychainStore.swift */,
-				03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */,
-				03A3EF682A3BD9F200B68109 /* TokenSource.swift */,
+				03A3EF682A3BD9F200B68109 /* SessionSource.swift */,
 				03A3EF702A3C74F700B68109 /* TokenStore.swift */,
 				031094112A3DC2910051B93F /* UserStore.swift */,
 			);
@@ -744,8 +744,8 @@
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
 				031094142A3DC3340051B93F /* User.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
-				03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */,
-				03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */,
+				03A3EF692A3BD9F200B68109 /* SessionSource.swift in Sources */,
+				03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,
 				03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */,

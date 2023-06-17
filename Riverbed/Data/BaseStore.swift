@@ -3,13 +3,13 @@ import Foundation
 class BaseStore {
     let session = URLSession(configuration: .default)
 
-    private var tokenSource: TokenSource
+    private var sessionSource: SessionSource
     var accessToken: String {
-        tokenSource.accessToken ?? "" // to avoid optional in string interpolation
+        sessionSource.accessToken ?? "" // to avoid optional in string interpolation
     }
 
-    init(tokenSource: TokenSource) {
-        self.tokenSource = tokenSource
+    init(sessionSource: SessionSource) {
+        self.sessionSource = sessionSource
     }
 
     func processResult<T: Codable>(_ urlResult: (Data?, URLResponse?, Error?),

@@ -22,7 +22,7 @@ class UserSettingsViewController: UITableViewController,
             tableView.reloadData()
         }
     }
-    var tokenSource: TokenSource!
+    var tokenSource: SessionSource!
     var userStore: UserStore!
 
     // MARK: - view lifecycle

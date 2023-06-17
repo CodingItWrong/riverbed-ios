@@ -25,19 +25,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let keychainStore = KeychainStore()
         let userDefaults = UserDefaults.standard
-        let tokenSource = KeychainTokenSource(keychainStore: keychainStore, userDefaults: userDefaults)
-        let boardStore = BoardStore(tokenSource: tokenSource)
+        let sessionSource = DeviceStorageSessionSource(keychainStore: keychainStore, userDefaults: userDefaults)
+        let boardStore = BoardStore(sessionSource: sessionSource)
 
-        boardListVC.tokenSource = tokenSource
-        boardListVC.tokenStore = TokenStore(tokenSource: tokenSource) // NOTE: tokenSource is unused here
-        boardListVC.userStore = UserStore(tokenSource: tokenSource)
+        boardListVC.tokenSource = sessionSource
+        boardListVC.tokenStore = TokenStore(sessionSource: sessionSource) // NOTE: tokenSource is unused here
+        boardListVC.userStore = UserStore(sessionSource: sessionSource)
         boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 
         boardVC.boardStore = boardStore
-        boardVC.cardStore = CardStore(tokenSource: tokenSource)
-        boardVC.columnStore = ColumnStore(tokenSource: tokenSource)
-        boardVC.elementStore = ElementStore(tokenSource: tokenSource)
+        boardVC.cardStore = CardStore(sessionSource: sessionSource)
+        boardVC.columnStore = ColumnStore(sessionSource: sessionSource)
+        boardVC.elementStore = ElementStore(sessionSource: sessionSource)
         boardVC.delegate = boardListVC
     }
 
