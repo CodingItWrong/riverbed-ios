@@ -605,6 +605,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
+                    <connections>
+                        <segue destination="4ra-aZ-yPm" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="Paq-gS-APQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUP-Vb-vlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -701,7 +704,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kav-WF-iFl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1907" y="-1015"/>
+            <point key="canvasLocation" x="1964" y="-1357"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SdV-Lv-FKT">
@@ -840,6 +843,49 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="6209" y="1884"/>
+        </scene>
+        <!--User Settings-->
+        <scene sceneID="bI4-oV-Nrd">
+            <objects>
+                <tableViewController id="4ra-aZ-yPm" customClass="UserSettingsViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="uTH-1L-nSh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="Oob-32-qfs" style="IBUITableViewCellStyleDefault" id="Olh-pq-jPM">
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Olh-pq-jPM" id="h9o-Jr-x8l">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oob-32-qfs">
+                                            <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4ra-aZ-yPm" id="Spv-G8-5tE"/>
+                            <outlet property="delegate" destination="4ra-aZ-yPm" id="UZw-c9-J7i"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User Settings" id="ENG-oe-PAp">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="09n-MX-Bd6">
+                            <connections>
+                                <action selector="addCondition:" destination="4ra-aZ-yPm" id="1h4-56-A7M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fSr-Ya-mHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1964" y="-656"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

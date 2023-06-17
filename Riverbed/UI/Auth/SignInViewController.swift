@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SignInDelegate: AnyObject {
-    func didReceive(accessToken: String)
+    func didReceive(tokenResponse: TokenStore.TokenResponse)
 }
 
 class SignInViewController: UIViewController {
@@ -16,9 +16,9 @@ class SignInViewController: UIViewController {
     @IBAction func signIn() {
         tokenStore.create(email: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result) in
             switch result {
-            case let .success(accessToken):
+            case let .success(tokenResponse):
                 guard let self = self else { return }
-                self.delegate?.didReceive(accessToken: accessToken)
+                self.delegate?.didReceive(tokenResponse: tokenResponse)
                 self.dismiss(animated: true)
             case let .failure(error):
                 print("Error signing in: \(error)")

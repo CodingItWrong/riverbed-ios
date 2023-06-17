@@ -24,11 +24,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         else { fatalError("Expected a BoardViewController") }
 
         let keychainStore = KeychainStore()
-        let tokenSource = KeychainTokenSource(keychainStore: keychainStore)
+        let userDefaults = UserDefaults.standard
+        let tokenSource = KeychainTokenSource(keychainStore: keychainStore, userDefaults: userDefaults)
         let boardStore = BoardStore(tokenSource: tokenSource)
 
         boardListVC.tokenSource = tokenSource
         boardListVC.tokenStore = TokenStore(tokenSource: tokenSource) // NOTE: tokenSource is unused here
+        boardListVC.userStore = UserStore(tokenSource: tokenSource)
         boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 

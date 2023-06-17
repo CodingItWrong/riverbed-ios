@@ -19,7 +19,7 @@ class TokenStore: BaseStore {
         }
     }
 
-    struct CreateTokenResponse: Codable {
+    struct TokenResponse: Codable {
         var accessToken: String
         var tokenType: String
         var createdAt: Int
@@ -33,7 +33,7 @@ class TokenStore: BaseStore {
         }
     }
 
-    func create(email: String, password: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func create(email: String, password: String, completion: @escaping (Result<TokenResponse, Error>) -> Void) {
         let url = RiverbedAPI.tokensURL()
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -47,14 +47,14 @@ class TokenStore: BaseStore {
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
-                let result: Result<CreateTokenResponse, Error> =
+                let result: Result<TokenResponse, Error> =
                     self.processResult((data, response, error), isRiverbedResponse: false)
                 OperationQueue.main.addOperation {
                     switch result {
                     case let .failure(error):
                         completion(.failure(error))
                     case let .success(response):
-                        completion(.success(response.accessToken))
+                        completion(.success(response))
                     }
                 }
             }

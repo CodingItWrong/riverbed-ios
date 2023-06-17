@@ -24,6 +24,9 @@
 		03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFE2A13DF9E0063EE24 /* Assets.xcassets */; };
 		03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
+		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
+		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
+		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
 		031189652A2A02A400334B63 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031189642A2A02A400334B63 /* QueryTests.swift */; };
 		0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C32A393A420079576C /* ActionsViewController.swift */; };
 		0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C52A39C4B80079576C /* EditActionViewController.swift */; };
@@ -172,6 +175,9 @@
 		03027E082A13DF9E0063EE24 /* RiverbedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
+		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
+		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		031189642A2A02A400334B63 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		0328D1C32A393A420079576C /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		0328D1C52A39C4B80079576C /* EditActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewController.swift; sourceTree = "<group>"; };
@@ -387,8 +393,8 @@
 			isa = PBXGroup;
 			children = (
 				03A3EF632A3BD10500B68109 /* Auth */,
-				03DC30492A23D85500ABC4CB /* BoardList */,
 				03944A892A195F5100639AC7 /* Board */,
+				03DC30492A23D85500ABC4CB /* BoardList */,
 				03944A8E2A195FE100639AC7 /* Card */,
 				03010CC42A3483F900EF32D1 /* Column */,
 				03010CDB2A362E2E00EF32D1 /* Conditions */,
@@ -399,6 +405,7 @@
 				034655032A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift */,
 				036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */,
 				03010CD12A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift */,
+				0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -412,12 +419,13 @@
 				03907BB22A29F7BC00203748 /* BaseStore.swift */,
 				0342FC6D2A17959F00CB8075 /* BoardStore.swift */,
 				0342FC812A17C2D300CB8075 /* CardStore.swift */,
-				03A3EF702A3C74F700B68109 /* TokenStore.swift */,
 				0342FC742A17B68200CB8075 /* ColumnStore.swift */,
 				038BBC2D2A1811C300BB2284 /* ElementStore.swift */,
 				03A3EF662A3BD37E00B68109 /* KeychainStore.swift */,
 				03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */,
 				03A3EF682A3BD9F200B68109 /* TokenSource.swift */,
+				03A3EF702A3C74F700B68109 /* TokenStore.swift */,
+				031094112A3DC2910051B93F /* UserStore.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -430,6 +438,7 @@
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 				032F2C872A1AEA17008208E9 /* Condition.swift */,
 				038BBC2F2A1811C900BB2284 /* Element.swift */,
+				031094132A3DC3340051B93F /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -733,6 +742,7 @@
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
+				031094142A3DC3340051B93F /* User.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
 				03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */,
 				03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */,
@@ -744,6 +754,7 @@
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
 				03010CDA2A362E2700EF32D1 /* EditConditionViewController.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
+				031094122A3DC2910051B93F /* UserStore.swift in Sources */,
 				03DC30462A23793800ABC4CB /* Command.swift in Sources */,
 				0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
@@ -765,6 +776,7 @@
 				03010CC62A34840900EF32D1 /* EditColumnViewController.swift in Sources */,
 				03D6688B2A1CBA8A00597D9E /* RiverbedSplitViewController.swift in Sources */,
 				0342FC802A17C24100CB8075 /* Card.swift in Sources */,
+				031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,

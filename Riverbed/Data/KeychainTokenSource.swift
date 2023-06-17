@@ -1,13 +1,18 @@
 import Foundation
 
+// TODO: rename to SessionSource
 class KeychainTokenSource: WritableTokenSource {
 
+    private static let userIdKey = "RIVERBED_USER_ID"
+
     private var keychainStore: KeychainStore
+    private var userDefaults: UserDefaults
     private var isInitialized = false
 
-    init(keychainStore: KeychainStore) {
+    init(keychainStore: KeychainStore, userDefaults: UserDefaults) {
         self.keychainStore = keychainStore
-        loadFromKeychain()
+        self.userDefaults = userDefaults
+        loadFromStorage()
         isInitialized = true
     }
 
@@ -22,7 +27,22 @@ class KeychainTokenSource: WritableTokenSource {
         }
     }
 
-    private func loadFromKeychain() {
+    var userId: String? {
+        didSet {
+            if !isInitialized { return }
+            if let userId = userId {
+                userDefaults.set(userId, forKey: KeychainTokenSource.userIdKey)
+            } else {
+                userDefaults.removeObject(forKey: KeychainTokenSource.userIdKey)
+            }
+        }
+    }
+
+    private func loadFromStorage() {
+        // user ID
+        userId = userDefaults.string(forKey: KeychainTokenSource.userIdKey)
+
+        // access token
         do {
             self.accessToken = try keychainStore.load(identifier: .accessToken)
         } catch {

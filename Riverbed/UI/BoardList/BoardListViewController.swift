@@ -23,6 +23,7 @@ class BoardListViewController: UITableViewController,
     var tokenSource: WritableTokenSource!
     var tokenStore: TokenStore!
     var boardStore: BoardStore!
+    var userStore: UserStore!
     var boards = [Board]()
 
     var boardGroups = [BoardGroup]()
@@ -78,6 +79,9 @@ class BoardListViewController: UITableViewController,
             preconditionFailure("Expected a right bar button item")
         }
         menuButton.menu = UIMenu(children: [
+            UIAction(title: "User settings") { _ in
+                self.showUserSettings()
+            },
             UIAction(title: "Sign out") { _ in
                 self.signOut()
                 self.checkForSignInFormDisplay()
@@ -170,6 +174,10 @@ class BoardListViewController: UITableViewController,
 
     // MARK: - actions
 
+    func showUserSettings() {
+        performSegue(withIdentifier: "settings", sender: nil)
+    }
+
     func goTo(_ board: Board) {
         updateTint(for: board)
         delegate?.didSelect(board: board)
@@ -227,9 +235,26 @@ class BoardListViewController: UITableViewController,
         updateTint(for: nil)
     }
 
-    func didReceive(accessToken: String) {
-        tokenSource.accessToken = accessToken
+    func didReceive(tokenResponse: TokenStore.TokenResponse) {
+        tokenSource.accessToken = tokenResponse.accessToken
+        tokenSource.userId = String(tokenResponse.userId)
         loadBoards()
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "settings":
+            guard let settingsVC = segue.destination as? UserSettingsViewController else {
+                preconditionFailure("Expected a UserSettingsViewController")
+            }
+            settingsVC.tokenSource = tokenSource
+            settingsVC.userStore = userStore
+            settingsVC.boards = boards
+        default:
+            preconditionFailure("Unexpected segue identifier: \(segue.identifier)")
+        }
     }
 
 }
