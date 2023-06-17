@@ -22,6 +22,8 @@ class BoardViewController: UIViewController,
     @IBOutlet var columnsCollectionView: UICollectionView!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
 
+    var isFirstLoadingBoard = true
+
     var boardStore: BoardStore!
     var cardStore: CardStore!
     var columnStore: ColumnStore!
@@ -108,6 +110,7 @@ class BoardViewController: UIViewController,
         cards = []
         columns = []
         elements = []
+        isFirstLoadingBoard = true
 
         updateSortedColumns()
 
@@ -128,6 +131,7 @@ class BoardViewController: UIViewController,
         func checkForLoadingDone() {
             let loadingDone = !areCardsLoading && !areColumnsLoading && !areElementsLoading
             if loadingDone {
+                isFirstLoadingBoard = false
                 if let refreshControl = refreshControl {
                     refreshControl.endRefreshing()
                 } else {
@@ -333,7 +337,11 @@ class BoardViewController: UIViewController,
     // MARK: - collection view data source and delegate
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        columns.count + (board == nil ? 0 : 1)
+        if isFirstLoadingBoard || board == nil {
+            return 0
+        } else {
+            return columns.count + 1
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView,
