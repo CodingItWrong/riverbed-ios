@@ -95,6 +95,7 @@
 		03A3EF692A3BD9F200B68109 /* TokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF682A3BD9F200B68109 /* TokenSource.swift */; };
 		03A3EF6F2A3C715600B68109 /* KeychainTokenSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */; };
 		03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF702A3C74F700B68109 /* TokenStore.swift */; };
+		03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* DynamicElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -228,6 +229,8 @@
 		03A3EF682A3BD9F200B68109 /* TokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSource.swift; sourceTree = "<group>"; };
 		03A3EF6E2A3C715600B68109 /* KeychainTokenSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTokenSource.swift; sourceTree = "<group>"; };
 		03A3EF702A3C74F700B68109 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riverbed.entitlements; sourceTree = "<group>"; };
+		03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RiverbedShare.entitlements; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -319,6 +322,7 @@
 		03027DF42A13DF9D0063EE24 /* Riverbed */ = {
 			isa = PBXGroup;
 			children = (
+				03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */,
 				03027DFB2A13DF9D0063EE24 /* Main.storyboard */,
 				03027DF52A13DF9D0063EE24 /* AppDelegate.swift */,
 				03944AA02A1AAE0000639AC7 /* DateUtils.swift */,
@@ -355,6 +359,7 @@
 		0328D1CC2A39D6F70079576C /* RiverbedShare */ = {
 			isa = PBXGroup;
 			children = (
+				03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */,
 				0328D1DC2A39DB0C0079576C /* Attachment.swift */,
 				0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */,
 				0328D1D22A39D6F70079576C /* Info.plist */,
@@ -829,6 +834,7 @@
 				0328D1E12A39DB0C0079576C /* AttachmentHandler.swift in Sources */,
 				0328D1F12A39DE970079576C /* Utils.swift in Sources */,
 				0328D1EA2A39DE470079576C /* Command.swift in Sources */,
+				03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1006,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
@@ -1031,6 +1038,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
@@ -1138,6 +1146,7 @@
 		0328D1D72A39D6F70079576C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
@@ -1164,6 +1173,7 @@
 		0328D1D82A39D6F70079576C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
