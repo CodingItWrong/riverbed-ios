@@ -27,12 +27,12 @@
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
+		031094162A3FC1120051B93F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094152A3FC1120051B93F /* ShareViewController.swift */; };
 		031189652A2A02A400334B63 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031189642A2A02A400334B63 /* QueryTests.swift */; };
 		0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C32A393A420079576C /* ActionsViewController.swift */; };
 		0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C52A39C4B80079576C /* EditActionViewController.swift */; };
 		0328D1D12A39D6F70079576C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0328D1CF2A39D6F70079576C /* MainInterface.storyboard */; };
 		0328D1D52A39D6F70079576C /* RiverbedShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0328D1CB2A39D6F70079576C /* RiverbedShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0328D1DF2A39DB0C0079576C /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DB2A39DB0C0079576C /* ShareViewController.swift */; };
 		0328D1E02A39DB0C0079576C /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DC2A39DB0C0079576C /* Attachment.swift */; };
 		0328D1E12A39DB0C0079576C /* AttachmentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */; };
 		0328D1E22A39DCC70079576C /* RiverbedAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */; };
@@ -178,13 +178,13 @@
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		031094152A3FC1120051B93F /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		031189642A2A02A400334B63 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		0328D1C32A393A420079576C /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		0328D1C52A39C4B80079576C /* EditActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewController.swift; sourceTree = "<group>"; };
 		0328D1CB2A39D6F70079576C /* RiverbedShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RiverbedShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		0328D1D02A39D6F70079576C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		0328D1D22A39D6F70079576C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0328D1DB2A39DB0C0079576C /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = ../../Hydrant/HydrantShare/ShareViewController.swift; sourceTree = "<group>"; };
 		0328D1DC2A39DB0C0079576C /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
 		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
@@ -370,7 +370,7 @@
 				0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */,
 				0328D1D22A39D6F70079576C /* Info.plist */,
 				0328D1CF2A39D6F70079576C /* MainInterface.storyboard */,
-				0328D1DB2A39DB0C0079576C /* ShareViewController.swift */,
+				031094152A3FC1120051B93F /* ShareViewController.swift */,
 			);
 			path = RiverbedShare;
 			sourceTree = "<group>";
@@ -829,6 +829,7 @@
 			files = (
 				0328D1E02A39DB0C0079576C /* Attachment.swift in Sources */,
 				0328D1E72A39DDFA0079576C /* Condition.swift in Sources */,
+				031094162A3FC1120051B93F /* ShareViewController.swift in Sources */,
 				0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */,
 				0328D1EE2A39DE540079576C /* Value.swift in Sources */,
 				0328D1E42A39DDEB0079576C /* Card.swift in Sources */,
@@ -838,7 +839,6 @@
 				0328D1E52A39DDED0079576C /* Column.swift in Sources */,
 				0328D1E32A39DDE80079576C /* Board.swift in Sources */,
 				0328D1EB2A39DE4D0079576C /* Query.swift in Sources */,
-				0328D1DF2A39DB0C0079576C /* ShareViewController.swift in Sources */,
 				0328D1E82A39DE360079576C /* Icon.swift in Sources */,
 				0328D1ED2A39DE510079576C /* TextSize.swift in Sources */,
 				0328D1EF2A39DE5C0079576C /* DateUtils.swift in Sources */,
