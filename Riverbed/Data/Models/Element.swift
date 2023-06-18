@@ -337,3 +337,9 @@ class NewElement: Codable {
         }
     }
 }
+
+extension Array<Element> {
+    var inDisplayOrder: [Element] {
+        sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+    }
+}

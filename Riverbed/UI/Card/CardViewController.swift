@@ -51,7 +51,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     var elementsToShow = [Element]()
 
     func updateSortedElements() {
-        sortedElements = elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+        sortedElements = elements.inDisplayOrder
         updateElementsToShow()
     }
 

@@ -12,7 +12,7 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
 
     var summaryElements: [Element] {
         let elements = elements?.filter { $0.attributes.showInSummary } ?? []
-        return elements.sorted(by: Element.areInIncreasingOrder(lhs:rhs:))
+        return elements.inDisplayOrder
     }
 
     func configureCardView() {
