@@ -248,50 +248,54 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Edit Button">
-                                    <rect key="frame" x="304" y="5" width="54" height="34"/>
-                                    <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="wrench" catalog="system"/>
-                                    <connections>
-                                        <action selector="toggleEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="uxc-QE-hoX"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
-                                    <rect key="frame" x="358" y="0.0" width="48" height="44"/>
-                                    <accessibility key="accessibilityConfiguration" label="Delete Card"/>
-                                    <color key="tintColor" systemColor="systemRedColor"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
-                                    <connections>
-                                        <action selector="deleteCard:" destination="6X2-2e-DlT" eventType="touchUpInside" id="lRx-rI-zt0"/>
-                                    </connections>
-                                </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-rV-DUI">
-                                    <rect key="frame" x="257" y="5" width="47" height="34"/>
-                                    <accessibility key="accessibilityConfiguration" label="Add Element"/>
-                                    <menu key="menu" id="bh6-0w-My0">
-                                        <children>
-                                            <command title="Add Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
-                                            <command title="Add Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
-                                            <command title="Add Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
-                                        </children>
-                                    </menu>
-                                    <state key="normal" image="plus" catalog="system"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
-                                </button>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQM-Pv-KD2">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cr-aJ-9eJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-rV-DUI">
+                                            <rect key="frame" x="240" y="0.0" width="0.0" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" label="Add Element"/>
+                                            <menu key="menu" id="bh6-0w-My0">
+                                                <children>
+                                                    <command title="Add Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
+                                                    <command title="Add Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
+                                                    <command title="Add Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
+                                                </children>
+                                            </menu>
+                                            <state key="normal" image="plus" catalog="system"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Edit Button">
+                                            <rect key="frame" x="240" y="0.0" width="126" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="wrench" catalog="system"/>
+                                            <connections>
+                                                <action selector="toggleEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="uxc-QE-hoX"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
+                                            <rect key="frame" x="366" y="0.0" width="48" height="44"/>
+                                            <accessibility key="accessibilityConfiguration" label="Delete Card"/>
+                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                            <connections>
+                                                <action selector="deleteCard:" destination="6X2-2e-DlT" eventType="touchUpInside" id="lRx-rI-zt0"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="leading" secondItem="wSu-gE-XFS" secondAttribute="trailing" id="6pd-Im-I5e"/>
-                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="centerY" secondItem="c9u-eZ-pbZ" secondAttribute="centerY" id="8nV-LB-jtK"/>
-                                <constraint firstItem="wSu-gE-XFS" firstAttribute="centerY" secondItem="0Ux-rV-DUI" secondAttribute="centerY" id="9fH-iH-agC"/>
-                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="top" secondItem="c9u-eZ-pbZ" secondAttribute="top" id="CTL-16-ohb"/>
-                                <constraint firstItem="wSu-gE-XFS" firstAttribute="leading" secondItem="0Ux-rV-DUI" secondAttribute="trailing" id="LNS-0C-zL4"/>
-                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="leading" secondItem="wSu-gE-XFS" secondAttribute="trailing" id="RT0-8B-A4R"/>
-                                <constraint firstItem="89r-lJ-Gxe" firstAttribute="centerY" secondItem="wSu-gE-XFS" secondAttribute="centerY" id="SJf-jD-OF4"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="89r-lJ-Gxe" secondAttribute="trailing" id="ULs-WE-8Gu"/>
-                                <constraint firstAttribute="bottom" secondItem="89r-lJ-Gxe" secondAttribute="bottom" id="o1e-cV-bG4"/>
+                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="top" secondItem="c9u-eZ-pbZ" secondAttribute="top" id="MRh-gZ-ogL"/>
+                                <constraint firstAttribute="bottom" secondItem="TQM-Pv-KD2" secondAttribute="bottom" id="TMd-WZ-55J"/>
+                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" id="VWJ-oW-F28"/>
+                                <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" id="YQz-uM-iVd"/>
                             </constraints>
                         </view>
                         <connections>

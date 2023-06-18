@@ -123,11 +123,13 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         if isEditing {
             setEditing(false, animated: true)
             addElementButton.isHidden = true
+            deleteButton.isHidden = false
             sender.setImage(UIImage(systemName: "wrench"), for: .normal)
             sender.accessibilityLabel = "Edit Elements"
         } else {
             setEditing(true, animated: true)
             addElementButton.isHidden = false
+            deleteButton.isHidden = true
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
             sender.accessibilityLabel = "Finish Editing Elements"
         }
