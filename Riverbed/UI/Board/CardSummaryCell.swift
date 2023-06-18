@@ -66,27 +66,30 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
                 return
             }
 
-            var labelText: String!
+            var labelText: String?
             let value = singularizeOptionality(card.attributes.fieldValues[element.id])
             if let value = value {
-                labelText = element.formatString(from: value) ?? ""
+                labelText = element.formatString(from: value)
             } else {
-                labelText = ""
+                labelText = nil
             }
 
             if let label = elementView as? UILabel {
                 label.text = labelText
             } else if let textView = elementView as? UITextView {
                 if case let .string(urlString) = value,
-                   let url = URL(string: urlString) {
+                   let url = URL(string: urlString),
+                   let labelText = labelText {
                     let textStyle =
                         element.attributes.options?.textSize?.textStyle ?? TextSize.defaultTextSize.textStyle
                     textView.attributedText = NSAttributedString(string: labelText, attributes: [
                         .font: UIFont.preferredFont(forTextStyle: textStyle),
                         .link: url // NOTE: using a text view as link clicking did not work in label
                     ])
+                    textView.isHidden = false
                 } else {
-                    textView.attributedText = NSAttributedString(string: "")
+                    textView.attributedText = nil
+                    textView.isHidden = true // so it doesn't take up vertical space
                 }
             }
         }
