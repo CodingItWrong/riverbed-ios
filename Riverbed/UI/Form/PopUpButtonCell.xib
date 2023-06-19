@@ -35,7 +35,7 @@
                             </children>
                         </menu>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                        <buttonConfiguration key="configuration" style="gray" title="Button"/>
                     </button>
                 </subviews>
                 <constraints>
