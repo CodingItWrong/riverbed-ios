@@ -25,6 +25,9 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olu-0v-O4k">
                         <rect key="frame" x="286" y="4" width="87" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="0rr-Ky-5hK"/>
+                        </constraints>
                         <menu key="menu" id="11C-kj-lEh">
                             <children>
                                 <command title="Item 1" id="NwC-fm-QO0"/>

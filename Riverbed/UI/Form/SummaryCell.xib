@@ -21,10 +21,10 @@
                         <rect key="frame" x="20" y="4" width="353" height="54"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYT-eI-SQ1">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="15.666666666666666"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="6"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgc-tR-8RB">
-                                        <rect key="frame" x="6" y="0.0" width="31" height="15.666666666666666"/>
+                                        <rect key="frame" x="6" y="0.0" width="31" height="6"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,10 +38,13 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-5i-3ZG" userLabel="Button Layout">
-                                <rect key="frame" x="0.0" y="19.666666666666668" width="353" height="34.333333333333329"/>
+                                <rect key="frame" x="0.0" y="10" width="353" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zoh-Vo-G9w">
-                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="eCG-jP-8Sr"/>
+                                        </constraints>
                                         <menu key="menu" id="lsQ-ti-3Vd">
                                             <children>
                                                 <command title="Item 1" id="ODV-Dn-jev"/>
@@ -52,7 +55,10 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Button"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lST-eD-Bid">
-                                        <rect key="frame" x="180.66666666666663" y="0.0" width="172.33333333333337" height="34.333333333333336"/>
+                                        <rect key="frame" x="180.66666666666663" y="0.0" width="172.33333333333337" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="ezh-ek-aoF"/>
+                                        </constraints>
                                         <menu key="menu" id="pNc-6v-QaO">
                                             <children>
                                                 <command title="Item 1" id="Qwe-iH-GBE"/>

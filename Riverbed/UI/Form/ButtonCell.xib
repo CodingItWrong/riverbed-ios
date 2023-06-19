@@ -20,10 +20,10 @@
                         <rect key="frame" x="20" y="4" width="353" height="65"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZO-2T-ENE">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="26.666666666666668"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="17"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hch-Ds-B6M">
-                                        <rect key="frame" x="6" y="0.0" width="347" height="26.666666666666668"/>
+                                        <rect key="frame" x="6" y="0.0" width="347" height="17"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,7 +38,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-6M-oQc">
-                                <rect key="frame" x="0.0" y="30.666666666666661" width="353" height="34.333333333333343"/>
+                                <rect key="frame" x="0.0" y="21" width="353" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="dws-GL-ybz"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button">
                                     <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
