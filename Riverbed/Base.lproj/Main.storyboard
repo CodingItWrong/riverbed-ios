@@ -32,7 +32,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="SQU-q4-32P" customClass="ColumnCell" customModule="Riverbed" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColumnCell" id="SQU-q4-32P" userLabel="Column Cell" customClass="ColumnCell" customModule="Riverbed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="-122" width="454" height="1014"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DyP-Tp-E0D">
@@ -116,6 +116,7 @@
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="2fa-fk-m1V"/>
                                                                             <constraint firstAttribute="bottomMargin" secondItem="YMW-MV-QbW" secondAttribute="bottom" constant="4" id="5YK-7O-8BF"/>
                                                                             <constraint firstItem="YMW-MV-QbW" firstAttribute="leading" secondItem="gU5-nK-X3N" secondAttribute="leadingMargin" constant="4" id="ZzF-Y5-D6c"/>
                                                                             <constraint firstItem="YMW-MV-QbW" firstAttribute="top" secondItem="gU5-nK-X3N" secondAttribute="topMargin" constant="4" id="pHo-5A-Fym"/>
@@ -164,7 +165,7 @@
                                             <outlet property="title" destination="d3b-ht-uh0" id="7y0-IA-9zx"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UICollectionViewCell" id="du6-vV-Mh4">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UICollectionViewCell" id="du6-vV-Mh4" userLabel="Add Cell">
                                         <rect key="frame" x="454" y="-122" width="454" height="1014"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
