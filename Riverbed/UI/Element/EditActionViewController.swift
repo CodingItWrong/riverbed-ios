@@ -84,7 +84,7 @@ class EditActionViewController: UITableViewController,
             let options = Command.allCases.map { (command) in
                 PopUpButtonCell.Option(title: command.label, value: command, isSelected: action.command == command)
             }
-            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: action.command == nil))
+            popUpButtonCell.configure(options: options.withEmptyOption(isSelected: action.command == nil))
             return popUpButtonCell
 
         case .field:
@@ -122,7 +122,7 @@ class EditActionViewController: UITableViewController,
                 let options = Value.allCases.map { (value) in
                     PopUpButtonCell.Option(title: value.label, value: value, isSelected: action.value == value.rawValue)
                 }
-                popUpButtonCell.configure(options: withEmptyOption(options, isSelected: action.value == nil))
+                popUpButtonCell.configure(options: options.withEmptyOption(isSelected: action.value == nil))
                 return popUpButtonCell
             }
         case .specificValue:
@@ -142,14 +142,7 @@ class EditActionViewController: UITableViewController,
             let isSelected = selectedField == field
             return PopUpButtonCell.Option(title: field.attributes.name ?? "", value: field, isSelected: isSelected)
         }
-        return withEmptyOption(options, isSelected: selectedField == nil)
-    }
-
-    private func withEmptyOption(_ options: [PopUpButtonCell.Option],
-                                 image: UIImage? = nil,
-                                 isSelected: Bool) -> [PopUpButtonCell.Option] {
-        let emptyOption = PopUpButtonCell.Option(title: "(none)", image: image, value: nil, isSelected: isSelected)
-        return [emptyOption] + options
+        return options.withEmptyOption(isSelected: selectedField == nil)
     }
 
     // MARK: - app-specific delegates

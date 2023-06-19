@@ -36,3 +36,11 @@ class PopUpButtonCell: UITableViewCell {
     }
 
 }
+
+extension Array<PopUpButtonCell.Option> {
+    func withEmptyOption(image: UIImage? = nil,
+                         isSelected: Bool) -> [PopUpButtonCell.Option] {
+        let emptyOption = PopUpButtonCell.Option(title: "(none)", image: image, value: nil, isSelected: isSelected)
+        return [emptyOption] + self
+    }
+}

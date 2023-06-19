@@ -94,7 +94,7 @@ class EditBoardViewController: UITableViewController,
                                        value: colorTheme,
                                        isSelected: colorTheme == attributes.colorTheme)
             }
-            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: attributes.colorTheme == nil))
+            popUpButtonCell.configure(options: options.withEmptyOption(isSelected: attributes.colorTheme == nil))
             return popUpButtonCell
 
         case .icon:
@@ -110,8 +110,8 @@ class EditBoardViewController: UITableViewController,
                                        value: icon,
                                        isSelected: icon == attributes.icon)
             }
-            popUpButtonCell.configure(
-                options: withEmptyOption(options, image: Icon.defaultBoardImage, isSelected: attributes.icon == nil))
+            popUpButtonCell.configure(options: options.withEmptyOption(image: Icon.defaultBoardImage,
+                                                                       isSelected: attributes.icon == nil))
             return popUpButtonCell
 
         case .cardCreateWebhook:
@@ -222,19 +222,12 @@ class EditBoardViewController: UITableViewController,
 
     // MARK: - helper methods
 
-    private func withEmptyOption(_ options: [PopUpButtonCell.Option],
-                                 image: UIImage? = nil,
-                                 isSelected: Bool) -> [PopUpButtonCell.Option] {
-        let emptyOption = PopUpButtonCell.Option(title: "(none)", image: image, value: nil, isSelected: isSelected)
-        return [emptyOption] + options
-    }
-
     private func fieldOptions(selecting selectedField: Element?) -> [PopUpButtonCell.Option] {
         let options = fields.map { (field) in
             let isSelected = selectedField == field
             return PopUpButtonCell.Option(title: field.attributes.name ?? "", value: field, isSelected: isSelected)
         }
-        return withEmptyOption(options, isSelected: selectedField == nil)
+        return options.withEmptyOption(isSelected: selectedField == nil)
     }
 
     private func ensureShare() {

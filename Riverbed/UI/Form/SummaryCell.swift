@@ -18,21 +18,29 @@ class SummaryCell: UITableViewCell {
         selectedFunction = summary?.function
         selectedField = fields.first { $0.id == summary?.field }
 
-        fieldButton.menu = UIMenu(children: fields.inDisplayOrder.map { (field) in
+        let emptyFieldAction = UIAction(
+            title: "(field)",
+            state: UIMenuElement.State.stateFor(isSelected: selectedField == nil)) { [weak self] _ in
+                guard let self = self else { return }
+                self.selectedField = nil
+                self.delegate?.valueDidChange(inFormCell: self)
+        }
+        let fieldActions = fields.inDisplayOrder.map { (field) in
             let state = UIMenuElement.State.stateFor(isSelected: field == selectedField)
             return UIAction(title: field.attributes.name ?? "(unnamed field)", state: state) { [weak self] _ in
                 guard let self = self else { return }
                 self.selectedField = field
                 self.delegate?.valueDidChange(inFormCell: self)
             }
-        })
+        }
+        fieldButton.menu = UIMenu(children: [emptyFieldAction] + fieldActions)
 
         let emptyFunctionAction = UIAction(
             title: "(function)",
             state: UIMenuElement.State.stateFor(isSelected: selectedFunction == nil)) { [weak self] _ in
-            guard let self = self else { return }
-            self.selectedFunction = nil
-            self.delegate?.valueDidChange(inFormCell: self)
+                guard let self = self else { return }
+                self.selectedFunction = nil
+                self.delegate?.valueDidChange(inFormCell: self)
         }
         let functionActions = SummaryFunction.allCases.map { (summaryFunction) in
             UIAction(

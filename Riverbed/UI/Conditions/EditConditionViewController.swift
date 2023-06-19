@@ -94,7 +94,7 @@ class EditConditionViewController: UITableViewController,
             let options = Query.allCases.map { (query) in
                 PopUpButtonCell.Option(title: query.label, value: query, isSelected: condition?.query == query)
             }
-            popUpButtonCell.configure(options: withEmptyOption(options, isSelected: condition?.query == nil))
+            popUpButtonCell.configure(options: options.withEmptyOption(isSelected: condition?.query == nil))
             return popUpButtonCell
 
         case .value:
@@ -129,14 +129,7 @@ class EditConditionViewController: UITableViewController,
             let isSelected = selectedField == field
             return PopUpButtonCell.Option(title: field.attributes.name ?? "", value: field, isSelected: isSelected)
         }
-        return withEmptyOption(options, isSelected: selectedField == nil)
-    }
-
-    private func withEmptyOption(_ options: [PopUpButtonCell.Option],
-                                 image: UIImage? = nil,
-                                 isSelected: Bool) -> [PopUpButtonCell.Option] {
-        let emptyOption = PopUpButtonCell.Option(title: "(none)", image: image, value: nil, isSelected: isSelected)
-        return [emptyOption] + options
+        return options.withEmptyOption(isSelected: selectedField == nil)
     }
 
     // MARK: - app-specific delegates

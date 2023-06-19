@@ -15,14 +15,21 @@ class SortByCell: UITableViewCell {
         selectedField = fields.first { $0.id == sortOrder?.field }
         selectedDirection = sortOrder?.direction
 
-        fieldButton.menu = UIMenu(children: fields.inDisplayOrder.map { (field) in
+        let emptyFieldOption = UIAction(title: "(field)",
+                                        state: UIMenuElement.State.stateFor(isSelected: isSelected)) { [weak self] _ in
+                 guard let self = self else { return }
+                 self.selectedField = nil
+                 self.delegate?.valueDidChange(inFormCell: self)
+             }
+        let fieldOptions = fields.inDisplayOrder.map { (field) in
             let state = UIMenuElement.State.stateFor(isSelected: field == selectedField)
             return UIAction(title: field.attributes.name ?? "(unnamed field)", state: state) { [weak self] _ in
                 guard let self = self else { return }
                 self.selectedField = field
                 self.delegate?.valueDidChange(inFormCell: self)
             }
-        })
+        }
+        fieldButton.menu = UIMenu(children: [emptyFieldOption] + fieldOptions)
 
         directionButton.menu = UIMenu(children: [
             UIAction(title: "(direction)",
@@ -47,5 +54,4 @@ class SortByCell: UITableViewCell {
             }
         ])
     }
-
 }
