@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-eu-MVd">
-                        <rect key="frame" x="26" y="4" width="347" height="36"/>
+                        <rect key="frame" x="26" y="4" width="347" height="74.333333333333329"/>
                         <subviews>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amb-mk-8uX" userLabel="Label Container">
-                                <rect key="frame" x="0.0" y="0.0" width="262" height="36"/>
+                                <rect key="frame" x="0.0" y="0.0" width="262" height="74.333333333333329"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzc-Tm-LKf">
-                                        <rect key="frame" x="0.0" y="0.0" width="262" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="262" height="74.333333333333329"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,7 +38,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBc-HZ-lIE">
-                                <rect key="frame" x="282" y="0.0" width="65" height="36"/>
+                                <rect key="frame" x="282" y="0.0" width="65" height="74.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="bxN-f5-F92"/>
+                                </constraints>
                                 <menu key="menu" id="U8x-QR-DVM">
                                     <children>
                                         <command title="Item 1" id="Cv1-SV-JCa"/>
