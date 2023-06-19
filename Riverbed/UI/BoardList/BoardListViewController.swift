@@ -253,7 +253,7 @@ class BoardListViewController: UITableViewController,
             settingsVC.userStore = userStore
             settingsVC.boards = boards
         default:
-            preconditionFailure("Unexpected segue identifier: \(segue.identifier)")
+            preconditionFailure("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
     }
 
