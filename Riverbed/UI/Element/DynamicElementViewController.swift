@@ -6,6 +6,7 @@ protocol ElementViewControllerDelegate: AnyObject {
 
 class DynamicElementViewController: UITableViewController,
                                     ActionsDelegate,
+                                    ChoicesDelegate,
                                     ConditionsDelegate,
                                     ElementCellDelegate,
                                     FormCellDelegate {
@@ -33,6 +34,7 @@ class DynamicElementViewController: UITableViewController,
     enum ElementRow: CaseIterable {
         case elementName
         case dataType
+        case choices
         case initialValue
         case concreteInitialValue
         case showLabelWhenReadOnly
@@ -41,17 +43,31 @@ class DynamicElementViewController: UITableViewController,
         case actions
         case showConditions
 
-        static func cases(for elementType: Element.ElementType) -> [ElementRow] {
+        static func cases(forElementType elementType: Element.ElementType,
+                          dataType: Element.DataType?) -> [ElementRow] {
             switch elementType {
             case .field:
-                return [.elementName,
-                        .dataType,
-                        .initialValue,
-                        .concreteInitialValue,
-                        .showLabelWhenReadOnly,
-                        .readOnly,
-                        .multipleLines,
-                        .showConditions]
+                switch dataType {
+                case .choice:
+                    return [.elementName,
+                            .dataType,
+                            .choices,
+                            .initialValue,
+                            .concreteInitialValue,
+                            .showLabelWhenReadOnly,
+                            .readOnly,
+                            .multipleLines,
+                            .showConditions]
+                default:
+                    return [.elementName,
+                            .dataType,
+                            .initialValue,
+                            .concreteInitialValue,
+                            .showLabelWhenReadOnly,
+                            .readOnly,
+                            .multipleLines,
+                            .showConditions]
+                }
             case .button:
                 return [.elementName,
                         .actions,
@@ -66,6 +82,7 @@ class DynamicElementViewController: UITableViewController,
             switch self {
             case .elementName: return "Field Name"
             case .dataType: return "Data Type"
+            case .choices: return "Choices"
             case .initialValue: return "Initial Value"
             case .concreteInitialValue: return "Initial Value"
             case .showLabelWhenReadOnly: return "Show Label When Read-Only"
@@ -145,7 +162,7 @@ class DynamicElementViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sectionCases[section] {
         case .element:
-            let num = ElementRow.cases(for: element.attributes.elementType).count
+            let num = elementRowCases.count
             print("number of rows: \(num)")
             return num
         case .summaryView: return SummaryViewRow.allCases.count
@@ -153,7 +170,7 @@ class DynamicElementViewController: UITableViewController,
     }
 
     private var elementRowCases: [ElementRow] {
-        ElementRow.cases(for: element.attributes.elementType)
+        ElementRow.cases(forElementType: element.attributes.elementType, dataType: element.attributes.dataType)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,12 +198,35 @@ class DynamicElementViewController: UITableViewController,
                 popUpButtonCell.label.text = rowEnum.label
                 popUpButtonCell.delegate = self
                 let dataTypes = Element.DataType.allCases.sorted { $0.label < $1.label }
-                popUpButtonCell.configure(options: dataTypes.map { (dataType) in
+                let dataTypeOptions = dataTypes.map { (dataType) in
                     PopUpButtonCell.Option(title: dataType.label,
                                            value: dataType,
-                                           isSelected: attributes.dataType == dataType) }
-                )
+                                           isSelected: attributes.dataType == dataType)
+                }
+                popUpButtonCell.configure(options:
+                                            dataTypeOptions.withEmptyOption(isSelected: attributes.dataType == nil))
                 cell = popUpButtonCell
+            case .choices:
+                guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: ButtonCell.self)) as? ButtonCell
+                else { preconditionFailure("Expected a ButtonCell") }
+
+                buttonCell.delegate = self
+                buttonCell.label.text = rowEnum.label
+                let choicesCount = attributes.options?.choices?.count ?? 0
+
+                let buttonTitle: String = {
+                    switch choicesCount {
+                    case 0:
+                        return "None"
+                    case 1:
+                        return "\(choicesCount) choice"
+                    default:
+                        return "\(choicesCount) choices"
+                    }
+                }()
+                buttonCell.button.setTitle(buttonTitle, for: .normal)
+                return buttonCell
             case .initialValue:
                 guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
                     withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
@@ -337,8 +377,9 @@ class DynamicElementViewController: UITableViewController,
         let sectionEnum = Section.cases(for: element.attributes.elementType)[indexPath.section]
         guard sectionEnum == .element else { preconditionFailure("Unexpected section \(indexPath.section)") }
 
-        let rowEnum = ElementRow.cases(for: element.attributes.elementType)[indexPath.row]
+        let rowEnum = elementRowCases[indexPath.row]
         switch rowEnum {
+        case .choices: performSegue(withIdentifier: "choices", sender: self)
         case .showConditions: performSegue(withIdentifier: "showConditions", sender: self)
         case .actions: performSegue(withIdentifier: "actions", sender: self)
         default: preconditionFailure("Unexpected row \(indexPath.row)")
@@ -363,6 +404,9 @@ class DynamicElementViewController: UITableViewController,
                 guard let dataType = popUpButtonCell.selectedValue as? Element.DataType
                 else { preconditionFailure("Expected an Element.DataType") }
                 attributes.dataType = dataType
+                tableView.reloadData() // in case of choice row added or removed
+            case .choices:
+                preconditionFailure("Unexpected valueDidChange for form cell choices")
             case .initialValue:
                 guard let popUpButtonCell = formCell as? PopUpButtonCell
                 else { preconditionFailure("Expected a PopUpButtonCell") }
@@ -426,11 +470,19 @@ class DynamicElementViewController: UITableViewController,
 
     func didUpdate(_ conditions: [Condition]) {
         attributes.showConditions = conditions
+        tableView.reloadData()
     }
 
     func didUpdate(_ actions: [Element.Action]) {
         ensureOptionsPresent()
         attributes.options?.actions = actions
+        tableView.reloadData()
+    }
+
+    func didUpdate(choices: [Element.Choice]) {
+        ensureOptionsPresent()
+        attributes.options?.choices = choices
+        tableView.reloadData()
     }
 
     // MARK: - private helpers
@@ -445,6 +497,14 @@ class DynamicElementViewController: UITableViewController,
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
+        case "choices":
+            guard let choicesVC = segue.destination as? ChoicesViewController else {
+                preconditionFailure("Expected a ChoicesViewController")
+            }
+
+            choicesVC.choices = attributes.options?.choices ?? []
+            choicesVC.delegate = self
+
         case "showConditions":
             guard let conditionsVC = segue.destination as? ConditionsViewController else {
                 preconditionFailure("Expected a ConditionsViewController")

@@ -301,7 +301,12 @@ class Element: Codable, Equatable {
 
     class Choice: Codable, Equatable {
         var id: String
-        var label: String
+        var label: String?
+
+        init(id: String = UUID().uuidString, label: String? = nil) {
+            self.id = id
+            self.label = label
+        }
 
         static func == (lhs: Element.Choice, rhs: Element.Choice) -> Bool {
             lhs.id == rhs.id

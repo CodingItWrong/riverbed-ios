@@ -28,6 +28,7 @@
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
 		031094162A3FC1120051B93F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094152A3FC1120051B93F /* ShareViewController.swift */; };
+		031094182A4083520051B93F /* ChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094172A4083520051B93F /* ChoicesViewController.swift */; };
 		031189652A2A02A400334B63 /* QueryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031189642A2A02A400334B63 /* QueryTests.swift */; };
 		0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C32A393A420079576C /* ActionsViewController.swift */; };
 		0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0328D1C52A39C4B80079576C /* EditActionViewController.swift */; };
@@ -179,6 +180,7 @@
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		031094152A3FC1120051B93F /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		031094172A4083520051B93F /* ChoicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoicesViewController.swift; sourceTree = "<group>"; };
 		031189642A2A02A400334B63 /* QueryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryTests.swift; sourceTree = "<group>"; };
 		0328D1C32A393A420079576C /* ActionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewController.swift; sourceTree = "<group>"; };
 		0328D1C52A39C4B80079576C /* EditActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewController.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				0328D1C32A393A420079576C /* ActionsViewController.swift */,
+				031094172A4083520051B93F /* ChoicesViewController.swift */,
 				03C8F07E2A2C9EFE00F6AF90 /* DynamicElementViewController.swift */,
 				0328D1C52A39C4B80079576C /* EditActionViewController.swift */,
 			);
@@ -765,6 +768,7 @@
 				032F2C862A1AE806008208E9 /* Query.swift in Sources */,
 				0342FC792A17B6D400CB8075 /* Utils.swift in Sources */,
 				03944A922A1960AD00639AC7 /* DateElementCell.swift in Sources */,
+				031094182A4083520051B93F /* ChoicesViewController.swift in Sources */,
 				03944A962A1976C400639AC7 /* ElementCell.swift in Sources */,
 				0346550C2A30AE6900F6AEEE /* EditBoardViewController.swift in Sources */,
 				03944A9B2A19860400639AC7 /* ButtonElementCell.swift in Sources */,

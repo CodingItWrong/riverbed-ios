@@ -499,6 +499,7 @@
                     <connections>
                         <segue destination="U7h-wc-2y0" kind="show" identifier="showConditions" id="En7-Rs-8j7"/>
                         <segue destination="BJE-bq-Q3N" kind="show" identifier="actions" id="usA-OV-bnJ"/>
+                        <segue destination="Aof-yE-CBg" kind="show" identifier="choices" id="kv5-xP-YxB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-be-HJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -891,6 +892,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSr-Ya-mHn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1964" y="-656"/>
+        </scene>
+        <!--Choices-->
+        <scene sceneID="2n2-3R-98Q">
+            <objects>
+                <tableViewController id="Aof-yE-CBg" customClass="ChoicesViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Zfs-GS-UwD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="wRu-bi-yZA" style="IBUITableViewCellStyleDefault" id="ozC-6Q-Ek1">
+                                <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ozC-6Q-Ek1" id="L8T-KO-73G">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wRu-bi-yZA">
+                                            <rect key="frame" x="20" y="0.0" width="334" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Aof-yE-CBg" id="MdS-OG-Tlr"/>
+                            <outlet property="delegate" destination="Aof-yE-CBg" id="Mk9-5U-hqQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choices" id="6JQ-rb-dzC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ggg-Y7-imd">
+                            <connections>
+                                <action selector="addChoice:" destination="Aof-yE-CBg" id="w9C-PP-fIX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agK-zd-8LY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5380" y="2587"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
