@@ -18,7 +18,7 @@ class SummaryCell: UITableViewCell {
         selectedFunction = summary?.function
         selectedField = fields.first { $0.id == summary?.field }
 
-        fieldButton.menu = UIMenu(children: fields.map { (field) in
+        fieldButton.menu = UIMenu(children: fields.inDisplayOrder.map { (field) in
             let state = UIMenuElement.State.stateFor(isSelected: field == selectedField)
             return UIAction(title: field.attributes.name ?? "(unnamed field)", state: state) { [weak self] _ in
                 guard let self = self else { return }

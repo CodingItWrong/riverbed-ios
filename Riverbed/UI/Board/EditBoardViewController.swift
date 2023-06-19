@@ -41,7 +41,7 @@ class EditBoardViewController: UITableViewController,
 
     var elements: [Element] = [] {
         didSet {
-            fields = elements.filter { $0.attributes.elementType == .field }
+            fields = elements.filter { $0.attributes.elementType == .field }.inDisplayOrder
         }
     }
     var fields: [Element] = []

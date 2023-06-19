@@ -38,7 +38,7 @@ class EditActionViewController: UITableViewController,
 
     var elements = [Element]()
     var fields: [Element] {
-        elements.filter { $0.attributes.elementType == .field }
+        elements.filter { $0.attributes.elementType == .field }.inDisplayOrder
     }
 
     // MARK: - VC lifecycle
