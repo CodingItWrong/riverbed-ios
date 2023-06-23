@@ -17,7 +17,7 @@ struct DateTimeUtils {
 
     private static let humanDateTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEE MMM d, YYYY h:mm:ss a"
+        formatter.dateFormat = "EEE MMM d, YYYY h:mm a"
         return formatter
     }()
 
