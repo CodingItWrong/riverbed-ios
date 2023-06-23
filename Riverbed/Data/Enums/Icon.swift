@@ -3,16 +3,16 @@ import UIKit
 enum Icon: String, Codable, CaseIterable {
     // TODO: rename keys to platform-agnostic conceptual
     case baseball
-    case bed = "bed-king-outline"
-    case book = "book-open-outline"
-    case chart = "chart-timeline"
-    case checkbox = "checkbox-outline"
+    case bed
+    case book
+    case chart
+    case checkbox
     case food
-    case gamepad = "gamepad-variant"
+    case gamepad
     case link
     case mapMarker = "map-marker"
     case medicalBag = "medical-bag"
-    case scaleBathroom = "scale-bathroom"
+    case scale
     case television
     case tree
 
@@ -28,7 +28,7 @@ enum Icon: String, Codable, CaseIterable {
         case .link: return "Link"
         case .mapMarker: return "Map Marker"
         case .medicalBag: return "Medical Bag"
-        case .scaleBathroom: return "Scale"
+        case .scale: return "Scale"
         case .television: return "Television"
         case .tree: return "Tree"
         }
@@ -47,7 +47,7 @@ enum Icon: String, Codable, CaseIterable {
         case .link: return UIImage(systemName: "link")
         case .mapMarker: return UIImage(systemName: "mappin.and.ellipse")
         case .medicalBag: return UIImage(systemName: "cross.case")
-        case .scaleBathroom: return UIImage(systemName: "scalemass")
+        case .scale: return UIImage(systemName: "scalemass")
         case .television: return UIImage(systemName: "play.tv")
         case .tree: return UIImage(systemName: "tree")
         }
