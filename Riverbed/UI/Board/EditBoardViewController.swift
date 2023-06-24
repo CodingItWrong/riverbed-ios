@@ -94,7 +94,8 @@ class EditBoardViewController: UITableViewController,
                                        value: colorTheme,
                                        isSelected: colorTheme == attributes.colorTheme)
             }
-            popUpButtonCell.configure(options: options.withEmptyOption(isSelected: attributes.colorTheme == nil))
+            popUpButtonCell.configure(options: options.withEmptyOption(title: "Default",
+                                                                       isSelected: attributes.colorTheme == nil))
             return popUpButtonCell
 
         case .icon:
