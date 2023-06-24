@@ -34,5 +34,9 @@ enum ColorTheme: String, Codable, CaseIterable {
         }
     }
 
-    static var defaultUIColor = UIColor.systemPurple
+    static var defaultUIColor = UIColor(red: 0.263,
+                                        green: 0.561,
+                                        blue: 0.561,
+                                        alpha: 1.0)
+
 }
