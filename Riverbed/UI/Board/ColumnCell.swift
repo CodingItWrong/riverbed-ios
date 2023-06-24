@@ -8,7 +8,10 @@ protocol ColumnCellDelegate: AnyObject {
     func delete(_ column: Column)
 }
 
-class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelegate {
+class ColumnCell: UICollectionViewCell,
+                  UIContextMenuInteractionDelegate,
+                  UITableViewDataSource,
+                  UITableViewDelegate {
     @IBOutlet var title: UILabel!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var columnMenuButton: UIButton!
@@ -97,6 +100,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         if let cell = cell as? CardSummaryCell {
             let card = card(for: indexPath)
             cell.configureData(card: card, elements: elements)
+            let interaction = UIContextMenuInteraction(delegate: self)
+            cell.cardView.addInteraction(interaction)
         }
 
         return cell
@@ -108,9 +113,13 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
     }
 
-    func tableView(_ tableView: UITableView,
-                   contextMenuConfigurationForRowAt indexPath: IndexPath,
-                   point: CGPoint) -> UIContextMenuConfiguration? {
+    // MARK: - context menu interaction delegate
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
+            preconditionFailure("Could not find an indexPath for point")
+        }
         let card = card(for: indexPath)
 
         return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath,
@@ -138,9 +147,9 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         })
     }
 
-    func tableView(_ tableView: UITableView,
-                   willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
-                   animator: UIContextMenuInteractionCommitAnimating) {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                animator: UIContextMenuInteractionCommitAnimating) {
         animator.preferredCommitStyle = .pop
         guard let cardVC = animator.previewViewController as? CardViewController else {
             preconditionFailure("Expected a CardViewController")
