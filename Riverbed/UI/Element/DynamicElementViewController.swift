@@ -80,7 +80,7 @@ class DynamicElementViewController: UITableViewController,
 
         var label: String {
             switch self {
-            case .elementName: return "Field Name"
+            case .elementName: preconditionFailure("Expected to use a dynamic label")
             case .dataType: return "Data Type"
             case .choices: return "Choices"
             case .initialValue: return "Initial Value"
@@ -186,7 +186,7 @@ class DynamicElementViewController: UITableViewController,
                 else { preconditionFailure("Expected a TextFieldCell") }
 
                 // TODO: maybe set these on a FormCell base class
-                textFieldCell.label.text = "\(element.attributes.elementType.label) Label"
+                textFieldCell.label.text = "\(element.attributes.elementType.label) Name"
                 textFieldCell.delegate = self
 
                 textFieldCell.textField.text = attributes.name
