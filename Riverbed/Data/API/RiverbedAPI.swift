@@ -9,8 +9,11 @@ struct RiverbedAPI {
         let data: T
     }
 
+#if targetEnvironment(simulator)
     private static let baseURL = URL(string: "http://localhost:3000/")
-//    private static let baseURL = URL(string: "https://api.riverbed.app/")
+#else
+    private static let baseURL = URL(string: "https://api.riverbed.app/")
+#endif
 
     static func boardsURL() -> URL {
         url(boardsPath())
