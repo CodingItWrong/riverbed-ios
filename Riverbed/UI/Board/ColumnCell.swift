@@ -141,6 +141,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView,
                    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionCommitAnimating) {
+        animator.preferredCommitStyle = .pop
         guard let cardVC = animator.previewViewController as? CardViewController else {
             preconditionFailure("Expected a CardViewController")
         }
