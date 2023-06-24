@@ -14,7 +14,10 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
 
     weak var delegate: ColumnCellDelegate?
 
+    weak var storyboard: UIStoryboard? // TODO: not sure if this should be passed in here
+    var board: Board!
     var cardStore: CardStore!
+    var elementStore: ElementStore!
 
     var column: Column? {
         didSet {
@@ -111,7 +114,21 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         let identifier = "card-menu-\(card.id)" as NSCopying
 
         return UIContextMenuConfiguration(identifier: identifier,
-                                          previewProvider: nil,
+                                          previewProvider: {
+            guard let cardVC = self.storyboard?.instantiateViewController(
+                identifier: String(describing: CardViewController.self)) as? CardViewController else {
+                return nil
+            }
+
+            cardVC.view.tintColor = self.tintColor // TODO: might need this explicitly passed
+
+            cardVC.board = self.board
+            cardVC.elements = self.elements
+            cardVC.elementStore = self.elementStore
+            cardVC.cardStore = self.cardStore // TODO: setter order dependency unfortunate
+            cardVC.card = card
+            return cardVC
+        },
                                           actionProvider: { _ in
             return UIMenu(children: [
                 UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in

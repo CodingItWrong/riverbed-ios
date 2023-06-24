@@ -415,7 +415,10 @@ class BoardViewController: UIViewController,
 
         let column = sortedColumns[indexPath.row]
 
+        cell.storyboard = storyboard
+        cell.board = board
         cell.cardStore = cardStore
+        cell.elementStore = elementStore
         cell.column = column
         cell.elements = elements
         cell.cards = cards
