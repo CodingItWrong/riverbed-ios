@@ -44,7 +44,10 @@ class ShareViewController: SLComposeServiceViewController {
     }
 
     private func postWebhook(bodyDict: [String: String?], completion: @escaping () -> Void) {
-        guard let accessToken = try? keychainStore.load(identifier: .accessToken) else {
+        var accessToken: String!
+        do {
+            accessToken = try keychainStore.load(identifier: .accessToken)
+        } catch {
             self.alert(message: "Error loading access token", completion: completion)
             return
         }
@@ -62,7 +65,7 @@ class ShareViewController: SLComposeServiceViewController {
             return
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(accessToken!)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "POST"
         request.httpBody = bodyData
 

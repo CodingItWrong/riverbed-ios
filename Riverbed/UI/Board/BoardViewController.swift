@@ -291,6 +291,16 @@ class BoardViewController: UIViewController,
         performSegue(withIdentifier: "showCardDetail", sender: card)
     }
 
+    func getPreview(forCard card: Card) -> CardViewController {
+        guard let cardVC = self.storyboard?.instantiateViewController(
+            identifier: String(describing: CardViewController.self)) as? CardViewController else {
+            preconditionFailure("Expected a VC with identifier \(String(describing: CardViewController.self))")
+        }
+        prepare(cardViewController: cardVC, with: card)
+        cardVC.view.tintColor = view.tintColor
+        return cardVC
+    }
+
     func didSelect(preview viewController: CardViewController) {
         present(viewController, animated: false)
     }
@@ -419,10 +429,7 @@ class BoardViewController: UIViewController,
 
         let column = sortedColumns[indexPath.row]
 
-        cell.storyboard = storyboard
-        cell.board = board
         cell.cardStore = cardStore
-        cell.elementStore = elementStore
         cell.column = column
         cell.elements = elements
         cell.cards = cards
@@ -491,12 +498,7 @@ class BoardViewController: UIViewController,
                 preconditionFailure("Expected Card")
             }
 
-            cardVC.delegate = self
-            cardVC.board = board
-            cardVC.elements = elements
-            cardVC.elementStore = elementStore
-            cardVC.cardStore = cardStore // TODO: setter order dependency unfortunate
-            cardVC.card = card
+            prepare(cardViewController: cardVC, with: card)
 
         case "editBoard":
             guard let editBoardVC = segue.destination as? EditBoardViewController else {
@@ -525,6 +527,15 @@ class BoardViewController: UIViewController,
         default:
             preconditionFailure("Unexpected segue")
         }
+    }
+
+    func prepare(cardViewController: CardViewController, with card: Card) {
+        cardViewController.delegate = self
+        cardViewController.board = board
+        cardViewController.elements = elements
+        cardViewController.elementStore = elementStore
+        cardViewController.cardStore = cardStore // TODO: setter order dependency unfortunate
+        cardViewController.card = card
     }
 
 }

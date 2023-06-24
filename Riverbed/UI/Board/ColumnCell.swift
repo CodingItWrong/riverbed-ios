@@ -2,6 +2,7 @@ import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
     func didSelect(_ card: Card)
+    func getPreview(forCard card: Card) -> CardViewController
     func didSelect(preview viewController: CardViewController)
     func delete(_ card: Card)
     func edit(_ column: Column)
@@ -18,10 +19,7 @@ class ColumnCell: UICollectionViewCell,
 
     weak var delegate: ColumnCellDelegate?
 
-    weak var storyboard: UIStoryboard? // TODO: not sure if this should be passed in here
-    var board: Board!
     var cardStore: CardStore!
-    var elementStore: ElementStore!
 
     var column: Column? {
         didSet {
@@ -117,6 +115,9 @@ class ColumnCell: UICollectionViewCell,
 
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
                                 configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        guard let delegate = delegate else {
+            preconditionFailure("Expected a delegate")
+        }
         guard let indexPath = tableView.indexPathForRow(at: location) else {
             preconditionFailure("Could not find an indexPath for point")
         }
@@ -124,23 +125,13 @@ class ColumnCell: UICollectionViewCell,
 
         return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath,
                                           previewProvider: {
-            guard let cardVC = self.storyboard?.instantiateViewController(
-                identifier: String(describing: CardViewController.self)) as? CardViewController else {
-                return nil
-            }
 
-            cardVC.view.tintColor = self.tintColor // TODO: might need this explicitly passed
-
-            cardVC.board = self.board
-            cardVC.elements = self.elements
-            cardVC.elementStore = self.elementStore
-            cardVC.cardStore = self.cardStore // TODO: setter order dependency unfortunate
-            cardVC.card = card
-            return cardVC
+            return delegate.getPreview(forCard: card)
         },
                                           actionProvider: { _ in
             return UIMenu(children: [
                 UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+                    // deleted the wrong card! did it preview the wrong one too?
                     self?.delegate?.delete(card)
                 }
             ])
