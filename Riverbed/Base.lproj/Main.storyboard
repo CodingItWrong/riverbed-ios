@@ -173,7 +173,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
-                                                    <rect key="frame" x="158.66666666666666" y="8" width="136.99999999999997" height="34.333333333333336"/>
+                                                    <rect key="frame" x="159" y="8" width="136.5" height="34.5"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
                                                         <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
@@ -668,8 +668,21 @@
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PXY-Sy-Pge">
                                 <rect key="frame" x="20" y="90" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="Fqp-hM-am1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Fqp-hM-am1"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="Fqp-hM-am1"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2u-t1-6sk">
                                 <rect key="frame" x="20" y="132" width="374" height="34"/>
@@ -686,11 +699,11 @@
                         <viewLayoutGuide key="safeArea" id="sBm-je-Cqs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4zB-xj-QBS" firstAttribute="trailing" secondItem="PXY-Sy-Pge" secondAttribute="trailing" id="5Vo-Nx-x2e"/>
                             <constraint firstItem="xqW-a5-A4t" firstAttribute="top" secondItem="sBm-je-Cqs" secondAttribute="top" id="6vM-z2-WgA"/>
                             <constraint firstItem="sBm-je-Cqs" firstAttribute="trailing" secondItem="PXY-Sy-Pge" secondAttribute="trailing" constant="20" id="96t-KW-HJ1"/>
                             <constraint firstItem="PXY-Sy-Pge" firstAttribute="top" secondItem="xqW-a5-A4t" secondAttribute="bottom" constant="8" id="Ac3-0h-pCt"/>
                             <constraint firstItem="z2u-t1-6sk" firstAttribute="top" secondItem="PXY-Sy-Pge" secondAttribute="bottom" constant="8" id="Im8-mi-QaF"/>
+                            <constraint firstItem="PXY-Sy-Pge" firstAttribute="centerX" secondItem="qHg-RZ-aSF" secondAttribute="centerX" id="MBl-HB-Emv"/>
                             <constraint firstItem="z2u-t1-6sk" firstAttribute="leading" secondItem="PXY-Sy-Pge" secondAttribute="leading" id="Omo-En-Tiu"/>
                             <constraint firstItem="z2u-t1-6sk" firstAttribute="trailing" secondItem="PXY-Sy-Pge" secondAttribute="trailing" id="WsX-ki-XeO"/>
                             <constraint firstItem="4zB-xj-QBS" firstAttribute="top" secondItem="z2u-t1-6sk" secondAttribute="bottom" constant="8" id="XLp-GR-BEc"/>
@@ -701,6 +714,18 @@
                             <constraint firstItem="PXY-Sy-Pge" firstAttribute="centerX" secondItem="qHg-RZ-aSF" secondAttribute="centerX" id="soA-iQ-6gY"/>
                             <constraint firstItem="xqW-a5-A4t" firstAttribute="centerX" secondItem="qHg-RZ-aSF" secondAttribute="centerX" id="t4a-hB-CVE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MBl-HB-Emv"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="96t-KW-HJ1"/>
+                                <include reference="MBl-HB-Emv"/>
+                                <exclude reference="cgd-ef-WgR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="alF-dC-KLr"/>
                     <connections>
