@@ -8,6 +8,7 @@ enum ColorTheme: String, Codable, CaseIterable {
     case cyan
     case blue
     case pink
+    case purple
 
     var label: String {
         switch self {
@@ -18,6 +19,7 @@ enum ColorTheme: String, Codable, CaseIterable {
         case .cyan: return "Cyan"
         case .blue: return "Blue"
         case .pink: return "Pink"
+        case .purple: return "Purple"
         }
     }
 
@@ -31,6 +33,7 @@ enum ColorTheme: String, Codable, CaseIterable {
         case .cyan: return UIColor.systemCyan
         case .blue: return UIColor.systemBlue
         case .pink: return UIColor.systemPink
+        case .purple: return UIColor.systemPurple
         }
     }
 
