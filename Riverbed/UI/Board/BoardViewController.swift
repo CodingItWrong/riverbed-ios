@@ -3,7 +3,6 @@ import UIKit
 protocol BoardDelegate: AnyObject {
     func didUpdate(board: Board)
     func didDelete(board: Board)
-    func didDismiss(board: Board)
 }
 
 class BoardViewController: UIViewController,
@@ -44,11 +43,14 @@ class BoardViewController: UIViewController,
         didSet {
             if let board = board {
                 titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
-                splitViewController?.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
                 let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
                 // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
                 titleButton.setImage(image, for: .normal)
                 titleButton.sizeToFit()
+
+                // when a board is set (including edited),
+                // set the whole split view controller's tint color to the board's
+                updateSplitViewTintColorForBoard()
             } else {
                 titleButton.configuration?.title = "(choose or create a board)"
                 titleButton.setImage(nil, for: .normal)
@@ -88,14 +90,16 @@ class BoardViewController: UIViewController,
         titleButton.menu = menu
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // needed here as the splitViewController is not available at the start of the segue
+        updateSplitViewTintColorForBoard()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         clearBoardData()
-
-        guard let board = board else { return }
-
-        // hass to be *before* the main view shows, for the button color change to show
-        delegate?.didDismiss(board: board)
     }
 
     func configureForForeground() {
@@ -193,6 +197,13 @@ class BoardViewController: UIViewController,
         let isPagingEnabled = self.traitCollection.horizontalSizeClass == .compact
 //        print("configureForCurrentSizeClass, isPagingEnabled = \(isPagingEnabled)")
         columnsCollectionView.isPagingEnabled = isPagingEnabled
+    }
+
+    func updateSplitViewTintColorForBoard() {
+        guard let board = board,
+              let splitViewController = splitViewController else { return }
+
+        splitViewController.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
     }
 
     // MARK: - actions
@@ -433,6 +444,7 @@ class BoardViewController: UIViewController,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
+        // when opening a modal, set its tint color to the parent split view controller's
         segue.destination.view.tintColor = splitViewController?.view.tintColor
 
         switch segue.identifier {

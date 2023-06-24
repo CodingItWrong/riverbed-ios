@@ -62,11 +62,6 @@ class BoardListViewController: UITableViewController,
         self.tableView.reloadData()
     }
 
-    func updateTint(for board: Board?) {
-        let tintColor = board?.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-        splitViewController?.view.tintColor = tintColor // THIS SEEMS KEY
-    }
-
     // MARK: - view lifecylce
 
     override func viewDidLoad() {
@@ -179,7 +174,6 @@ class BoardListViewController: UITableViewController,
     }
 
     func goTo(_ board: Board) {
-        updateTint(for: board)
         delegate?.didSelect(board: board)
         splitViewController?.show(.secondary)
     }
@@ -229,10 +223,6 @@ class BoardListViewController: UITableViewController,
     func didDelete(board: Board) {
         splitViewController?.show(.primary) // for views where it isn't always shown: iPhone and iPad portrait
         loadBoards()
-    }
-
-    func didDismiss(board: Board) {
-        updateTint(for: nil)
     }
 
     func didReceive(tokenResponse: TokenStore.TokenResponse) {
