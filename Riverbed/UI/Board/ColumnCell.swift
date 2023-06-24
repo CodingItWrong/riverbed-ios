@@ -2,6 +2,7 @@ import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
     func didSelect(_ card: Card)
+    func didSelect(preview viewController: CardViewController)
     func delete(_ card: Card)
     func edit(_ column: Column)
     func delete(_ column: Column)
@@ -111,9 +112,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
         let card = card(for: indexPath)
-        let identifier = "card-menu-\(card.id)" as NSCopying
 
-        return UIContextMenuConfiguration(identifier: identifier,
+        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath,
                                           previewProvider: {
             guard let cardVC = self.storyboard?.instantiateViewController(
                 identifier: String(describing: CardViewController.self)) as? CardViewController else {
@@ -136,6 +136,17 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
                 }
             ])
         })
+    }
+
+    func tableView(_ tableView: UITableView,
+                   willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                   animator: UIContextMenuInteractionCommitAnimating) {
+        guard let cardVC = animator.previewViewController as? CardViewController else {
+            preconditionFailure("Expected a CardViewController")
+        }
+        animator.addCompletion {
+            self.delegate?.didSelect(preview: cardVC)
+        }
     }
 
     // MARK: - private helpers

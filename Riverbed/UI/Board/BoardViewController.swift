@@ -291,6 +291,10 @@ class BoardViewController: UIViewController,
         performSegue(withIdentifier: "showCardDetail", sender: card)
     }
 
+    func didSelect(preview viewController: CardViewController) {
+        present(viewController, animated: false)
+    }
+
     func didUpdate(_ card: Card) {
         // Could consider only reloading the cards
         loadBoardData()
