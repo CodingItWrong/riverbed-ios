@@ -2,6 +2,7 @@ import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
     func didSelect(_ card: Card)
+    func delete(_ card: Card)
     func edit(_ column: Column)
     func delete(_ column: Column)
 }
@@ -12,6 +13,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
     @IBOutlet var columnMenuButton: UIButton!
 
     weak var delegate: ColumnCellDelegate?
+
+    var cardStore: CardStore!
 
     var column: Column? {
         didSet {
@@ -57,6 +60,8 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         tableView.reloadData()
     }
 
+    // MARK: - table view data source and delegate
+
     func numberOfSections(in tableView: UITableView) -> Int {
         cardGroups.count
     }
@@ -79,6 +84,47 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         }
 
         return groupField.formatString(from: groupValue)
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CardSummaryCell.self),
+                                                 for: indexPath)
+
+        if let cell = cell as? CardSummaryCell {
+            let card = card(for: indexPath)
+            cell.configureData(card: card, elements: elements)
+        }
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let card = card(for: indexPath)
+        delegate?.didSelect(card)
+        tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
+    }
+
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        let card = card(for: indexPath)
+        let identifier = "card-menu-\(card.id)" as NSCopying
+
+        return UIContextMenuConfiguration(identifier: identifier,
+                                          previewProvider: nil,
+                                          actionProvider: { _ in
+            return UIMenu(children: [
+                UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+                    self?.delegate?.delete(card)
+                }
+            ])
+        })
+    }
+
+    // MARK: - private helpers
+
+    private func card(for indexPath: IndexPath) -> Card {
+        cardGroups[indexPath.section].cards[indexPath.row]
     }
 
     private func calculate(summary: Column.Summary?) -> String? {
@@ -105,27 +151,7 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CardSummaryCell.self),
-                                                 for: indexPath)
-
-        if let cell = cell as? CardSummaryCell {
-            let card = card(for: indexPath)
-            cell.configureData(card: card, elements: elements)
-        }
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let card = card(for: indexPath)
-        delegate?.didSelect(card)
-        tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
-    }
-
-    private func card(for indexPath: IndexPath) -> Card {
-        cardGroups[indexPath.section].cards[indexPath.row]
-    }
+    // MARK: - actions
 
     @IBAction func showColumnSettings(_ sender: Any?) {
         guard let delegate = delegate,
@@ -138,4 +164,5 @@ class ColumnCell: UICollectionViewCell, UITableViewDataSource, UITableViewDelega
               let column = column else { return }
         delegate.delete(column)
     }
+
 }

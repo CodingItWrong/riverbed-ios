@@ -334,6 +334,33 @@ class BoardViewController: UIViewController,
         present(alert, animated: true)
     }
 
+    func delete(_ card: Card) {
+        let alert = UIAlertController(title: "Delete?",
+                                      message: "Are you sure you want to delete this card?",
+                                      preferredStyle: .alert)
+
+        let deleteAction = UIAlertAction(title: "Delete",
+                                         style: .destructive) {[weak self] _ in
+               guard let self = self else { return }
+
+               cardStore.delete(card) { [weak self] (result) in
+                   switch result {
+                   case .success:
+                       self?.loadBoardData()
+                   case let .failure(error):
+                       print("Error deleting card: \(String(describing: error))")
+                   }
+               }
+           }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = deleteAction
+
+        present(alert, animated: true)
+    }
+
     func didUpdate(_ board: Board) {
         self.board = board
         delegate?.didUpdate(board: board) // propagate the change
@@ -388,6 +415,7 @@ class BoardViewController: UIViewController,
 
         let column = sortedColumns[indexPath.row]
 
+        cell.cardStore = cardStore
         cell.column = column
         cell.elements = elements
         cell.cards = cards
