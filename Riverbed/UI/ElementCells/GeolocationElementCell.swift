@@ -94,8 +94,7 @@ class GeolocationElementCell: UITableViewCell,
         updateLocationButtonEnabledness()
         updateDirectionButtonEnabledness()
 
-        mapView.isZoomEnabled = isEnabled
-        mapView.isScrollEnabled = isEnabled
+        mapView.isUserInteractionEnabled = isEnabled
     }
 
     func textFieldDidChangeSelection(_ textField: UITextField) {

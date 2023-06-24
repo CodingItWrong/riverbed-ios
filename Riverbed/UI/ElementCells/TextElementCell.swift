@@ -68,8 +68,11 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        valueTextField.isEnabled = !editing
-        valueTextView.isEditable = !editing // because editing the list of elements, not editing their values
+
+        let isEnabled = !editing // because editing the list of elements, not editing their values
+        valueTextField.isEnabled = isEnabled
+        valueTextView.isEditable = isEnabled
+        valueTextView.isUserInteractionEnabled = isEnabled
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
