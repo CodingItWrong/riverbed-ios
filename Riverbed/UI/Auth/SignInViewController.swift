@@ -13,6 +13,12 @@ class SignInViewController: UIViewController {
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.tintColor = ColorTheme.defaultUIColor
+    }
+
     @IBAction func signIn() {
         tokenStore.create(email: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result) in
             switch result {

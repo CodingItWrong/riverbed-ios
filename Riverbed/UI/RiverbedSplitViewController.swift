@@ -6,6 +6,8 @@ class RiverbedSplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.tintColor = ColorTheme.defaultUIColor
     }
 
     override func viewDidAppear(_ animated: Bool) {
