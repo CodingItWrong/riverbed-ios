@@ -89,9 +89,11 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        let isCardChanged = fieldValues != card.attributes.fieldValues
+
         if isCardDeleted {
             delegate?.didDelete(card)
-        } else {
+        } else if isCardChanged {
             print("saving card with values \(String(describing: fieldValues))")
 
             // capture card and delegate to attempt to make it less likely that delegate won't be called
@@ -173,7 +175,12 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
 
     func update(value: FieldValue?, for element: Element) {
 //        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
-        fieldValues[element.id] = value
+
+        // avoid creating a new instance if not needed, to preserve value equality
+        if fieldValues[element.id] != value {
+            fieldValues[element.id] = value
+        }
+
         recomputeTableCellSizes()
     }
 
