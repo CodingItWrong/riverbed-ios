@@ -222,7 +222,7 @@ class BoardViewController: UIViewController,
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
-                self?.didSelect(card)
+                self?.didSelect(card: card)
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
             }
@@ -287,7 +287,7 @@ class BoardViewController: UIViewController,
         self.board = board
     }
 
-    func didSelect(_ card: Card) {
+    func didSelect(card: Card) {
         performSegue(withIdentifier: "showCardDetail", sender: card)
     }
 
@@ -348,7 +348,7 @@ class BoardViewController: UIViewController,
         present(alert, animated: true)
     }
 
-    func delete(_ card: Card) {
+    func delete(card: Card) {
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)

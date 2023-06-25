@@ -1,16 +1,15 @@
 import UIKit
 
 protocol ColumnCellDelegate: AnyObject {
-    func didSelect(_ card: Card)
+    func didSelect(card: Card)
     func getPreview(forCard card: Card) -> CardViewController
     func didSelect(preview viewController: CardViewController)
-    func delete(_ card: Card)
+    func delete(card: Card)
     func edit(_ column: Column)
     func delete(_ column: Column)
 }
 
 class ColumnCell: UICollectionViewCell,
-                  UIContextMenuInteractionDelegate,
                   UITableViewDataSource,
                   UITableViewDelegate {
     @IBOutlet var title: UILabel!
@@ -98,8 +97,7 @@ class ColumnCell: UICollectionViewCell,
         if let cell = cell as? CardSummaryCell {
             let card = card(for: indexPath)
             cell.configureData(card: card, elements: elements)
-            let interaction = UIContextMenuInteraction(delegate: self)
-            cell.cardView.addInteraction(interaction)
+            cell.delegate = delegate // forward the delegate so cell can call directly through to it
         }
 
         return cell
@@ -107,47 +105,8 @@ class ColumnCell: UICollectionViewCell,
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let card = card(for: indexPath)
-        delegate?.didSelect(card)
+        delegate?.didSelect(card: card)
         tableView.deselectRow(at: indexPath, animated: true) // TODO: may not need if we change it to tap the card
-    }
-
-    // MARK: - context menu interaction delegate
-
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        guard let delegate = delegate else {
-            preconditionFailure("Expected a delegate")
-        }
-        guard let indexPath = tableView.indexPathForRow(at: location) else {
-            preconditionFailure("Could not find an indexPath for point")
-        }
-        let card = card(for: indexPath)
-
-        return UIContextMenuConfiguration(identifier: indexPath as NSIndexPath,
-                                          previewProvider: {
-
-            return delegate.getPreview(forCard: card)
-        },
-                                          actionProvider: { _ in
-            return UIMenu(children: [
-                UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
-                    // deleted the wrong card! did it preview the wrong one too?
-                    self?.delegate?.delete(card)
-                }
-            ])
-        })
-    }
-
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-                                willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
-                                animator: UIContextMenuInteractionCommitAnimating) {
-        animator.preferredCommitStyle = .pop
-        guard let cardVC = animator.previewViewController as? CardViewController else {
-            preconditionFailure("Expected a CardViewController")
-        }
-        animator.addCompletion {
-            self.delegate?.didSelect(preview: cardVC)
-        }
     }
 
     // MARK: - private helpers
