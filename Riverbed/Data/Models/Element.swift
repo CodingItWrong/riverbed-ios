@@ -154,8 +154,12 @@ class Element: Codable, Equatable {
         var readOnly: Bool
         var initialValue: Value?
 
-        init(elementType: Element.ElementType) {
+        init(elementType: Element.ElementType,
+             dataType: Element.DataType? = nil,
+             options: Element.Options? = nil) {
             self.elementType = elementType
+            self.dataType = dataType
+            self.options = options
             self.showInSummary = false
             self.readOnly = false
         }
@@ -196,6 +200,26 @@ class Element: Codable, Equatable {
         var abbreviateURLs: Bool?
         var linkURLs: Bool?
 
+        init(multiline: Bool? = nil,
+             showLabelWhenReadOnly: Bool? = nil,
+             choices: [Element.Choice]? = nil,
+             items: [Element.Item]? = nil,
+             actions: [Element.Action]? = nil,
+             initialSpecificValue: FieldValue? = nil,
+             textSize: TextSize? = nil,
+             abbreviateURLs: Bool? = nil,
+             linkURLs: Bool? = nil) {
+            self.multiline = multiline
+            self.showLabelWhenReadOnly = showLabelWhenReadOnly
+            self.choices = choices
+            self.items = items
+            self.actions = actions
+            self.initialSpecificValue = initialSpecificValue
+            self.textSize = textSize
+            self.abbreviateURLs = abbreviateURLs
+            self.linkURLs = linkURLs
+        }
+
         enum CodingKeys: String, CodingKey {
             case multiline
             case showLabelWhenReadOnly = "show-label-when-read-only"
@@ -215,6 +239,14 @@ class Element: Codable, Equatable {
 
         // TODO: handle the fact that the "value" field here is used in two different ways for the different commands
         var value: String?
+
+        init(command: Command? = nil,
+             field: String? = nil,
+             value: String? = nil) {
+            self.command = command
+            self.field = field
+            self.value = value
+        }
 
         func call(elements: [Element], fieldValues: [String: FieldValue?]) -> [String: FieldValue?] {
             switch command {
