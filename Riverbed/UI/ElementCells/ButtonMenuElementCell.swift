@@ -25,12 +25,13 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
         guard let delegate,
               let actions = item.actions else { return }
 
-        var fieldValues = delegate.fieldValues // get the latest at the time it executes
+        let fieldValues = delegate.fieldValues // get the latest at the time it executes
 
-        actions.forEach { (action) in
-            fieldValues = action.call(elements: allElements, fieldValues: fieldValues)
-        }
-        delegate.update(values: fieldValues, dismiss: true)
+        let updatedFieldValues = apply(actions: actions,
+                                       to: fieldValues,
+                                       elements: allElements)
+
+        delegate.update(values: updatedFieldValues, dismiss: true)
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

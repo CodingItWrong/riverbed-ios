@@ -17,16 +17,16 @@ class ButtonElementCell: UITableViewCell, ElementCell {
     }
 
     @IBAction func clickButton(_ sender: UIButton) {
-        guard let delegate else { return }
+        guard let delegate = delegate,
+        let actions = buttonElement.attributes.options?.actions else { return }
 
-        var fieldValues = delegate.fieldValues // get the latest at the time it executes
-        print("tapped button \(String(describing: sender.titleLabel?.text)), " +
-              "fieldValues \(String(describing: fieldValues))")
+        let fieldValues = delegate.fieldValues // get the latest at the time it executes
 
-        buttonElement.attributes.options?.actions?.forEach { (action) in
-            fieldValues = action.call(elements: allElements, fieldValues: fieldValues)
-        }
-        delegate.update(values: fieldValues, dismiss: true)
+        let updatedFieldValues = apply(actions: actions,
+                                       to: fieldValues,
+                                       elements: allElements)
+
+        delegate.update(values: updatedFieldValues, dismiss: true)
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

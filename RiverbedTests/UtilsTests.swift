@@ -4,23 +4,48 @@ import XCTest
 final class UtilsTests: XCTestCase {
     let dictionary: [String: String?] = ["A": "B", "C": nil]
 
-    func test_singularizeOptionality_withAValue_returnsTheValue() {
-        let input: String?? = dictionary["A"]
-        let expectedOutput: String? = "B"
-        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    // MARK: - apply(actions:to:elements:)
+
+    func test_applyActionsToElements_withNoActions_returnsFieldValuesUnchanged() {
+        let actions: [Element.Action] = []
+        let fieldValues: [String: FieldValue?] = ["A": .string("B"), "C": .dictionary(["D": "E"]), "F": nil]
+        let elements = [Element]()
+        let result = apply(actions: actions, to: fieldValues, elements: elements)
+        XCTAssertEqual(result, fieldValues)
     }
 
-    func test_singularizeOptionality_withSingleOptional_returnsNil() {
-        let input: String?? = dictionary["C"] // single optional
-        let expectedOutput: String? = nil
-        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    func test_applyActionsToElements_withOneActions_appliesTheActionToTheFieldValues() {
+        let actions = [Element.Action(command: .setValue, field: "A", value: Value.specificValue.rawValue)]
+        let fieldValues: [String: FieldValue?] = ["A": .string("B")]
+        let elements = [
+            Element(id: "A", attributes: Element.Attributes(
+                elementType: .field,
+                dataType: .text,
+                options: Element.Options(initialSpecificValue: .string("C"))
+            ))
+        ]
+        let result = apply(actions: actions, to: fieldValues, elements: elements)
+        XCTAssertEqual(result, ["A": .string("C")])
     }
 
-    func test_singularizeOptionality_withDoubleOptional_returnsNil() {
-        let input: String?? = dictionary["D"] // double optional, like, no optional found
-        let expectedOutput: String? = nil
-        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    func test_applyActionsToElements_withMultipleActions_appliesTheActionsInOrder() {
+        let actions = [
+            Element.Action(command: .setValue, field: "A", value: Value.specificValue.rawValue),
+            Element.Action(command: .setValue, field: "A", value: Value.empty.rawValue)
+        ]
+        let fieldValues: [String: FieldValue?] = ["A": .string("B")]
+        let elements = [
+            Element(id: "A", attributes: Element.Attributes(
+                elementType: .field,
+                dataType: .text,
+                options: Element.Options(initialSpecificValue: .string("C"))
+            ))
+        ] // element has to exist; test the opposite
+        let result = apply(actions: actions, to: fieldValues, elements: elements)
+        XCTAssertEqual(result, ["A": nil])
     }
+
+    // MARK: - domain(for:)
 
     func test_domainFor_invalidUrl_shouldReturnStringUnchanged() {
         let result = domain(for: "nonurl")
@@ -46,4 +71,25 @@ final class UtilsTests: XCTestCase {
         let result = domain(for: "https://www.codingitwrong.com/books")
         XCTAssertEqual(result, "codingitwrong.com")
     }
+
+    // MARK: - singularizeOptionality()
+
+    func test_singularizeOptionality_withAValue_returnsTheValue() {
+        let input: String?? = dictionary["A"]
+        let expectedOutput: String? = "B"
+        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    }
+
+    func test_singularizeOptionality_withSingleOptional_returnsNil() {
+        let input: String?? = dictionary["C"] // single optional
+        let expectedOutput: String? = nil
+        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    }
+
+    func test_singularizeOptionality_withDoubleOptional_returnsNil() {
+        let input: String?? = dictionary["D"] // double optional, like, no optional found
+        let expectedOutput: String? = nil
+        XCTAssertEqual(singularizeOptionality(input), expectedOutput)
+    }
+
 }
