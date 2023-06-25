@@ -18,15 +18,14 @@ class KeychainStore {
         guard let tokenData = token.data(using: .utf8)
         else { preconditionFailure("Could not convert string to data: \(token)") }
 
-        let attributesDict = [
+        let attributes = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: identifier.rawValue,
             kSecValueData: tokenData
-        ] as [CFString: Any]
-        let attributes = attributesDict as CFDictionary
+        ] as [String: Any]
 
-        let status = SecItemAdd(attributes, nil)
+        let status = SecItemAdd(attributes as CFDictionary, nil)
         guard status == errSecSuccess else {
             if status == errSecDuplicateItem {
                 throw KeychainError.duplicateItem
@@ -42,10 +41,10 @@ class KeychainStore {
             kSecAttrAccount: identifier.rawValue,
             kSecMatchLimit: kSecMatchLimitOne,
             kSecReturnData: true
-        ] as CFDictionary
+        ] as [String: Any]
 
         var result: AnyObject?
-        let status = SecItemCopyMatching(query, &result)
+        let status = SecItemCopyMatching(query as CFDictionary, &result)
 
         guard status == errSecSuccess else {
             if status == errSecItemNotFound {
@@ -68,9 +67,9 @@ class KeychainStore {
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: identifier.rawValue
-        ] as CFDictionary
+        ] as [String: Any]
 
-        let status = SecItemDelete(query)
+        let status = SecItemDelete(query as CFDictionary)
         guard status == errSecSuccess || status == errSecItemNotFound else {
             throw KeychainError.unexpectedStatus(status)
         }
