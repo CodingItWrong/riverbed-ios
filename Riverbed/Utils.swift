@@ -61,6 +61,16 @@ func checkConditions(fieldValues: [String: FieldValue?],
     }
 }
 
+func apply(actions: [Element.Action],
+           to fieldValues: [String: FieldValue?],
+           elements: [Element]) -> [String: FieldValue?] {
+    var newFieldValues = fieldValues
+    actions.forEach { (action) in
+        newFieldValues = action.call(elements: elements, fieldValues: newFieldValues)
+    }
+    return newFieldValues
+}
+
 func domain(for urlString: String) -> String? {
     guard let url = URL(string: urlString),
           let hostName = getHostName(for: url) else { return urlString }

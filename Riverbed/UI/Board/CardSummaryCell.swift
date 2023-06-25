@@ -166,26 +166,21 @@ class CardSummaryCell: UITableViewCell,
                         switch element.attributes.elementType {
                         case .button:
                             return UIAction(title: element.attributes.name ?? "(unnamed button)") { _ in
-
-                                // TODO: remove duplication with ButtonElementCell
-
-                                var fieldValues = card.attributes.fieldValues
-                                element.attributes.options?.actions?.forEach { (action) in
-                                    fieldValues = action.call(elements: elements, fieldValues: fieldValues)
-                                }
-                                self.delegate?.update(card: card, with: fieldValues)
+                                guard let actions = element.attributes.options?.actions else { return }
+                                let updatedFieldValues = apply(actions: actions,
+                                                               to: card.attributes.fieldValues,
+                                                               elements: elements)
+                                self.delegate?.update(card: card, with: updatedFieldValues)
                             }
                         case .buttonMenu:
                             let items: [Element.Item] = element.attributes.options?.items ?? []
                             let buttonActions = items.map { (item: Element.Item) in
                                 return UIAction(title: item.name) { _ in
-
-                                    // TODO: more duplication
-                                    var fieldValues = card.attributes.fieldValues
-                                    item.actions?.forEach { (action) in
-                                        fieldValues = action.call(elements: elements, fieldValues: fieldValues)
-                                    }
-                                    self.delegate?.update(card: card, with: fieldValues)
+                                    guard let actions = item.actions else { return }
+                                    let updatedFieldValues = apply(actions: actions,
+                                                                   to: card.attributes.fieldValues,
+                                                                   elements: elements)
+                                    self.delegate?.update(card: card, with: updatedFieldValues)
                                 }
                             }
                             return UIMenu(title: element.attributes.name ?? "(unnamed menu)", children: buttonActions)
