@@ -348,6 +348,18 @@ class BoardViewController: UIViewController,
         present(alert, animated: true)
     }
 
+    func update(card: Card, with fieldValues: [String: FieldValue?]) {
+        cardStore.update(card, with: fieldValues) { [weak self] (result) in
+            switch result {
+            case .success:
+                print("SAVED CARD \(card.id)")
+                self?.loadBoardData()
+            case let .failure(error):
+                print("Error saving card: \(String(describing: error))")
+            }
+        }
+    }
+
     func delete(card: Card) {
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",

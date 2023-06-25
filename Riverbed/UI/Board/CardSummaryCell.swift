@@ -146,12 +146,42 @@ class CardSummaryCell: UITableViewCell,
             return self.delegate?.getPreview(forCard: card)
         },
                                           actionProvider: { _ in
-            return UIMenu(children: [
-                UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
-                    // deleted the wrong card! did it preview the wrong one too?
-                    self?.delegate?.delete(card: card)
-                }
-            ])
+            let customActions: [UIAction] = {
+                guard let elements = self.elements else { return [] }
+
+                return elements
+                    .filter { (element: Element) in
+                        if element.attributes.elementType != .button {
+                            return false
+                        } else if let showConditions = element.attributes.showConditions {
+                            return checkConditions(fieldValues: card.attributes.fieldValues,
+                                                   conditions: showConditions,
+                                                   elements: elements)
+                        } else {
+                            return true
+                        }
+                    }
+                    .map { element in
+                        UIAction(title: element.attributes.name ?? "(unnamed action)") { _ in
+
+                            // TODO: remove duplication with ButtonElementCell
+
+                            var fieldValues = card.attributes.fieldValues
+                            element.attributes.options?.actions?.forEach { (action) in
+                                fieldValues = action.call(elements: elements, fieldValues: fieldValues)
+                            }
+                            self.delegate?.update(card: card, with: fieldValues)
+                        }
+                    }
+            }()
+
+            let deleteAction = UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+                // deleted the wrong card! did it preview the wrong one too?
+                self?.delegate?.delete(card: card)
+            }
+            let actions = customActions + [deleteAction]
+
+            return UIMenu(children: actions)
         })
     }
 
