@@ -146,12 +146,13 @@ class CardSummaryCell: UITableViewCell,
             return self.delegate?.getPreview(forCard: card)
         },
                                           actionProvider: { _ in
-            let customActions: [UIAction] = {
+            let customElements: [UIMenuElement] = {
                 guard let elements = self.elements else { return [] }
 
                 return elements
                     .filter { (element: Element) in
-                        if element.attributes.elementType != .button {
+                        let elementTypesToInclude: Set<Element.ElementType> = [.button, .buttonMenu]
+                        if !elementTypesToInclude.contains(element.attributes.elementType) {
                             return false
                         } else if let showConditions = element.attributes.showConditions {
                             return checkConditions(fieldValues: card.attributes.fieldValues,
@@ -162,15 +163,35 @@ class CardSummaryCell: UITableViewCell,
                         }
                     }
                     .map { element in
-                        UIAction(title: element.attributes.name ?? "(unnamed action)") { _ in
+                        switch element.attributes.elementType {
+                        case .button:
+                            return UIAction(title: element.attributes.name ?? "(unnamed button)") { _ in
 
-                            // TODO: remove duplication with ButtonElementCell
+                                // TODO: remove duplication with ButtonElementCell
 
-                            var fieldValues = card.attributes.fieldValues
-                            element.attributes.options?.actions?.forEach { (action) in
-                                fieldValues = action.call(elements: elements, fieldValues: fieldValues)
+                                var fieldValues = card.attributes.fieldValues
+                                element.attributes.options?.actions?.forEach { (action) in
+                                    fieldValues = action.call(elements: elements, fieldValues: fieldValues)
+                                }
+                                self.delegate?.update(card: card, with: fieldValues)
                             }
-                            self.delegate?.update(card: card, with: fieldValues)
+                        case .buttonMenu:
+                            let items: [Element.Item] = element.attributes.options?.items ?? []
+                            let buttonActions = items.map { (item: Element.Item) in
+                                return UIAction(title: item.name) { _ in
+
+                                    // TODO: more duplication
+                                    var fieldValues = card.attributes.fieldValues
+                                    item.actions?.forEach { (action) in
+                                        fieldValues = action.call(elements: elements, fieldValues: fieldValues)
+                                    }
+                                    self.delegate?.update(card: card, with: fieldValues)
+                                }
+                            }
+                            return UIMenu(title: element.attributes.name ?? "(unnamed menu)", children: buttonActions)
+                        default:
+                            preconditionFailure(
+                                "Unexpected element type \(String(describing: element.attributes.elementType))")
                         }
                     }
             }()
@@ -179,9 +200,9 @@ class CardSummaryCell: UITableViewCell,
                 // deleted the wrong card! did it preview the wrong one too?
                 self?.delegate?.delete(card: card)
             }
-            let actions = customActions + [deleteAction]
+            let menuElements = customElements + [deleteAction]
 
-            return UIMenu(children: actions)
+            return UIMenu(children: menuElements)
         })
     }
 
