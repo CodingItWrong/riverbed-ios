@@ -22,6 +22,8 @@ class CardSummaryCell: UITableViewCell,
 
     func configureCardView() {
         cardView.layer.cornerRadius = 5.0
+        let interaction = UIContextMenuInteraction(delegate: self)
+        cardView.addInteraction(interaction)
     }
 
     func configureData(card: Card, elements: [Element]) {
@@ -32,9 +34,6 @@ class CardSummaryCell: UITableViewCell,
 
         self.card = card
         configureValues()
-
-        let interaction = UIContextMenuInteraction(delegate: self)
-        cardView.addInteraction(interaction)
     }
 
     func configureElements() {
