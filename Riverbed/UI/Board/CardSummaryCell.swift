@@ -1,6 +1,11 @@
 import UIKit
 
-class CardSummaryCell: UITableViewCell, UITextViewDelegate {
+class CardSummaryCell: UITableViewCell,
+                       UIContextMenuInteractionDelegate,
+                       UITextViewDelegate {
+
+    weak var delegate: ColumnCellDelegate?
+
     @IBOutlet var cardView: UIView! {
         didSet { configureCardView() }
     }
@@ -27,6 +32,9 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
 
         self.card = card
         configureValues()
+
+        let interaction = UIContextMenuInteraction(delegate: self)
+        cardView.addInteraction(interaction)
     }
 
     func configureElements() {
@@ -123,4 +131,40 @@ class CardSummaryCell: UITableViewCell, UITextViewDelegate {
             textView.delegate = self
         }
     }
+
+    // MENU: - context menu
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        guard let card = card else {
+            preconditionFailure("Expected a card")
+        }
+
+        return UIContextMenuConfiguration(identifier: card.id as NSCopying,
+                                          previewProvider: {
+
+            return self.delegate?.getPreview(forCard: card)
+        },
+                                          actionProvider: { _ in
+            return UIMenu(children: [
+                UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+                    // deleted the wrong card! did it preview the wrong one too?
+                    self?.delegate?.delete(card: card)
+                }
+            ])
+        })
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                animator: UIContextMenuInteractionCommitAnimating) {
+        animator.preferredCommitStyle = .pop
+        guard let cardVC = animator.previewViewController as? CardViewController else {
+            preconditionFailure("Expected a CardViewController")
+        }
+        animator.addCompletion {
+            self.delegate?.didSelect(preview: cardVC)
+        }
+    }
+
 }

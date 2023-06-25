@@ -239,7 +239,7 @@
         <!--Card View Controller-->
         <scene sceneID="STQ-hI-8uB">
             <objects>
-                <tableViewController id="6X2-2e-DlT" customClass="CardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CardViewController" id="6X2-2e-DlT" customClass="CardViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="hc2-xZ-QHt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

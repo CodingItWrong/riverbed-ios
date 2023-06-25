@@ -222,7 +222,7 @@ class BoardViewController: UIViewController,
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             switch result {
             case let .success(card):
-                self?.didSelect(card)
+                self?.didSelect(card: card)
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
             }
@@ -287,8 +287,22 @@ class BoardViewController: UIViewController,
         self.board = board
     }
 
-    func didSelect(_ card: Card) {
+    func didSelect(card: Card) {
         performSegue(withIdentifier: "showCardDetail", sender: card)
+    }
+
+    func getPreview(forCard card: Card) -> CardViewController {
+        guard let cardVC = self.storyboard?.instantiateViewController(
+            identifier: String(describing: CardViewController.self)) as? CardViewController else {
+            preconditionFailure("Expected a VC with identifier \(String(describing: CardViewController.self))")
+        }
+        prepare(cardViewController: cardVC, with: card)
+        cardVC.view.tintColor = view.tintColor
+        return cardVC
+    }
+
+    func didSelect(preview viewController: CardViewController) {
+        present(viewController, animated: false)
     }
 
     func didUpdate(_ card: Card) {
@@ -325,6 +339,33 @@ class BoardViewController: UIViewController,
                 }
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = deleteAction
+
+        present(alert, animated: true)
+    }
+
+    func delete(card: Card) {
+        let alert = UIAlertController(title: "Delete?",
+                                      message: "Are you sure you want to delete this card?",
+                                      preferredStyle: .alert)
+
+        let deleteAction = UIAlertAction(title: "Delete",
+                                         style: .destructive) {[weak self] _ in
+               guard let self = self else { return }
+
+               cardStore.delete(card) { [weak self] (result) in
+                   switch result {
+                   case .success:
+                       self?.loadBoardData()
+                   case let .failure(error):
+                       print("Error deleting card: \(String(describing: error))")
+                   }
+               }
+           }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alert.addAction(deleteAction)
@@ -388,6 +429,7 @@ class BoardViewController: UIViewController,
 
         let column = sortedColumns[indexPath.row]
 
+        cell.cardStore = cardStore
         cell.column = column
         cell.elements = elements
         cell.cards = cards
@@ -456,12 +498,7 @@ class BoardViewController: UIViewController,
                 preconditionFailure("Expected Card")
             }
 
-            cardVC.delegate = self
-            cardVC.board = board
-            cardVC.elements = elements
-            cardVC.elementStore = elementStore
-            cardVC.cardStore = cardStore // TODO: setter order dependency unfortunate
-            cardVC.card = card
+            prepare(cardViewController: cardVC, with: card)
 
         case "editBoard":
             guard let editBoardVC = segue.destination as? EditBoardViewController else {
@@ -490,6 +527,15 @@ class BoardViewController: UIViewController,
         default:
             preconditionFailure("Unexpected segue")
         }
+    }
+
+    func prepare(cardViewController: CardViewController, with card: Card) {
+        cardViewController.delegate = self
+        cardViewController.board = board
+        cardViewController.elements = elements
+        cardViewController.elementStore = elementStore
+        cardViewController.cardStore = cardStore // TODO: setter order dependency unfortunate
+        cardViewController.card = card
     }
 
 }
