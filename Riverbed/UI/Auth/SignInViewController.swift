@@ -4,7 +4,8 @@ protocol SignInDelegate: AnyObject {
     func didReceive(tokenResponse: TokenStore.TokenResponse)
 }
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController,
+                            UITextFieldDelegate {
 
     weak var delegate: SignInDelegate?
 
@@ -30,6 +31,16 @@ class SignInViewController: UIViewController {
                 print("Error signing in: \(error)")
             }
         }
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            passwordField.resignFirstResponder()
+            signIn()
+        }
+        return true
     }
 
 }
