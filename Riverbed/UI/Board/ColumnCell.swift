@@ -79,13 +79,12 @@ class ColumnCell: UICollectionViewCell,
         guard let column = column,
               let cardGrouping = column.attributes.cardGrouping,
               let groupFieldId = cardGrouping.field,
-              let groupField = elements.first(where: { $0.id == groupFieldId }),
-              let groupValue = cardGroups[section].value else {
-            if cardGroups.count == 1 {
-                return nil
-            } else {
-                return "(empty)"
-            }
+              let groupField = elements.first(where: { $0.id == groupFieldId }) else {
+            return nil
+        }
+
+        guard let groupValue = cardGroups[section].value else {
+            return "(empty)"
         }
 
         return groupField.formatString(from: groupValue)
