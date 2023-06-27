@@ -68,14 +68,27 @@ class ColumnCell: UICollectionViewCell,
     // MARK: - table view data source and delegate
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        cardGroups.count
+        let count = cardGroups.count
+        if count > 0 {
+            return count
+        } else {
+            return 1 // "no cards" section
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cardGroups[section].cards.count
+        if cardGroups.count > 0 {
+            return cardGroups[section].cards.count
+        } else {
+            return 1 // "no cards" cell
+        }
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard cardGroups.count > 0 else {
+            return nil
+        }
+
         guard let column = column,
               let cardGrouping = column.attributes.cardGrouping,
               let groupFieldId = cardGrouping.field,
@@ -91,6 +104,12 @@ class ColumnCell: UICollectionViewCell,
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // "no cards" cell
+        if cardGroups.count == 0 {
+            return tableView.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath)
+        }
+
+        // card summary cell
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CardSummaryCell.self),
                                                  for: indexPath)
 
