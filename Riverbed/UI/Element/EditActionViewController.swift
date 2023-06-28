@@ -66,10 +66,6 @@ class EditActionViewController: UITableViewController,
         Row.cases(for: action).count
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Edit Action"
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowEnum = Row.cases(for: action)[indexPath.row]
         print("Configuring cell for row \(rowEnum.label)")
