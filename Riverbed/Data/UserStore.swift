@@ -28,7 +28,7 @@ class UserStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedUser))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: updatedUser))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in

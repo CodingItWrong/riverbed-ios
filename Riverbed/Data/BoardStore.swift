@@ -27,7 +27,7 @@ class BoardStore: BaseStore {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: newBoard))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: newBoard))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
@@ -56,7 +56,7 @@ class BoardStore: BaseStore {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedBoard))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: updatedBoard))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in

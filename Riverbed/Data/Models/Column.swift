@@ -85,9 +85,9 @@ class NewColumn: Codable {
     }
 
     class Relationships: Codable {
-        var boardData: JsonApiData<JsonApiResourceIdentifier>?
+        var boardData: JSONAPI.Data<JSONAPI.ResourceIdentifier>?
 
-        init(boardData: JsonApiData<JsonApiResourceIdentifier>) {
+        init(boardData: JSONAPI.Data<JSONAPI.ResourceIdentifier>) {
             self.boardData = boardData
         }
 

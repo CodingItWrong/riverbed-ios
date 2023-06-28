@@ -54,6 +54,8 @@
 		0328D1F12A39DE970079576C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC782A17B6D400CB8075 /* Utils.swift */; };
 		032E3AD92A4CD82E001D04F4 /* FieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3AD82A4CD82E001D04F4 /* FieldValue.swift */; };
 		032E3ADA2A4CD872001D04F4 /* FieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3AD82A4CD82E001D04F4 /* FieldValue.swift */; };
+		032E3ADC2A4CD8F9001D04F4 /* JSONAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */; };
+		032E3ADD2A4CD925001D04F4 /* JSONAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */; };
 		032F2C862A1AE806008208E9 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
 		032F2C882A1AEA17008208E9 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
 		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
@@ -196,6 +198,7 @@
 		0328D1DC2A39DB0C0079576C /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
 		032E3AD82A4CD82E001D04F4 /* FieldValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValue.swift; sourceTree = "<group>"; };
+		032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPI.swift; sourceTree = "<group>"; };
 		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		032F2C872A1AEA17008208E9 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
@@ -464,6 +467,7 @@
 			children = (
 				0342FC762A17B69D00CB8075 /* APIError.swift */,
 				0342FC7B2A17B71000CB8075 /* RiverbedAPI.swift */,
+				032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -767,6 +771,7 @@
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
 				03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */,
 				03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */,
+				032E3ADC2A4CD8F9001D04F4 /* JSONAPI.swift in Sources */,
 				03944AA12A1AAE0000639AC7 /* DateUtils.swift in Sources */,
 				03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */,
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
@@ -854,6 +859,7 @@
 				031094162A3FC1120051B93F /* ShareViewController.swift in Sources */,
 				0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */,
 				038D35C52A4CB75B00F546DD /* Action.swift in Sources */,
+				032E3ADD2A4CD925001D04F4 /* JSONAPI.swift in Sources */,
 				0328D1EE2A39DE540079576C /* Value.swift in Sources */,
 				0328D1E42A39DDEB0079576C /* Card.swift in Sources */,
 				0328D1E62A39DDF00079576C /* Element.swift in Sources */,

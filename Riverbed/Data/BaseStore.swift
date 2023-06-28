@@ -39,7 +39,7 @@ class BaseStore {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
             if isRiverbedResponse {
-                let cardsResponse = try decoder.decode(RiverbedAPI.Response<T>.self, from: data)
+                let cardsResponse = try decoder.decode(JSONAPI.Data<T>.self, from: data)
                 return .success(cardsResponse.data)
             } else {
                 let cardsResponse = try decoder.decode(T.self, from: data)

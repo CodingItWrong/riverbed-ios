@@ -25,8 +25,8 @@ class ColumnStore: BaseStore {
         let newBoard = NewColumn(
             attributes: Column.Attributes(),
             relationships: NewColumn.Relationships(
-                boardData: JsonApiData(
-                    data: JsonApiResourceIdentifier(type: "boards", id: board.id)
+                boardData: JSONAPI.Data(
+                    data: JSONAPI.ResourceIdentifier(type: "boards", id: board.id)
                 )
             )
         )
@@ -34,7 +34,7 @@ class ColumnStore: BaseStore {
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(DateTimeUtils.serverDateTimeFormatter)
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: newBoard))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: newBoard))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
@@ -62,7 +62,7 @@ class ColumnStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedColumn))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: updatedColumn))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in

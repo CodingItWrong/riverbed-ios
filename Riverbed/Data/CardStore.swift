@@ -48,8 +48,8 @@ class CardStore: BaseStore {
         let card = NewCard(
             attributes: Card.Attributes(fieldValues: initialFieldValues),
             relationships: NewCard.Relationships(
-                boardData: JsonApiData(
-                    data: JsonApiResourceIdentifier(type: "boards", id: board.id)
+                boardData: JSONAPI.Data(
+                    data: JSONAPI.ResourceIdentifier(type: "boards", id: board.id)
                 )
             )
         )
@@ -62,7 +62,7 @@ class CardStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: card))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: card))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
@@ -90,7 +90,7 @@ class CardStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedCard))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: updatedCard))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in

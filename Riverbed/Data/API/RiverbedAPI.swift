@@ -1,14 +1,6 @@
 import Foundation
 
 struct RiverbedAPI {
-    struct RequestBody<T>: Codable where T: Codable {
-        let data: T
-    }
-
-    struct Response<T>: Codable where T: Codable {
-        let data: T
-    }
-
 #if targetEnvironment(simulator)
     private static let baseURL = URL(string: "http://localhost:3000/")
 #else

@@ -27,15 +27,15 @@ class ElementStore: BaseStore {
         let element = NewElement(
             attributes: Element.Attributes(elementType: elementType),
             relationships: NewElement.Relationships(
-                boardData: JsonApiData(
-                    data: JsonApiResourceIdentifier(type: "boards", id: board.id)
+                boardData: JSONAPI.Data(
+                    data: JSONAPI.ResourceIdentifier(type: "boards", id: board.id)
                 )
             )
         )
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: element))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: element))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { [weak self] (data, response, error) in
@@ -64,7 +64,7 @@ class ElementStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: updatedElement))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: updatedElement))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
@@ -103,7 +103,7 @@ class ElementStore: BaseStore {
 
         do {
             let encoder = JSONEncoder()
-            let requestBody = try encoder.encode(RiverbedAPI.RequestBody(data: element))
+            let requestBody = try encoder.encode(JSONAPI.Data(data: element))
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { [weak self] (data, response, error) in
