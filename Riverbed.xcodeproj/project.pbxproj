@@ -52,6 +52,8 @@
 		0328D1EF2A39DE5C0079576C /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA02A1AAE0000639AC7 /* DateUtils.swift */; };
 		0328D1F02A39DE5E0079576C /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03944AA22A1AAEDE00639AC7 /* DateTimeUtils.swift */; };
 		0328D1F12A39DE970079576C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC782A17B6D400CB8075 /* Utils.swift */; };
+		032E3AD92A4CD82E001D04F4 /* FieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3AD82A4CD82E001D04F4 /* FieldValue.swift */; };
+		032E3ADA2A4CD872001D04F4 /* FieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3AD82A4CD82E001D04F4 /* FieldValue.swift */; };
 		032F2C862A1AE806008208E9 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
 		032F2C882A1AEA17008208E9 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
 		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
@@ -193,6 +195,7 @@
 		0328D1D22A39D6F70079576C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0328D1DC2A39DB0C0079576C /* Attachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentHandler.swift; sourceTree = "<group>"; };
+		032E3AD82A4CD82E001D04F4 /* FieldValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldValue.swift; sourceTree = "<group>"; };
 		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		032F2C872A1AEA17008208E9 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
 		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +453,7 @@
 				0342FC7D2A17B7CE00CB8075 /* Column.swift */,
 				032F2C872A1AEA17008208E9 /* Condition.swift */,
 				038BBC2F2A1811C900BB2284 /* Element.swift */,
+				032E3AD82A4CD82E001D04F4 /* FieldValue.swift */,
 				031094132A3DC3340051B93F /* User.swift */,
 			);
 			path = Models;
@@ -769,6 +773,7 @@
 				03010CDA2A362E2700EF32D1 /* EditConditionViewController.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				031094122A3DC2910051B93F /* UserStore.swift in Sources */,
+				032E3AD92A4CD82E001D04F4 /* FieldValue.swift in Sources */,
 				03DC30462A23793800ABC4CB /* Command.swift in Sources */,
 				0328D1C42A393A420079576C /* ActionsViewController.swift in Sources */,
 				03027DF62A13DF9D0063EE24 /* AppDelegate.swift in Sources */,
@@ -858,6 +863,7 @@
 				0328D1E32A39DDE80079576C /* Board.swift in Sources */,
 				0328D1EB2A39DE4D0079576C /* Query.swift in Sources */,
 				0328D1E82A39DE360079576C /* Icon.swift in Sources */,
+				032E3ADA2A4CD872001D04F4 /* FieldValue.swift in Sources */,
 				0328D1ED2A39DE510079576C /* TextSize.swift in Sources */,
 				0328D1EF2A39DE5C0079576C /* DateUtils.swift in Sources */,
 				0328D1E92A39DE390079576C /* ColorTheme.swift in Sources */,
