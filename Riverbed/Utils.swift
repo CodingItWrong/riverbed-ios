@@ -61,6 +61,25 @@ func checkConditions(fieldValues: [String: FieldValue?],
     }
 }
 
+func getInitialValues(forElements elements: [Element]) -> [String: FieldValue?] {
+    let fieldsWithInitialValues = elements.filter { (element) in
+        element.attributes.elementType == .field &&
+        element.attributes.initialValue != nil
+    }
+
+    var initialFieldValues = [String: FieldValue?]()
+    fieldsWithInitialValues.forEach { (field) in
+        guard let initialValue = field.attributes.initialValue,
+              let dataType = field.attributes.dataType else { return }
+
+        let resolvedValue = initialValue.call(fieldDataType: dataType,
+                                              specificValue: field.attributes.options?.initialSpecificValue)
+        initialFieldValues[field.id] = resolvedValue
+    }
+
+    return initialFieldValues
+}
+
 func apply(actions: [Action],
            to fieldValues: [String: FieldValue?],
            elements: [Element]) -> [String: FieldValue?] {

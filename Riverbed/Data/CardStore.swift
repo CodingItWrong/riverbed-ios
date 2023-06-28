@@ -30,20 +30,7 @@ class CardStore: BaseStore {
     }
 
     func create(on board: Board, with elements: [Element], completion: @escaping (Result<Card, Error>) -> Void) {
-        let fieldsWithInitialValues = elements.filter { (element) in
-            element.attributes.elementType == .field &&
-            element.attributes.initialValue != nil
-        }
-
-        var initialFieldValues = [String: FieldValue?]()
-        fieldsWithInitialValues.forEach { (field) in
-            guard let initialValue = field.attributes.initialValue,
-                  let dataType = field.attributes.dataType else { return }
-
-            let resolvedValue = initialValue.call(fieldDataType: dataType,
-                                                  specificValue: field.attributes.options?.initialSpecificValue)
-            initialFieldValues[field.id] = resolvedValue
-        }
+        let initialFieldValues = getInitialValues(forElements: elements)
 
         let card = NewCard(
             attributes: Card.Attributes(fieldValues: initialFieldValues),

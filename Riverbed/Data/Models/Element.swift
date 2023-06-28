@@ -156,10 +156,12 @@ class Element: Codable, Equatable {
 
         init(elementType: Element.ElementType,
              dataType: Element.DataType? = nil,
-             options: Element.Options? = nil) {
+             options: Element.Options? = nil,
+             initialValue: Value? = nil) {
             self.elementType = elementType
             self.dataType = dataType
             self.options = options
+            self.initialValue = initialValue
             self.showInSummary = false
             self.readOnly = false
         }

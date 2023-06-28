@@ -73,6 +73,32 @@ final class UtilsTests: XCTestCase {
         XCTAssertEqual(result, "codingitwrong.com")
     }
 
+    // MARK: - getInitialValues(forElements:)
+
+    func test_getInitialValuesForElements_returnsAllConfiguredValues() {
+        let elements = [
+            Element(id: "button", attributes: Element.Attributes(
+                elementType: .button)),
+            Element(id: "no_initial_value", attributes: Element.Attributes(
+                elementType: .field,
+                initialValue: nil)),
+            Element(id: "initial_empty", attributes: Element.Attributes(
+                elementType: .field,
+                dataType: .text,
+                initialValue: .empty)),
+            Element(id: "initial_specific", attributes: Element.Attributes(
+                elementType: .field,
+                dataType: .text,
+                options: Element.Options(initialSpecificValue: .string("hi")),
+                initialValue: .specificValue))
+        ]
+
+        let result = getInitialValues(forElements: elements)
+
+        XCTAssertEqual(result, ["initial_empty": nil,
+                                "initial_specific": .string("hi")])
+    }
+
     // MARK: - singularizeOptionality()
 
     func test_singularizeOptionality_withAValue_returnsTheValue() {
