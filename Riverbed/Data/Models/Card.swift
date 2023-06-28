@@ -5,7 +5,7 @@ class Card: NSObject, Codable {
     var id: String
     var attributes: Card.Attributes
 
-    init(id: String, attributes: Card.Attributes) {
+    init(id: String, attributes: Card.Attributes = Card.Attributes()) {
         self.type = "cards"
         self.id = id
         self.attributes = attributes
@@ -14,7 +14,7 @@ class Card: NSObject, Codable {
     class Attributes: Codable {
         var fieldValues: [String: FieldValue?]
 
-        init(fieldValues: [String: FieldValue?]) {
+        init(fieldValues: [String: FieldValue?] = [:]) {
             self.fieldValues = fieldValues
         }
 
@@ -50,13 +50,17 @@ class NewCard: NSObject, Codable {
 }
 
 // when this was a struct, incrementally creating them didn't seem to work
-class CardGroup {
+class CardGroup: Equatable {
     var value: FieldValue?
     var cards: [Card]
 
     init(value: FieldValue? = nil, cards: [Card]) {
         self.value = value
         self.cards = cards
+    }
+
+    static func == (lhs: CardGroup, rhs: CardGroup) -> Bool {
+        lhs.value == rhs.value && lhs.cards == rhs.cards
     }
 }
 

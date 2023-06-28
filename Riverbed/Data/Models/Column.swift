@@ -65,6 +65,12 @@ class Column: Codable {
     class SortOrder: Codable {
         var field: String?
         var direction: Direction?
+
+        init(field: String? = nil,
+             direction: Direction? = nil) {
+            self.field = field
+            self.direction = direction
+        }
     }
 
     class Summary: Codable {
