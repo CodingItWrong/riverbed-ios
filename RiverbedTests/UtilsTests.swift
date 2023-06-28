@@ -15,14 +15,15 @@ final class UtilsTests: XCTestCase {
     }
 
     func test_applyActionsToElements_withOneActions_appliesTheActionToTheFieldValues() {
-        let actions = [Action(command: .setValue, field: "A", value: Value.specificValue)]
+        let actions = [Action(command: .setValue,
+                              field: "A",
+                              value: Value.specificValue,
+                              specificValue: .string("C"))]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
                 elementType: .field,
-                dataType: .text,
-                options: Element.Options(initialSpecificValue: .string("C"))
-            ))
+                dataType: .text))
         ]
         let result = apply(actions: actions, to: fieldValues, elements: elements)
         XCTAssertEqual(result, ["A": .string("C")])
