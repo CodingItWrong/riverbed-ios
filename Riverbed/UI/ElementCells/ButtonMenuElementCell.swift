@@ -6,7 +6,11 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
 
     var allElements: [Element]!
 
-    @IBOutlet private(set) var menuButton: UIButton!
+    @IBOutlet private(set) var menuButton: UIButton! {
+        didSet {
+            menuButton.configuration?.cornerStyle = .large
+        }
+    }
 
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.allElements = allElements
