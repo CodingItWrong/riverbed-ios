@@ -174,4 +174,85 @@ final class CardTests: XCTestCase {
         let result = Card.group(cards: cards, for: column, with: elements)
         XCTAssertEqual(result, expectedGroups)
     }
+
+    // MARK: - filter(cards:for:with:)
+
+    func test_filter_whenNoInclusionConditions_returnsAllCards() {
+        let cards = [Card(id: "A"), Card(id: "B")]
+        let column = Column(
+            id: "27",
+            attributes: Column.Attributes(name: "DUMMY"))
+        let elements = [Element]()
+        let result = Card.filter(cards: cards, for: column, with: elements)
+        XCTAssertEqual(result, cards)
+    }
+
+    func test_filter_whenOneInclusionCondition_returnsMatchingCards() {
+        let elements = [Element(id: "text",
+                                attributes: Element.Attributes(elementType: .field,
+                                                               dataType: .text))]
+        let column = Column(
+            id: "27",
+            attributes: Column.Attributes(
+                name: "DUMMY",
+                cardInclusionConditions: [
+                    Condition(field: "text",
+                              query: .equals,
+                              options: Condition.Options(value: "A"))]))
+        let cardA1 = Card(id: "A1",
+                         attributes: Card.Attributes(
+                            fieldValues: ["text": .string("A")]))
+        let cardA2 = Card(id: "A2",
+                         attributes: Card.Attributes(
+                            fieldValues: ["text": .string("A")]))
+        let cardB = Card(id: "B",
+                         attributes: Card.Attributes(
+                            fieldValues: ["text": .string("B")]))
+        let cards = [cardA1, cardA2, cardB]
+        let expectedResult = [cardA1, cardA2]
+
+        let result = Card.filter(cards: cards, for: column, with: elements)
+        XCTAssertEqual(result, expectedResult)
+    }
+
+    func test_filter_whenMultileInclusionCondition_returnsCardsMatchingAllConditions() {
+        let elements = [Element(id: "text1",
+                                attributes: Element.Attributes(elementType: .field,
+                                                               dataType: .text)),
+                        Element(id: "text2",
+                                attributes: Element.Attributes(elementType: .field,
+                                                               dataType: .text))]
+        let column = Column(
+            id: "27",
+            attributes: Column.Attributes(
+                name: "DUMMY",
+                cardInclusionConditions: [
+                    Condition(field: "text1",
+                              query: .equals,
+                              options: Condition.Options(value: "A")),
+                    Condition(field: "text2",
+                              query: .equals,
+                              options: Condition.Options(value: "B"))]))
+        let cardAOnly = Card(id: "aOnly",
+                             attributes: Card.Attributes(
+                                fieldValues: ["text1": .string("A"),
+                                              "text2": .string("wrong")]))
+        let cardBOnly = Card(id: "BOnly",
+                             attributes: Card.Attributes(
+                                fieldValues: ["text1": .string("wrong"),
+                                              "text2": .string("B")]))
+        let cardAAndB = Card(id: "BOnly",
+                             attributes: Card.Attributes(
+                                fieldValues: ["text1": .string("A"),
+                                              "text2": .string("B")]))
+        let cardNeither = Card(id: "BOnly",
+                               attributes: Card.Attributes(
+                                fieldValues: ["text1": .string("wrong"),
+                                              "text2": .string("wrong")]))
+        let cards = [cardAOnly, cardBOnly, cardAAndB, cardNeither]
+        let expectedResult = [cardAAndB]
+
+        let result = Card.filter(cards: cards, for: column, with: elements)
+        XCTAssertEqual(result, expectedResult)
+    }
 }

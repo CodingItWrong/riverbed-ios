@@ -12,4 +12,12 @@ class Condition: Codable {
             self.value = value
         }
     }
+
+    init(field: String? = nil,
+         query: Query? = nil,
+         options: Condition.Options? = nil) {
+        self.field = field
+        self.query = query
+        self.options = options
+    }
 }
