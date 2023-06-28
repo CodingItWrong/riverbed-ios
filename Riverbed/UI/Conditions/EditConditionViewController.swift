@@ -65,10 +65,6 @@ class EditConditionViewController: UITableViewController,
         Row.cases(for: condition).count
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Edit Condition"
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowEnum = Row.cases(for: condition)[indexPath.row]
         print("Configuring cell for row \(rowEnum.label)")
