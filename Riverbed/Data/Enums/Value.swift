@@ -17,7 +17,7 @@ enum Value: String, Codable, CaseIterable {
         self == .specificValue
     }
 
-    func call(fieldDataType: Element.DataType, options: Element.Options?) -> FieldValue? {
+    func call(fieldDataType: Element.DataType, specificValue: FieldValue?) -> FieldValue? {
         switch self {
         case .empty: return .none
         case .now:
@@ -46,7 +46,7 @@ enum Value: String, Codable, CaseIterable {
                 return nil
             }
         case .specificValue:
-            return options?.initialSpecificValue
+            return specificValue
         }
     }
 }

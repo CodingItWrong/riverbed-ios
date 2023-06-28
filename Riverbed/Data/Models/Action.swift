@@ -6,13 +6,16 @@ class Action: Codable {
 
     // TODO: handle the fact that the "value" field here is used in two different ways for the different commands
     var value: String?
+    var specificValue: FieldValue?
 
     init(command: Command? = nil,
          field: String? = nil,
-         value: String? = nil) {
+         value: String? = nil,
+         specificValue: FieldValue? = nil) {
         self.command = command
         self.field = field
         self.value = value
+        self.specificValue = specificValue
     }
 
     func call(elements: [Element], fieldValues: [String: FieldValue?]) -> [String: FieldValue?] {
@@ -31,10 +34,6 @@ class Action: Codable {
                 print("Field data type for SET VALUE command not set")
                 return fieldValues
             }
-            guard let options = fieldObject.attributes.options else {
-                print("Field options for SET VALUE command not set")
-                return fieldValues
-            }
             guard let value = value else {
                 print("Value for SET VALUE command not set")
                 return fieldValues
@@ -44,7 +43,7 @@ class Action: Codable {
                 return fieldValues
             }
 
-            let concreteValue = valueObject.call(fieldDataType: dataType, options: options)
+            let concreteValue = valueObject.call(fieldDataType: dataType, specificValue: specificValue)
             var newFieldValues = fieldValues // arrays have value semantics, so it's copied
             newFieldValues[field] = concreteValue
             return newFieldValues

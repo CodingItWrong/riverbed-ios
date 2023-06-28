@@ -41,7 +41,7 @@ class CardStore: BaseStore {
                   let dataType = field.attributes.dataType else { return }
 
             let resolvedValue = initialValue.call(fieldDataType: dataType,
-                                                  options: field.attributes.options)
+                                                  specificValue: field.attributes.options?.initialSpecificValue)
             initialFieldValues[field.id] = resolvedValue
         }
 
