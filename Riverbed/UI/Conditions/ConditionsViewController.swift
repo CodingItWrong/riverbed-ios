@@ -30,8 +30,13 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
         if let query = condition.query,
            let fieldId = condition.field,
            let field = elements.first(where: { $0.id == fieldId }) {
-            cell.textLabel?.text = "\(field.attributes.name ?? "(unnamed field") \(query.label)"
-            // TODO: show options
+
+            let basicDescription = "\(field.attributes.name ?? "(unnamed field") \(query.label)"
+            if condition.query?.showConcreteValueField == true {
+                cell.textLabel?.text = "\(basicDescription) \(condition.options?.value ?? "(no value)")"
+            } else {
+                cell.textLabel?.text = basicDescription
+            }
         } else {
             cell.textLabel?.text = "(not configured)"
         }
