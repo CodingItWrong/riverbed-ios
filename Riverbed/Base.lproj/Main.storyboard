@@ -478,7 +478,7 @@
         <scene sceneID="wF7-ij-G1M">
             <objects>
                 <tableViewController id="L8W-Ge-coK" customClass="DynamicElementViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="0IY-iI-bnT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="0IY-iI-bnT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers/>
@@ -538,11 +538,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="NtQ-8c-uET">
-                            <rect key="frame" x="0.0" y="120.66666793823242" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="120.66666793823242" width="375" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glh-1H-yo8">
-                                    <rect key="frame" x="8" y="18" width="359" height="18"/>
+                                    <rect key="frame" x="20" y="10" width="335" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="vNr-gn-mDG"/>
+                                    </constraints>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="Add Board" imagePadding="5">
                                         <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
@@ -553,12 +556,10 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="glh-1H-yo8" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="topMargin" constant="10" id="B3Z-2S-Jtd"/>
-                                <constraint firstItem="glh-1H-yo8" firstAttribute="bottom" secondItem="NtQ-8c-uET" secondAttribute="bottomMargin" id="Vos-Ww-Vug"/>
-                                <constraint firstItem="glh-1H-yo8" firstAttribute="leading" secondItem="NtQ-8c-uET" secondAttribute="leadingMargin" id="aJw-u4-yxc"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="glh-1H-yo8" secondAttribute="trailing" id="yH9-ZI-HCc"/>
+                                <constraint firstItem="glh-1H-yo8" firstAttribute="leading" secondItem="NtQ-8c-uET" secondAttribute="leading" constant="20" id="QGR-5L-f9J"/>
+                                <constraint firstAttribute="trailing" secondItem="glh-1H-yo8" secondAttribute="trailing" constant="20" id="fdh-cM-mbg"/>
+                                <constraint firstItem="glh-1H-yo8" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" constant="10" id="pCb-0W-rIm"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -635,7 +636,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUP-Vb-vlQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1132" y="-1015"/>
+            <point key="canvasLocation" x="1132" y="-1015.2709359605911"/>
         </scene>
         <!--Sidebar Navigation Controller-->
         <scene sceneID="qOO-d0-zbc">
@@ -975,7 +976,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a1h-7Y-iTO"/>
+        <segue reference="En7-Rs-8j7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>
