@@ -61,7 +61,7 @@ func checkConditions(fieldValues: [String: FieldValue?],
     }
 }
 
-func apply(actions: [Element.Action],
+func apply(actions: [Action],
            to fieldValues: [String: FieldValue?],
            elements: [Element]) -> [String: FieldValue?] {
     var newFieldValues = fieldValues

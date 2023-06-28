@@ -7,7 +7,7 @@ final class UtilsTests: XCTestCase {
     // MARK: - apply(actions:to:elements:)
 
     func test_applyActionsToElements_withNoActions_returnsFieldValuesUnchanged() {
-        let actions: [Element.Action] = []
+        let actions: [Action] = []
         let fieldValues: [String: FieldValue?] = ["A": .string("B"), "C": .dictionary(["D": "E"]), "F": nil]
         let elements = [Element]()
         let result = apply(actions: actions, to: fieldValues, elements: elements)
@@ -15,7 +15,7 @@ final class UtilsTests: XCTestCase {
     }
 
     func test_applyActionsToElements_withOneActions_appliesTheActionToTheFieldValues() {
-        let actions = [Element.Action(command: .setValue, field: "A", value: Value.specificValue.rawValue)]
+        let actions = [Action(command: .setValue, field: "A", value: Value.specificValue.rawValue)]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
@@ -30,8 +30,8 @@ final class UtilsTests: XCTestCase {
 
     func test_applyActionsToElements_withMultipleActions_appliesTheActionsInOrder() {
         let actions = [
-            Element.Action(command: .setValue, field: "A", value: Value.specificValue.rawValue),
-            Element.Action(command: .setValue, field: "A", value: Value.empty.rawValue)
+            Action(command: .setValue, field: "A", value: Value.specificValue.rawValue),
+            Action(command: .setValue, field: "A", value: Value.empty.rawValue)
         ]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
         let elements = [

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditActionDelegate: AnyObject {
-    func didUpdate(_ action: Element.Action)
+    func didUpdate(_ action: Action)
 }
 
 class EditActionViewController: UITableViewController,
@@ -13,7 +13,7 @@ class EditActionViewController: UITableViewController,
         case value
         case specificValue // this is what is shown for "Add Days"
 
-        static func cases(for action: Element.Action) -> [Row] {
+        static func cases(for action: Action) -> [Row] {
             switch action.command {
             case .none: return [.command, .field]
             case .addDays: return [.command, .field, .specificValue]
@@ -34,7 +34,7 @@ class EditActionViewController: UITableViewController,
     }
 
     weak var delegate: EditActionDelegate?
-    var action: Element.Action!
+    var action: Action!
 
     var elements = [Element]()
     var fields: [Element] {

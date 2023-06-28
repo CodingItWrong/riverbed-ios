@@ -474,7 +474,7 @@ class DynamicElementViewController: UITableViewController,
         tableView.reloadData()
     }
 
-    func didUpdate(_ actions: [Element.Action]) {
+    func didUpdate(_ actions: [Action]) {
         ensureOptionsPresent()
         attributes.options?.actions = actions
         tableView.reloadData()

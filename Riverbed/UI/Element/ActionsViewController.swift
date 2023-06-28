@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ActionsDelegate: AnyObject {
-    func didUpdate(_ action: [Element.Action])
+    func didUpdate(_ action: [Action])
 }
 
 class ActionsViewController: UITableViewController,
@@ -9,7 +9,7 @@ class ActionsViewController: UITableViewController,
 
     weak var delegate: ActionsDelegate?
 
-    var actions = [Element.Action]()
+    var actions = [Action]()
     var elements = [Element]()
 
     // MARK: - vc lifecycle
@@ -63,7 +63,7 @@ class ActionsViewController: UITableViewController,
     // MARK: - actions
 
     @IBAction func addAction(_ sender: Any?) {
-        let newAction = Element.Action()
+        let newAction = Action()
         actions.append(newAction)
         let indexPath = IndexPath(row: actions.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
@@ -77,7 +77,7 @@ class ActionsViewController: UITableViewController,
         // may not need to do anything else since Condition is mutable
     }
 
-    func didUpdate(_ action: Element.Action) {
+    func didUpdate(_ action: Action) {
         tableView.reloadData()
     }
 
