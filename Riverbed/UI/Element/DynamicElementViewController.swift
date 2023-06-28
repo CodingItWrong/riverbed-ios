@@ -117,6 +117,7 @@ class DynamicElementViewController: UITableViewController,
     var element: Element! {
         didSet {
             attributes = element.attributes
+            navigationItem.title = "Edit \(element.attributes.elementType.label)"
         }
     }
     var elements = [Element]()
