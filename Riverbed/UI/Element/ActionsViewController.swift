@@ -32,8 +32,16 @@ class ActionsViewController: UITableViewController,
            let fieldId = action.field,
            let field = elements.first(where: { $0.id == fieldId }) {
 
+            let valueLabel = {
+                guard let value = action.value else { return "(empty)" }
+                switch value {
+                case .specificValue: return String(describing: action.specificValue)
+                default: return value.label
+                }
+            }()
+            
             cell.textLabel?.text =
-                "\(command.label) \(field.attributes.name ?? "(unnamed field)") \(action.value ?? "(empty)")"
+            "\(command.label) \(field.attributes.name ?? "(unnamed field)") \(valueLabel)"
         } else {
             cell.textLabel?.text = "(not configured)"
         }

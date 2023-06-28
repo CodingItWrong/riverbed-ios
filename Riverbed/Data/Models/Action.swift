@@ -3,14 +3,12 @@ import Foundation
 class Action: Codable {
     var command: Command?
     var field: String?
-
-    // TODO: handle the fact that the "value" field here is used in two different ways for the different commands
-    var value: String?
+    var value: Value?
     var specificValue: FieldValue?
 
     init(command: Command? = nil,
          field: String? = nil,
-         value: String? = nil,
+         value: Value? = nil,
          specificValue: FieldValue? = nil) {
         self.command = command
         self.field = field
@@ -38,12 +36,8 @@ class Action: Codable {
                 print("Value for SET VALUE command not set")
                 return fieldValues
             }
-            guard let valueObject = Value(rawValue: value) else {
-                print("Invalid Value enum case for SET VALUE command: \(value)")
-                return fieldValues
-            }
 
-            let concreteValue = valueObject.call(fieldDataType: dataType, specificValue: specificValue)
+            let concreteValue = value.call(fieldDataType: dataType, specificValue: specificValue)
             var newFieldValues = fieldValues // arrays have value semantics, so it's copied
             newFieldValues[field] = concreteValue
             return newFieldValues
@@ -56,8 +50,8 @@ class Action: Codable {
                 print("Field for SET VALUE command not found")
                 return fieldValues
             }
-            guard let value = value,
-                  let numDays = Int(value) else {
+            guard case let .string(valueString) = specificValue,
+                  let numDays = Int(valueString) else {
                 print("Invalid value for SET VALUE command: \(String(describing: value))")
                 return fieldValues
             }
