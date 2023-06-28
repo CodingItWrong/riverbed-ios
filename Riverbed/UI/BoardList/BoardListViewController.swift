@@ -92,22 +92,6 @@ class BoardListViewController: UITableViewController,
         checkForSignInFormDisplay()
     }
 
-    func signOut() {
-        tokenSource.accessToken = nil
-    }
-
-    func checkForSignInFormDisplay() {
-        if tokenSource.accessToken == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let signInVC = storyboard.instantiateViewController(
-                withIdentifier: String(describing: SignInViewController.self)) as? SignInViewController
-            else { preconditionFailure("Expected a SignInViewController") }
-            signInVC.delegate = self
-            signInVC.tokenStore = tokenStore
-            present(signInVC, animated: true)
-        }
-    }
-
     // MARK: - data
 
     @objc func loadBoards() {
@@ -206,6 +190,22 @@ class BoardListViewController: UITableViewController,
                 print("Error creating board: \(String(describing: error))")
             }
         }
+    }
+
+    func checkForSignInFormDisplay() {
+        if tokenSource.accessToken == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let signInVC = storyboard.instantiateViewController(
+                withIdentifier: String(describing: SignInViewController.self)) as? SignInViewController
+            else { preconditionFailure("Expected a SignInViewController") }
+            signInVC.delegate = self
+            signInVC.tokenStore = tokenStore
+            present(signInVC, animated: true)
+        }
+    }
+
+    func signOut() {
+        tokenSource.accessToken = nil
     }
 
     // MARK: - private helpers
