@@ -11,15 +11,18 @@ class EditActionViewController: UITableViewController,
         case command
         case field
         case value
-        case specificValue // this is what is shown for "Add Days"
+        case specificValue
 
         static func cases(for action: Action) -> [Row] {
             switch action.command {
             case .none: return [.command, .field]
             case .addDays: return [.command, .field, .specificValue]
             case .setValue:
-                // TODO: need .specificValue too for value = specific value
-                return [.command, .field, .value]
+                if action.value == .specificValue {
+                    return [.command, .field, .value, .specificValue]
+                } else {
+                    return [.command, .field, .value]
+                }
             }
         }
 
@@ -95,40 +98,33 @@ class EditActionViewController: UITableViewController,
             return popUpButtonCell
 
         case .value:
-            switch action.command {
-            case .none: preconditionFailure("Expected a command")
-            case .addDays:
-                guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
-                    withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
-                else { preconditionFailure("Expected a TextFieldCell") }
+            guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
 
-                textFieldCell.label.text = rowEnum.label
-                textFieldCell.delegate = self
-                textFieldCell.textField.text = action.value
-                return textFieldCell
+            popUpButtonCell.label.text = rowEnum.label
+            popUpButtonCell.delegate = self
 
-            case .setValue:
-                guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
-                    withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
-                else { preconditionFailure("Expected a PopUpButtonCell") }
-
-                popUpButtonCell.label.text = rowEnum.label
-                popUpButtonCell.delegate = self
-
-                let options = Value.allCases.map { (value) in
-                    PopUpButtonCell.Option(title: value.label, value: value, isSelected: action.value == value.rawValue)
-                }
-                popUpButtonCell.configure(options: options.withEmptyOption(isSelected: action.value == nil))
-                return popUpButtonCell
+            let options = Value.allCases.map { (value) in
+                PopUpButtonCell.Option(title: value.label, value: value, isSelected: action.value == value)
             }
+            popUpButtonCell.configure(options: options.withEmptyOption(isSelected: action.value == nil))
+            return popUpButtonCell
         case .specificValue:
             guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
                 withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
 
-            textFieldCell.label.text = "Days to Add"
+            textFieldCell.label.text = action.command == .addDays ? "Days to Add" : "Specific Value"
             textFieldCell.delegate = self
-            textFieldCell.textField.text = action.value
+
+            // TODO: handle geolocation value?
+            switch action.specificValue {
+            case let .string(stringValue): textFieldCell.textField.text = stringValue
+            case .none: textFieldCell.textField.text = ""
+            default: preconditionFailure("Unexpected specificValue case: \(String(describing: action.specificValue))")
+            }
+
             return textFieldCell
         }
     }
@@ -169,26 +165,21 @@ class EditActionViewController: UITableViewController,
             tableView.reloadData()
 
         case .value:
-            switch action.command {
-            case .none: preconditionFailure("Expected a command")
-            case .addDays:
-                guard let textFieldCell = formCell as? TextFieldCell
-                else { preconditionFailure("Expected a TextFieldCell") }
-                action.value = textFieldCell.textField.text
-
-            case .setValue:
-                guard let popUpButtonCell = formCell as? PopUpButtonCell
-                else { preconditionFailure("Expected a PopUpButtonCell") }
-                guard let value = popUpButtonCell.selectedValue as? Value?
-                else { preconditionFailure("Expected a Value") }
-                action.value = value?.rawValue
-            }
+            guard let popUpButtonCell = formCell as? PopUpButtonCell
+            else { preconditionFailure("Expected a PopUpButtonCell") }
+            guard let value = popUpButtonCell.selectedValue as? Value?
+            else { preconditionFailure("Expected a Value") }
+            action.value = value
+            tableView.reloadData() // TODO: this causes the popup closing to jumpf
 
         case .specificValue:
-            guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
-                withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
+            guard let textFieldCell = formCell as? TextFieldCell
             else { preconditionFailure("Expected a TextFieldCell") }
-            action.value = textFieldCell.textField.text
+            if let text = textFieldCell.textField.text {
+                action.specificValue = .string(text)
+            } else {
+                action.specificValue = nil
+            }
         }
     }
 

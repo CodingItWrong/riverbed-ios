@@ -35,11 +35,16 @@ class ActionsViewController: UITableViewController,
             let valueLabel = {
                 guard let value = action.value else { return "(empty)" }
                 switch value {
-                case .specificValue: return String(describing: action.specificValue)
+                case .specificValue:
+                    switch action.specificValue {
+                    case .none: return "empty"
+                    case let .string(stringValue): return stringValue
+                    case .dictionary: preconditionFailure("Unexpected dictionary")
+                    }
                 default: return value.label
                 }
             }()
-            
+
             cell.textLabel?.text =
             "\(command.label) \(field.attributes.name ?? "(unnamed field)") \(valueLabel)"
         } else {
