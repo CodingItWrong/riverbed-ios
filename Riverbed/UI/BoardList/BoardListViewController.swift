@@ -236,7 +236,10 @@ class BoardListViewController: UITableViewController,
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "settings":
-            guard let settingsVC = segue.destination as? UserSettingsViewController else {
+            guard let navigationVC = segue.destination as? UINavigationController else {
+                preconditionFailure("Expected a UINavigationController")
+            }
+            guard let settingsVC = navigationVC.viewControllers.first as? UserSettingsViewController else {
                 preconditionFailure("Expected a UserSettingsViewController")
             }
             settingsVC.tokenSource = tokenSource
