@@ -22,10 +22,10 @@
                         <rect key="frame" x="20" y="4" width="353" height="86"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTo-I2-sdU">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="47.666666666666664"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="38"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-gu-l0F">
-                                        <rect key="frame" x="6" y="0.0" width="31" height="47.666666666666664"/>
+                                        <rect key="frame" x="6" y="0.0" width="31" height="38"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -39,7 +39,10 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBc-HZ-lIE">
-                                <rect key="frame" x="0.0" y="51.666666666666657" width="353" height="34.333333333333343"/>
+                                <rect key="frame" x="0.0" y="42" width="353" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="dTK-GB-Ytg"/>
+                                </constraints>
                                 <menu key="menu" id="U8x-QR-DVM">
                                     <children>
                                         <command title="Item 1" id="Cv1-SV-JCa"/>
