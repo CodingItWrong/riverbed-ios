@@ -158,6 +158,7 @@ class EditActionViewController: UITableViewController,
             guard let command = popUpButtonCell.selectedValue as? Command?
             else { preconditionFailure("Expected a Command") }
             action.command = command
+            tableView.reloadData()
 
         case .field:
             guard let popUpButtonCell = formCell as? PopUpButtonCell
@@ -165,6 +166,7 @@ class EditActionViewController: UITableViewController,
             guard let field = popUpButtonCell.selectedValue as? Element?
             else { preconditionFailure("Expected an Element") }
             action.field = field?.id
+            tableView.reloadData()
 
         case .value:
             switch action.command {
@@ -188,8 +190,6 @@ class EditActionViewController: UITableViewController,
             else { preconditionFailure("Expected a TextFieldCell") }
             action.value = textFieldCell.textField.text
         }
-
-        tableView.reloadData() // a change to either field could potentially hide or show value cell
     }
 
 }
