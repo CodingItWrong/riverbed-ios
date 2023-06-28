@@ -15,7 +15,7 @@ final class UtilsTests: XCTestCase {
     }
 
     func test_applyActionsToElements_withOneActions_appliesTheActionToTheFieldValues() {
-        let actions = [Action(command: .setValue, field: "A", value: Value.specificValue.rawValue)]
+        let actions = [Action(command: .setValue, field: "A", value: Value.specificValue)]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
@@ -30,8 +30,8 @@ final class UtilsTests: XCTestCase {
 
     func test_applyActionsToElements_withMultipleActions_appliesTheActionsInOrder() {
         let actions = [
-            Action(command: .setValue, field: "A", value: Value.specificValue.rawValue),
-            Action(command: .setValue, field: "A", value: Value.empty.rawValue)
+            Action(command: .setValue, field: "A", value: Value.specificValue),
+            Action(command: .setValue, field: "A", value: Value.empty)
         ]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
         let elements = [

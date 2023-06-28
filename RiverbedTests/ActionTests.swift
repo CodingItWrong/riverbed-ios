@@ -4,7 +4,7 @@ import XCTest
 final class ActionTests: XCTestCase {
     func test_call_withEmptyCommand_returnsFieldValuesUnchanged() {
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
-        let action = Action(command: nil, field: "A", value: "anything")
+        let action = Action(command: nil, field: "A")
         let result = action.call(elements: [], fieldValues: fieldValues)
         XCTAssertEqual(result, fieldValues)
     }
@@ -17,7 +17,7 @@ final class ActionTests: XCTestCase {
                 options: Element.Options()))
         ]
         let fieldValues: [String: FieldValue?] = ["A": .string("B")]
-        let action = Action(command: .setValue, field: "A", value: Value.empty.rawValue)
+        let action = Action(command: .setValue, field: "A", value: .empty)
         let result = action.call(elements: elements, fieldValues: fieldValues)
         XCTAssertEqual(result, ["A": nil])
     }
@@ -30,7 +30,7 @@ final class ActionTests: XCTestCase {
                 options: Element.Options()))
         ]
         let fieldValues: [String: FieldValue?] = ["A": .string("2999-01-01")]
-        let action = Action(command: .addDays, field: "A", value: "2")
+        let action = Action(command: .addDays, field: "A", specificValue: .string("2"))
         let result = action.call(elements: elements, fieldValues: fieldValues)
         XCTAssertEqual(result, ["A": .string("2999-01-03")])
     }
@@ -43,7 +43,7 @@ final class ActionTests: XCTestCase {
                 options: Element.Options()))
         ]
         let fieldValues: [String: FieldValue?] = ["A": .string("2999-01-10T09:00:00.000Z")]
-        let action = Action(command: .addDays, field: "A", value: "-1")
+        let action = Action(command: .addDays, field: "A", specificValue: .string("-1"))
         let result = action.call(elements: elements, fieldValues: fieldValues)
         XCTAssertEqual(result, ["A": .string("2999-01-09T09:00:00.000Z")])
     }
