@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -46,17 +47,17 @@
                                                 <rect key="frame" x="0.0" y="8" width="303.33333333333331" height="34.333333333333336"/>
                                             </datePicker>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(not set)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJd-OW-4X9">
-                                                <rect key="frame" x="0.0" y="14.999999999999998" width="65" height="20.333333333333329"/>
+                                                <rect key="frame" x="6" y="14.999999999999998" width="65" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="leading" secondItem="Fqo-XC-9cV" secondAttribute="leading" id="60v-9Y-lu8"/>
                                             <constraint firstItem="Fqo-XC-9cV" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="PEE-b6-788"/>
-                                            <constraint firstAttribute="leading" secondItem="QJd-OW-4X9" secondAttribute="leading" id="nJ2-I6-QrO"/>
-                                            <constraint firstItem="QJd-OW-4X9" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="sE1-cN-t0V"/>
+                                            <constraint firstItem="QJd-OW-4X9" firstAttribute="centerY" secondItem="4NA-uv-pPR" secondAttribute="centerY" id="mWF-gE-tB2"/>
+                                            <constraint firstItem="QJd-OW-4X9" firstAttribute="leading" secondItem="4NA-uv-pPR" secondAttribute="leading" constant="6" id="qDo-V5-7C0"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
@@ -72,7 +73,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="ID4-E4-QMb" secondAttribute="trailing" id="5Cg-qC-oyB"/>
                                     <constraint firstItem="ID4-E4-QMb" firstAttribute="top" secondItem="5OP-Og-IFg" secondAttribute="top" id="8Kt-jV-OeX"/>
+                                    <constraint firstAttribute="bottom" secondItem="4NA-uv-pPR" secondAttribute="bottom" id="9kc-gX-DDT"/>
                                     <constraint firstItem="ID4-E4-QMb" firstAttribute="leading" secondItem="4NA-uv-pPR" secondAttribute="trailing" id="DPX-EI-NPj"/>
+                                    <constraint firstItem="4NA-uv-pPR" firstAttribute="top" secondItem="5OP-Og-IFg" secondAttribute="top" id="Qyo-Cm-5Zs"/>
+                                    <constraint firstItem="4NA-uv-pPR" firstAttribute="leading" secondItem="5OP-Og-IFg" secondAttribute="leading" id="Tk1-qi-bev"/>
                                     <constraint firstAttribute="bottom" secondItem="ID4-E4-QMb" secondAttribute="bottom" id="rGt-Ep-9vW"/>
                                     <constraint firstAttribute="bottom" secondItem="4NA-uv-pPR" secondAttribute="bottom" id="rMG-Ol-yo0"/>
                                     <constraint firstItem="4NA-uv-pPR" firstAttribute="top" secondItem="5OP-Og-IFg" secondAttribute="top" id="w8e-zG-NfW"/>
@@ -100,5 +104,8 @@
     </objects>
     <resources>
         <image name="xmark.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
