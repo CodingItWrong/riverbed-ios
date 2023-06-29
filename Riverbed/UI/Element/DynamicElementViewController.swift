@@ -235,11 +235,12 @@ class DynamicElementViewController: UITableViewController,
                 popUpButtonCell.label.text = rowEnum.label
                 popUpButtonCell.delegate = self
                 let values = Value.allCases.sorted { $0.label < $1.label }
-                popUpButtonCell.configure(options: values.map { (valueEntry) in
+                let valueOptions = values.map { (valueEntry) in
                     PopUpButtonCell.Option(title: valueEntry.label,
                                            value: valueEntry,
-                                           isSelected: attributes.initialValue == valueEntry) }
-                )
+                                           isSelected: attributes.initialValue == valueEntry)
+                }
+                popUpButtonCell.configure(options: valueOptions.withEmptyOption(title: "(choose)", isSelected: attributes.initialValue == nil))
                 cell = popUpButtonCell
             case .concreteInitialValue:
                 guard let usesConcreteValue = attributes.initialValue?.usesConcreteValue,
@@ -411,7 +412,7 @@ class DynamicElementViewController: UITableViewController,
             case .initialValue:
                 guard let popUpButtonCell = formCell as? PopUpButtonCell
                 else { preconditionFailure("Expected a PopUpButtonCell") }
-                guard let initialValue = popUpButtonCell.selectedValue as? Value
+                guard let initialValue = popUpButtonCell.selectedValue as? Value?
                 else { preconditionFailure("Expected a Value") }
                 attributes.initialValue = initialValue
                 tableView.reloadData() // can trigger hide or show of initial specific value row
