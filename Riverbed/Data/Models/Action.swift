@@ -6,6 +6,13 @@ class Action: Codable {
     var value: Value?
     var specificValue: FieldValue?
 
+    enum CodingKeys: String, CodingKey {
+        case command
+        case field
+        case value
+        case specificValue = "specific-value"
+    }
+
     init(command: Command? = nil,
          field: String? = nil,
          value: Value? = nil,
