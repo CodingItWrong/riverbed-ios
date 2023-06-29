@@ -233,7 +233,8 @@ class EditElementViewController: UITableViewController,
                                            value: valueEntry,
                                            isSelected: attributes.initialValue == valueEntry)
                 }
-                popUpButtonCell.configure(options: valueOptions.withEmptyOption(title: "(choose)", isSelected: attributes.initialValue == nil))
+                popUpButtonCell.configure(options: valueOptions.withEmptyOption(
+                    title: "(choose)", isSelected: attributes.initialValue == nil))
                 cell = popUpButtonCell
             case .concreteInitialValue:
                 guard let usesConcreteValue = attributes.initialValue?.usesConcreteValue,
