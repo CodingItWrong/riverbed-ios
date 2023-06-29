@@ -326,7 +326,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
             guard let navigationVC = segue.destination as? UINavigationController else {
                 preconditionFailure("Expected UINavigationController")
             }
-            guard let elementVC = navigationVC.viewControllers.first as? DynamicElementViewController else {
+            guard let elementVC = navigationVC.viewControllers.first as? EditElementViewController else {
                 preconditionFailure("Expected EditColumnViewController")
             }
 

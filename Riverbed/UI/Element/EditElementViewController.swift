@@ -4,7 +4,7 @@ protocol ElementViewControllerDelegate: AnyObject {
     func didUpdate(_ element: Element)
 }
 
-class DynamicElementViewController: UITableViewController,
+class EditElementViewController: UITableViewController,
                                     ActionsDelegate,
                                     ChoicesDelegate,
                                     ConditionsDelegate,
