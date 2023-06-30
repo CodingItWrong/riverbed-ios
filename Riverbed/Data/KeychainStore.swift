@@ -16,15 +16,12 @@ class KeychainStore {
     private let accessGroup = "6283CFQE2Y.com.codingitwrong.riverbed.keychain-group"
 
     func save(token: String, identifier: KeychainStore.Identifier, service: String = service) throws {
-        guard let tokenData = token.data(using: .utf8)
-        else { preconditionFailure("Could not convert string to data: \(token)") }
-
         let attributes = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrService: service,
             kSecAttrAccount: identifier.rawValue,
             kSecAttrAccessGroup: accessGroup,
-            kSecValueData: tokenData
+            kSecValueData: Data(token.utf8)
         ] as [String: Any]
 
         let status = SecItemAdd(attributes as CFDictionary, nil)
