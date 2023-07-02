@@ -44,7 +44,7 @@ class BoardStore: BaseStore {
 
     func update(_ board: Board,
                 with updatedAttributes: Board.Attributes,
-                completion: @escaping (Result<Void, Error>) -> Void) {
+                completion: @escaping (Result<Board, Error>) -> Void) {
         let url = RiverbedAPI.boardURL(board)
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
@@ -60,7 +60,7 @@ class BoardStore: BaseStore {
             request.httpBody = requestBody
 
             let task = session.dataTask(with: request) { (data, response, error) in
-                let result: Result<Void, Error> = self.processVoidResult((data, response, error))
+                let result: Result<Board, Error> = self.processResult((data, response, error))
                 OperationQueue.main.addOperation {
                     completion(result)
                 }

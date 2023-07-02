@@ -57,9 +57,11 @@ class BoardViewController: UIViewController,
                 titleButton.setImage(nil, for: .normal)
             }
 
-            navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
-            clearBoardData()
-            loadBoardData()
+            if board?.id != oldValue?.id {
+                navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
+                clearBoardData()
+                loadBoardData()
+            }
         }
     }
 
