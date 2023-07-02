@@ -217,7 +217,7 @@
                                 </connections>
                             </collectionView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Loading Indicator">
-                                <rect key="frame" x="347" y="750" width="20" height="20"/>
+                                <rect key="frame" x="347" y="102" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
@@ -228,7 +228,7 @@
                             <constraint firstItem="gn0-Nt-ZuM" firstAttribute="trailing" secondItem="ONw-m3-two" secondAttribute="trailing" constant="8" id="YRZ-AS-mnZ"/>
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="hJV-vh-mp2"/>
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" id="l7D-o0-FYJ"/>
-                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="bottom" secondItem="ONw-m3-two" secondAttribute="bottom" constant="8" id="qbL-RJ-hja"/>
+                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="top" secondItem="ONw-m3-two" secondAttribute="top" constant="-8" id="qbL-RJ-hja"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Board" largeTitleDisplayMode="never" id="z2e-de-ATP">
