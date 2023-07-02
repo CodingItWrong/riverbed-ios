@@ -1,16 +1,20 @@
 import Foundation
 
-class Condition: Codable {
+class Condition: Codable, Equatable {
     var field: String?
     var query: Query?
     var options: Condition.Options?
 
-    class Options: Codable {
-        var value: String?
+    static func copy(from old: Condition) -> Condition {
+        Condition(field: old.field,
+                  query: old.query,
+                  options: Options.copy(from: old.options))
+    }
 
-        init(value: String? = nil) {
-            self.value = value
-        }
+    static func == (lhs: Condition, rhs: Condition) -> Bool {
+        lhs.field == rhs.field &&
+        lhs.query == rhs.query &&
+        lhs.options == rhs.options
     }
 
     init(field: String? = nil,
@@ -19,5 +23,22 @@ class Condition: Codable {
         self.field = field
         self.query = query
         self.options = options
+    }
+
+    class Options: Codable, Equatable {
+        var value: String?
+
+        static func copy(from old: Options?) -> Options? {
+            guard let old = old else { return nil }
+            return Options(value: old.value)
+        }
+
+        static func == (lhs: Condition.Options, rhs: Condition.Options) -> Bool {
+            lhs.value == rhs.value
+        }
+
+        init(value: String? = nil) {
+            self.value = value
+        }
     }
 }
