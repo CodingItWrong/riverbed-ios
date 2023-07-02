@@ -19,7 +19,8 @@ class BoardViewController: UIViewController,
     weak var delegate: BoardDelegate?
 
     @IBOutlet var columnsCollectionView: UICollectionView!
-    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var firstLoadIndicator: UIActivityIndicatorView!
+    @IBOutlet var reloadIndicator: UIActivityIndicatorView!
 
     var isFirstLoadingBoard = true
 
@@ -125,7 +126,11 @@ class BoardViewController: UIViewController,
         guard let board = board else { return }
 
         if refreshControl == nil {
-            loadingIndicator.startAnimating()
+            if isFirstLoadingBoard {
+                firstLoadIndicator.startAnimating()
+            } else {
+                reloadIndicator.startAnimating()
+            }
         }
 
         var areCardsLoading = true
@@ -135,12 +140,11 @@ class BoardViewController: UIViewController,
         func checkForLoadingDone() {
             let loadingDone = !areCardsLoading && !areColumnsLoading && !areElementsLoading
             if loadingDone {
+                refreshControl?.endRefreshing()
+                firstLoadIndicator.stopAnimating()
+                reloadIndicator.stopAnimating()
                 isFirstLoadingBoard = false
-                if let refreshControl = refreshControl {
-                    refreshControl.endRefreshing()
-                } else {
-                    loadingIndicator.stopAnimating()
-                }
+
                 self.columnsCollectionView.reloadData()
                 navigationItem.rightBarButtonItem?.isEnabled = true
             }
