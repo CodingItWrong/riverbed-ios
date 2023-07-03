@@ -20,6 +20,9 @@ class BoardListViewController: UITableViewController,
 
     weak var delegate: BoardListDelegate?
 
+    @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var addButton: UIButton!
+
     var tokenSource: WritableSessionSource!
     var tokenStore: TokenStore!
     var boardStore: BoardStore!
@@ -83,6 +86,10 @@ class BoardListViewController: UITableViewController,
             }
         ])
 
+        // just for initial load
+        addButton.isHidden = true
+        loadingIndicator.startAnimating()
+
         loadBoards()
     }
 
@@ -99,6 +106,9 @@ class BoardListViewController: UITableViewController,
             self.refreshControl?.endRefreshing()
             switch result {
             case let .success(boards):
+                self.addButton.isHidden = false
+                self.loadingIndicator.stopAnimating()
+
                 self.boards = boards
                 self.updateBoardGroups()
             case let .failure(error):

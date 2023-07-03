@@ -561,8 +561,13 @@
                                         <action selector="createBoard" destination="Xbv-Bx-k48" eventType="touchUpInside" id="FHi-cA-TU0"/>
                                     </connections>
                                 </button>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="o0w-LJ-c8I">
+                                    <rect key="frame" x="169" y="10" width="37" height="37"/>
+                                </activityIndicatorView>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="o0w-LJ-c8I" firstAttribute="centerX" secondItem="NtQ-8c-uET" secondAttribute="centerX" id="ElR-i2-zYn"/>
+                                <constraint firstItem="o0w-LJ-c8I" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" constant="10" id="LvJ-f5-hS4"/>
                                 <constraint firstItem="glh-1H-yo8" firstAttribute="leading" secondItem="NtQ-8c-uET" secondAttribute="leading" constant="20" id="QGR-5L-f9J"/>
                                 <constraint firstAttribute="trailing" secondItem="glh-1H-yo8" secondAttribute="trailing" constant="20" id="fdh-cM-mbg"/>
                                 <constraint firstItem="glh-1H-yo8" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" constant="10" id="pCb-0W-rIm"/>
@@ -638,6 +643,8 @@
                         <color key="tintColor" red="0.26274509800000001" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="addButton" destination="glh-1H-yo8" id="q6C-sl-wl4"/>
+                        <outlet property="loadingIndicator" destination="o0w-LJ-c8I" id="F71-ZG-dkP"/>
                         <segue destination="jQe-8S-4Qp" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="Paq-gS-APQ"/>
                     </connections>
                 </tableViewController>
