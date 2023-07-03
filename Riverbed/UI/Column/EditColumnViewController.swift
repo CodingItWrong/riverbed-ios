@@ -110,7 +110,7 @@ class EditColumnViewController: UITableViewController,
 
             sortByCell.label.text = rowEnum.label
             sortByCell.delegate = self
-            sortByCell.configure(column.attributes.cardSortOrder, fields: fields)
+            sortByCell.configure(attributes.cardSortOrder, fields: fields)
             return sortByCell
 
         case .grouping:
@@ -120,7 +120,7 @@ class EditColumnViewController: UITableViewController,
 
             sortByCell.label.text = rowEnum.label
             sortByCell.delegate = self
-            sortByCell.configure(column.attributes.cardGrouping, fields: fields)
+            sortByCell.configure(attributes.cardGrouping, fields: fields)
             return sortByCell
 
         case .summary:
@@ -130,7 +130,7 @@ class EditColumnViewController: UITableViewController,
 
             summaryCell.label.text = rowEnum.label
             summaryCell.delegate = self
-            summaryCell.configure(column.attributes.summary, fields: fields)
+            summaryCell.configure(attributes.summary, fields: fields)
             return summaryCell
 
         }
@@ -195,7 +195,7 @@ class EditColumnViewController: UITableViewController,
 
     func didUpdate(_ conditions: [Condition]) {
         print("EditColumnViewController didUpdate()")
-        column.attributes.cardInclusionConditions = conditions
+        attributes.cardInclusionConditions = conditions
         tableView.reloadData()
     }
 
@@ -208,12 +208,12 @@ class EditColumnViewController: UITableViewController,
                 preconditionFailure("Expected a ConditionsViewController")
             }
 
-            if column.attributes.cardInclusionConditions == nil {
-                column.attributes.cardInclusionConditions = []
+            if attributes.cardInclusionConditions == nil {
+                attributes.cardInclusionConditions = []
             }
 
             conditionsVC.navigationItem.title = "Cards to Include"
-            conditionsVC.conditions = column.attributes.cardInclusionConditions!
+            conditionsVC.conditions = attributes.cardInclusionConditions!
             conditionsVC.elements = elements
             conditionsVC.delegate = self
         default:
