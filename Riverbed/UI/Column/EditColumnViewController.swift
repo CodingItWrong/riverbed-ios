@@ -29,7 +29,7 @@ class EditColumnViewController: UITableViewController,
     var attributes: Column.Attributes!
     var column: Column! {
         didSet {
-            attributes = column.attributes
+            attributes = Column.Attributes.copy(from: column.attributes)
         }
     }
     var elements: [Element] = []
@@ -47,13 +47,17 @@ class EditColumnViewController: UITableViewController,
         super.viewWillDisappear(animated)
 
         guard let column = column else { return }
-        columnStore.update(column, with: attributes) { [weak self] (result) in
-            switch result {
-            case .success:
-                print("SAVED COLUMN \(column.id)")
-                self?.delegate?.didUpdate(column)
-            case let .failure(error):
-                print("Error saving column: \(String(describing: error))")
+        let attributesChanged = attributes != column.attributes
+
+        if attributesChanged {
+            columnStore.update(column, with: attributes) { [weak self] (result) in
+                switch result {
+                case .success:
+                    print("SAVED COLUMN \(column.id)")
+                    self?.delegate?.didUpdate(column)
+                case let .failure(error):
+                    print("Error saving column: \(String(describing: error))")
+                }
             }
         }
     }

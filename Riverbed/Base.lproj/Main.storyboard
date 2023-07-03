@@ -216,8 +216,11 @@
                                     <outletCollection property="gestureRecognizers" destination="HFF-40-uci" appends="YES" id="aHl-1a-2QI"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Loading Indicator">
-                                <rect key="frame" x="347" y="750" width="20" height="20"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Reload Indicator">
+                                <rect key="frame" x="347" y="103" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-3o-nKi" userLabel="First Load Indicator">
+                                <rect key="frame" x="169" y="102" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
@@ -227,8 +230,10 @@
                             <constraint firstAttribute="bottom" secondItem="AUI-zJ-9RT" secondAttribute="bottom" id="RNJ-GT-KD1"/>
                             <constraint firstItem="gn0-Nt-ZuM" firstAttribute="trailing" secondItem="ONw-m3-two" secondAttribute="trailing" constant="8" id="YRZ-AS-mnZ"/>
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="hJV-vh-mp2"/>
+                            <constraint firstItem="zWe-3o-nKi" firstAttribute="centerX" secondItem="wLI-0p-YwG" secondAttribute="centerX" id="iie-U1-mif"/>
                             <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" id="l7D-o0-FYJ"/>
-                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="bottom" secondItem="ONw-m3-two" secondAttribute="bottom" constant="8" id="qbL-RJ-hja"/>
+                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="top" secondItem="ONw-m3-two" secondAttribute="top" constant="-8" id="qbL-RJ-hja"/>
+                            <constraint firstItem="zWe-3o-nKi" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="8" id="vKn-nP-oZv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Board" largeTitleDisplayMode="never" id="z2e-de-ATP">
@@ -240,7 +245,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="columnsCollectionView" destination="AUI-zJ-9RT" id="bZi-91-2a7"/>
-                        <outlet property="loadingIndicator" destination="ONw-m3-two" id="Eug-Xc-wzE"/>
+                        <outlet property="firstLoadIndicator" destination="zWe-3o-nKi" id="bal-zN-KSz"/>
+                        <outlet property="reloadIndicator" destination="ONw-m3-two" id="Em8-PO-V8a"/>
                         <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
                         <segue destination="SN4-mf-Wm1" kind="presentation" identifier="editBoard" modalPresentationStyle="formSheet" id="RVW-Pl-hBX"/>
                         <segue destination="zqR-CJ-8Qs" kind="presentation" identifier="editColumn" modalPresentationStyle="formSheet" id="Eo8-M9-iRK"/>
@@ -629,6 +635,7 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="D5Q-63-c09">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.26274509800000001" green="0.56078431370000004" blue="0.56078431370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </refreshControl>
                     <connections>
                         <segue destination="jQe-8S-4Qp" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="Paq-gS-APQ"/>

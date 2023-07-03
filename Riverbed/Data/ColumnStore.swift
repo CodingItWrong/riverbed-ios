@@ -80,7 +80,7 @@ class ColumnStore: BaseStore {
     func updateDisplayOrders(of columns: [Column],
                              completion: @escaping (Result<[Column], Error>) -> Void) {
         let columnsWithNewDisplayOrders = columns.enumerated().map { (index, column) in
-            let attributesWithNewDisplayOrder = Column.Attributes(shallowCloning: column.attributes)
+            let attributesWithNewDisplayOrder = Column.Attributes.copy(from: column.attributes)
             attributesWithNewDisplayOrder.displayOrder = index
             return Column(id: column.id, attributes: attributesWithNewDisplayOrder)
         }
