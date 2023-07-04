@@ -24,6 +24,7 @@
 		03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFE2A13DF9E0063EE24 /* Assets.xcassets */; };
 		03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
+		0304DACA2A54381900A7C2DE /* EditColumnNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */; };
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
@@ -184,6 +185,7 @@
 		03027E082A13DF9E0063EE24 /* RiverbedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
+		0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnNavigationController.swift; sourceTree = "<group>"; };
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				03010CC52A34840900EF32D1 /* EditColumnViewController.swift */,
+				0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */,
 			);
 			path = Column;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				0342FC802A17C24100CB8075 /* Card.swift in Sources */,
 				031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */,
 				03027DF82A13DF9D0063EE24 /* SceneDelegate.swift in Sources */,
+				0304DACA2A54381900A7C2DE /* EditColumnNavigationController.swift in Sources */,
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */,

@@ -529,18 +529,19 @@ class BoardViewController: UIViewController,
             editBoardVC.boardStore = boardStore
 
         case "editColumn":
-            guard let navigationVC = segue.destination as? UINavigationController else {
-                preconditionFailure("Expected UINavigationController")
+            guard let navigationVC = segue.destination as? EditColumnNavigationController else {
+                preconditionFailure("Expected EditColumnNavigationController")
             }
             guard let editColumnVC = navigationVC.viewControllers.first as? EditColumnViewController else {
                 preconditionFailure("Expected EditColumnViewController")
             }
             guard let column = sender as? Column else { preconditionFailure("Expected a Column") }
 
-            editColumnVC.column = column
+            navigationVC.column = column
+            navigationVC.columnStore = columnStore
+            navigationVC.editColumnDelegate = self
+
             editColumnVC.elements = elements
-            editColumnVC.columnStore = columnStore
-            editColumnVC.delegate = self
 
         default:
             preconditionFailure("Unexpected segue")

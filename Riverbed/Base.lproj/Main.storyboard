@@ -794,10 +794,10 @@
             </objects>
             <point key="canvasLocation" x="360.48387096774195" y="46.866725507502203"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Column Navigation Controller-->
         <scene sceneID="02X-JV-d8S">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqR-CJ-8Qs" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqR-CJ-8Qs" customClass="EditColumnNavigationController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YWy-Vk-Baf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
