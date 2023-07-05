@@ -2,10 +2,13 @@ import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
     func didUpdate(_ card: Card)
+    func didUpdateElements(for card: Card)
     func didDelete(_ card: Card)
 }
 
-class CardViewController: UITableViewController, ElementCellDelegate, ElementViewControllerDelegate {
+class CardViewController: UITableViewController,
+                          ElementCellDelegate,
+                          EditElementDelegate {
     @IBOutlet private var addElementButton: UIButton!
     @IBOutlet private var deleteButton: UIButton!
 
@@ -116,7 +119,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         if element.attributes.readOnly {
             return ReadOnlyElementCell.self
         } else {
-            return elementCellType(for: element)
+            return elementCellType(for: element.attributes)
         }
     }
 
@@ -173,29 +176,10 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         dismiss(animated: true)
     }
 
-    func update(value: FieldValue?, for element: Element) {
-//        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
-
-        // avoid creating a new instance if not needed, to preserve value equality
-        if fieldValues[element.id] != value {
-            fieldValues[element.id] = value
-        }
-
-        recomputeTableCellSizes()
-    }
-
     func recomputeTableCellSizes() {
         // see https://stackoverflow.com/a/5659468/477480
         tableView.beginUpdates()
         tableView.endUpdates()
-    }
-
-    func update(values: [String: FieldValue?], dismiss: Bool) {
-        fieldValues = values
-
-        if dismiss {
-            self.dismiss(animated: true)
-        }
     }
 
     func addElement(of elementType: Element.ElementType) {
@@ -221,12 +205,6 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
                 print("Error reloading elements: \(String(describing: error))")
             }
         }
-    }
-
-    func didUpdate(_ element: Element) {
-        // TODO: reload elements in the board as well
-        // maybe just do that when this VC dismisses, instead of automatically propagating
-        reloadElements()
     }
 
     // MARK: - table view data source and delegate
@@ -313,6 +291,31 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         }
     }
 
+    // MARK: - app-specific delegates
+
+    func didUpdate(_ element: Element) {
+        // maybe just do that when this VC dismisses, instead of automatically propagating
+        reloadElements()
+        delegate?.didUpdateElements(for: card)
+    }
+
+    func update(value: FieldValue?, for element: Element) {
+        // avoid creating a new instance if not needed, to preserve value equality
+        if fieldValues[element.id] != value {
+            fieldValues[element.id] = value
+        }
+
+        recomputeTableCellSizes()
+    }
+
+    func update(values: [String: FieldValue?], dismiss: Bool) {
+        fieldValues = values
+
+        if dismiss {
+            self.dismiss(animated: true)
+        }
+    }
+
     // MARK: - navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -323,17 +326,18 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         switch segue.identifier {
         case "editElement":
             guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
-            guard let navigationVC = segue.destination as? UINavigationController else {
-                preconditionFailure("Expected UINavigationController")
+            guard let navigationVC = segue.destination as? EditElementNavigationController else {
+                preconditionFailure("Expected EditElementNavigationController")
             }
             guard let elementVC = navigationVC.viewControllers.first as? EditElementViewController else {
                 preconditionFailure("Expected EditColumnViewController")
             }
 
-            elementVC.element = element
+            navigationVC.element = element
+            navigationVC.elementStore = elementStore
+            navigationVC.editElementDelegate = self
+
             elementVC.elements = elements
-            elementVC.elementStore = elementStore
-            elementVC.delegate = self
         case "test":
             print("test")
         default:

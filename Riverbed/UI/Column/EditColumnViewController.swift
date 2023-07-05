@@ -1,9 +1,5 @@
 import UIKit
 
-protocol EditColumnViewControllerDelegate: AnyObject {
-    func didUpdate(_ column: Column)
-}
-
 class EditColumnViewController: UITableViewController,
                                 ConditionsDelegate,
                                 FormCellDelegate {
@@ -27,39 +23,9 @@ class EditColumnViewController: UITableViewController,
     }
 
     var attributes: Column.Attributes!
-    var column: Column! {
-        didSet {
-            attributes = Column.Attributes.copy(from: column.attributes)
-        }
-    }
     var elements: [Element] = []
     var fields: [Element] {
         elements.filter { $0.attributes.elementType == .field }.inDisplayOrder
-    }
-
-    var columnStore: ColumnStore!
-    weak var delegate: EditColumnViewControllerDelegate?
-
-    // MARK: - view controller lifecycle
-
-    override func viewWillDisappear(_ animated: Bool) {
-        // note that this runs both when the modal is dismissed and when pushing a VC on the navigation stack
-        super.viewWillDisappear(animated)
-
-        guard let column = column else { return }
-        let attributesChanged = attributes != column.attributes
-
-        if attributesChanged {
-            columnStore.update(column, with: attributes) { [weak self] (result) in
-                switch result {
-                case .success:
-                    print("SAVED COLUMN \(column.id)")
-                    self?.delegate?.didUpdate(column)
-                case let .failure(error):
-                    print("Error saving column: \(String(describing: error))")
-                }
-            }
-        }
     }
 
     // MARK: - table view data source and delegate

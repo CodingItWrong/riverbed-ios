@@ -13,6 +13,13 @@ class Action: Codable {
         case specificValue = "specific-value"
     }
 
+    static func copy(from old: Action) -> Action {
+        return Action(command: old.command,
+                      field: old.field,
+                      value: old.value,
+                      specificValue: old.specificValue)
+    }
+
     init(command: Command? = nil,
          field: String? = nil,
          value: Value? = nil,

@@ -794,10 +794,10 @@
             </objects>
             <point key="canvasLocation" x="360.48387096774195" y="46.866725507502203"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Column Navigation Controller-->
         <scene sceneID="02X-JV-d8S">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqR-CJ-8Qs" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zqR-CJ-8Qs" customClass="EditColumnNavigationController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YWy-Vk-Baf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -812,10 +812,10 @@
             </objects>
             <point key="canvasLocation" x="3513" y="775"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Element Navigation Controller-->
         <scene sceneID="Hr6-RD-36R">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viv-Vs-YnU" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viv-Vs-YnU" customClass="EditElementNavigationController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ssp-xS-6bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -946,6 +946,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Zfs-GS-UwD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="wRu-bi-yZA" style="IBUITableViewCellStyleDefault" id="ozC-6Q-Ek1">
                                 <rect key="frame" x="20" y="55.333332061767578" width="335" height="43.666667938232422"/>
@@ -968,6 +969,7 @@
                         <connections>
                             <outlet property="dataSource" destination="Aof-yE-CBg" id="MdS-OG-Tlr"/>
                             <outlet property="delegate" destination="Aof-yE-CBg" id="Mk9-5U-hqQ"/>
+                            <outletCollection property="gestureRecognizers" destination="448-7x-HOh" appends="YES" id="Uqj-Tz-QPM"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choices" id="6JQ-rb-dzC">
@@ -979,6 +981,11 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agK-zd-8LY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="448-7x-HOh">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="Aof-yE-CBg" id="8fW-F9-3IT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5380" y="2587"/>
         </scene>
@@ -1002,7 +1009,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="En7-Rs-8j7"/>
+        <segue reference="a1h-7Y-iTO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>
