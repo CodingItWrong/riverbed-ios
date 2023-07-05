@@ -1,9 +1,5 @@
 import UIKit
 
-protocol EditColumnViewControllerDelegate: AnyObject {
-    func didUpdate(_ column: Column)
-}
-
 class EditColumnViewController: UITableViewController,
                                 ConditionsDelegate,
                                 FormCellDelegate {

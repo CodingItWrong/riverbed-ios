@@ -1,5 +1,9 @@
 import UIKit
 
+protocol EditColumnDelegate: AnyObject {
+    func didUpdate(_ column: Column)
+}
+
 class EditColumnNavigationController: UINavigationController {
 
     var attributes: Column.Attributes! {
@@ -18,10 +22,11 @@ class EditColumnNavigationController: UINavigationController {
 
     var columnStore: ColumnStore!
 
-    weak var editColumnDelegate: EditColumnViewControllerDelegate? // TODO: move delegate to this file if it works
+    weak var editColumnDelegate: EditColumnDelegate?
 
     // MARK: - view controller lifecycle
 
+    // Needed so that no matter which VC is showing within the nav controller, we save upon dismiss
     override func viewWillDisappear(_ animated: Bool) {
         // note that this runs both when the modal is dismissed and when pushing a VC on the navigation stack
         super.viewWillDisappear(animated)

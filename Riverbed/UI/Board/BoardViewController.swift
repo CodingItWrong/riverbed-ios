@@ -12,7 +12,7 @@ class BoardViewController: UIViewController,
                            ColumnCellDelegate,
                            CardViewControllerDelegate,
                            EditBoardViewControllerDelegate,
-                           EditColumnViewControllerDelegate {
+                           EditColumnDelegate {
 
     // MARK: - properties
 
