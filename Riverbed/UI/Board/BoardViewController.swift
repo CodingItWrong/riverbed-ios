@@ -103,6 +103,7 @@ class BoardViewController: UIViewController,
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         clearBoardData()
+        board = nil
     }
 
     func configureForForeground() {
