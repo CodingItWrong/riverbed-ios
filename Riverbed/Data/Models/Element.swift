@@ -144,9 +144,9 @@ class Element: Codable, Equatable {
     }
 
     class Attributes: Codable {
-        var name: String?
         var elementType: Element.ElementType
         var dataType: Element.DataType?
+        var name: String?
         var showInSummary: Bool
         var options: Element.Options?
         var displayOrder: Int?
@@ -154,16 +154,36 @@ class Element: Codable, Equatable {
         var readOnly: Bool
         var initialValue: Value?
 
+        static func copy(from old: Attributes) -> Attributes {
+            Attributes(elementType: old.elementType,
+                       dataType: old.dataType,
+                       name: old.name,
+                       showInSummary: old.showInSummary,
+                       options: Options.copy(from: old.options),
+                       displayOrder: old.displayOrder,
+                       showConditions: old.showConditions?.map { Condition.copy(from: $0) },
+                       readOnly: old.readOnly,
+                       initialValue: old.initialValue)
+        }
+
         init(elementType: Element.ElementType,
              dataType: Element.DataType? = nil,
+             name: String? = nil,
+             showInSummary: Bool = false,
              options: Element.Options? = nil,
+             displayOrder: Int? = nil,
+             showConditions: [Condition]? = nil,
+             readOnly: Bool = false,
              initialValue: Value? = nil) {
             self.elementType = elementType
             self.dataType = dataType
+            self.name = name
+            self.showInSummary = showInSummary
             self.options = options
+            self.displayOrder = displayOrder
+            self.showConditions = showConditions
+            self.readOnly = readOnly
             self.initialValue = initialValue
-            self.showInSummary = false
-            self.readOnly = false
         }
 
         init(shallowCloning original: Element.Attributes) {
@@ -202,6 +222,19 @@ class Element: Codable, Equatable {
         var abbreviateURLs: Bool?
         var linkURLs: Bool?
 
+        static func copy(from old: Options?) -> Options? {
+            guard let old = old else { return nil }
+            return Options(multiline: old.multiline,
+                           showLabelWhenReadOnly: old.showLabelWhenReadOnly,
+                           choices: old.choices?.map { Choice.copy(from: $0) },
+                           items: old.items?.map { Item.copy(from: $0) },
+                           actions: old.actions?.map { Action.copy(from: $0) },
+                           initialSpecificValue: old.initialSpecificValue,
+                           textSize: old.textSize,
+                           abbreviateURLs: old.abbreviateURLs,
+                           linkURLs: old.linkURLs)
+        }
+
         init(multiline: Bool? = nil,
              showLabelWhenReadOnly: Bool? = nil,
              choices: [Element.Choice]? = nil,
@@ -239,6 +272,10 @@ class Element: Codable, Equatable {
         var id: String
         var label: String?
 
+        static func copy(from old: Choice) -> Choice {
+            return Choice(id: old.id, label: old.label)
+        }
+
         init(id: String = UUID().uuidString, label: String? = nil) {
             self.id = id
             self.label = label
@@ -252,6 +289,16 @@ class Element: Codable, Equatable {
     class Item: Codable {
         var name: String
         var actions: [Action]?
+
+        static func copy(from old: Item) -> Item {
+            return Item(name: old.name,
+                        actions: old.actions?.map { Action.copy(from: $0) })
+        }
+
+        init(name: String, actions: [Action]? = nil) {
+            self.name = name
+            self.actions = actions
+        }
     }
 }
 

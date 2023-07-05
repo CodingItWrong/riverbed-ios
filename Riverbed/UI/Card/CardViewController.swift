@@ -5,7 +5,9 @@ protocol CardViewControllerDelegate: AnyObject {
     func didDelete(_ card: Card)
 }
 
-class CardViewController: UITableViewController, ElementCellDelegate, ElementViewControllerDelegate {
+class CardViewController: UITableViewController,
+                          ElementCellDelegate,
+                          EditElementDelegate {
     @IBOutlet private var addElementButton: UIButton!
     @IBOutlet private var deleteButton: UIButton!
 
@@ -116,7 +118,7 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         if element.attributes.readOnly {
             return ReadOnlyElementCell.self
         } else {
-            return elementCellType(for: element)
+            return elementCellType(for: element.attributes)
         }
     }
 
@@ -323,17 +325,18 @@ class CardViewController: UITableViewController, ElementCellDelegate, ElementVie
         switch segue.identifier {
         case "editElement":
             guard let element = sender as? Element else { preconditionFailure("Expected an Elmement") }
-            guard let navigationVC = segue.destination as? UINavigationController else {
-                preconditionFailure("Expected UINavigationController")
+            guard let navigationVC = segue.destination as? EditElementNavigationController else {
+                preconditionFailure("Expected EditElementNavigationController")
             }
             guard let elementVC = navigationVC.viewControllers.first as? EditElementViewController else {
                 preconditionFailure("Expected EditColumnViewController")
             }
 
-            elementVC.element = element
+            navigationVC.element = element
+            navigationVC.elementStore = elementStore
+            navigationVC.editElementDelegate = self
+
             elementVC.elements = elements
-            elementVC.elementStore = elementStore
-            elementVC.delegate = self
         case "test":
             print("test")
         default:

@@ -812,10 +812,10 @@
             </objects>
             <point key="canvasLocation" x="3513" y="775"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Element Navigation Controller-->
         <scene sceneID="Hr6-RD-36R">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viv-Vs-YnU" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="viv-Vs-YnU" customClass="EditElementNavigationController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ssp-xS-6bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -1009,7 +1009,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="En7-Rs-8j7"/>
+        <segue reference="a1h-7Y-iTO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>

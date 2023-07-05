@@ -95,7 +95,7 @@ class EditConditionViewController: UITableViewController,
                 return tableView.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath)
             }
 
-            let cellType = elementCellType(for: field)
+            let cellType = elementCellType(for: field.attributes)
             guard let cell = tableView.dequeueOrRegisterReusableCell(
                 withIdentifier: String(describing: cellType)) as? ElementCell
             else { preconditionFailure("Expected an ElementCell") }

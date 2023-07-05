@@ -13,12 +13,12 @@ protocol ElementCell: UITableViewCell {
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?)
 }
 
-func elementCellType(for element: Element) -> UITableViewCell.Type {
-    switch element.attributes.elementType {
+func elementCellType(for attributes: Element.Attributes) -> UITableViewCell.Type {
+    switch attributes.elementType {
     case .button: return ButtonElementCell.self
     case .buttonMenu: return ButtonMenuElementCell.self
     case .field:
-        switch element.attributes.dataType {
+        switch attributes.dataType {
         case .choice: return ChoiceElementCell.self
         case .date: return DateElementCell.self
         case .dateTime: return DateElementCell.self

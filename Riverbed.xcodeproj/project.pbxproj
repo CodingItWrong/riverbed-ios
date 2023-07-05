@@ -25,6 +25,7 @@
 		03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
 		0304DACA2A54381900A7C2DE /* EditColumnNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */; };
+		0304DACC2A544FB700A7C2DE /* EditElementNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */; };
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
@@ -186,6 +187,7 @@
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
 		0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnNavigationController.swift; sourceTree = "<group>"; };
+		0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementNavigationController.swift; sourceTree = "<group>"; };
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				0328D1C32A393A420079576C /* ActionsViewController.swift */,
 				031094172A4083520051B93F /* ChoicesViewController.swift */,
 				0328D1C52A39C4B80079576C /* EditActionViewController.swift */,
+				0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */,
 				03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */,
 			);
 			path = Element;
@@ -814,6 +817,7 @@
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
+				0304DACC2A544FB700A7C2DE /* EditElementNavigationController.swift in Sources */,
 				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03010CCC2A34943500EF32D1 /* SummaryCell.swift in Sources */,
 				03944A8B2A195F7A00639AC7 /* CardSummaryCell.swift in Sources */,

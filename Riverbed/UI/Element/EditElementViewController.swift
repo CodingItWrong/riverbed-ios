@@ -1,9 +1,5 @@
 import UIKit
 
-protocol ElementViewControllerDelegate: AnyObject {
-    func didUpdate(_ element: Element)
-}
-
 class EditElementViewController: UITableViewController,
                                     ActionsDelegate,
                                     ChoicesDelegate,
@@ -110,39 +106,18 @@ class EditElementViewController: UITableViewController,
         }
     }
 
-    var elementStore: ElementStore!
-    weak var delegate: ElementViewControllerDelegate?
-
-    var attributes: Element.Attributes!
-    var element: Element! {
+    var element: Element!
+    var attributes: Element.Attributes! {
         didSet {
-            attributes = element.attributes
-            navigationItem.title = "Edit \(element.attributes.elementType.label)"
+            navigationItem.title = "Edit \(attributes.elementType.label)"
         }
     }
     var elements = [Element]()
 
-    // MARK: - view controller lifecycle
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        guard let element = self.element else { return }
-        elementStore.update(element, with: attributes) { [weak self] (result) in
-            switch result {
-            case .success:
-                print("SAVED ELEMENT \(element.id)")
-                self?.delegate?.didUpdate(element)
-            case let .failure(error):
-                print("Error saving card: \(String(describing: error))")
-            }
-        }
-    }
-
     // MARK: - table view data source and immediate helpers
 
     private var sectionCases: [Section] {
-        Section.cases(for: element.attributes.elementType)
+        Section.cases(for: attributes.elementType)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -164,7 +139,8 @@ class EditElementViewController: UITableViewController,
     }
 
     private var elementRowCases: [ElementRow] {
-        ElementRow.cases(forElementType: element.attributes.elementType, dataType: element.attributes.dataType)
+        ElementRow.cases(forElementType: attributes.elementType,
+                         dataType: attributes.dataType)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -180,7 +156,7 @@ class EditElementViewController: UITableViewController,
                 else { preconditionFailure("Expected a TextFieldCell") }
 
                 // TODO: maybe set these on a FormCell base class
-                textFieldCell.label.text = "\(element.attributes.elementType.label) Name"
+                textFieldCell.label.text = "\(attributes.elementType.label) Name"
                 textFieldCell.delegate = self
 
                 textFieldCell.textField.text = attributes.name
@@ -243,7 +219,7 @@ class EditElementViewController: UITableViewController,
                     return cell
                 }
 
-                let cellType = elementCellType(for: element)
+                let cellType = elementCellType(for: attributes)
                 guard let cell = tableView.dequeueOrRegisterReusableCell(
                     withIdentifier: String(describing: cellType)) as? ElementCell
                 else { preconditionFailure("Expected an ElementCell") }
@@ -370,7 +346,7 @@ class EditElementViewController: UITableViewController,
     func didPressButton(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
 
-        let sectionEnum = Section.cases(for: element.attributes.elementType)[indexPath.section]
+        let sectionEnum = Section.cases(for: attributes.elementType)[indexPath.section]
         guard sectionEnum == .element else { preconditionFailure("Unexpected section \(indexPath.section)") }
 
         let rowEnum = elementRowCases[indexPath.row]
