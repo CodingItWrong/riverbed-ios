@@ -2,6 +2,7 @@ import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
     func didUpdate(_ card: Card)
+    func didUpdateElements(for card: Card)
     func didDelete(_ card: Card)
 }
 
@@ -293,9 +294,9 @@ class CardViewController: UITableViewController,
     // MARK: - app-specific delegates
 
     func didUpdate(_ element: Element) {
-        // TODO: reload elements in the board as well
         // maybe just do that when this VC dismisses, instead of automatically propagating
         reloadElements()
+        delegate?.didUpdateElements(for: card)
     }
 
     func update(value: FieldValue?, for element: Element) {

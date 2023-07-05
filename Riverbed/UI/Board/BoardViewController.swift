@@ -316,6 +316,11 @@ class BoardViewController: UIViewController,
         loadBoardData()
     }
 
+    func didUpdateElements(for card: Card) {
+        // Could consider only reloading the cards
+        loadBoardData()
+    }
+
     func didDelete(_ card: Card) {
         loadBoardData()
     }
