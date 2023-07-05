@@ -175,29 +175,10 @@ class CardViewController: UITableViewController,
         dismiss(animated: true)
     }
 
-    func update(value: FieldValue?, for element: Element) {
-//        print("update value of \(String(describing: element.attributes.name)) to \(String(describing: value))")
-
-        // avoid creating a new instance if not needed, to preserve value equality
-        if fieldValues[element.id] != value {
-            fieldValues[element.id] = value
-        }
-
-        recomputeTableCellSizes()
-    }
-
     func recomputeTableCellSizes() {
         // see https://stackoverflow.com/a/5659468/477480
         tableView.beginUpdates()
         tableView.endUpdates()
-    }
-
-    func update(values: [String: FieldValue?], dismiss: Bool) {
-        fieldValues = values
-
-        if dismiss {
-            self.dismiss(animated: true)
-        }
     }
 
     func addElement(of elementType: Element.ElementType) {
@@ -223,12 +204,6 @@ class CardViewController: UITableViewController,
                 print("Error reloading elements: \(String(describing: error))")
             }
         }
-    }
-
-    func didUpdate(_ element: Element) {
-        // TODO: reload elements in the board as well
-        // maybe just do that when this VC dismisses, instead of automatically propagating
-        reloadElements()
     }
 
     // MARK: - table view data source and delegate
@@ -312,6 +287,31 @@ class CardViewController: UITableViewController,
                     print("Error deleting element: \(String(describing: error))")
                 }
             }
+        }
+    }
+
+    // MARK: - app-specific delegates
+
+    func didUpdate(_ element: Element) {
+        // TODO: reload elements in the board as well
+        // maybe just do that when this VC dismisses, instead of automatically propagating
+        reloadElements()
+    }
+
+    func update(value: FieldValue?, for element: Element) {
+        // avoid creating a new instance if not needed, to preserve value equality
+        if fieldValues[element.id] != value {
+            fieldValues[element.id] = value
+        }
+
+        recomputeTableCellSizes()
+    }
+
+    func update(values: [String: FieldValue?], dismiss: Bool) {
+        fieldValues = values
+
+        if dismiss {
+            self.dismiss(animated: true)
         }
     }
 
