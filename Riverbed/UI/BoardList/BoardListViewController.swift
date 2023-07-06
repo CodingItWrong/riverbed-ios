@@ -186,11 +186,15 @@ class BoardListViewController: UITableViewController,
                                                  favoritedAt: newFavoritedAt,
                                                  options: board.attributes.options)
         boardStore.update(board, with: updatedAttributes) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case .success:
-                self?.loadBoards()
+                self.loadBoards()
             case let .failure(error):
                 print("Error toggling board favorite: \(String(describing: error))")
+                let action = newFavoritedAt == nil ? "unfavoriting" : "favoriting"
+                self.showAlert(withErrorMessage: "An error occurred while \(action) the board.")
+                self.tableView.setEditing(false, animated: true) // unswipe the row
             }
         }
     }
