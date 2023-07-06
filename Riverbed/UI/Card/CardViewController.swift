@@ -29,6 +29,7 @@ class CardViewController: UITableViewController,
             loadFieldValues()
         }
     }
+    var originalFieldValues = [String: FieldValue?]()
     var fieldValues = [String: FieldValue?]()
 
     func loadFieldValues() {
@@ -37,6 +38,7 @@ class CardViewController: UITableViewController,
             switch result {
             case let .success(updatedCard):
                 guard let self = self else { return }
+                self.originalFieldValues = updatedCard.attributes.fieldValues
                 self.fieldValues = updatedCard.attributes.fieldValues
                 self.updateElementsToShow()
                 self.tableView.reloadData()
@@ -46,6 +48,7 @@ class CardViewController: UITableViewController,
         }
 
         // TODO: do we still want to set this immediately in addition to from the server?
+        originalFieldValues = card.attributes.fieldValues
         fieldValues = card.attributes.fieldValues
         updateElementsToShow()
     }
@@ -92,7 +95,7 @@ class CardViewController: UITableViewController,
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let isCardChanged = fieldValues != card.attributes.fieldValues
+        let isCardChanged = fieldValues != originalFieldValues
 
         if isCardDeleted {
             delegate?.didDelete(card)
