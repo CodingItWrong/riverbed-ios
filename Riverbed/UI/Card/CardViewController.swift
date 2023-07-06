@@ -144,6 +144,43 @@ class CardViewController: UITableViewController,
         tableView.reloadData() // because editing shows all elements
     }
 
+    @objc func dismissVC(_ sender: Any?) {
+        dismiss(animated: true)
+    }
+
+    func recomputeTableCellSizes() {
+        // see https://stackoverflow.com/a/5659468/477480
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+
+    // MARK: - actions
+
+    func addElement(of elementType: Element.ElementType) {
+        elementStore.create(of: elementType, on: board) { [weak self] (result) in
+            switch result {
+            case let .failure(error):
+                print("Error adding element: \(String(describing: error))")
+            case .success:
+                self?.reloadElements()
+            }
+        }
+    }
+
+    func reloadElements() {
+        elementStore.all(for: board) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case let .success(elements):
+                self.elements = elements
+                self.updateSortedElements()
+                self.tableView.reloadData()
+            case let .failure(error):
+                print("Error reloading elements: \(String(describing: error))")
+            }
+        }
+    }
+
     @IBAction func deleteCard(_ sender: Any?) {
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
@@ -173,41 +210,6 @@ class CardViewController: UITableViewController,
         alert.preferredAction = deleteAction
 
         present(alert, animated: true)
-    }
-
-    @objc func dismissVC(_ sender: Any?) {
-        dismiss(animated: true)
-    }
-
-    func recomputeTableCellSizes() {
-        // see https://stackoverflow.com/a/5659468/477480
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-
-    func addElement(of elementType: Element.ElementType) {
-        elementStore.create(of: elementType, on: board) { [weak self] (result) in
-            switch result {
-            case let .failure(error):
-                print("Error adding element: \(String(describing: error))")
-            case .success:
-                self?.reloadElements()
-            }
-        }
-    }
-
-    func reloadElements() {
-        elementStore.all(for: board) { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case let .success(elements):
-                self.elements = elements
-                self.updateSortedElements()
-                self.tableView.reloadData()
-            case let .failure(error):
-                print("Error reloading elements: \(String(describing: error))")
-            }
-        }
     }
 
     // MARK: - table view data source and delegate
