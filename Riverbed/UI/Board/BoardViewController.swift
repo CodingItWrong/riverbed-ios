@@ -244,11 +244,13 @@ class BoardViewController: UIViewController,
         guard let board = board else { return }
 
         cardStore.create(on: board, with: elements) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case let .success(card):
-                self?.didSelect(card: card)
+                self.didSelect(card: card)
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
+                self.showAlert(withErrorMessage: "An error occurred while adding a card.")
             }
         }
     }
@@ -257,11 +259,13 @@ class BoardViewController: UIViewController,
         guard let board = board else { return }
 
         columnStore.create(on: board) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case .success:
-                self?.loadBoardData()
+                self.loadBoardData()
             case let .failure(error):
                 print("Error creating column: \(String(describing: error))")
+                self.showAlert(withErrorMessage: "An error occurred while adding a column.")
             }
         }
     }
@@ -286,12 +290,15 @@ class BoardViewController: UIViewController,
                guard let self = self else { return }
 
                boardStore.delete(board) { [weak self] (result) in
+                   guard let self = self else { return }
                    switch result {
                    case .success:
-                       self?.delegate?.didDelete(board: board)
-                       self?.board = nil
+                       self.delegate?.didDelete(board: board)
+                       self.board = nil
                    case let .failure(error):
                        print("Error deleting card: \(String(describing: error))")
+                       self.showAlert(withErrorMessage:
+                                        "An error occurred while deleting the board, and it has not been deleted.")
                    }
                }
            }
@@ -301,6 +308,17 @@ class BoardViewController: UIViewController,
         alert.addAction(cancelAction)
         alert.preferredAction = deleteAction
 
+        present(alert, animated: true)
+    }
+
+    func showAlert(withErrorMessage errorMessage: String) {
+        let alert = UIAlertController(title: "Error",
+                                      message: errorMessage,
+                                      preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.preferredAction = okAction
         present(alert, animated: true)
     }
 
