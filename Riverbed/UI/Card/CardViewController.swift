@@ -158,11 +158,13 @@ class CardViewController: UITableViewController,
 
     func addElement(of elementType: Element.ElementType) {
         elementStore.create(of: elementType, on: board) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
+            case .success:
+                self.reloadElements()
             case let .failure(error):
                 print("Error adding element: \(String(describing: error))")
-            case .success:
-                self?.reloadElements()
+                self.showAlert(withErrorMessage: "An error occurred while adding the \(elementType.label.lowercased()).")
             }
         }
     }
@@ -194,12 +196,14 @@ class CardViewController: UITableViewController,
                guard let self = self else { return }
 
                cardStore.delete(card) { [weak self] (result) in
+                   guard let self = self else { return }
                    switch result {
                    case .success:
-                       self?.isCardDeleted = true
-                       self?.dismiss(animated: true)
+                       self.isCardDeleted = true
+                       self.dismiss(animated: true)
                    case let .failure(error):
                        print("Error deleting card: \(String(describing: error))")
+                       self.showAlert(withErrorMessage: "An error occurred while deleting the card.")
                    }
                }
            }
@@ -209,6 +213,17 @@ class CardViewController: UITableViewController,
         alert.addAction(cancelAction)
         alert.preferredAction = deleteAction
 
+        present(alert, animated: true)
+    }
+
+    func showAlert(withErrorMessage errorMessage: String) {
+        let alert = UIAlertController(title: "Error",
+                                      message: errorMessage,
+                                      preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.preferredAction = okAction
         present(alert, animated: true)
     }
 
@@ -283,14 +298,16 @@ class CardViewController: UITableViewController,
         if editingStyle == .delete {
             let element = sortedElements[indexPath.row]
             elementStore.delete(element) { [weak self] (result) in
+                guard let self = self else { return }
                 switch result {
                 case .success:
-                    guard let self = self else { return }
                     elements.remove(at: indexPath.row)
                     updateSortedElements()
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 case let .failure(error):
                     print("Error deleting element: \(String(describing: error))")
+                    self.showAlert(withErrorMessage:
+                                    "An error occurred while deleting the \(element.attributes.elementType.label.lowercased()).")
                 }
             }
         }
