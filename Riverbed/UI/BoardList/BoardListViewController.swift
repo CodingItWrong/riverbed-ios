@@ -21,6 +21,7 @@ class BoardListViewController: UITableViewController,
     weak var delegate: BoardListDelegate?
 
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet var errorContainer: UIView!
     @IBOutlet var addButton: UIButton!
 
     var tokenSource: WritableSessionSource!
@@ -101,8 +102,11 @@ class BoardListViewController: UITableViewController,
 
     // MARK: - data
 
-    @objc func loadBoards() {
-        boardStore.all { (result) in
+    @IBAction func loadBoards() {
+        errorContainer.isHidden = true
+        boardStore.all { [weak self] (result) in
+            guard let self = self else { return }
+
             self.refreshControl?.endRefreshing()
             self.loadingIndicator.stopAnimating()
             switch result {
@@ -112,6 +116,7 @@ class BoardListViewController: UITableViewController,
                 self.boards = boards
                 self.updateBoardGroups()
             case let .failure(error):
+                self.errorContainer.isHidden = false
                 print("Error loading boards: \(error)")
             }
         }

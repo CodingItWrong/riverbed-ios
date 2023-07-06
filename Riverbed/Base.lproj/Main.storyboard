@@ -564,12 +564,43 @@
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="o0w-LJ-c8I">
                                     <rect key="frame" x="169" y="10" width="37" height="37"/>
                                 </activityIndicatorView>
+                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1QG-UG-4AZ" userLabel="Error Container">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occurred loading your boards. Please try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0h-3S-GHD" userLabel="Error Label">
+                                            <rect key="frame" x="8" y="10" width="359" height="42.333333333333336"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" systemColor="systemRedColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdC-TW-aWd">
+                                            <rect key="frame" x="140" y="62.333333333333343" width="95.333333333333314" height="35"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="tinted" title="Try Again"/>
+                                            <connections>
+                                                <action selector="loadBoards" destination="Xbv-Bx-k48" eventType="touchUpInside" id="eFH-dk-Yj4"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="BdC-TW-aWd" firstAttribute="top" secondItem="O0h-3S-GHD" secondAttribute="bottom" constant="10" id="1G7-vk-eAi"/>
+                                        <constraint firstItem="O0h-3S-GHD" firstAttribute="leading" secondItem="1QG-UG-4AZ" secondAttribute="leadingMargin" id="GJZ-bp-m2u"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="O0h-3S-GHD" secondAttribute="trailing" id="Qe4-v4-4WF"/>
+                                        <constraint firstItem="O0h-3S-GHD" firstAttribute="top" secondItem="1QG-UG-4AZ" secondAttribute="top" constant="10" id="Rts-Sv-0RK"/>
+                                        <constraint firstItem="BdC-TW-aWd" firstAttribute="centerX" secondItem="1QG-UG-4AZ" secondAttribute="centerX" id="YAD-XP-TZg"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="o0w-LJ-c8I" firstAttribute="centerX" secondItem="NtQ-8c-uET" secondAttribute="centerX" id="ElR-i2-zYn"/>
                                 <constraint firstItem="o0w-LJ-c8I" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" constant="10" id="LvJ-f5-hS4"/>
                                 <constraint firstItem="glh-1H-yo8" firstAttribute="leading" secondItem="NtQ-8c-uET" secondAttribute="leading" constant="20" id="QGR-5L-f9J"/>
+                                <constraint firstItem="1QG-UG-4AZ" firstAttribute="leading" secondItem="NtQ-8c-uET" secondAttribute="leading" id="WeF-MK-1QH"/>
+                                <constraint firstAttribute="bottom" secondItem="1QG-UG-4AZ" secondAttribute="bottom" id="aaj-Sc-Si4"/>
                                 <constraint firstAttribute="trailing" secondItem="glh-1H-yo8" secondAttribute="trailing" constant="20" id="fdh-cM-mbg"/>
+                                <constraint firstAttribute="trailing" secondItem="1QG-UG-4AZ" secondAttribute="trailing" id="kpt-op-ZVr"/>
+                                <constraint firstItem="1QG-UG-4AZ" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" id="nw1-ND-6Gc"/>
                                 <constraint firstItem="glh-1H-yo8" firstAttribute="top" secondItem="NtQ-8c-uET" secondAttribute="top" constant="10" id="pCb-0W-rIm"/>
                             </constraints>
                         </view>
@@ -644,6 +675,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="addButton" destination="glh-1H-yo8" id="q6C-sl-wl4"/>
+                        <outlet property="errorContainer" destination="1QG-UG-4AZ" id="fea-8r-cFR"/>
                         <outlet property="loadingIndicator" destination="o0w-LJ-c8I" id="F71-ZG-dkP"/>
                         <segue destination="jQe-8S-4Qp" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="Paq-gS-APQ"/>
                     </connections>
