@@ -21,6 +21,7 @@ class BoardViewController: UIViewController,
     @IBOutlet var columnsCollectionView: UICollectionView!
     @IBOutlet var firstLoadIndicator: UIActivityIndicatorView!
     @IBOutlet var reloadIndicator: UIActivityIndicatorView!
+    @IBOutlet var errorContainer: UIView!
 
     var isFirstLoadingBoard = true
 
@@ -125,8 +126,10 @@ class BoardViewController: UIViewController,
         columnsCollectionView.reloadData()
     }
 
-    func loadBoardData(from refreshControl: UIRefreshControl? = nil) {
+    @IBAction func loadBoardData(_ sender: Any? = nil) {
         guard let board = board else { return }
+
+        let refreshControl = sender as? UIRefreshControl
 
         if refreshControl == nil {
             if isFirstLoadingBoard {
@@ -136,18 +139,29 @@ class BoardViewController: UIViewController,
             }
         }
 
+        errorContainer.isHidden = true
+
+        var isError = false
         var areCardsLoading = true
         var areColumnsLoading = true
         var areElementsLoading = true
 
         func checkForLoadingDone() {
             let loadingDone = !areCardsLoading && !areColumnsLoading && !areElementsLoading
-            if loadingDone {
-                refreshControl?.endRefreshing()
-                firstLoadIndicator.stopAnimating()
-                reloadIndicator.stopAnimating()
-                isFirstLoadingBoard = false
+            if !loadingDone {
+                return
+            }
 
+            refreshControl?.endRefreshing()
+            firstLoadIndicator.stopAnimating()
+            reloadIndicator.stopAnimating()
+
+            if isError {
+                clearBoardData()
+                errorContainer.isHidden = false
+                return
+            } else {
+                isFirstLoadingBoard = false
                 self.columnsCollectionView.reloadData()
                 navigationItem.rightBarButtonItem?.isEnabled = true
             }
@@ -160,6 +174,7 @@ class BoardViewController: UIViewController,
                 self.cards = cards
             case let .failure(error):
                 print("Error loading cards: \(error)")
+                isError = true
             }
             areCardsLoading = false
             checkForLoadingDone()
@@ -171,6 +186,7 @@ class BoardViewController: UIViewController,
                 self.updateSortedColumns()
             case let .failure(error):
                 print("Error loading columns: \(error)")
+                isError = true
             }
             areColumnsLoading = false
             checkForLoadingDone()
@@ -181,6 +197,7 @@ class BoardViewController: UIViewController,
                 self.elements = elements
             case let .failure(error):
                 print("Error loading elements: \(error)")
+                isError = true
             }
             areElementsLoading = false
             checkForLoadingDone()
@@ -251,7 +268,7 @@ class BoardViewController: UIViewController,
 
     @objc func refreshBoardData(_ sender: Any?) {
         let refreshControl = sender as? UIRefreshControl
-        loadBoardData(from: refreshControl)
+        loadBoardData(refreshControl)
     }
 
     func deleteBoard() {
