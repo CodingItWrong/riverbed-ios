@@ -164,7 +164,8 @@ class CardViewController: UITableViewController,
                 self.reloadElements()
             case let .failure(error):
                 print("Error adding element: \(String(describing: error))")
-                self.showAlert(withErrorMessage: "An error occurred while adding the \(elementType.label.lowercased()).")
+                self.showAlert(withErrorMessage:
+                    "An error occurred while adding the \(elementType.label.lowercased()).")
             }
         }
     }
@@ -307,7 +308,7 @@ class CardViewController: UITableViewController,
                 case let .failure(error):
                     print("Error deleting element: \(String(describing: error))")
                     self.showAlert(withErrorMessage:
-                                    "An error occurred while deleting the \(element.attributes.elementType.label.lowercased()).")
+                        "An error occurred while deleting the \(element.attributes.elementType.label.lowercased()).")
                 }
             }
         }
