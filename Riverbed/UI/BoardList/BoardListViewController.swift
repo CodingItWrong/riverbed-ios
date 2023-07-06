@@ -222,7 +222,6 @@ class BoardListViewController: UITableViewController,
         alert.addAction(okAction)
         alert.preferredAction = okAction
         present(alert, animated: true)
-
     }
 
     func checkForSignInFormDisplay() {
