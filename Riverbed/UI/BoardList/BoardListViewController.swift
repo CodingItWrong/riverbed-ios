@@ -104,10 +104,10 @@ class BoardListViewController: UITableViewController,
     @objc func loadBoards() {
         boardStore.all { (result) in
             self.refreshControl?.endRefreshing()
+            self.loadingIndicator.stopAnimating()
             switch result {
             case let .success(boards):
                 self.addButton.isHidden = false
-                self.loadingIndicator.stopAnimating()
 
                 self.boards = boards
                 self.updateBoardGroups()
