@@ -13,6 +13,7 @@ class SignInViewController: UIViewController,
 
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
+    @IBOutlet var errorLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +23,36 @@ class SignInViewController: UIViewController,
 
     @IBAction func signIn() {
         tokenStore.create(email: emailField.text ?? "", password: passwordField.text ?? "") { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case let .success(tokenResponse):
-                guard let self = self else { return }
                 self.delegate?.didReceive(tokenResponse: tokenResponse)
                 self.dismiss(animated: true)
             case let .failure(error):
-                print("Error signing in: \(error)")
+                if let apiError = error as? APIError,
+                   case let .serverError(httpStatus, _) = apiError,
+                   httpStatus == 400 {
+                    self.displayError("Incorrect username or password.")
+                } else {
+                    self.displayError("An error occurred while attempting to sign in. Please try again.")
+                }
             }
         }
+    }
+
+    func displayError(_ error: String) {
+        errorLabel.text = error
+        errorLabel.isHidden = false
+    }
+
+    func clearError() {
+        errorLabel.isHidden = true
+    }
+
+    // MARK: - text field delegate
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        clearError()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
