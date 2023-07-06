@@ -377,12 +377,14 @@ class BoardViewController: UIViewController,
                                          style: .destructive) {[weak self] _ in
             guard let self = self else { return }
 
-            columnStore?.delete(column) { [weak self] (result) in
+            columnStore.delete(column) { [weak self] (result) in
+                guard let self = self else { return }
                 switch result {
                 case .success:
-                    self?.loadBoardData()
+                    self.loadBoardData()
                 case let .failure(error):
                     print("Error creating column: \(String(describing: error))")
+                    self.showAlert(withErrorMessage: "An error occurred while deleting the column.")
                 }
             }
         }
@@ -417,11 +419,13 @@ class BoardViewController: UIViewController,
                guard let self = self else { return }
 
                cardStore.delete(card) { [weak self] (result) in
+                   guard let self = self else { return }
                    switch result {
                    case .success:
-                       self?.loadBoardData()
+                       self.loadBoardData()
                    case let .failure(error):
                        print("Error deleting card: \(String(describing: error))")
+                       self.showAlert(withErrorMessage: "An error occurred while deleting the card.")
                    }
                }
            }
