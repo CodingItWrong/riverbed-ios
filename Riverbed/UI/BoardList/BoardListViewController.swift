@@ -197,14 +197,28 @@ class BoardListViewController: UITableViewController,
 
     @IBAction func createBoard() {
         boardStore.create { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case let .success(board):
-                self?.goTo(board)
-                self?.loadBoards()
+                self.goTo(board)
+                self.loadBoards()
             case let .failure(error):
                 print("Error creating board: \(String(describing: error))")
+                self.showAlert(withErrorMessage: "An error occurred while creating the board.")
             }
         }
+    }
+
+    func showAlert(withErrorMessage errorMessage: String) {
+        let alert = UIAlertController(title: "Error",
+                                      message: errorMessage,
+                                      preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.preferredAction = okAction
+        present(alert, animated: true)
+
     }
 
     func checkForSignInFormDisplay() {
