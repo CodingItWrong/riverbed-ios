@@ -11,6 +11,11 @@ class CardViewController: UITableViewController,
                           EditElementDelegate {
     @IBOutlet private var addElementButton: UIButton!
     @IBOutlet private var deleteButton: UIButton!
+    @IBOutlet private var instructionLabel: UILabel! {
+        didSet {
+            instructionLabel.text = nil
+        }
+    }
 
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
@@ -22,6 +27,7 @@ class CardViewController: UITableViewController,
     var elements = [Element]() {
         didSet {
             updateSortedElements()
+            updateInstructionLabel()
         }
     }
     var card: Card! { // will always be set in segue
@@ -72,6 +78,14 @@ class CardViewController: UITableViewController,
             } else {
                 return true
             }
+        }
+    }
+
+    func updateInstructionLabel() {
+        if elements.isEmpty {
+            instructionLabel.text = "Add a field by clicking the wrench, then the plus, then \"Add Field\"."
+        } else {
+            instructionLabel.text = nil
         }
     }
 

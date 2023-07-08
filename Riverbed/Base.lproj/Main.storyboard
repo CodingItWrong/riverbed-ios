@@ -354,6 +354,25 @@
                                 <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" id="YQz-uM-iVd"/>
                             </constraints>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="hE7-qV-cou">
+                            <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWO-4P-4CF">
+                                    <rect key="frame" x="18" y="9.9999999999999982" width="345" height="20.333333333333329"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="iWO-4P-4CF" secondAttribute="trailingMargin" constant="20" id="P1q-ZW-BLF"/>
+                                <constraint firstItem="iWO-4P-4CF" firstAttribute="leading" secondItem="hE7-qV-cou" secondAttribute="leadingMargin" constant="10" id="hLd-Qd-KzJ"/>
+                                <constraint firstItem="iWO-4P-4CF" firstAttribute="top" secondItem="hE7-qV-cou" secondAttribute="top" constant="10" id="yeH-Z6-dIA"/>
+                            </constraints>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="6X2-2e-DlT" id="iYu-h0-608"/>
                             <outlet property="delegate" destination="6X2-2e-DlT" id="unt-Qk-K9u"/>
@@ -363,6 +382,7 @@
                     <connections>
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
                         <outlet property="deleteButton" destination="89r-lJ-Gxe" id="sta-0S-ivy"/>
+                        <outlet property="instructionLabel" destination="iWO-4P-4CF" id="HvC-00-keF"/>
                         <segue destination="viv-Vs-YnU" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
                     </connections>
                 </tableViewController>
