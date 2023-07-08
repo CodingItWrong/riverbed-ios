@@ -160,8 +160,9 @@ class CardViewController: UITableViewController,
         elementStore.create(of: elementType, on: board) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
-            case .success:
+            case let .success(element):
                 self.reloadElements()
+                self.goTo(element: element)
             case let .failure(error):
                 print("Error adding element: \(String(describing: error))")
                 self.showAlert(withErrorMessage:
@@ -215,6 +216,10 @@ class CardViewController: UITableViewController,
         alert.preferredAction = deleteAction
 
         present(alert, animated: true)
+    }
+
+    func goTo(element: Element) {
+        performSegue(withIdentifier: "editElement", sender: element)
     }
 
     func showAlert(withErrorMessage errorMessage: String) {
@@ -276,10 +281,8 @@ class CardViewController: UITableViewController,
 
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt \(indexPath)")
         let element = sortedElements[indexPath.row]
-//        performSegue(withIdentifier: "test", sender: element)
-        performSegue(withIdentifier: "editElement", sender: element)
+        goTo(element: element)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
