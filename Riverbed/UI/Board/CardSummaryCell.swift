@@ -41,6 +41,16 @@ class CardSummaryCell: UITableViewCell,
             subview.removeFromSuperview()
         }
         elementViews.removeAll()
+
+        if elements?.isEmpty == true {
+            let label = UILabel()
+            label.numberOfLines = 3
+            label.font = .preferredFont(forTextStyle: .body)
+            label.text = "Tap this card to get started!"
+            fieldStack.addArrangedSubview(label)
+            return
+        }
+
         summaryElements.forEach { (element) in
             if let linkURLs = element.attributes.options?.linkURLs,
                linkURLs {
