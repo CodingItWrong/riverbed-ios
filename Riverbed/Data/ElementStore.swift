@@ -24,8 +24,13 @@ class ElementStore: BaseStore {
         request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 
+        let attributes = Element.Attributes(elementType: elementType)
+        if elementType == .field {
+            attributes.dataType = .text
+        }
+
         let element = NewElement(
-            attributes: Element.Attributes(elementType: elementType),
+            attributes: attributes,
             relationships: NewElement.Relationships(
                 boardData: JSONAPI.Data(
                     data: JSONAPI.ResourceIdentifier(type: "boards", id: board.id)
