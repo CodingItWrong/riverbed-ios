@@ -173,8 +173,7 @@ class EditElementViewController: UITableViewController,
                                            value: dataType,
                                            isSelected: attributes.dataType == dataType)
                 }
-                popUpButtonCell.configure(options:
-                                            dataTypeOptions.withEmptyOption(isSelected: attributes.dataType == nil))
+                popUpButtonCell.configure(options: dataTypeOptions)
                 cell = popUpButtonCell
             case .choices:
                 guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
