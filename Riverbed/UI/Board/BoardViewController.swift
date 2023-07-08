@@ -344,6 +344,7 @@ class BoardViewController: UIViewController,
     }
 
     func didSelect(preview viewController: CardViewController) {
+        viewController.modalPresentationStyle = .formSheet
         present(viewController, animated: false)
     }
 
