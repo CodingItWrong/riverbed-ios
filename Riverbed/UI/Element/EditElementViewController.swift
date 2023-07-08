@@ -385,7 +385,10 @@ class EditElementViewController: UITableViewController,
                 guard let initialValue = popUpButtonCell.selectedValue as? Value?
                 else { preconditionFailure("Expected a Value") }
                 attributes.initialValue = initialValue
-                tableView.reloadData() // can trigger hide or show of initial specific value row
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                    // delay to wait for menu to dismiss
+                    self.tableView.reloadData() // can trigger hide or show of initial specific value row
+                }
             case .showLabelWhenReadOnly:
                 guard let switchCell = formCell as? SwitchCell else { preconditionFailure("Expected a SwitchCell") }
                 ensureOptionsPresent()
