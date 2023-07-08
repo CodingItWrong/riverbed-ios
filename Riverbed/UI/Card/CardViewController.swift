@@ -83,9 +83,9 @@ class CardViewController: UITableViewController,
 
     func updateInstructionLabel() {
         if elements.isEmpty {
-            instructionLabel.text = "Add a field by clicking the wrench, then the plus, then \"Add Field\"."
+            instructionLabel?.text = "Add a field by clicking the wrench, then the plus, then \"Add Field\"."
         } else {
-            instructionLabel.text = nil
+            instructionLabel?.text = nil
         }
     }
 
@@ -94,6 +94,7 @@ class CardViewController: UITableViewController,
 
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = true
+        updateInstructionLabel()
 
         let actions = Element.ElementType.allCases.map { (elementType) in
             UIAction(title: "Add \(elementType.label)") { [weak self] _ in self?.addElement(of: elementType) }
