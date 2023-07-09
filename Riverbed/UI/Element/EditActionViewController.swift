@@ -163,7 +163,9 @@ class EditActionViewController: UITableViewController,
             guard let value = popUpButtonCell.selectedValue as? Value?
             else { preconditionFailure("Expected a Value") }
             action.value = value
-            tableView.reloadData() // TODO: this causes the popup closing to jumpf
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.tableView.reloadData()
+            }
 
         case .specificValue:
             guard let textFieldCell = formCell as? TextFieldCell
