@@ -2,8 +2,13 @@
 import XCTest
 
 final class ValueTests: XCTestCase {
-    func test_callFieldDataTypeOptions_withEmpty_returnsNone() {
+    func test_callFieldDataTypeOptions_withEmptyForText_returnsNone() {
         let result = Value.empty.call(fieldDataType: .text, specificValue: nil)
+        XCTAssertEqual(result, .none)
+    }
+
+    func test_callFieldDataTypeOptions_withEmptyForGeolocation_returnsNone() {
+        let result = Value.empty.call(fieldDataType: .geolocation, specificValue: nil)
         XCTAssertEqual(result, .none)
     }
 
