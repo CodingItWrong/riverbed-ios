@@ -206,6 +206,36 @@ final class QueryTests: XCTestCase {
 
     // MARK: - is current month
 
+    func test_match_isCurrentMonth_choice_doesNotMatch() {
+        let isMatch = Query.isCurrentMonth.match(value: .string("fake_uuid"),
+                                                 dataType: .choice,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isCurrentMonth_geolocation_doesNotMatch() {
+        let isMatch = Query.isCurrentMonth.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "0",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
+                                                 dataType: .geolocation,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isCurrentMonth_number_doesNotMatch() {
+        let isMatch = Query.isCurrentMonth.match(value: .string("1"),
+                                                 dataType: .number,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isCurrentMonth_text_doesNotMatch() {
+        let isMatch = Query.isCurrentMonth.match(value: .string("a"),
+                                                 dataType: .text,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
     func test_match_isCurrentMonth_date_nil_doesNotMatch() {
         let isMatch = Query.isCurrentMonth.match(value: nil,
                                                  dataType: .date,
@@ -434,6 +464,36 @@ final class QueryTests: XCTestCase {
 
     // MARK: - is future
 
+    func test_match_isFuture_choice_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("fake_uuid"),
+                                                 dataType: .choice,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_geolocation_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "0",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
+                                                 dataType: .geolocation,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_number_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("1"),
+                                                 dataType: .number,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isFuture_text_doesNotMatch() {
+        let isMatch = Query.isFuture.match(value: .string("a"),
+                                                 dataType: .text,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
     func test_match_isFuture_date_nil_doesNotMatch() {
         let isMatch = Query.isFuture.match(value: nil,
                                            dataType: .date,
@@ -529,6 +589,36 @@ final class QueryTests: XCTestCase {
 
     // MARK: - is not future
 
+    func test_match_isNotFuture_choice_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("fake_uuid"),
+                                                 dataType: .choice,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_geolocation_matches() {
+        let isMatch = Query.isNotFuture.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "0",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
+                                                 dataType: .geolocation,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_number_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("1"),
+                                                 dataType: .number,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotFuture_text_matches() {
+        let isMatch = Query.isNotFuture.match(value: .string("a"),
+                                                 dataType: .text,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
     func test_match_isNotFuture_date_nil_matches() {
         // not a future date because it's not a date
         let isMatch = Query.isNotFuture.match(value: nil,
@@ -607,6 +697,36 @@ final class QueryTests: XCTestCase {
 
     // MARK: - is not past
 
+    func test_match_isNotPast_choice_matches() {
+        let isMatch = Query.isNotPast.match(value: .string("fake_uuid"),
+                                                 dataType: .choice,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotPast_geolocation_matches() {
+        let isMatch = Query.isNotPast.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "0",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
+                                                 dataType: .geolocation,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotPast_number_matches() {
+        let isMatch = Query.isNotPast.match(value: .string("1"),
+                                                 dataType: .number,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_match_isNotPast_text_matches() {
+        let isMatch = Query.isNotPast.match(value: .string("a"),
+                                                 dataType: .text,
+                                                 options: dummyOptions)
+        XCTAssertTrue(isMatch)
+    }
+
     func test_match_isNotPast_date_nil_matches() {
         // not past because not a date
         let isMatch = Query.isNotPast.match(value: nil,
@@ -684,6 +804,36 @@ final class QueryTests: XCTestCase {
     }
 
     // MARK: - is past
+
+    func test_match_isPast_choice_doesNotMatch() {
+        let isMatch = Query.isPast.match(value: .string("fake_uuid"),
+                                                 dataType: .choice,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isPast_geolocation_doesNotMatch() {
+        let isMatch = Query.isPast.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "0",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
+                                                 dataType: .geolocation,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isPast_number_doesNotMatch() {
+        let isMatch = Query.isPast.match(value: .string("1"),
+                                                 dataType: .number,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isPast_text_doesNotMatch() {
+        let isMatch = Query.isPast.match(value: .string("a"),
+                                                 dataType: .text,
+                                                 options: dummyOptions)
+        XCTAssertFalse(isMatch)
+    }
 
     func test_match_isPast_date_nil_doesNotMatch() {
         let isMatch = Query.isPast.match(value: nil,
