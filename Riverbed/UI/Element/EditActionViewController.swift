@@ -5,6 +5,7 @@ protocol EditActionDelegate: AnyObject {
 }
 
 class EditActionViewController: UITableViewController,
+                                ElementCellDelegate,
                                 FormCellDelegate {
 
     enum Row: CaseIterable {
@@ -104,21 +105,43 @@ class EditActionViewController: UITableViewController,
             popUpButtonCell.configure(options: options.withEmptyOption(isSelected: action.value == nil))
             return popUpButtonCell
         case .specificValue:
-            guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
-                withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
-            else { preconditionFailure("Expected a TextFieldCell") }
+            switch action.command {
+            case .addDays:
+                guard let textFieldCell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: TextFieldCell.self)) as? TextFieldCell
+                else { preconditionFailure("Expected a TextFieldCell") }
 
-            textFieldCell.label.text = action.command == .addDays ? "Days to Add" : "Specific Value"
-            textFieldCell.delegate = self
+                textFieldCell.label.text = "Days to Add"
+                textFieldCell.delegate = self
 
-            // TODO: handle geolocation value?
-            switch action.specificValue {
-            case let .string(stringValue): textFieldCell.textField.text = stringValue
-            case .none: textFieldCell.textField.text = ""
-            default: preconditionFailure("Unexpected specificValue case: \(String(describing: action.specificValue))")
+                switch action.specificValue {
+                case let .string(stringValue): textFieldCell.textField.text = stringValue
+                case .none: textFieldCell.textField.text = ""
+                default: preconditionFailure(
+                    "Unexpected specificValue case: \(String(describing: action.specificValue))")
+                }
+
+                return textFieldCell
+            case .setValue:
+                guard let fieldId = action.field,
+                      let field = fields.first(where: { $0.id == fieldId }) else {
+                    preconditionFailure("Could not find field")
+                }
+
+                let cellType = elementCellType(for: field.attributes)
+                guard let cell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: cellType)) as? ElementCell
+                else { preconditionFailure("Expected an ElementCell") }
+                cell.delegate = self
+                // TODO: disable directions
+                cell.update(for: field,
+                            allElements: [],
+                            fieldValue: action.specificValue)
+
+                return cell
+            case .none:
+                preconditionFailure("Unexpected specificValue row")
             }
-
-            return textFieldCell
         }
     }
 
@@ -131,6 +154,16 @@ class EditActionViewController: UITableViewController,
     }
 
     // MARK: - app-specific delegates
+
+    var fieldValues: [String: FieldValue?] = [:] // unused
+
+    func update(value: FieldValue?, for element: Element) {
+        action.specificValue = value
+    }
+
+    func update(values: [String: FieldValue?], dismiss: Bool) {
+        preconditionFailure("Unexpected call to update(values:dismiss:)")
+    }
 
     func didPressButton(inFormCell formCell: UITableViewCell) {
         preconditionFailure("Unexpected call to didPressButton(inFormCell:)")

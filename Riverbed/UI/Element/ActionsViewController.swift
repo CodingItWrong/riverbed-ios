@@ -36,12 +36,16 @@ class ActionsViewController: UITableViewController,
                 guard let value = action.value else { return "(empty)" }
                 switch value {
                 case .specificValue:
-                    switch action.specificValue {
-                    case .none: return "empty"
-                    case let .string(stringValue): return stringValue
-                    case .dictionary: preconditionFailure("Unexpected dictionary")
-                    }
-                default: return value.label
+                    let valueString = {
+                        if let specificValue = action.specificValue {
+                            return field.formatString(from: specificValue)
+                        } else {
+                            return nil
+                        }
+                    }()
+                    return valueString ?? "(empty)"
+                default:
+                    return value.label
                 }
             }()
 
