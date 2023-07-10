@@ -292,10 +292,22 @@ final class QueryTests: XCTestCase {
             GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"]),
                                          dataType: .geolocation,
                                          options: Condition.Options(value:
-                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "3.456",
-                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "4.567"])))
+                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "3.456"])))
 
         XCTAssertFalse(isMatch)
+    }
+
+    func test_match_equals_sameDictionary_matches() {
+        let isMatch = Query.equals.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"]),
+                                         dataType: .geolocation,
+                                         options: Condition.Options(value:
+                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"])))
+
+        XCTAssertTrue(isMatch)
     }
 
     // MARK: - is current month

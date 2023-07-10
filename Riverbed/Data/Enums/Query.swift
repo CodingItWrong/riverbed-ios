@@ -66,8 +66,10 @@ enum Query: String, Codable, CaseIterable {
             if case let .string(stringValue) = value,
                case let .string(optionStringValue) = options?.value {
                 return stringValue == optionStringValue
+            } else if case let .dictionary(dictionaryValue) = value,
+                      case let .dictionary(optionDictionaryValue) = options?.value {
+                return dictionaryValue == optionDictionaryValue
             } else {
-                // TODO: implement dictionary equality
                 return false
             }
         case .isCurrentMonth:
