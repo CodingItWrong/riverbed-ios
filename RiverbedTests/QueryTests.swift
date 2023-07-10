@@ -696,14 +696,14 @@ final class QueryTests: XCTestCase {
 
     // MARK: - is not current month
 
-    func test_match_isNotCurrentMonth_choice_doesNotMatch() {
+    func test_match_isNotCurrentMonth_choice_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("fake_uuid"),
                                                  dataType: .choice,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_geolocation_doesNotMatch() {
+    func test_match_isNotCurrentMonth_geolocation_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .dictionary([
             GeolocationElementCell.ValueKey.latitude.rawValue: "0",
             GeolocationElementCell.ValueKey.longitude.rawValue: "0"]),
@@ -712,35 +712,35 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_number_doesNotMatch() {
+    func test_match_isNotCurrentMonth_number_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("1"),
                                                  dataType: .number,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_text_doesNotMatch() {
+    func test_match_isNotCurrentMonth_text_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("a"),
                                                  dataType: .text,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_nil_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_nil_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: nil,
                                                  dataType: .date,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_invalidDate_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_invalidDate_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("not a date"),
                                                  dataType: .date,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_dateTime_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_dateTime_matches() {
         // not a date in the current month, because it's a datetime
         let isMatch = Query.isNotCurrentMonth.match(value: .string("2999-01-01T00:00:00.000Z"),
                                                  dataType: .date,
@@ -748,14 +748,14 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_longPast_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_longPast_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("1984-01-24"),
                                                  dataType: .date,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_previousMonth_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_previousMonth_matches() {
         let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
         guard let previousMonthString = DateUtils.serverString(from: previousMonth) else {
             XCTFail("precondition")
@@ -769,7 +769,7 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_currentMonth_matches() {
+    func test_match_isNotCurrentMonth_date_currentMonth_doesNotMatch() {
         guard let nowString = DateUtils.serverString(from: Date()) else {
             XCTFail("precondition")
             return
@@ -781,7 +781,7 @@ final class QueryTests: XCTestCase {
         XCTAssertFalse(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_nextMonth_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_nextMonth_matches() {
         let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date())
         guard let nextMonthString = DateUtils.serverString(from: nextMonth) else {
             XCTFail("precondition")
@@ -795,28 +795,28 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_date_farFuture_doesNotMatch() {
+    func test_match_isNotCurrentMonth_date_farFuture_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("2999-01-01"),
                                            dataType: .date,
                                            options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_nil_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_nil_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: nil,
                                            dataType: .dateTime,
                                            options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_invalidDate_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_invalidDate_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("not a date"),
                                            dataType: .dateTime,
                                            options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_date_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_date_matches() {
         // not a datetime in the current month, because it's a date
         let isMatch = Query.isNotCurrentMonth.match(value: .string("2999-01-01"),
                                            dataType: .dateTime,
@@ -824,14 +824,14 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_longPast_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_longPast_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("1984-01-24T00:00:00.000Z"),
                                                  dataType: .dateTime,
                                                  options: dummyOptions)
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_previousMonth_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_previousMonth_matches() {
         let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
         guard let previousMonthString = DateTimeUtils.serverString(from: previousMonth) else {
             XCTFail("precondition")
@@ -845,7 +845,7 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_currentMonth_matches() {
+    func test_match_isNotCurrentMonth_dateTime_currentMonth_doesNotMatch() {
         guard let nowString = DateTimeUtils.serverString(from: Date()) else {
             XCTFail("precondition")
             return
@@ -857,7 +857,7 @@ final class QueryTests: XCTestCase {
         XCTAssertFalse(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_nextMonth_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_nextMonth_matches() {
         let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: Date())
         guard let nextMonthString = DateTimeUtils.serverString(from: nextMonth) else {
             XCTFail("precondition")
@@ -871,7 +871,7 @@ final class QueryTests: XCTestCase {
         XCTAssertTrue(isMatch)
     }
 
-    func test_match_isNotCurrentMonth_dateTime_farFuture_doesNotMatch() {
+    func test_match_isNotCurrentMonth_dateTime_farFuture_matches() {
         let isMatch = Query.isNotCurrentMonth.match(value: .string("2999-01-01T00:00:00.000Z"),
                                            dataType: .dateTime,
                                            options: dummyOptions)
