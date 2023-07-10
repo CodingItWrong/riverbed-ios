@@ -2,25 +2,28 @@
 
 import UIKit
 
-class RiverbedSplitViewController: UISplitViewController {
+class RiverbedSplitViewController: UISplitViewController,
+                                   UISplitViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.tintColor = ColorTheme.defaultUIColor
+        delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // go to board list on iPhone without animation
-        guard let leftNavController = viewControllers.first as? UINavigationController else {
-            preconditionFailure("Couldn't get left nav controller")
-        }
-        leftNavController.popViewController(animated: false)
-
         // show sidebar on iPad
         show(.primary)
+    }
+
+    func splitViewController(_ svc: UISplitViewController,
+                             topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column)
+    -> UISplitViewController.Column {
+        // show left VC first on iPhone
+        .primary
     }
 
 }

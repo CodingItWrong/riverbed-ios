@@ -23,6 +23,7 @@ class BoardViewController: UIViewController,
     @IBOutlet var reloadIndicator: UIActivityIndicatorView!
     @IBOutlet var errorContainer: UIView!
 
+    var isLoadingBoard = false
     var isFirstLoadingBoard = true
 
     var boardStore: BoardStore!
@@ -99,6 +100,8 @@ class BoardViewController: UIViewController,
 
         // needed here as the splitViewController is not available at the start of the segue
         updateSplitViewTintColorForBoard()
+        columnsCollectionView.reloadData()
+        updateLoadingErrorDisplay(isError: false)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -123,7 +126,28 @@ class BoardViewController: UIViewController,
 
         updateSortedColumns()
 
-        columnsCollectionView.reloadData()
+        columnsCollectionView?.reloadData()
+    }
+
+    func updateLoadingErrorDisplay(isError: Bool, refreshControl: UIRefreshControl? = nil) {
+        if isLoadingBoard {
+            errorContainer?.isHidden = true
+
+            if refreshControl == nil {
+                if isFirstLoadingBoard {
+                    firstLoadIndicator?.startAnimating()
+                } else {
+                    reloadIndicator?.startAnimating()
+                }
+            }
+        } else {
+            refreshControl?.endRefreshing()
+            firstLoadIndicator.stopAnimating()
+            reloadIndicator.stopAnimating()
+
+            errorContainer.isHidden = !isError
+        }
+
     }
 
     @IBAction func loadBoardData(_ sender: Any? = nil) {
@@ -131,15 +155,8 @@ class BoardViewController: UIViewController,
 
         let refreshControl = sender as? UIRefreshControl
 
-        if refreshControl == nil {
-            if isFirstLoadingBoard {
-                firstLoadIndicator.startAnimating()
-            } else {
-                reloadIndicator.startAnimating()
-            }
-        }
-
-        errorContainer.isHidden = true
+        isLoadingBoard = true
+        updateLoadingErrorDisplay(isError: false, refreshControl: refreshControl)
 
         var isError = false
         var areCardsLoading = true
@@ -152,13 +169,11 @@ class BoardViewController: UIViewController,
                 return
             }
 
-            refreshControl?.endRefreshing()
-            firstLoadIndicator.stopAnimating()
-            reloadIndicator.stopAnimating()
+            isLoadingBoard = false
+            updateLoadingErrorDisplay(isError: isError, refreshControl: refreshControl)
 
             if isError {
                 clearBoardData()
-                errorContainer.isHidden = false
                 return
             } else {
                 isFirstLoadingBoard = false
