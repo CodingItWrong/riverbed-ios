@@ -568,6 +568,30 @@ final class QueryTests: XCTestCase {
         XCTAssertFalse(isMatch)
     }
 
+    func test_match_isEmptyOrEquals_differentDictionary_doesNotMatch() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"]),
+                                         dataType: .geolocation,
+                                         options: Condition.Options(value:
+                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "3.456"])))
+
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_isEmptyOrEquals_sameDictionary_matches() {
+        let isMatch = Query.isEmptyOrEquals.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"]),
+                                         dataType: .geolocation,
+                                         options: Condition.Options(value:
+                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"])))
+
+        XCTAssertTrue(isMatch)
+    }
+
     // MARK: - is future
 
     func test_match_isFuture_choice_doesNotMatch() {
