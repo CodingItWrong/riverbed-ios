@@ -2,7 +2,7 @@
 import XCTest
 
 final class QueryTests: XCTestCase {
-    let dummyOptions = Condition.Options(value: "DUMMY")
+    let dummyOptions = Condition.Options(value: .string("DUMMY"))
 
     // MARK: - contains
 
@@ -26,35 +26,117 @@ final class QueryTests: XCTestCase {
         // there is a constraint and no value, so do not accept
         let isMatch = Query.contains.match(value: nil,
                                            dataType: .text,
-                                           options: Condition.Options(value: "a"))
+                                           options: Condition.Options(value: .string("a")))
         XCTAssertFalse(isMatch)
     }
 
     func test_contains_equal_matches() {
         let isMatch = Query.contains.match(value: .string("abc"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "abc"))
+                                           options: Condition.Options(value: .string("abc")))
         XCTAssertTrue(isMatch)
     }
 
     func test_contains_differentCase_matches() {
         let isMatch = Query.contains.match(value: .string("AbC"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "aBc"))
+                                           options: Condition.Options(value: .string("aBc")))
         XCTAssertTrue(isMatch)
     }
 
     func test_contains_substring_matches() {
         let isMatch = Query.contains.match(value: .string("abcd"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "bc"))
+                                           options: Condition.Options(value: .string("bc")))
         XCTAssertTrue(isMatch)
     }
 
     func test_contains_differentStrings_doesNotMatch() {
         let isMatch = Query.contains.match(value: .string("ab"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "cd"))
+                                           options: Condition.Options(value: .string("cd")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_geolocation_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "1",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "2"]),
+                                           dataType: .text,
+                                           options: Condition.Options(value: .string("1")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_portionOfNumber_matches() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("1234"),
+                                           dataType: .number,
+                                           options: Condition.Options(value: .string("23")))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_contains_differentNumber_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("12"),
+                                           dataType: .number,
+                                           options: Condition.Options(value: .string("23")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_portionOfDate_matches() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("1984-01-24"),
+                                           dataType: .date,
+                                           options: Condition.Options(value: .string("1-2")))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_contains_differentDate_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("1984-01-24"),
+                                           dataType: .date,
+                                           options: Condition.Options(value: .string("1981")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_portionOfDateTime_matches() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("1984-01-24T09:41:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: Condition.Options(value: .string("24T09")))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_contains_differentDateTime_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("1984-01-24T09:41:00.000Z"),
+                                           dataType: .dateTime,
+                                           options: Condition.Options(value: .string("1981")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_sameChoice_matches() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("fake_uuid"),
+                                           dataType: .choice,
+                                           options: Condition.Options(value: .string("fake_uuid")))
+        XCTAssertTrue(isMatch)
+    }
+
+    func test_contains_choiceSubstring_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("fake_uuid"),
+                                           dataType: .choice,
+                                           options: Condition.Options(value: .string("ke_uu")))
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_contains_differentChoice_doesNotMatch() {
+        // there is a constraint and no value, so do not accept
+        let isMatch = Query.contains.match(value: .string("fake_uuid"),
+                                           dataType: .choice,
+                                           options: Condition.Options(value: .string("different_uuid")))
         XCTAssertFalse(isMatch)
     }
 
@@ -80,35 +162,35 @@ final class QueryTests: XCTestCase {
         // there is a constraint and no value, so it does not contain it
         let isMatch = Query.doesNotContain.match(value: nil,
                                            dataType: .text,
-                                           options: Condition.Options(value: "a"))
+                                           options: Condition.Options(value: .string("a")))
         XCTAssertTrue(isMatch)
     }
 
     func test_doesNotContain_equal_doesNotMatch() {
         let isMatch = Query.doesNotContain.match(value: .string("abc"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "abc"))
+                                           options: Condition.Options(value: .string("abc")))
         XCTAssertFalse(isMatch)
     }
 
     func test_doesNotContain_differentCase_doesNotMatch() {
         let isMatch = Query.doesNotContain.match(value: .string("AbC"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "aBc"))
+                                           options: Condition.Options(value: .string("aBc")))
         XCTAssertFalse(isMatch)
     }
 
     func test_doesNotContain_substring_doesNotMatch() {
         let isMatch = Query.doesNotContain.match(value: .string("abcd"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "bc"))
+                                           options: Condition.Options(value: .string("bc")))
         XCTAssertFalse(isMatch)
     }
 
     func test_contains_differentStrings_matches() {
         let isMatch = Query.doesNotContain.match(value: .string("ab"),
                                            dataType: .text,
-                                           options: Condition.Options(value: "cd"))
+                                           options: Condition.Options(value: .string("cd")))
         XCTAssertTrue(isMatch)
     }
 
@@ -133,7 +215,7 @@ final class QueryTests: XCTestCase {
     func test_match_doesNotEqual_onlyValueNil_matches() {
         let isMatch = Query.doesNotEqual.match(value: nil,
                                                dataType: .text,
-                                               options: Condition.Options(value: "hello"))
+                                               options: Condition.Options(value: .string("hello")))
 
         XCTAssertTrue(isMatch)
     }
@@ -141,7 +223,7 @@ final class QueryTests: XCTestCase {
     func test_match_doesNotEqual_differentStrings_matches() {
         let isMatch = Query.doesNotEqual.match(value: .string("a"),
                                                dataType: .text,
-                                               options: Condition.Options(value: "b"))
+                                               options: Condition.Options(value: .string("b")))
 
         XCTAssertTrue(isMatch)
     }
@@ -149,7 +231,7 @@ final class QueryTests: XCTestCase {
     func test_match_doesNotEqual_differentCase_matches() {
         let isMatch = Query.doesNotEqual.match(value: .string("a"),
                                                dataType: .text,
-                                               options: Condition.Options(value: "A"))
+                                               options: Condition.Options(value: .string("A")))
 
         XCTAssertTrue(isMatch)
     }
@@ -175,7 +257,7 @@ final class QueryTests: XCTestCase {
     func test_match_equals_onlyValueNil_doesNotMatch() {
         let isMatch = Query.equals.match(value: nil,
                                          dataType: .text,
-                                         options: Condition.Options(value: "hello"))
+                                         options: Condition.Options(value: .string("hello")))
 
         XCTAssertFalse(isMatch)
     }
@@ -183,7 +265,7 @@ final class QueryTests: XCTestCase {
     func test_match_equals_differentStrings_doesNotMatch() {
         let isMatch = Query.equals.match(value: .string("a"),
                                          dataType: .text,
-                                         options: Condition.Options(value: "b"))
+                                         options: Condition.Options(value: .string("b")))
 
         XCTAssertFalse(isMatch)
     }
@@ -191,7 +273,7 @@ final class QueryTests: XCTestCase {
     func test_match_equals_sameString_matches() {
         let isMatch = Query.equals.match(value: .string("a"),
                                          dataType: .text,
-                                         options: Condition.Options(value: "a"))
+                                         options: Condition.Options(value: .string("a")))
 
         XCTAssertTrue(isMatch)
     }
@@ -199,7 +281,19 @@ final class QueryTests: XCTestCase {
     func test_match_equals_differentCase_doesNotMatch() {
         let isMatch = Query.equals.match(value: .string("a"),
                                          dataType: .text,
-                                         options: Condition.Options(value: "A"))
+                                         options: Condition.Options(value: .string("A")))
+
+        XCTAssertFalse(isMatch)
+    }
+
+    func test_match_equals_differentDictionary_doesNotMatch() {
+        let isMatch = Query.equals.match(value: .dictionary([
+            GeolocationElementCell.ValueKey.latitude.rawValue: "1.234",
+            GeolocationElementCell.ValueKey.longitude.rawValue: "2.345"]),
+                                         dataType: .geolocation,
+                                         options: Condition.Options(value:
+                                                .dictionary([GeolocationElementCell.ValueKey.latitude.rawValue: "3.456",
+                                                    GeolocationElementCell.ValueKey.longitude.rawValue: "4.567"])))
 
         XCTAssertFalse(isMatch)
     }
@@ -430,35 +524,35 @@ final class QueryTests: XCTestCase {
     func test_match_isEmptyOrEquals_onlyValueNil_matches() {
         let isMatch = Query.isEmptyOrEquals.match(value: nil,
                                                   dataType: .text,
-                                                  options: Condition.Options(value: "hello"))
+                                                  options: Condition.Options(value: .string("hello")))
         XCTAssertTrue(isMatch)
     }
 
     func test_match_isEmptyOrEquals_onlyValueEmptyString_matches() {
         let isMatch = Query.isEmptyOrEquals.match(value: .string(""),
                                                   dataType: .text,
-                                                  options: Condition.Options(value: "hello"))
+                                                  options: Condition.Options(value: .string("hello")))
         XCTAssertTrue(isMatch)
     }
 
     func test_match_isEmptyOrEquals_differentStrings_doesNotMatch() {
         let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
                                                   dataType: .text,
-                                                  options: Condition.Options(value: "b"))
+                                                  options: Condition.Options(value: .string("b")))
         XCTAssertFalse(isMatch)
     }
 
     func test_match_isEmptyOrEquals_sameString_matches() {
         let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
                                                   dataType: .text,
-                                                  options: Condition.Options(value: "a"))
+                                                  options: Condition.Options(value: .string("a")))
         XCTAssertTrue(isMatch)
     }
 
     func test_match_isEmptyOrEquals_differentCase_doesNotMatch() {
         let isMatch = Query.isEmptyOrEquals.match(value: .string("a"),
                                                   dataType: .text,
-                                                  options: Condition.Options(value: "A"))
+                                                  options: Condition.Options(value: .string("A")))
         XCTAssertFalse(isMatch)
     }
 

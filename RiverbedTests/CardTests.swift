@@ -198,7 +198,7 @@ final class CardTests: XCTestCase {
                 cardInclusionConditions: [
                     Condition(field: "text",
                               query: .equals,
-                              options: Condition.Options(value: "A"))]))
+                              options: Condition.Options(value: .string("A")))]))
         let cardA1 = Card(id: "A1",
                          attributes: Card.Attributes(
                             fieldValues: ["text": .string("A")]))
@@ -229,10 +229,10 @@ final class CardTests: XCTestCase {
                 cardInclusionConditions: [
                     Condition(field: "text1",
                               query: .equals,
-                              options: Condition.Options(value: "A")),
+                              options: Condition.Options(value: .string("A"))),
                     Condition(field: "text2",
                               query: .equals,
-                              options: Condition.Options(value: "B"))]))
+                              options: Condition.Options(value: .string("B")))]))
         let cardAOnly = Card(id: "aOnly",
                              attributes: Card.Attributes(
                                 fieldValues: ["text1": .string("A"),

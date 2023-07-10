@@ -46,17 +46,30 @@ enum Query: String, Codable, CaseIterable {
         switch self {
         case .contains:
             guard let optionValue = options?.value else { return true }
-            guard case let .string(stringValue) = value else { return false }
-            return stringValue.lowercased().contains(optionValue.lowercased())
+            guard let value = value else { return false }
+            if dataType == .choice {
+                return value == optionValue
+            }
+
+            if case let .string(stringValue) = value,
+               case let .string(optionStringValue) = optionValue {
+                return stringValue.lowercased().contains(optionStringValue.lowercased())
+            } else {
+                return false
+            }
         case .doesNotContain:
             return !Query.contains.match(value: value, dataType: dataType, options: options)
         case .doesNotEqual:
             return !Query.equals.match(value: value, dataType: dataType, options: options)
         case .equals:
             if value == nil && options?.value == nil { return true }
-            guard case let .string(stringValue) = value,
-                  let optionValue = options?.value else { return false } // only one is nil
-            return stringValue == optionValue
+            if case let .string(stringValue) = value,
+               case let .string(optionStringValue) = options?.value {
+                return stringValue == optionStringValue
+            } else {
+                // TODO: implement dictionary equality
+                return false
+            }
         case .isCurrentMonth:
             guard case let .string(value) = value else {
                 return false

@@ -100,15 +100,10 @@ class EditConditionViewController: UITableViewController,
                 withIdentifier: String(describing: cellType)) as? ElementCell
             else { preconditionFailure("Expected an ElementCell") }
             cell.delegate = self
-            var fieldValue: FieldValue?
-            if let stringValue = condition.options?.value {
-                fieldValue = .string(stringValue)
-            }
             // TODO: label it "Value" instead of the field name
-            // TODO: geolocation somehow
             cell.update(for: field,
                         allElements: [],
-                        fieldValue: fieldValue)
+                        fieldValue: condition.options?.value)
             return cell
         }
     }
@@ -156,14 +151,10 @@ class EditConditionViewController: UITableViewController,
     var fieldValues = [String: FieldValue?]()
 
     func update(value: FieldValue?, for element: Element) {
-        guard case let .string(stringValue) = value else {
-            preconditionFailure("Unexpected FieldValue \(String(describing: value))")
-        }
-
         if condition.options == nil {
             condition.options = Condition.Options()
         }
-        condition.options?.value = stringValue
+        condition.options?.value = value
     }
 
     func update(values: [String: FieldValue?], dismiss: Bool) {

@@ -26,7 +26,7 @@ class Condition: Codable, Equatable {
     }
 
     class Options: Codable, Equatable {
-        var value: String?
+        var value: FieldValue?
 
         static func copy(from old: Options?) -> Options? {
             guard let old = old else { return nil }
@@ -37,7 +37,7 @@ class Condition: Codable, Equatable {
             lhs.value == rhs.value
         }
 
-        init(value: String? = nil) {
+        init(value: FieldValue? = nil) {
             self.value = value
         }
     }
