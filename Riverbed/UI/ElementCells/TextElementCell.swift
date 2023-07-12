@@ -14,10 +14,11 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.element = element
 
-        [valueTextField, valueTextView].forEach { (field) in
-            field?.layer.cornerRadius = 5
-            field?.layer.borderWidth = 1
-            field?.layer.borderColor = UIColor.separator.cgColor
+        let fields: [UIView] = [valueTextField, valueTextView]
+        fields.forEach { (field) in
+            field.layer.cornerRadius = 5
+            field.layer.borderWidth = 1
+            field.layer.borderColor = UIColor.separator.cgColor
         }
 
         updateFormFieldShown(for: element)
