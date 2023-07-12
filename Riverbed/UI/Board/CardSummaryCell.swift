@@ -95,14 +95,20 @@ class CardSummaryCell: UITableViewCell,
                 label.text = labelText
             } else if let textView = elementView as? UITextView {
                 if case let .string(urlString) = value,
-                   let url = URL(string: urlString),
                    let labelText = labelText {
                     let textStyle =
-                        element.attributes.options?.textSize?.textStyle ?? TextSize.defaultTextSize.textStyle
-                    textView.attributedText = NSAttributedString(string: labelText, attributes: [
-                        .font: UIFont.preferredFont(forTextStyle: textStyle),
-                        .link: url // NOTE: using a text view as link clicking did not work in label
-                    ])
+                    element.attributes.options?.textSize?.textStyle ?? TextSize.defaultTextSize.textStyle
+                    if let url = URL(string: urlString),
+                       UIApplication.shared.canOpenURL(url) {
+                        textView.attributedText = NSAttributedString(string: labelText, attributes: [
+                            .font: UIFont.preferredFont(forTextStyle: textStyle),
+                            .link: url // NOTE: using a text view as link clicking did not work in label
+                       ])
+                    } else {
+                        textView.attributedText = NSAttributedString(string: labelText, attributes: [
+                            .font: UIFont.preferredFont(forTextStyle: textStyle)
+                        ])
+                    }
                     textView.isHidden = false
                 } else {
                     textView.attributedText = nil
