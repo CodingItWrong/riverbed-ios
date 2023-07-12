@@ -606,7 +606,7 @@
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="x9P-oz-B8O"/>
                                             </constraints>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="tinted" title="Add Board" imagePadding="5">
+                                            <buttonConfiguration key="configuration" style="plain" title="Add Board" imagePadding="5">
                                                 <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
                                                 <fontDescription key="titleFontDescription" style="UICTFontTextStyleCaption1"/>
                                             </buttonConfiguration>
