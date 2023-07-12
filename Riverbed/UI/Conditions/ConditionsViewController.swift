@@ -40,7 +40,7 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
                         return nil
                     }
                 }()
-                cell.textLabel?.text = "\(basicDescription) \(valueString ?? "(no value)"))"
+                cell.textLabel?.text = "\(basicDescription) \(valueString ?? "(no value)")"
             } else {
                 cell.textLabel?.text = basicDescription
             }
