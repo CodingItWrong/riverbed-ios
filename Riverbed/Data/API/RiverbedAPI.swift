@@ -2,8 +2,8 @@ import Foundation
 
 struct RiverbedAPI {
 #if targetEnvironment(simulator)
-    private static let baseURL = URL(string: "http://localhost:3000/")
-//    private static let baseURL = URL(string: "https://api.riverbed.app/")
+//    private static let baseURL = URL(string: "http://localhost:3000/")
+    private static let baseURL = URL(string: "https://api.riverbed.app/")
 #else
 //    private static let baseURL = URL(string: "http://localhost:3000/")
     private static let baseURL = URL(string: "https://api.riverbed.app/")

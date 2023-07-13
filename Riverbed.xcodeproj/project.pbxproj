@@ -124,6 +124,8 @@
 		03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304C2A23E10400ABC4CB /* TextSize.swift */; };
 		03DC304F2A23E72100ABC4CB /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC304E2A23E72100ABC4CB /* Icon.swift */; };
 		03DC30512A24BD0A00ABC4CB /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */; };
+		03E9F1092A60148900442A9E /* ButtonMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E9F1082A60148900442A9E /* ButtonMenuItemsViewController.swift */; };
+		03E9F10B2A60229700442A9E /* EditButtonMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E9F10A2A60229700442A9E /* EditButtonMenuItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +272,8 @@
 		03DC304C2A23E10400ABC4CB /* TextSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSize.swift; sourceTree = "<group>"; };
 		03DC304E2A23E72100ABC4CB /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		03DC30502A24BD0A00ABC4CB /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		03E9F1082A60148900442A9E /* ButtonMenuItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuItemsViewController.swift; sourceTree = "<group>"; };
+		03E9F10A2A60229700442A9E /* EditButtonMenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonMenuItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -559,8 +563,10 @@
 			isa = PBXGroup;
 			children = (
 				0328D1C32A393A420079576C /* ActionsViewController.swift */,
+				03E9F1082A60148900442A9E /* ButtonMenuItemsViewController.swift */,
 				031094172A4083520051B93F /* ChoicesViewController.swift */,
 				0328D1C52A39C4B80079576C /* EditActionViewController.swift */,
+				03E9F10A2A60229700442A9E /* EditButtonMenuItemViewController.swift */,
 				0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */,
 				03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */,
 			);
@@ -782,6 +788,7 @@
 				03DC30442A23746B00ABC4CB /* ReadOnlyElementCell.swift in Sources */,
 				032F2C882A1AEA17008208E9 /* Condition.swift in Sources */,
 				03010CDA2A362E2700EF32D1 /* EditConditionViewController.swift in Sources */,
+				03E9F1092A60148900442A9E /* ButtonMenuItemsViewController.swift in Sources */,
 				03944A982A19788F00639AC7 /* GeolocationElementCell.swift in Sources */,
 				031094122A3DC2910051B93F /* UserStore.swift in Sources */,
 				032E3AD92A4CD82E001D04F4 /* FieldValue.swift in Sources */,
@@ -826,6 +833,7 @@
 				03C8F0852A2CFF9300F6AF90 /* SwitchCell.swift in Sources */,
 				03944A902A195FF000639AC7 /* TextElementCell.swift in Sources */,
 				03010CD22A3498B800EF32D1 /* UIMenuElementState+StateForIsSelected.swift in Sources */,
+				03E9F10B2A60229700442A9E /* EditButtonMenuItemViewController.swift in Sources */,
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
 				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,

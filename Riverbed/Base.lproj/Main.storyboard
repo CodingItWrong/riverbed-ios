@@ -467,7 +467,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-0W-W7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5379.7101449275369" y="1153.7946428571429"/>
+            <point key="canvasLocation" x="5351" y="892"/>
         </scene>
         <!--Edit Condition-->
         <scene sceneID="a5l-HO-HU1">
@@ -504,7 +504,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6160" y="1153"/>
+            <point key="canvasLocation" x="6132" y="891"/>
         </scene>
         <!--Edit Board View Controller-->
         <scene sceneID="wnt-6z-bVb">
@@ -574,6 +574,7 @@
                         <segue destination="U7h-wc-2y0" kind="show" identifier="showConditions" id="En7-Rs-8j7"/>
                         <segue destination="BJE-bq-Q3N" kind="show" identifier="actions" id="usA-OV-bnJ"/>
                         <segue destination="Aof-yE-CBg" kind="show" identifier="choices" id="kv5-xP-YxB"/>
+                        <segue destination="sxp-yg-W6p" kind="show" identifier="menuItems" id="Ips-Fb-CEm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYq-be-HJv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -941,7 +942,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="4Sa-i4-unz" style="IBUITableViewCellStyleDefault" id="j8N-ug-WRi">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="action" textLabel="4Sa-i4-unz" style="IBUITableViewCellStyleDefault" id="j8N-ug-WRi">
                                 <rect key="frame" x="20" y="55.333332061767578" width="335" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8N-ug-WRi" id="dyA-f8-MTx">
@@ -977,7 +978,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH9-yh-TuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5380" y="1884"/>
+            <point key="canvasLocation" x="5351" y="1565"/>
         </scene>
         <!--Edit Action-->
         <scene sceneID="NAC-WO-e3M">
@@ -1003,7 +1004,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6178" y="1883"/>
+            <point key="canvasLocation" x="6148" y="1564"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="bI4-oV-Nrd">
@@ -1090,7 +1091,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="5380" y="2587"/>
+            <point key="canvasLocation" x="4412" y="2370"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CEe-IT-E8f">
@@ -1110,9 +1111,81 @@
             </objects>
             <point key="canvasLocation" x="1964" y="-656.1576354679803"/>
         </scene>
+        <!--Button Menu Items-->
+        <scene sceneID="Mbg-Tz-1zM">
+            <objects>
+                <tableViewController id="sxp-yg-W6p" customClass="ButtonMenuItemsViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="OGU-2f-6UN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="item" textLabel="KWD-z1-jvq" style="IBUITableViewCellStyleDefault" id="xKK-NT-jSp">
+                                <rect key="frame" x="20" y="55.333332061767578" width="335" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xKK-NT-jSp" id="1H7-G0-qEP">
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="KWD-z1-jvq">
+                                            <rect key="frame" x="20" y="0.0" width="295" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sxp-yg-W6p" id="Ihi-0k-lFA"/>
+                            <outlet property="delegate" destination="sxp-yg-W6p" id="rZW-7p-keD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Button Menu Items" id="mJN-K4-kPh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="a5P-ZJ-JQt">
+                            <connections>
+                                <action selector="addItem:" destination="sxp-yg-W6p" id="k8L-G9-wju"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="z1G-DT-kng" kind="show" identifier="editItem" id="b7s-pX-u5l"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bHz-H7-3aF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5350" y="2307"/>
+        </scene>
+        <!--Edit Button Menu Item-->
+        <scene sceneID="3I8-BH-MQ3">
+            <objects>
+                <tableViewController id="z1G-DT-kng" customClass="EditButtonMenuItemViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8IY-7D-mMg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outlet property="dataSource" destination="z1G-DT-kng" id="h6i-o4-x2q"/>
+                            <outlet property="delegate" destination="z1G-DT-kng" id="8U6-06-zBs"/>
+                            <outletCollection property="gestureRecognizers" destination="Lbm-EW-grX" appends="YES" id="3H2-lr-WL2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Edit Button Menu Item" id="mFN-PK-gIr"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7GQ-au-23g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Lbm-EW-grX">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="z1G-DT-kng" id="Q4v-a3-0pn"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="6148" y="2307"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a1h-7Y-iTO"/>
+        <segue reference="En7-Rs-8j7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>

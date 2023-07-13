@@ -295,7 +295,7 @@ class Element: Codable, Equatable {
                         actions: old.actions?.map { Action.copy(from: $0) })
         }
 
-        init(name: String, actions: [Action]? = nil) {
+        init(name: String = "", actions: [Action]? = nil) {
             self.name = name
             self.actions = actions
         }

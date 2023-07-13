@@ -65,7 +65,6 @@ class EditActionViewController: UITableViewController,
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowEnum = Row.cases(for: action)[indexPath.row]
-        print("Configuring cell for row \(rowEnum.label)")
         switch rowEnum {
         case .command:
             guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(

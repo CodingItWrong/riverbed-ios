@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ActionsDelegate: AnyObject {
-    func didUpdate(_ action: [Action])
+    func didUpdate(_ actions: [Action])
 }
 
 class ActionsViewController: UITableViewController,
@@ -26,7 +26,7 @@ class ActionsViewController: UITableViewController,
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let action = actions[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "condition", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "action", for: indexPath)
 
         if let command = action.command,
            let fieldId = action.field,

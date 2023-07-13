@@ -1,11 +1,12 @@
 import UIKit
 
 class EditElementViewController: UITableViewController,
-                                    ActionsDelegate,
-                                    ChoicesDelegate,
-                                    ConditionsDelegate,
-                                    ElementCellDelegate,
-                                    FormCellDelegate {
+                                 ActionsDelegate,
+                                 ButtonMenuItemsDelegate,
+                                 ChoicesDelegate,
+                                 ConditionsDelegate,
+                                 ElementCellDelegate,
+                                 FormCellDelegate {
 
     enum Section: CaseIterable {
         case element
@@ -37,6 +38,7 @@ class EditElementViewController: UITableViewController,
         case readOnly
         case multipleLines
         case actions
+        case menuItems
         case showConditions
 
         static func cases(forElementType elementType: Element.ElementType,
@@ -70,6 +72,7 @@ class EditElementViewController: UITableViewController,
                         .showConditions]
             case .buttonMenu:
                 return [.elementName,
+                        .menuItems,
                         .showConditions]
             }
         }
@@ -85,6 +88,7 @@ class EditElementViewController: UITableViewController,
             case .readOnly: return "Read-Only"
             case .multipleLines: return "Multiple Lines"
             case .actions: return "Actions"
+            case .menuItems: return "Menu Items"
             case .showConditions: return "Show Conditions"
             }
         }
@@ -272,6 +276,27 @@ class EditElementViewController: UITableViewController,
                 }()
                 buttonCell.button.setTitle(buttonTitle, for: .normal)
                 return buttonCell
+            case .menuItems:
+                guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
+                    withIdentifier: String(describing: ButtonCell.self)) as? ButtonCell
+                else { preconditionFailure("Expected a ButtonCell") }
+
+                buttonCell.delegate = self
+                buttonCell.label.text = rowEnum.label
+                let actionCount = attributes.options?.items?.count ?? 0
+
+                let buttonTitle: String = {
+                    switch actionCount {
+                    case 0:
+                        return "(none)"
+                    case 1:
+                        return "\(actionCount) menu item"
+                    default:
+                        return "\(actionCount) menu items"
+                    }
+                }()
+                buttonCell.button.setTitle(buttonTitle, for: .normal)
+                return buttonCell
             case .showConditions:
                 guard let buttonCell = tableView.dequeueOrRegisterReusableCell(
                     withIdentifier: String(describing: ButtonCell.self)) as? ButtonCell
@@ -353,6 +378,7 @@ class EditElementViewController: UITableViewController,
         case .choices: performSegue(withIdentifier: "choices", sender: self)
         case .showConditions: performSegue(withIdentifier: "showConditions", sender: self)
         case .actions: performSegue(withIdentifier: "actions", sender: self)
+        case .menuItems: performSegue(withIdentifier: "menuItems", sender: self)
         default: preconditionFailure("Unexpected row \(indexPath.row)")
         }
     }
@@ -403,6 +429,8 @@ class EditElementViewController: UITableViewController,
                 preconditionFailure("Unexpected valueDidChange for from cell concreteInitialValue")
             case .actions:
                 preconditionFailure("Unexpected valueDidChange for form cell actions")
+            case .menuItems:
+                preconditionFailure("Unexpected valueDidChange for form cell menuItems")
             case .showConditions:
                 preconditionFailure("Unexpected valueDidChange for form cell showConditions")
             }
@@ -459,6 +487,12 @@ class EditElementViewController: UITableViewController,
         tableView.reloadData()
     }
 
+    func didUpdate(items: [Element.Item]) {
+        ensureOptionsPresent()
+        attributes.options?.items = items
+        tableView.reloadData()
+    }
+
     // MARK: - private helpers
 
     private func ensureOptionsPresent() {
@@ -497,6 +531,15 @@ class EditElementViewController: UITableViewController,
             actionsVC.actions = attributes.options?.actions ?? []
             actionsVC.elements = elements
             actionsVC.delegate = self
+
+        case "menuItems":
+            guard let itemsVC = segue.destination as? ButtonMenuItemsViewController else {
+                preconditionFailure("Expected a ButtonMenuItemsViewController")
+            }
+
+            itemsVC.items = attributes.options?.items ?? []
+            itemsVC.elements = elements
+            itemsVC.delegate = self
 
         default:
             preconditionFailure("Unexpected segue \(String(describing: segue.identifier))")
