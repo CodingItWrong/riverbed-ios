@@ -5,6 +5,7 @@ protocol EditButtonMenuItemDelegate: AnyObject {
 }
 
 class EditButtonMenuItemViewController: UITableViewController,
+                                        ActionsDelegate,
                                         FormCellDelegate {
 
     enum Row: CaseIterable {
@@ -89,7 +90,7 @@ class EditButtonMenuItemViewController: UITableViewController,
 
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
-        case .actions: print("actions")
+        case .actions: performSegue(withIdentifier: "actions", sender: self)
         default: preconditionFailure("Unexpected row \(indexPath.row)")
         }
     }
@@ -104,6 +105,27 @@ class EditButtonMenuItemViewController: UITableViewController,
             item.name = textFieldCell.textField.text ?? ""
         default:
             preconditionFailure("Unexpected valueDidChange for form cell \(indexPath)")
+        }
+    }
+
+    func didUpdate(_ actions: [Action]) {
+        item.actions = actions
+        tableView.reloadData()
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "actions":
+            guard let actionsVC = segue.destination as? ActionsViewController
+            else { preconditionFailure("Expected an ActionsViewController ") }
+
+            actionsVC.actions = item.actions ?? []
+            actionsVC.elements = elements
+            actionsVC.delegate = self
+        default:
+            preconditionFailure("Unexpected segue identifier \(segue.destination)")
         }
     }
 

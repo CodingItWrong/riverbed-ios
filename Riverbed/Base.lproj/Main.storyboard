@@ -467,7 +467,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-0W-W7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5351" y="892"/>
+            <point key="canvasLocation" x="5278" y="1091"/>
         </scene>
         <!--Edit Condition-->
         <scene sceneID="a5l-HO-HU1">
@@ -504,7 +504,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6132" y="891"/>
+            <point key="canvasLocation" x="6060" y="1089"/>
         </scene>
         <!--Edit Board View Controller-->
         <scene sceneID="wnt-6z-bVb">
@@ -978,7 +978,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH9-yh-TuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5351" y="1565"/>
+            <point key="canvasLocation" x="6874" y="1518"/>
         </scene>
         <!--Edit Action-->
         <scene sceneID="NAC-WO-e3M">
@@ -1004,7 +1004,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6148" y="1564"/>
+            <point key="canvasLocation" x="7673" y="1518"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="bI4-oV-Nrd">
@@ -1155,7 +1155,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHz-H7-3aF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5350" y="2307"/>
+            <point key="canvasLocation" x="5295" y="1943"/>
         </scene>
         <!--Edit Button Menu Item-->
         <scene sceneID="3I8-BH-MQ3">
@@ -1173,6 +1173,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit Button Menu Item" id="mFN-PK-gIr"/>
+                    <connections>
+                        <segue destination="BJE-bq-Q3N" kind="show" identifier="actions" id="Wog-KI-Dbe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7GQ-au-23g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Lbm-EW-grX">
@@ -1181,10 +1184,11 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6148" y="2307"/>
+            <point key="canvasLocation" x="6094" y="1943"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Wog-KI-Dbe"/>
         <segue reference="En7-Rs-8j7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
