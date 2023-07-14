@@ -38,6 +38,23 @@ class ButtonMenuItemsViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView,
+                            moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+
+        // move in UI
+        let movedItem = items[sourceIndexPath.row]
+        items.remove(at: sourceIndexPath.row)
+        items.insert(movedItem, at: destinationIndexPath.row)
+
+        // persist to server
+        // note that the order in the array *is* the display order
+        delegate?.didUpdate(items: items)
+    }
+
+    override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         switch editingStyle {

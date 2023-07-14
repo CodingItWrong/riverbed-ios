@@ -76,6 +76,23 @@ class ActionsViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView,
+                            moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+
+        // move in UI
+        let movedItem = actions[sourceIndexPath.row]
+        actions.remove(at: sourceIndexPath.row)
+        actions.insert(movedItem, at: destinationIndexPath.row)
+
+        // persist to server
+        // note that the order in the array *is* the display order
+        delegate?.didUpdate(actions)
+    }
+
+    override func tableView(_ tableView: UITableView,
                             commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         switch editingStyle {
