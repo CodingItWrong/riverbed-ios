@@ -32,20 +32,31 @@ class ActionsViewController: UITableViewController,
            let fieldId = action.field,
            let field = elements.first(where: { $0.id == fieldId }) {
 
+            let defaultString = "(empty)"
             let valueLabel = {
-                guard let value = action.value else { return "(empty)" }
-                switch value {
-                case .specificValue:
-                    let valueString = {
-                        if let specificValue = action.specificValue {
-                            return field.formatString(from: specificValue)
-                        } else {
-                            return nil
-                        }
-                    }()
-                    return valueString ?? "(empty)"
-                default:
-                    return value.label
+                switch command {
+                case .addDays:
+                    if let specificValue = action.specificValue,
+                       case let .string(numDays) = specificValue {
+                        return numDays
+                    } else {
+                        return defaultString
+                    }
+                case .setValue:
+                    guard let value = action.value else { return defaultString }
+                    switch value {
+                    case .specificValue:
+                        let valueString = {
+                            if let specificValue = action.specificValue {
+                                return field.formatString(from: specificValue)
+                            } else {
+                                return nil
+                            }
+                        }()
+                        return valueString ?? defaultString
+                    default:
+                        return value.label
+                    }
                 }
             }()
 
