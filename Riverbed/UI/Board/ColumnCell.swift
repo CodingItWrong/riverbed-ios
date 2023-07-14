@@ -6,8 +6,8 @@ protocol ColumnCellDelegate: AnyObject {
     func didSelect(preview viewController: CardViewController)
     func update(card: Card, with fieldValues: [String: FieldValue?])
     func delete(card: Card)
-    func edit(_ column: Column)
-    func delete(_ column: Column)
+    func edit(column: Column)
+    func delete(column: Column)
 }
 
 class ColumnCell: UICollectionViewCell,
@@ -163,13 +163,13 @@ class ColumnCell: UICollectionViewCell,
     @IBAction func showColumnSettings(_ sender: Any?) {
         guard let delegate = delegate,
               let column = column else { return }
-        delegate.edit(column)
+        delegate.edit(column: column)
     }
 
     @IBAction func deleteColumn(_ sender: Any?) {
         guard let delegate = delegate,
               let column = column else { return }
-        delegate.delete(column)
+        delegate.delete(column: column)
     }
 
 }

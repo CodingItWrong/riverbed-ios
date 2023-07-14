@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditConditionDelegate: AnyObject {
-    func didUpdate(_ condition: Condition)
+    func didUpdate(condition: Condition)
 }
 
 class EditConditionViewController: UITableViewController,
@@ -49,7 +49,7 @@ class EditConditionViewController: UITableViewController,
             preconditionFailure("Expected an EditConditionDelegate")
         }
 
-        delegate.didUpdate(condition)
+        delegate.didUpdate(condition: condition)
     }
 
     // MARK: - table view data source and delegate

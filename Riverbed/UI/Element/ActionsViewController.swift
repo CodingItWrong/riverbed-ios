@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ActionsDelegate: AnyObject {
-    func didUpdate(_ actions: [Action])
+    func didUpdate(actions: [Action])
 }
 
 class ActionsViewController: UITableViewController,
@@ -89,7 +89,7 @@ class ActionsViewController: UITableViewController,
 
         // persist to server
         // note that the order in the array *is* the display order
-        delegate?.didUpdate(actions)
+        delegate?.didUpdate(actions: actions)
     }
 
     override func tableView(_ tableView: UITableView,
@@ -99,7 +99,7 @@ class ActionsViewController: UITableViewController,
         case .delete:
             actions.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            delegate?.didUpdate(actions)
+            delegate?.didUpdate(actions: actions)
         default:
             preconditionFailure("Unexpected editing style \(editingStyle)")
         }
@@ -112,7 +112,7 @@ class ActionsViewController: UITableViewController,
         actions.append(newAction)
         let indexPath = IndexPath(row: actions.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-        delegate?.didUpdate(actions)
+        delegate?.didUpdate(actions: actions)
     }
 
     // MARK: - app-specific delegates
@@ -122,7 +122,7 @@ class ActionsViewController: UITableViewController,
         // may not need to do anything else since Condition is mutable
     }
 
-    func didUpdate(_ action: Action) {
+    func didUpdate(action: Action) {
         tableView.reloadData()
     }
 

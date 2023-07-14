@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditElementDelegate: AnyObject {
-    func didUpdate(_ element: Element)
+    func didUpdate(element: Element)
 }
 
 class EditElementNavigationController: UINavigationController {
@@ -33,7 +33,7 @@ class EditElementNavigationController: UINavigationController {
             switch result {
             case .success:
                 print("SAVED ELEMENT \(element.id)")
-                self?.editElementDelegate?.didUpdate(element)
+                self?.editElementDelegate?.didUpdate(element: element)
             case let .failure(error):
                 print("Error saving card: \(String(describing: error))")
             }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditBoardViewControllerDelegate: AnyObject {
-    func didUpdate(_ board: Board)
+    func didUpdate(board: Board)
 }
 
 class EditBoardViewController: UITableViewController,
@@ -56,7 +56,7 @@ class EditBoardViewController: UITableViewController,
             switch result {
             case .success:
                 print("SAVED BOARD \(board.id)")
-                self?.delegate?.didUpdate(board)
+                self?.delegate?.didUpdate(board: board)
             case let .failure(error):
                 print("Error saving board: \(String(describing: error))")
             }

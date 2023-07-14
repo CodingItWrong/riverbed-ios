@@ -470,12 +470,12 @@ class EditElementViewController: UITableViewController,
         preconditionFailure("Unexpected update(values:dismiss:) call")
     }
 
-    func didUpdate(_ conditions: [Condition]) {
+    func didUpdate(conditions: [Condition]) {
         attributes.showConditions = conditions
         tableView.reloadData()
     }
 
-    func didUpdate(_ actions: [Action]) {
+    func didUpdate(actions: [Action]) {
         ensureOptionsPresent()
         attributes.options?.actions = actions
         tableView.reloadData()

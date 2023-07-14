@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditActionDelegate: AnyObject {
-    func didUpdate(_ action: Action)
+    func didUpdate(action: Action)
 }
 
 class EditActionViewController: UITableViewController,
@@ -54,7 +54,7 @@ class EditActionViewController: UITableViewController,
             preconditionFailure("Expected an EditActionDelegate")
         }
 
-        delegate.didUpdate(action)
+        delegate.didUpdate(action: action)
     }
 
     // MARK: - table view data source and delegate

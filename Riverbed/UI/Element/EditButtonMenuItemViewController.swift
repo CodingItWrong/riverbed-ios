@@ -108,7 +108,7 @@ class EditButtonMenuItemViewController: UITableViewController,
         }
     }
 
-    func didUpdate(_ actions: [Action]) {
+    func didUpdate(actions: [Action]) {
         item.actions = actions
         tableView.reloadData()
     }

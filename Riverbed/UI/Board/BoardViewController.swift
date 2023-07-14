@@ -363,25 +363,25 @@ class BoardViewController: UIViewController,
         present(viewController, animated: false)
     }
 
-    func didUpdate(_ card: Card) {
+    func didUpdate(card: Card) {
         // Could consider only reloading the cards
         loadBoardData()
     }
 
-    func didUpdateElements(for card: Card) {
+    func didUpdateElements(forCard card: Card) {
         // Could consider only reloading the cards
         loadBoardData()
     }
 
-    func didDelete(_ card: Card) {
+    func didDelete(card: Card) {
         loadBoardData()
     }
 
-    func edit(_ column: Column) {
+    func edit(column: Column) {
         performSegue(withIdentifier: "editColumn", sender: column)
     }
 
-    func delete(_ column: Column) {
+    func delete(column: Column) {
         let columnDescriptor = column.attributes.name ?? "this board"
         let message = "Are you sure you want to delete \(columnDescriptor)? " +
                       "Cards in this column will still be available in other columns."
@@ -454,14 +454,14 @@ class BoardViewController: UIViewController,
         present(alert, animated: true)
     }
 
-    func didUpdate(_ board: Board) {
+    func didUpdate(board: Board) {
         self.board = board
         delegate?.didUpdate(board: board) // propagate the change
         // TODO: probably don't actually need to reload child objects at this point
         // but maybe nice for fresh data
     }
 
-    func didUpdate(_ column: Column) {
+    func didUpdate(column: Column) {
         loadBoardData()
     }
 

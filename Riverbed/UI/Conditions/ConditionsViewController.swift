@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ConditionsDelegate: AnyObject {
-    func didUpdate(_ conditions: [Condition])
+    func didUpdate(conditions: [Condition])
 }
 
 class ConditionsViewController: UITableViewController, EditConditionDelegate {
@@ -64,7 +64,7 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
         case .delete:
             conditions.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
-            delegate?.didUpdate(conditions)
+            delegate?.didUpdate(conditions: conditions)
         default:
             preconditionFailure("Unexpected editing style \(editingStyle)")
         }
@@ -77,12 +77,12 @@ class ConditionsViewController: UITableViewController, EditConditionDelegate {
         conditions.append(newCondition)
         let indexPath = IndexPath(row: conditions.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-        delegate?.didUpdate(conditions)
+        delegate?.didUpdate(conditions: conditions)
     }
 
     // MARK: - app-specific delegates
 
-    func didUpdate(_ condition: Condition) {
+    func didUpdate(condition: Condition) {
         tableView.reloadData()
         // may not need to do anything else since Condition is mutable
     }

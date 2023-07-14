@@ -159,7 +159,7 @@ class EditColumnViewController: UITableViewController,
         }
     }
 
-    func didUpdate(_ conditions: [Condition]) {
+    func didUpdate(conditions: [Condition]) {
         print("EditColumnViewController didUpdate()")
         attributes.cardInclusionConditions = conditions
         tableView.reloadData()

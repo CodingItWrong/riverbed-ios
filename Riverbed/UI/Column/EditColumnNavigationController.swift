@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EditColumnDelegate: AnyObject {
-    func didUpdate(_ column: Column)
+    func didUpdate(column: Column)
 }
 
 class EditColumnNavigationController: UINavigationController {
@@ -39,7 +39,7 @@ class EditColumnNavigationController: UINavigationController {
                 switch result {
                 case .success:
                     print("SAVED COLUMN \(column.id)")
-                    self?.editColumnDelegate?.didUpdate(column)
+                    self?.editColumnDelegate?.didUpdate(column: column)
                 case let .failure(error):
                     print("Error saving column: \(String(describing: error))")
                 }

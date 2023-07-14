@@ -1,9 +1,9 @@
 import UIKit
 
 protocol CardViewControllerDelegate: AnyObject {
-    func didUpdate(_ card: Card)
-    func didUpdateElements(for card: Card)
-    func didDelete(_ card: Card)
+    func didUpdate(card: Card)
+    func didUpdateElements(forCard card: Card)
+    func didDelete(card: Card)
 }
 
 class CardViewController: UITableViewController,
@@ -113,7 +113,7 @@ class CardViewController: UITableViewController,
         let isCardChanged = fieldValues != originalFieldValues
 
         if isCardDeleted {
-            delegate?.didDelete(card)
+            delegate?.didDelete(card: card)
         } else if isCardChanged {
             print("saving card with values \(String(describing: fieldValues))")
 
@@ -125,7 +125,7 @@ class CardViewController: UITableViewController,
                 switch result {
                 case .success:
                     print("SAVED CARD \(card.id)")
-                    delegate?.didUpdate(card)
+                    delegate?.didUpdate(card: card)
                 case let .failure(error):
                     print("Error saving card: \(String(describing: error))")
                 }
@@ -334,10 +334,10 @@ class CardViewController: UITableViewController,
 
     // MARK: - app-specific delegates
 
-    func didUpdate(_ element: Element) {
+    func didUpdate(element: Element) {
         // maybe just do that when this VC dismisses, instead of automatically propagating
         reloadElements()
-        delegate?.didUpdateElements(for: card)
+        delegate?.didUpdateElements(forCard: card)
     }
 
     func update(value: FieldValue?, for element: Element) {
