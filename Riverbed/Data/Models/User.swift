@@ -12,9 +12,11 @@ class User: Codable {
     }
 
     class Attributes: Codable {
+        var allowEmails: Bool
         var iosShareToBoard: Int?
 
         enum CodingKeys: String, CodingKey {
+            case allowEmails = "allow-emails"
             case iosShareToBoard = "ios-share-board-id"
         }
     }

@@ -4,10 +4,12 @@ class UserSettingsViewController: UITableViewController,
                                   FormCellDelegate {
 
     enum Row: CaseIterable {
+        case allowEmails
         case iosShareToBoard
 
         var label: String {
             switch self {
+            case .allowEmails: return "Allow Emails"
             case .iosShareToBoard: return "iOS Share to Board"
             }
         }
@@ -68,6 +70,14 @@ class UserSettingsViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
+        case .allowEmails:
+            guard let switchCell = tableView.dequeueOrRegisterReusableCell(
+                withIdentifier: String(describing: SwitchCell.self)) as? SwitchCell
+            else { preconditionFailure("Expected a SwitchCell") }
+            switchCell.label.text = rowEnum.label
+            switchCell.switchControl.isOn = attributes?.allowEmails ?? false
+            switchCell.delegate = self
+            return switchCell
         case .iosShareToBoard:
             guard let popUpButtonCell = tableView.dequeueOrRegisterReusableCell(
                 withIdentifier: String(describing: PopUpButtonCell.self)) as? PopUpButtonCell
@@ -107,6 +117,11 @@ class UserSettingsViewController: UITableViewController,
         }
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
+        case .allowEmails:
+            guard let switchCell = formCell as? SwitchCell else {
+                preconditionFailure("Expected a SwitchCell")
+            }
+            attributes?.allowEmails = switchCell.switchControl.isOn
         case .iosShareToBoard:
             guard let popUpButtonCell = formCell as? PopUpButtonCell else {
                 preconditionFailure("Expected a PopUpButtonCell")
