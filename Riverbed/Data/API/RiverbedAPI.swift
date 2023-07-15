@@ -61,6 +61,10 @@ struct RiverbedAPI {
         url(tokensPath())
     }
 
+    static func usersURL() -> URL {
+        url(usersPath())
+    }
+
     static func userURL(for userId: String) -> URL {
         url(userPath(userId))
     }
@@ -124,7 +128,11 @@ struct RiverbedAPI {
     }
 
     private static func userPath(_ userId: String) -> String {
-        joinPathSegments("/users", userId)
+        joinPathSegments(usersPath(), userId)
+    }
+
+    private static func usersPath() -> String {
+        "/users"
     }
 
     private static func webhookPath() -> String {

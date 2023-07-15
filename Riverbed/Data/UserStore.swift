@@ -15,6 +15,32 @@ class UserStore: BaseStore {
         task.resume()
     }
 
+    func create(with attributes: NewUser.Attributes, completion: @escaping (Result<Void, Error>) -> Void) {
+        let user = NewUser(attributes: attributes)
+
+        let url = RiverbedAPI.usersURL()
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+
+        do {
+            let encoder = JSONEncoder()
+            let requestBody = try encoder.encode(JSONAPI.Data(data: user))
+            request.httpBody = requestBody
+
+            let task = session.dataTask(with: request) { (data, response, error) in
+                let result: Result<Void, Error> = self.processVoidResult((data, response, error))
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
+            }
+            task.resume()
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
     func update(_ user: User,
                 with updatedAttributes: User.Attributes,
                 completion: @escaping (Result<Void, Error>) -> Void) {

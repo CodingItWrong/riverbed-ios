@@ -232,6 +232,7 @@ class BoardListViewController: UITableViewController,
             else { preconditionFailure("Expected a SignInViewController") }
             signInVC.delegate = self
             signInVC.tokenStore = tokenStore
+            signInVC.userStore = userStore
             present(signInVC, animated: true)
         }
     }

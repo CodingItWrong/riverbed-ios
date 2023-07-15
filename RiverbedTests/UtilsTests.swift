@@ -99,6 +99,40 @@ final class UtilsTests: XCTestCase {
                                 "initial_specific": .string("hi")])
     }
 
+    // MARK: - isValidEmail()
+
+    func test_isValidEmail_withEmptyString_returnsFalse() {
+        XCTAssertFalse(isValidEmail(""))
+    }
+
+    func test_isValidEmail_withSimpleString_returnsFalse() {
+        XCTAssertFalse(isValidEmail("example"))
+    }
+
+    func test_isValidEmail_withOnlyDomain_returnsFalse() {
+        XCTAssertFalse(isValidEmail("example.com"))
+    }
+
+    func test_isValidEmail_withInvalidDomain_returnsFalse() {
+        XCTAssertFalse(isValidEmail("example@example"))
+    }
+
+    func test_isValidEmail_withBasicEmail_returnsTrue() {
+        XCTAssertTrue(isValidEmail("example@example.com"))
+    }
+
+    func test_isValidEmail_withTwoAts_returnsTrue() {
+        XCTAssertFalse(isValidEmail("example@example@example.com"))
+    }
+
+    func test_isValidEmail_withSpecialCharacters_returnsTrue() {
+        XCTAssertTrue(isValidEmail("example+more@example.com"))
+    }
+
+    func test_isValidEmail_withInvalidCharactersInTLD_returnsfalse() {
+        XCTAssertFalse(isValidEmail("example+more@example.a11y"))
+    }
+
     // MARK: - singularizeOptionality()
 
     func test_singularizeOptionality_withAValue_returnsTheValue() {

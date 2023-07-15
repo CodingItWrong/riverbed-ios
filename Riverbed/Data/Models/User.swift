@@ -21,3 +21,31 @@ class User: Codable {
         }
     }
 }
+
+class NewUser: Codable {
+    let type: String
+    var attributes: NewUser.Attributes
+
+    init(attributes: NewUser.Attributes) {
+        self.type = "users"
+        self.attributes = attributes
+    }
+
+    class Attributes: Codable {
+        var email: String
+        var password: String
+        var allowEmails: Bool? // only optional to record that it hasn't been entered yet
+
+        init() {
+            self.email = ""
+            self.password = ""
+            self.allowEmails = nil
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case email
+            case password
+            case allowEmails = "allow-emails"
+        }
+    }
+}

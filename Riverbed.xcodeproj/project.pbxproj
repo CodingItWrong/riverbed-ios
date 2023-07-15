@@ -24,6 +24,7 @@
 		03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03027DFE2A13DF9E0063EE24 /* Assets.xcassets */; };
 		03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */; };
 		03027E172A13DF9E0063EE24 /* RiverbedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */; };
+		0302F0EA2A62A33500030D96 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0302F0E92A62A33500030D96 /* SignUpViewController.swift */; };
 		0304DACA2A54381900A7C2DE /* EditColumnNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */; };
 		0304DACC2A544FB700A7C2DE /* EditElementNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */; };
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
@@ -188,6 +189,7 @@
 		03027E082A13DF9E0063EE24 /* RiverbedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E122A13DF9E0063EE24 /* RiverbedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiverbedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03027E162A13DF9E0063EE24 /* RiverbedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverbedUITests.swift; sourceTree = "<group>"; };
+		0302F0E92A62A33500030D96 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnNavigationController.swift; sourceTree = "<group>"; };
 		0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementNavigationController.swift; sourceTree = "<group>"; };
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				03A3EF642A3BD10B00B68109 /* SignInViewController.swift */,
+				0302F0E92A62A33500030D96 /* SignUpViewController.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */,
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
+				0302F0EA2A62A33500030D96 /* SignUpViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
 				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
@@ -1066,7 +1070,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
@@ -1098,7 +1102,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
@@ -1206,7 +1210,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
@@ -1233,7 +1237,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;

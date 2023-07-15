@@ -10,6 +10,7 @@ class SignInViewController: UIViewController,
     weak var delegate: SignInDelegate?
 
     var tokenStore: TokenStore!
+    var userStore: UserStore!
 
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
@@ -63,6 +64,24 @@ class SignInViewController: UIViewController,
             signIn()
         }
         return true
+    }
+
+    // MARK: - navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "signUp":
+            guard let navVC = segue.destination as? UINavigationController else {
+                preconditionFailure("Expected a UINavigationController")
+            }
+            guard let signUpVC = navVC.viewControllers.first as? SignUpViewController else {
+                preconditionFailure("Expected a SignUpViewController")
+            }
+            navVC.view.tintColor = view.tintColor
+            signUpVC.userStore = userStore
+        default:
+            preconditionFailure("Unexpected segue identifier: \(segue.identifier ?? "nil")")
+        }
     }
 
 }

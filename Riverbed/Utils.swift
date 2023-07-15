@@ -90,6 +90,17 @@ func apply(actions: [Action],
     return newFieldValues
 }
 
+func isValidEmail(_ emailString: String) -> Bool {
+    let pattern = "^[^@\\s]+@[^@\\s]+\\.[A-Za-z]+$"
+    guard let regex = try? NSRegularExpression(pattern: pattern) else {
+        preconditionFailure("Invalid regex")
+    }
+    return regex.numberOfMatches(in: emailString,
+                                 options: [],
+                                 range: NSRange(location: 0,
+                                                length: emailString.count)) > 0
+}
+
 func domain(for urlString: String) -> String? {
     guard let url = URL(string: urlString),
           let hostName = getHostName(for: url) else { return urlString }
