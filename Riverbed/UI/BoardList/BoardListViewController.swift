@@ -78,13 +78,23 @@ class BoardListViewController: UITableViewController,
             preconditionFailure("Expected a right bar button item")
         }
         menuButton.menu = UIMenu(children: [
-            UIAction(title: "User settings") { _ in
-                self.showUserSettings()
-            },
-            UIAction(title: "Sign out") { _ in
-                self.signOut()
-                self.checkForSignInFormDisplay()
-            }
+            UIMenu(options: .displayInline, children: [
+                UIAction(title: "User settings") { _ in
+                    self.showUserSettings()
+                },
+                UIAction(title: "Sign out") { _ in
+                    self.signOut()
+                    self.checkForSignInFormDisplay()
+                }
+            ]),
+            UIMenu(title: "More info", children: [
+                UIAction(title: "About") { _ in
+                    self.showAboutPage()
+                },
+                UIAction(title: "Source code") { _ in
+                    self.showSourceCode()
+                }
+            ])
         ])
 
         // just for initial load
@@ -170,6 +180,14 @@ class BoardListViewController: UITableViewController,
 
     func showUserSettings() {
         performSegue(withIdentifier: "settings", sender: nil)
+    }
+
+    func showAboutPage() {
+        UIApplication.shared.open(URL(string: "https://about.riverbed.app")!)
+    }
+
+    func showSourceCode() {
+        UIApplication.shared.open(URL(string: "https://link.riverbed.app/source-ios")!)
     }
 
     func goTo(_ board: Board) {
