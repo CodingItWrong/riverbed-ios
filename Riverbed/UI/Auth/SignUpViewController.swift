@@ -126,41 +126,35 @@ class SignUpViewController: UITableViewController,
         // validate
         if attributes.email == "" {
             displayError("Email is required")
-            return
         } else if !isValidEmail(attributes.email) {
             displayError("Email does not appear to be a valid email address")
-            return
         } else if attributes.password == "" {
             displayError("Password is required")
-            return
         } else if attributes.password.count < 8 {
             displayError("Password must be at least 8 characters")
-            return
         } else if passwordConfirmation != attributes.password {
             displayError("Passwords do not match")
-            return
         } else if attributes.allowEmails == nil {
             displayError("Please choose whether or not to allow emails")
-            return
-        }
-
-        userStore.create(with: attributes) { [weak self] result in
-            switch result {
-            case .failure:
-                self?.displayError("An error occurred while creating your account. Please try again.")
-                return
-            case .success:
-                let message = "Congratulations, your Riverbed account has been created! " +
-                              "You can now log in with the username and password you provided."
-                let alert = UIAlertController(title: "Account Created",
-                                              message: message,
-                                              preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                    self?.dismiss(animated: true)
+        } else {
+            userStore.create(with: attributes) { [weak self] result in
+                switch result {
+                case .failure:
+                    self?.displayError("An error occurred while creating your account. Please try again.")
+                    return
+                case .success:
+                    let message = "Congratulations, your Riverbed account has been created! " +
+                    "You can now log in with the username and password you provided."
+                    let alert = UIAlertController(title: "Account Created",
+                                                  message: message,
+                                                  preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                        self?.dismiss(animated: true)
+                    }
+                    alert.addAction(okAction)
+                    alert.preferredAction = okAction
+                    self?.present(alert, animated: true)
                 }
-                alert.addAction(okAction)
-                alert.preferredAction = okAction
-                self?.present(alert, animated: true)
             }
         }
     }
