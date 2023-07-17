@@ -1,6 +1,6 @@
 # Riverbed iOS
 
-iOS client for Riverbed.
+Apple platforms client for Riverbed, an app for creating interactive CRUD apps with no programming. Supports iOS, iPadOS, and macOS.
 
 ## Requirements
 
