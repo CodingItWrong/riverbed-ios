@@ -15,6 +15,8 @@ Clone the repo.
 
 Run the project in Xcode.
 
-## License
+## Copyright and License
 
-MIT
+Copyright 2023 NeedBee, LLC.
+
+Licensed under Mozilla Public License Version 2.0. See LICENSE.txt for details.
