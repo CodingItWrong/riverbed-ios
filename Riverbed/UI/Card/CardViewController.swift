@@ -343,7 +343,12 @@ class CardViewController: UITableViewController,
     func update(value: FieldValue?, for element: Element) {
         // avoid creating a new instance if not needed, to preserve value equality
         if fieldValues[element.id] != value {
-            fieldValues[element.id] = value
+            if case let .string(stringValue) = value,
+               stringValue == "" {
+                fieldValues[element.id] = nil
+            } else {
+                fieldValues[element.id] = value
+            }
         }
 
         recomputeTableCellSizes()

@@ -44,19 +44,39 @@ class BoardViewController: UIViewController,
 
     var board: Board? {
         didSet {
-            if let board = board {
-                titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
-                let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
-                // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
-                titleButton.setImage(image, for: .normal)
-                titleButton.sizeToFit()
+            // when a board is set (including edited),
+            // set the whole split view controller's tint color to the board's
+            updateSplitViewTintColorForBoard()
 
-                // when a board is set (including edited),
-                // set the whole split view controller's tint color to the board's
-                updateSplitViewTintColorForBoard()
+            if #available(iOS 16.0, *) {
+                if let board = board {
+//                    navigationItem.title = board.attributes.name ?? Board.defaultName
+
+                    let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
+
+                    let titleLbl = UILabel()
+                    titleLbl.text = board.attributes.name ?? Board.defaultName
+                    titleLbl.font = .preferredFont(forTextStyle: .title3)
+                    let imageView = UIImageView(image: image)
+                    let titleView = UIStackView(arrangedSubviews: [imageView, titleLbl])
+                    titleView.axis = .horizontal
+                    titleView.alignment = .center
+                    titleView.spacing = 5.0
+                    navigationItem.titleView = titleView
+                } else {
+                    navigationItem.title = "(choose or create a board)"
+                }
             } else {
-                titleButton.configuration?.title = "(choose or create a board)"
-                titleButton.setImage(nil, for: .normal)
+                if let board = board {
+                    titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
+                    let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
+                    // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
+                    titleButton.setImage(image, for: .normal)
+                    titleButton.sizeToFit()
+                } else {
+                    titleButton.configuration?.title = "(choose or create a board)"
+                    titleButton.setImage(nil, for: .normal)
+                }
             }
 
             if board?.id != oldValue?.id {
@@ -82,17 +102,30 @@ class BoardViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.titleView = titleButton
-
-        let menu = UIMenu(children: [
-            UIAction(title: "Board Settings") { [weak self] _ in
-                self?.performSegue(withIdentifier: "editBoard", sender: nil)
-            },
-            UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
-                self?.deleteBoard()
+        if #available(iOS 16.0, *) {
+            navigationItem.titleMenuProvider = { _ in
+                UIMenu(children: [
+                    UIAction(title: "Board Settings") { [weak self] _ in
+                        self?.performSegue(withIdentifier: "editBoard", sender: nil)
+                    },
+                    UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
+                        self?.deleteBoard()
+                    }
+                ])
             }
-        ])
-        titleButton.menu = menu
+        } else {
+            navigationItem.titleView = titleButton
+
+            let menu = UIMenu(children: [
+                UIAction(title: "Board Settings") { [weak self] _ in
+                    self?.performSegue(withIdentifier: "editBoard", sender: nil)
+                },
+                UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
+                    self?.deleteBoard()
+                }
+            ])
+            titleButton.menu = menu
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,9 +144,11 @@ class BoardViewController: UIViewController,
     }
 
     func configureForForeground() {
-        // title button is lost in background on iPad and we need to restore it here
-        navigationItem.titleView = nil
-        navigationItem.titleView = titleButton
+        if #unavailable(iOS 16.0) {
+            // title button is lost in background on iPad and we need to restore it here
+            navigationItem.titleView = nil
+            navigationItem.titleView = titleButton
+        }
     }
 
     // MARK: - data management
