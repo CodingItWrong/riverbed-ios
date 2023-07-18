@@ -70,6 +70,9 @@ class BoardListViewController: UITableViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.allowsFocus = true
+
         self.refreshControl?.addTarget(self,
                                        action: #selector(self.loadBoards),
                                        for: .valueChanged)
@@ -156,7 +159,9 @@ class BoardListViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // this removes the hard press highlighting, but the selection is maintained
         tableView.deselectRow(at: indexPath, animated: true)
+
         let board = board(for: indexPath)
         goTo(board)
     }
