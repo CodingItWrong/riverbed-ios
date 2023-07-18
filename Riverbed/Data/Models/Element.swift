@@ -67,7 +67,10 @@ class Element: Codable, Equatable {
             case let .string(stringValue):
                 switch dataType {
                 case .text:
-                    if let abbreviateURLs = attributes.options?.abbreviateURLs,
+                    if stringValue == "" {
+                        let nilString: String? = nil
+                        return nilString
+                    } else if let abbreviateURLs = attributes.options?.abbreviateURLs,
                        abbreviateURLs {
                         return domain(for: stringValue)
                     } else {
