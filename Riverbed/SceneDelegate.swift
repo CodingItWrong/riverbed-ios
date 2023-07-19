@@ -18,8 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         print("session.stateRestorationActivity: \(String(describing: session.stateRestorationActivity))")
 
-        guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
-        else { fatalError("Expected a BoardListViewController") }
+//        guard let boardListVC = leftNavController.viewControllers.first as? BoardListViewController
+//        else { fatalError("Expected a BoardListViewController") }
+        guard let boardListVC = leftNavController.viewControllers.first as? BoardListCollectionViewController
+        else { fatalError("Expected a BoardListCollectionViewController") }
         guard let boardVC = rightNavController.viewControllers.first as? BoardViewController
         else { fatalError("Expected a BoardViewController") }
 

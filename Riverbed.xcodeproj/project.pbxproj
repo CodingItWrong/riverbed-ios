@@ -27,6 +27,9 @@
 		0302F0EA2A62A33500030D96 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0302F0E92A62A33500030D96 /* SignUpViewController.swift */; };
 		0304DACA2A54381900A7C2DE /* EditColumnNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */; };
 		0304DACC2A544FB700A7C2DE /* EditElementNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */; };
+		0308F4EC2A675DC30079F4A9 /* BoardListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */; };
+		0308F4EE2A67E1D60079F4A9 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4ED2A67E1D60079F4A9 /* TitleSupplementaryView.swift */; };
+		0308F4F02A67EB730079F4A9 /* ButtonSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */; };
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
@@ -192,6 +195,9 @@
 		0302F0E92A62A33500030D96 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0304DAC92A54381900A7C2DE /* EditColumnNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnNavigationController.swift; sourceTree = "<group>"; };
 		0304DACB2A544FB700A7C2DE /* EditElementNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementNavigationController.swift; sourceTree = "<group>"; };
+		0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCollectionViewController.swift; sourceTree = "<group>"; };
+		0308F4ED2A67E1D60079F4A9 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSupplementaryView.swift; sourceTree = "<group>"; };
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -558,6 +564,9 @@
 			children = (
 				0342FC692A17947A00CB8075 /* BoardListViewController.swift */,
 				03DC304A2A23D86000ABC4CB /* BoardCell.swift */,
+				0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */,
+				0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */,
+				0308F4ED2A67E1D60079F4A9 /* TitleSupplementaryView.swift */,
 			);
 			path = BoardList;
 			sourceTree = "<group>";
@@ -777,10 +786,12 @@
 				03010CCE2A34948400EF32D1 /* SummaryFunction.swift in Sources */,
 				038D35C42A4CB6E500F546DD /* Action.swift in Sources */,
 				0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */,
+				0308F4EC2A675DC30079F4A9 /* BoardListCollectionViewController.swift in Sources */,
 				03944A9D2A19877B00639AC7 /* ButtonMenuElementCell.swift in Sources */,
 				03907BB32A29F7BC00203748 /* BaseStore.swift in Sources */,
 				031094142A3DC3340051B93F /* User.swift in Sources */,
 				03DC30482A23798E00ABC4CB /* Value.swift in Sources */,
+				0308F4F02A67EB730079F4A9 /* ButtonSupplementaryView.swift in Sources */,
 				03A3EF692A3BD9F200B68109 /* SessionSource.swift in Sources */,
 				03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */,
 				03944A942A19737E00639AC7 /* ChoiceElementCell.swift in Sources */,
@@ -842,6 +853,7 @@
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
 				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
+				0308F4EE2A67E1D60079F4A9 /* TitleSupplementaryView.swift in Sources */,
 				03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */,
 				036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */,
 				03A3EF652A3BD10B00B68109 /* SignInViewController.swift in Sources */,
