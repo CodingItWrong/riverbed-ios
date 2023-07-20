@@ -106,7 +106,8 @@ class CardSummaryCell: UITableViewCell,
                        ])
                     } else {
                         textView.attributedText = NSAttributedString(string: labelText, attributes: [
-                            .font: UIFont.preferredFont(forTextStyle: textStyle)
+                            .font: UIFont.preferredFont(forTextStyle: textStyle),
+                            .foregroundColor: UIColor.label
                         ])
                     }
                     textView.isHidden = false
