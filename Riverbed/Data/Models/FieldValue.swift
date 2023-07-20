@@ -1,6 +1,6 @@
 import Foundation
 
-enum FieldValue: Codable, Equatable {
+enum FieldValue: Codable, Equatable, Hashable {
     case string(String)
     case dictionary([String: String])
 

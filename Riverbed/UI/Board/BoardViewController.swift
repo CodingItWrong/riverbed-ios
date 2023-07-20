@@ -538,8 +538,9 @@ class BoardViewController: UIViewController,
         }
 
         guard let cell = columnsCollectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: ColumnCell.self),
-            for: indexPath) as? ColumnCell else { preconditionFailure("Expected a ColumnCell") }
+            withReuseIdentifier: String(describing: CollectionViewColumnCell.self),
+            for: indexPath) as? CollectionViewColumnCell
+        else { preconditionFailure("Expected a CollectionViewColumnCell") }
 
         let column = sortedColumns[indexPath.row]
 
@@ -549,11 +550,11 @@ class BoardViewController: UIViewController,
         cell.cards = cards
         cell.delegate = self
 
-        if cell.tableView.refreshControl == nil {
-            cell.tableView.refreshControl = UIRefreshControl()
-            cell.tableView.refreshControl?.addTarget(self,
-                                                     action: #selector(self.refreshBoardData(_:)),
-                                                     for: .valueChanged)
+        if cell.collectionView.refreshControl == nil {
+            cell.collectionView.refreshControl = UIRefreshControl()
+            cell.collectionView.refreshControl?.addTarget(self,
+                                                          action: #selector(self.refreshBoardData(_:)),
+                                                          for: .valueChanged)
         }
 
         return cell

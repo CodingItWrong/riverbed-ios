@@ -22,8 +22,8 @@ extension TitleSupplementaryView {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: inset),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0)
         ])
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textColor = UIColor.secondaryLabel

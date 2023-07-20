@@ -30,6 +30,8 @@
 		0308F4EC2A675DC30079F4A9 /* BoardListCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */; };
 		0308F4EE2A67E1D60079F4A9 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4ED2A67E1D60079F4A9 /* TitleSupplementaryView.swift */; };
 		0308F4F02A67EB730079F4A9 /* ButtonSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */; };
+		0308F4F22A680CF40079F4A9 /* CollectionViewColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4F12A680CF40079F4A9 /* CollectionViewColumnCell.swift */; };
+		0308F4F42A680D050079F4A9 /* CardSummaryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0308F4F32A680D050079F4A9 /* CardSummaryCollectionCell.swift */; };
 		031094102A3DC06A0051B93F /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */; };
 		031094122A3DC2910051B93F /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094112A3DC2910051B93F /* UserStore.swift */; };
 		031094142A3DC3340051B93F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031094132A3DC3340051B93F /* User.swift */; };
@@ -198,6 +200,8 @@
 		0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListCollectionViewController.swift; sourceTree = "<group>"; };
 		0308F4ED2A67E1D60079F4A9 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSupplementaryView.swift; sourceTree = "<group>"; };
+		0308F4F12A680CF40079F4A9 /* CollectionViewColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewColumnCell.swift; sourceTree = "<group>"; };
+		0308F4F32A680D050079F4A9 /* CardSummaryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSummaryCollectionCell.swift; sourceTree = "<group>"; };
 		0310940F2A3DC06A0051B93F /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		031094112A3DC2910051B93F /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		031094132A3DC3340051B93F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -494,6 +498,8 @@
 			children = (
 				0342FC722A17B51A00CB8075 /* BoardViewController.swift */,
 				03944A8A2A195F7A00639AC7 /* CardSummaryCell.swift */,
+				0308F4F32A680D050079F4A9 /* CardSummaryCollectionCell.swift */,
+				0308F4F12A680CF40079F4A9 /* CollectionViewColumnCell.swift */,
 				03944A8C2A195FA900639AC7 /* ColumnCell.swift */,
 				0346550B2A30AE6900F6AEEE /* EditBoardViewController.swift */,
 			);
@@ -834,6 +840,7 @@
 				0342FC822A17C2D300CB8075 /* CardStore.swift in Sources */,
 				0342FC772A17B69D00CB8075 /* APIError.swift in Sources */,
 				0328D1C62A39C4B80079576C /* EditActionViewController.swift in Sources */,
+				0308F4F22A680CF40079F4A9 /* CollectionViewColumnCell.swift in Sources */,
 				038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */,
 				0302F0EA2A62A33500030D96 /* SignUpViewController.swift in Sources */,
 				03944A8D2A195FA900639AC7 /* ColumnCell.swift in Sources */,
@@ -852,6 +859,7 @@
 				0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */,
 				03DC304B2A23D86000ABC4CB /* BoardCell.swift in Sources */,
 				03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */,
+				0308F4F42A680D050079F4A9 /* CardSummaryCollectionCell.swift in Sources */,
 				038BBC302A1811C900BB2284 /* Element.swift in Sources */,
 				0308F4EE2A67E1D60079F4A9 /* TitleSupplementaryView.swift in Sources */,
 				03010CC82A348C9200EF32D1 /* SortByCell.swift in Sources */,
