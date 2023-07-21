@@ -159,7 +159,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
 
         // animation looks mostly good on iOS, but bad on Mac
-        let animatingDifferences = !ProcessInfo.processInfo.isiOSAppOnMac
+//        let animatingDifferences = !ProcessInfo.processInfo.isiOSAppOnMac
+        let animatingDifferences = false // while separate column cells
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
