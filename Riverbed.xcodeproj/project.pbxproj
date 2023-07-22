@@ -133,6 +133,7 @@
 		03E9F1092A60148900442A9E /* ButtonMenuItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E9F1082A60148900442A9E /* ButtonMenuItemsViewController.swift */; };
 		03E9F10B2A60229700442A9E /* EditButtonMenuItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E9F10A2A60229700442A9E /* EditButtonMenuItemViewController.swift */; };
 		03EB506A2A6BDE25004F5AB5 /* CardSummaryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03EB50692A6BDE25004F5AB5 /* CardSummaryCollectionCell.xib */; };
+		03EB506E2A6BE8B5004F5AB5 /* NoCardsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03EB506D2A6BE8B5004F5AB5 /* NoCardsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +289,7 @@
 		03E9F1082A60148900442A9E /* ButtonMenuItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuItemsViewController.swift; sourceTree = "<group>"; };
 		03E9F10A2A60229700442A9E /* EditButtonMenuItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonMenuItemViewController.swift; sourceTree = "<group>"; };
 		03EB50692A6BDE25004F5AB5 /* CardSummaryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardSummaryCollectionCell.xib; sourceTree = "<group>"; };
+		03EB506D2A6BE8B5004F5AB5 /* NoCardsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoCardsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -505,6 +507,7 @@
 				0308F4F12A680CF40079F4A9 /* CollectionViewColumnCell.swift */,
 				03944A8C2A195FA900639AC7 /* ColumnCell.swift */,
 				0346550B2A30AE6900F6AEEE /* EditBoardViewController.swift */,
+				03EB506D2A6BE8B5004F5AB5 /* NoCardsCell.xib */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */,
 				036D820A2A3154200064F05B /* SwitchCell.xib in Resources */,
 				034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */,
+				03EB506E2A6BE8B5004F5AB5 /* NoCardsCell.xib in Resources */,
 				036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */,
 				034655082A30865B00F6AEEE /* ButtonMenuElementCell.xib in Resources */,
 				03010CD62A35D5A900EF32D1 /* ButtonCell.xib in Resources */,
