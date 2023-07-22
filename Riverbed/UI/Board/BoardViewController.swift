@@ -572,32 +572,6 @@ class BoardViewController: UIViewController,
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isFirstLoadingBoard || board == nil {
-            return 0
-        } else {
-            return columns.count + 1
-        }
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var width: CGFloat
-        if self.traitCollection.horizontalSizeClass == .compact {
-            width = view.bounds.width
-        } else {
-            width = 400
-        }
-        let height = collectionView.frame.size.height
-            - collectionView.safeAreaInsets.top
-            - collectionView.safeAreaInsets.bottom
-        // this may be due to "cells should not extend outside the safe area insets",
-        // which may not apply in my case to allow scrolling into the unsafe area
-
-        return CGSize(width: width, height: height)
-    }
-
     // TODO: turn off or reimplement this
     func collectionView(_ collectionView: UICollectionView,
                         moveItemAt sourceIndexPath: IndexPath,
