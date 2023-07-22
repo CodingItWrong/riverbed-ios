@@ -114,7 +114,7 @@
                                             <outlet property="title" destination="d3b-ht-uh0" id="7y0-IA-9zx"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="UICollectionViewCell" id="du6-vV-Mh4" userLabel="Add Cell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="addCell" id="du6-vV-Mh4" userLabel="Add Cell">
                                         <rect key="frame" x="454" y="-165" width="454" height="1014"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">

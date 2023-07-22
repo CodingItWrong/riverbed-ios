@@ -13,6 +13,11 @@ class BoardViewController: UIViewController,
                            EditBoardViewControllerDelegate,
                            EditColumnDelegate {
 
+    enum ColumnCollectionItem: Hashable {
+        case column(Column)
+        case add
+    }
+
     // MARK: - properties
 
     weak var delegate: BoardDelegate?
@@ -38,7 +43,7 @@ class BoardViewController: UIViewController,
     var columns = [Column]()
     var elements = [Element]()
 
-    var dataSource: UICollectionViewDiffableDataSource<String, Column>!
+    var dataSource: UICollectionViewDiffableDataSource<String, ColumnCollectionItem>!
 
     private var titleButton: UIButton = {
         let button = UIButton(configuration: .plain())
@@ -533,31 +538,34 @@ class BoardViewController: UIViewController,
         }, configuration: config)
         columnsCollectionView.collectionViewLayout = layout
 
-        dataSource = UICollectionViewDiffableDataSource<String, Column>(
+        dataSource = UICollectionViewDiffableDataSource<String, ColumnCollectionItem>(
             collectionView: columnsCollectionView) {
-            collectionView, indexPath, _ in
+            collectionView, indexPath, columnCollectionItem in
 
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: String(describing: CollectionViewColumnCell.self),
-                    for: indexPath) as? CollectionViewColumnCell
-                else { preconditionFailure("Expected a CollectionViewColumnCell") }
+                switch columnCollectionItem {
+                case .add:
+                    return collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath)
+                case let .column(column):
+                    guard let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: String(describing: CollectionViewColumnCell.self),
+                        for: indexPath) as? CollectionViewColumnCell
+                    else { preconditionFailure("Expected a CollectionViewColumnCell") }
 
-                let column = self.sortedColumns[indexPath.row]
+                    cell.cardStore = self.cardStore
+                    cell.column = column
+                    cell.elements = self.elements
+                    cell.cards = self.cards
+                    cell.delegate = self
 
-                cell.cardStore = self.cardStore
-                cell.column = column
-                cell.elements = self.elements
-                cell.cards = self.cards
-                cell.delegate = self
+                    if cell.collectionView.refreshControl == nil {
+                        cell.collectionView.refreshControl = UIRefreshControl()
+                        cell.collectionView.refreshControl?.addTarget(self,
+                                                                      action: #selector(self.refreshBoardData(_:)),
+                                                                      for: .valueChanged)
+                    }
 
-                if cell.collectionView.refreshControl == nil {
-                    cell.collectionView.refreshControl = UIRefreshControl()
-                    cell.collectionView.refreshControl?.addTarget(self,
-                                                                  action: #selector(self.refreshBoardData(_:)),
-                                                                  for: .valueChanged)
+                    return cell
                 }
-
-                return cell
         }
         columnsCollectionView.dataSource = dataSource
     }
@@ -565,9 +573,12 @@ class BoardViewController: UIViewController,
     func updateSnapshot() {
         guard let dataSource = dataSource else { return }
 
-        var snapshot = NSDiffableDataSourceSnapshot<String, Column>()
+        var snapshot = NSDiffableDataSourceSnapshot<String, ColumnCollectionItem>()
         snapshot.appendSections(["DUMMY"])
-        snapshot.appendItems(sortedColumns)
+        snapshot.appendItems(sortedColumns.map { .column($0) })
+        if !isFirstLoadingBoard && board != nil {
+            snapshot.appendItems([.add])
+        }
         let animatingDifferences = false
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
