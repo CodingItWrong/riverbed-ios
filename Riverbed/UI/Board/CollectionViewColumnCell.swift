@@ -13,7 +13,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<FieldValue?, String>!
+    var dataSource: UICollectionViewDiffableDataSource<FieldValue?, Card>!
 
     var cardStore: CardStore!
 
@@ -106,8 +106,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 supplementaryView.label.text = self.label(forSectionAt: indexPath) ?? ""
         }
 
-        dataSource = UICollectionViewDiffableDataSource<FieldValue?, String>(
-            collectionView: collectionView) {
+        dataSource = UICollectionViewDiffableDataSource<FieldValue?, Card>(
+            collectionView: collectionView, cellProvider: {
             (collectionView, indexPath, _) in
 
                 // card summary cell
@@ -122,8 +122,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 }
 
                 return cell
-
-        }
+        })
         dataSource.supplementaryViewProvider = { (collectionView, _, index) in
             return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: index)
         }
@@ -151,16 +150,16 @@ class CollectionViewColumnCell: UICollectionViewCell,
     }
 
     func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<FieldValue?, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<FieldValue?, Card>()
 
         cardGroups.forEach { (group) in
             snapshot.appendSections([group.value])
-            snapshot.appendItems(group.cards.map { $0.id })
+            snapshot.appendItems(group.cards)
         }
 
         // animation looks mostly good on iOS, but bad on Mac
 //        let animatingDifferences = !ProcessInfo.processInfo.isiOSAppOnMac
-        let animatingDifferences = false // while separate column cells
+        let animatingDifferences = false // while separate column cells, may also have trouble with full-card hashing
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
