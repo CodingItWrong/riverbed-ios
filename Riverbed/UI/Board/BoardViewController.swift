@@ -579,7 +579,7 @@ class BoardViewController: UIViewController,
         if !isFirstLoadingBoard && board != nil {
             snapshot.appendItems([.add])
         }
-        let animatingDifferences = false
+        let animatingDifferences = true
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
