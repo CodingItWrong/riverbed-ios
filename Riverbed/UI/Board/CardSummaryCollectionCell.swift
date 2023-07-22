@@ -1,6 +1,7 @@
 import UIKit
 
 class CardSummaryCollectionCell: UICollectionViewCell,
+                                 UIContextMenuInteractionDelegate,
                                  UITextViewDelegate {
 
     weak var delegate: ColumnCellDelegate?
@@ -20,6 +21,9 @@ class CardSummaryCollectionCell: UICollectionViewCell,
 
     func configureCardView() {
         layer.cornerRadius = 5.0
+        let interaction = UIContextMenuInteraction(delegate: self)
+        addInteraction(interaction)
+
     }
 
     func configureData(card: Card, elements: [Element]) {
@@ -140,6 +144,87 @@ class CardSummaryCollectionCell: UICollectionViewCell,
             textView.delegate = nil
             textView.selectedTextRange = nil
             textView.delegate = self
+        }
+    }
+
+    // MENU: - context menu
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        guard let card = card else {
+            preconditionFailure("Expected a card")
+        }
+
+        return UIContextMenuConfiguration(identifier: card.id as NSCopying,
+                                          previewProvider: {
+
+            return self.delegate?.getPreview(forCard: card)
+        },
+                                          actionProvider: { _ in
+            let customElements: [UIMenuElement] = {
+                guard let elements = self.elements else { return [] }
+
+                return elements
+                    .filter { (element: Element) in
+                        let elementTypesToInclude: Set<Element.ElementType> = [.button, .buttonMenu]
+                        if !elementTypesToInclude.contains(element.attributes.elementType) {
+                            return false
+                        } else if let showConditions = element.attributes.showConditions {
+                            return checkConditions(fieldValues: card.attributes.fieldValues,
+                                                   conditions: showConditions,
+                                                   elements: elements)
+                        } else {
+                            return true
+                        }
+                    }
+                    .map { element in
+                        switch element.attributes.elementType {
+                        case .button:
+                            return UIAction(title: element.attributes.name ?? "(unnamed button)") { _ in
+                                guard let actions = element.attributes.options?.actions else { return }
+                                let updatedFieldValues = Riverbed.apply(actions: actions,
+                                                                        to: card.attributes.fieldValues,
+                                                                        elements: elements)
+                                self.delegate?.update(card: card, with: updatedFieldValues)
+                            }
+                        case .buttonMenu:
+                            let items: [Element.Item] = element.attributes.options?.items ?? []
+                            let buttonActions = items.map { (item: Element.Item) in
+                                return UIAction(title: item.name) { _ in
+                                    guard let actions = item.actions else { return }
+                                    let updatedFieldValues = Riverbed.apply(actions: actions,
+                                                                            to: card.attributes.fieldValues,
+                                                                            elements: elements)
+                                    self.delegate?.update(card: card, with: updatedFieldValues)
+                                }
+                            }
+                            return UIMenu(title: element.attributes.name ?? "(unnamed menu)", children: buttonActions)
+                        default:
+                            preconditionFailure(
+                                "Unexpected element type \(String(describing: element.attributes.elementType))")
+                        }
+                    }
+            }()
+
+            let deleteAction = UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+                // deleted the wrong card! did it preview the wrong one too?
+                self?.delegate?.delete(card: card)
+            }
+            let menuElements = customElements + [deleteAction]
+
+            return UIMenu(children: menuElements)
+        })
+    }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
+                                animator: UIContextMenuInteractionCommitAnimating) {
+        animator.preferredCommitStyle = .pop
+        guard let cardVC = animator.previewViewController as? CardViewController else {
+            preconditionFailure("Expected a CardViewController")
+        }
+        animator.addCompletion {
+            self.delegate?.didSelect(preview: cardVC)
         }
     }
 }
