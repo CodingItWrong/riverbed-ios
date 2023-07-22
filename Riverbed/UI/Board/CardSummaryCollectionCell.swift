@@ -1,5 +1,15 @@
 import UIKit
 
+protocol ColumnCellDelegate: AnyObject {
+    func didSelect(card: Card)
+    func getPreview(forCard card: Card) -> CardViewController
+    func didSelect(preview viewController: CardViewController)
+    func update(card: Card, with fieldValues: [String: FieldValue?])
+    func delete(card: Card)
+    func edit(column: Column)
+    func delete(column: Column)
+}
+
 class CardSummaryCollectionCell: UICollectionViewCell,
                                  UIContextMenuInteractionDelegate,
                                  UITextViewDelegate {
