@@ -172,7 +172,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
         // animation looks mostly good on iOS, but bad on Mac
 //        let animatingDifferences = !ProcessInfo.processInfo.isiOSAppOnMac
-        let animatingDifferences = true // while separate column cells, may also have trouble with full-card hashing
+        let animatingDifferences = false // still some flashing when scrolling between cells
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
