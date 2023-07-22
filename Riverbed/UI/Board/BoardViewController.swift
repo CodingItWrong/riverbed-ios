@@ -551,11 +551,11 @@ class BoardViewController: UIViewController,
                         for: indexPath) as? CollectionViewColumnCell
                     else { preconditionFailure("Expected a CollectionViewColumnCell") }
 
+                    cell.delegate = self // needs to come first
                     cell.cardStore = self.cardStore
                     cell.column = column
                     cell.elements = self.elements
                     cell.cards = self.cards
-                    cell.delegate = self
 
                     if cell.collectionView.refreshControl == nil {
                         cell.collectionView.refreshControl = UIRefreshControl()
