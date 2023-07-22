@@ -563,11 +563,13 @@ class BoardViewController: UIViewController,
     }
 
     func updateSnapshot() {
+        guard let dataSource = dataSource else { return }
+
         var snapshot = NSDiffableDataSourceSnapshot<String, Column>()
         snapshot.appendSections(["DUMMY"])
         snapshot.appendItems(sortedColumns)
         let animatingDifferences = false
-        dataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

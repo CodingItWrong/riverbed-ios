@@ -90,51 +90,7 @@
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
-                                                    <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CardSummaryCollectionCell" id="C2v-IJ-UPH" customClass="CardSummaryCollectionCell" customModule="Riverbed" customModuleProvider="target">
-                                                            <rect key="frame" x="-378" y="0.0" width="1210" height="52"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kUX-Bn-U6b">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1210" height="52"/>
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="89k-Ll-6vs">
-                                                                        <rect key="frame" x="12" y="4" width="1186" height="44"/>
-                                                                        <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dn7-6p-MqG">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="1186" height="23.666666666666668"/>
-                                                                                <string key="text">This is a label with a lot of text. This is a label with a lot of text. This is a label with a lot of text. This is a label with a lot of text. This is a label with a lot of text. </string>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amA-j4-b06">
-                                                                                <rect key="frame" x="0.0" y="23.666666666666671" width="41.333333333333336" height="20.333333333333329"/>
-                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                <nil key="textColor"/>
-                                                                                <nil key="highlightedColor"/>
-                                                                            </label>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="yt5-RM-r0a"/>
-                                                                        </constraints>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="trailingMargin" secondItem="89k-Ll-6vs" secondAttribute="trailing" constant="4" id="TUq-6c-XCX"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="89k-Ll-6vs" secondAttribute="bottom" constant="4" id="dHn-oC-VI1"/>
-                                                                    <constraint firstItem="89k-Ll-6vs" firstAttribute="top" secondItem="kUX-Bn-U6b" secondAttribute="top" constant="4" id="wHA-rL-wTh"/>
-                                                                    <constraint firstItem="89k-Ll-6vs" firstAttribute="leading" secondItem="kUX-Bn-U6b" secondAttribute="leadingMargin" constant="4" id="x3u-7P-i2A"/>
-                                                                </constraints>
-                                                            </collectionViewCellContentView>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                            <connections>
-                                                                <outlet property="fieldStack" destination="89k-Ll-6vs" id="yn8-P3-ZtN"/>
-                                                            </connections>
-                                                        </collectionViewCell>
-                                                    </cells>
+                                                    <cells/>
                                                     <connections>
                                                         <outlet property="delegate" destination="SQU-q4-32P" id="WLV-De-198"/>
                                                     </connections>

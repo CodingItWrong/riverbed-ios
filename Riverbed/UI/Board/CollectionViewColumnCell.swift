@@ -106,14 +106,15 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 supplementaryView.label.text = self.label(forSectionAt: indexPath) ?? ""
         }
 
+        let cellIdentifier = String(describing: CardSummaryCollectionCell.self)
+        collectionView.register(UINib(nibName: cellIdentifier, bundle: nil),
+                                forCellWithReuseIdentifier: cellIdentifier)
+
         dataSource = UICollectionViewDiffableDataSource<FieldValue?, Card>(
             collectionView: collectionView, cellProvider: {
             (collectionView, indexPath, _) in
 
-                // card summary cell
-                let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: String(describing: CardSummaryCollectionCell.self),
-                    for: indexPath)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
 
                 if let cell = cell as? CardSummaryCollectionCell {
                     let card = self.card(for: indexPath)
