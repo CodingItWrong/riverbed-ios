@@ -6,7 +6,6 @@ protocol BoardDelegate: AnyObject {
 }
 
 class BoardViewController: UIViewController,
-                           UICollectionViewDataSource,
                            UICollectionViewDelegateFlowLayout,
                            BoardListDelegate,
                            ColumnCellDelegate,
@@ -18,7 +17,11 @@ class BoardViewController: UIViewController,
 
     weak var delegate: BoardDelegate?
 
-    @IBOutlet var columnsCollectionView: UICollectionView!
+    @IBOutlet var columnsCollectionView: UICollectionView! {
+        didSet {
+            configureCollectionView()
+        }
+    }
     @IBOutlet var firstLoadIndicator: UIActivityIndicatorView!
     @IBOutlet var reloadIndicator: UIActivityIndicatorView!
     @IBOutlet var errorContainer: UIView!
@@ -34,6 +37,8 @@ class BoardViewController: UIViewController,
     var cards = [Card]()
     var columns = [Column]()
     var elements = [Element]()
+
+    var dataSource: UICollectionViewDiffableDataSource<String, Column>!
 
     private var titleButton: UIButton = {
         let button = UIButton(configuration: .plain())
@@ -133,7 +138,7 @@ class BoardViewController: UIViewController,
 
         // needed here as the splitViewController is not available at the start of the segue
         updateSplitViewTintColorForBoard()
-        columnsCollectionView.reloadData()
+        updateSnapshot()
         updateLoadingErrorDisplay(isError: false)
     }
 
@@ -160,8 +165,7 @@ class BoardViewController: UIViewController,
         isFirstLoadingBoard = true
 
         updateSortedColumns()
-
-        columnsCollectionView?.reloadData()
+        updateSnapshot()
     }
 
     func updateLoadingErrorDisplay(isError: Bool, refreshControl: UIRefreshControl? = nil) {
@@ -212,7 +216,7 @@ class BoardViewController: UIViewController,
                 return
             } else {
                 isFirstLoadingBoard = false
-                self.columnsCollectionView.reloadData()
+                updateSnapshot()
                 navigationItem.rightBarButtonItem?.isEnabled = true
             }
         }
@@ -502,6 +506,70 @@ class BoardViewController: UIViewController,
 
     // MARK: - collection view data source and delegate
 
+    func configureCollectionView() {
+        let config = UICollectionViewCompositionalLayoutConfiguration()
+        config.scrollDirection = .horizontal
+
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: {
+            _, _ in
+
+            let columnHeight: NSCollectionLayoutDimension = .fractionalHeight(1.0)
+            let columnWidth: NSCollectionLayoutDimension =
+                self.traitCollection.horizontalSizeClass == .compact
+                    ? .fractionalWidth(1.0)
+                    : .absolute(400)
+
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+            let groupSize = NSCollectionLayoutSize(widthDimension: columnWidth,
+                                                   heightDimension: columnHeight)
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
+                                                         subitems: [item])
+
+            let section = NSCollectionLayoutSection(group: group)
+            return section
+        }, configuration: config)
+        columnsCollectionView.collectionViewLayout = layout
+
+        dataSource = UICollectionViewDiffableDataSource<String, Column>(
+            collectionView: columnsCollectionView) {
+            collectionView, indexPath, _ in
+
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: String(describing: CollectionViewColumnCell.self),
+                    for: indexPath) as? CollectionViewColumnCell
+                else { preconditionFailure("Expected a CollectionViewColumnCell") }
+
+                let column = self.sortedColumns[indexPath.row]
+
+                cell.cardStore = self.cardStore
+                cell.column = column
+                cell.elements = self.elements
+                cell.cards = self.cards
+                cell.delegate = self
+
+                if cell.collectionView.refreshControl == nil {
+                    cell.collectionView.refreshControl = UIRefreshControl()
+                    cell.collectionView.refreshControl?.addTarget(self,
+                                                                  action: #selector(self.refreshBoardData(_:)),
+                                                                  for: .valueChanged)
+                }
+
+                return cell
+        }
+        columnsCollectionView.dataSource = dataSource
+    }
+
+    func updateSnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<String, Column>()
+        snapshot.appendSections(["DUMMY"])
+        snapshot.appendItems(sortedColumns)
+        let animatingDifferences = false
+        dataSource?.apply(snapshot, animatingDifferences: animatingDifferences)
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isFirstLoadingBoard || board == nil {
             return 0
@@ -528,38 +596,7 @@ class BoardViewController: UIViewController,
         return CGSize(width: width, height: height)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // add column
-        if indexPath.row >= sortedColumns.count {
-            return columnsCollectionView.dequeueReusableCell(
-                withReuseIdentifier: String(describing: UICollectionViewCell.self),
-                for: indexPath)
-        }
-
-        guard let cell = columnsCollectionView.dequeueReusableCell(
-            withReuseIdentifier: String(describing: CollectionViewColumnCell.self),
-            for: indexPath) as? CollectionViewColumnCell
-        else { preconditionFailure("Expected a CollectionViewColumnCell") }
-
-        let column = sortedColumns[indexPath.row]
-
-        cell.cardStore = cardStore
-        cell.column = column
-        cell.elements = elements
-        cell.cards = cards
-        cell.delegate = self
-
-        if cell.collectionView.refreshControl == nil {
-            cell.collectionView.refreshControl = UIRefreshControl()
-            cell.collectionView.refreshControl?.addTarget(self,
-                                                          action: #selector(self.refreshBoardData(_:)),
-                                                          for: .valueChanged)
-        }
-
-        return cell
-    }
-
+    // TODO: turn off or reimplement this
     func collectionView(_ collectionView: UICollectionView,
                         moveItemAt sourceIndexPath: IndexPath,
                         to destinationIndexPath: IndexPath) {

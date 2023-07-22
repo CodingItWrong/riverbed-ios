@@ -1,6 +1,6 @@
 import Foundation
 
-class Column: Codable {
+class Column: NSObject, Codable {
     let type: String
     var id: String
     var attributes: Column.Attributes

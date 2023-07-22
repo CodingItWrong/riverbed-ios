@@ -185,7 +185,6 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="Flc-lf-CdM" id="n1F-KY-e0I"/>
                                     <outlet property="delegate" destination="Flc-lf-CdM" id="NHI-YI-tuN"/>
                                     <outletCollection property="gestureRecognizers" destination="HFF-40-uci" appends="YES" id="aHl-1a-2QI"/>
                                 </connections>
