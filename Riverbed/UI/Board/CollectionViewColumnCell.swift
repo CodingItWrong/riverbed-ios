@@ -102,7 +102,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         let layout = UICollectionViewCompositionalLayout(section: section)
 
         collectionView.collectionViewLayout = layout
-//        collectionView.allowsFocus = true
+        collectionView.allowsFocus = true
 
         let headerRegistration = UICollectionView.SupplementaryRegistration<TitleSupplementaryView>(
             elementKind: UICollectionView.elementKindSectionHeader) {
