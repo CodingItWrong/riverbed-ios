@@ -123,7 +123,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 case .noCards:
                     return collectionView.dequeueReusableCell(withReuseIdentifier: "noCards", for: indexPath)
                 case let .card(card):
-                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CardSummaryCollectionCell
+                    guard let cell = collectionView.dequeueReusableCell(
+                        withReuseIdentifier: cellIdentifier, for: indexPath) as? CardSummaryCollectionCell
                     else { preconditionFailure("Expected a CardSummaryCollectionCell")}
                     cell.configureData(card: card, elements: self.elements)
                     cell.delegate = self.delegate // forward the delegate so cell can call directly through to it
