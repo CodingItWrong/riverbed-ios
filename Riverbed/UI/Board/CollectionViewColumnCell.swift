@@ -3,6 +3,11 @@ import UIKit
 class CollectionViewColumnCell: UICollectionViewCell,
                   UICollectionViewDelegate {
 
+    enum CardCollectionItem: Hashable {
+        case card(Card)
+        case noCards
+    }
+
     weak var delegate: ColumnCellDelegate?
 
     @IBOutlet var title: UILabel!
@@ -13,7 +18,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<FieldValue?, Card>!
+    var dataSource: UICollectionViewDiffableDataSource<FieldValue?, CardCollectionItem>!
 
     var cardStore: CardStore!
 
@@ -110,19 +115,20 @@ class CollectionViewColumnCell: UICollectionViewCell,
         collectionView.register(UINib(nibName: cellIdentifier, bundle: nil),
                                 forCellWithReuseIdentifier: cellIdentifier)
 
-        dataSource = UICollectionViewDiffableDataSource<FieldValue?, Card>(
+        dataSource = UICollectionViewDiffableDataSource<FieldValue?, CardCollectionItem>(
             collectionView: collectionView, cellProvider: {
-            (collectionView, indexPath, _) in
+            collectionView, indexPath, cardCollectionItem in
 
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
-
-                if let cell = cell as? CardSummaryCollectionCell {
-                    let card = self.card(for: indexPath)
+                switch cardCollectionItem {
+                case .noCards:
+                    return collectionView.dequeueReusableCell(withReuseIdentifier: "noCards", for: indexPath)
+                case let .card(card):
+                    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CardSummaryCollectionCell
+                    else { preconditionFailure("Expected a CardSummaryCollectionCell")}
                     cell.configureData(card: card, elements: self.elements)
                     cell.delegate = self.delegate // forward the delegate so cell can call directly through to it
+                    return cell
                 }
-
-                return cell
         })
         dataSource.supplementaryViewProvider = { (collectionView, _, index) in
             return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: index)
@@ -151,11 +157,16 @@ class CollectionViewColumnCell: UICollectionViewCell,
     }
 
     func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<FieldValue?, Card>()
+        var snapshot = NSDiffableDataSourceSnapshot<FieldValue?, CardCollectionItem>()
 
-        cardGroups.forEach { (group) in
-            snapshot.appendSections([group.value])
-            snapshot.appendItems(group.cards)
+        if cardGroups.isEmpty {
+            snapshot.appendSections([nil])
+            snapshot.appendItems([.noCards])
+        } else {
+            cardGroups.forEach { (group) in
+                snapshot.appendSections([group.value])
+                snapshot.appendItems(group.cards.map { .card($0) })
+            }
         }
 
         // animation looks mostly good on iOS, but bad on Mac

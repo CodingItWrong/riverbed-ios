@@ -90,7 +90,29 @@
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
-                                                    <cells/>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="noCards" id="5JR-S0-mMK">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="37"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Lf5-WT-43E">
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="37"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(no cards)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igq-kt-mdg">
+                                                                        <rect key="frame" x="8" y="8" width="78" height="21"/>
+                                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                        <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="Igq-kt-mdg" firstAttribute="leading" secondItem="Lf5-WT-43E" secondAttribute="leadingMargin" id="i5M-Us-bQ4"/>
+                                                                    <constraint firstAttribute="bottomMargin" secondItem="Igq-kt-mdg" secondAttribute="bottom" id="kNn-Zs-n9O"/>
+                                                                    <constraint firstItem="Igq-kt-mdg" firstAttribute="top" secondItem="Lf5-WT-43E" secondAttribute="topMargin" id="uvn-Mm-bAs"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                        </collectionViewCell>
+                                                    </cells>
                                                     <connections>
                                                         <outlet property="delegate" destination="SQU-q4-32P" id="WLV-De-198"/>
                                                     </connections>
