@@ -1,7 +1,7 @@
 import UIKit
 
 class CollectionViewColumnCell: UICollectionViewCell,
-                  UICollectionViewDelegate {
+                                UICollectionViewDelegate {
 
     enum CardCollectionItem: Hashable {
         case card(Card)
