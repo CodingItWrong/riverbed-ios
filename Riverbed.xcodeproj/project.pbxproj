@@ -66,7 +66,6 @@
 		032E3ADD2A4CD925001D04F4 /* JSONAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */; };
 		032F2C862A1AE806008208E9 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C852A1AE806008208E9 /* Query.swift */; };
 		032F2C882A1AEA17008208E9 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F2C872A1AEA17008208E9 /* Condition.swift */; };
-		0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC692A17947A00CB8075 /* BoardListViewController.swift */; };
 		0342FC6E2A17959F00CB8075 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC6D2A17959F00CB8075 /* BoardStore.swift */; };
 		0342FC712A17960000CB8075 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC702A17960000CB8075 /* Board.swift */; };
 		0342FC732A17B51A00CB8075 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0342FC722A17B51A00CB8075 /* BoardViewController.swift */; };
@@ -219,7 +218,6 @@
 		032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAPI.swift; sourceTree = "<group>"; };
 		032F2C852A1AE806008208E9 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		032F2C872A1AEA17008208E9 /* Condition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Condition.swift; sourceTree = "<group>"; };
-		0342FC692A17947A00CB8075 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
 		0342FC6D2A17959F00CB8075 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
 		0342FC702A17960000CB8075 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		0342FC722A17B51A00CB8075 /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -568,7 +566,6 @@
 		03DC30492A23D85500ABC4CB /* BoardList */ = {
 			isa = PBXGroup;
 			children = (
-				0342FC692A17947A00CB8075 /* BoardListViewController.swift */,
 				03DC304A2A23D86000ABC4CB /* BoardCell.swift */,
 				0308F4EB2A675DC30079F4A9 /* BoardListCollectionViewController.swift */,
 				0308F4EF2A67EB730079F4A9 /* ButtonSupplementaryView.swift */,
@@ -848,7 +845,6 @@
 				034655042A3081F300F6AEEE /* TableView+DequeueOrRegisterCell.swift in Sources */,
 				03C8F0872A2DF48600F6AF90 /* PopUpButtonCell.swift in Sources */,
 				0304DACC2A544FB700A7C2DE /* EditElementNavigationController.swift in Sources */,
-				0342FC6A2A17947A00CB8075 /* BoardListViewController.swift in Sources */,
 				03010CCC2A34943500EF32D1 /* SummaryCell.swift in Sources */,
 				03DC304F2A23E72100ABC4CB /* Icon.swift in Sources */,
 				03DC304D2A23E10400ABC4CB /* TextSize.swift in Sources */,

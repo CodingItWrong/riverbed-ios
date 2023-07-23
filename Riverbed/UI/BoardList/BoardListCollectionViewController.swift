@@ -1,5 +1,9 @@
 import UIKit
 
+protocol BoardListDelegate: AnyObject {
+    func didSelect(board: Board)
+}
+
 class BoardListCollectionViewController: UICollectionViewController,
                                          BoardDelegate,
                                          SignInDelegate {
