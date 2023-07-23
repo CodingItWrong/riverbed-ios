@@ -579,7 +579,7 @@ class BoardViewController: UIViewController,
         if !isFirstLoadingBoard && board != nil {
             snapshot.appendItems([.add])
         }
-        let animatingDifferences = true
+        let animatingDifferences = false // results in card cells flashing for some reason
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
