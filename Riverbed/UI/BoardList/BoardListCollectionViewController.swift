@@ -157,6 +157,7 @@ class BoardListCollectionViewController: UICollectionViewController,
                 let button = supplementaryView.button
 
                 if indexPath.section == self.boardGroups.count - 1 {
+                    supplementaryView.addButton()
                     button.isHidden = false
                     button.configuration = .plain()
                     button.configuration?.title = "Add Board"
@@ -166,7 +167,7 @@ class BoardListCollectionViewController: UICollectionViewController,
                                      action: #selector(self.createBoard(_:)),
                                      for: .touchUpInside)
                 } else {
-                    button.isHidden = true
+                    supplementaryView.removeButton()
                 }
         }
 

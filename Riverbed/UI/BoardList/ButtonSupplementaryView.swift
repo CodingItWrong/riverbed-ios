@@ -6,7 +6,6 @@ class ButtonSupplementaryView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
     }
     required init?(coder: NSCoder) {
         fatalError()
@@ -14,7 +13,7 @@ class ButtonSupplementaryView: UICollectionReusableView {
 }
 
 extension ButtonSupplementaryView {
-    func configure() {
+    func addButton() {
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.adjustsFontForContentSizeCategory = true
@@ -23,7 +22,11 @@ extension ButtonSupplementaryView {
             button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
             button.topAnchor.constraint(equalTo: topAnchor, constant: inset),
-            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -inset)
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
         ])
+    }
+
+    func removeButton() {
+        button.removeFromSuperview()
     }
 }
