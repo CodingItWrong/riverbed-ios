@@ -134,10 +134,7 @@ class EditElementViewController: UITableViewController,
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sectionCases[section] {
-        case .element:
-            let num = elementRowCases.count
-            print("number of rows: \(num)")
-            return num
+        case .element: return elementRowCases.count
         case .summaryView: return SummaryViewRow.allCases.count
         }
     }
