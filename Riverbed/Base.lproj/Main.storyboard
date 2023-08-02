@@ -327,7 +327,7 @@
                         <connections>
                             <outlet property="dataSource" destination="6X2-2e-DlT" id="iYu-h0-608"/>
                             <outlet property="delegate" destination="6X2-2e-DlT" id="unt-Qk-K9u"/>
-                            <outletCollection property="gestureRecognizers" destination="h6P-YU-vyf" appends="YES" id="b2S-vT-6Fu"/>
+                            <outletCollection property="gestureRecognizers" destination="fs0-M9-WBu" appends="YES" id="yTj-ft-lQp"/>
                         </connections>
                     </tableView>
                     <connections>
@@ -338,9 +338,9 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="h6P-YU-vyf">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="fs0-M9-WBu">
                     <connections>
-                        <action selector="dismissKeyboard:" destination="6X2-2e-DlT" id="Wo3-jW-tu8"/>
+                        <action selector="dismissKeyboard:" destination="6X2-2e-DlT" id="x6y-g0-WM9"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
