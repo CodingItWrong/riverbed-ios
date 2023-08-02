@@ -99,14 +99,14 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(no cards)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Igq-kt-mdg">
-                                                                        <rect key="frame" x="8" y="8" width="78" height="21"/>
+                                                                        <rect key="frame" x="6" y="8" width="78" height="21"/>
                                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="Igq-kt-mdg" firstAttribute="leading" secondItem="Lf5-WT-43E" secondAttribute="leadingMargin" id="i5M-Us-bQ4"/>
+                                                                    <constraint firstItem="Igq-kt-mdg" firstAttribute="leading" secondItem="Lf5-WT-43E" secondAttribute="leadingMargin" constant="-2" id="i5M-Us-bQ4"/>
                                                                     <constraint firstAttribute="bottomMargin" secondItem="Igq-kt-mdg" secondAttribute="bottom" id="kNn-Zs-n9O"/>
                                                                     <constraint firstItem="Igq-kt-mdg" firstAttribute="top" secondItem="Lf5-WT-43E" secondAttribute="topMargin" id="uvn-Mm-bAs"/>
                                                                 </constraints>
@@ -1271,7 +1271,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="9h7-hn-4QJ"/>
-        <segue reference="Wog-KI-Dbe"/>
+        <segue reference="usA-OV-bnJ"/>
         <segue reference="En7-Rs-8j7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
