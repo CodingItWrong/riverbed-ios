@@ -98,6 +98,12 @@ class BoardListCollectionViewController: UICollectionViewController,
         loadBoards()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        checkForSignInFormDisplay()
+    }
+
     // MARK: - data
 
     func configureCollectionView() {
