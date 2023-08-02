@@ -116,7 +116,7 @@ class BoardViewController: UIViewController,
             navigationItem.titleMenuProvider = { _ in
                 UIMenu(children: [
                     UIAction(title: "Board Settings") { [weak self] _ in
-                        self?.performSegue(withIdentifier: "editBoard", sender: nil)
+                        self?.editBoard()
                     },
                     UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
                         self?.deleteBoard()
@@ -128,7 +128,7 @@ class BoardViewController: UIViewController,
 
             let menu = UIMenu(children: [
                 UIAction(title: "Board Settings") { [weak self] _ in
-                    self?.performSegue(withIdentifier: "editBoard", sender: nil)
+                    self?.editBoard()
                 },
                 UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
                     self?.deleteBoard()
@@ -332,6 +332,12 @@ class BoardViewController: UIViewController,
     @objc func refreshBoardData(_ sender: Any?) {
         let refreshControl = sender as? UIRefreshControl
         loadBoardData(refreshControl)
+    }
+
+    func editBoard() {
+        if board != nil {
+            performSegue(withIdentifier: "editBoard", sender: nil)
+        }
     }
 
     func deleteBoard() {
