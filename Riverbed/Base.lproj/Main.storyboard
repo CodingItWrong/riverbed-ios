@@ -334,11 +334,12 @@
                         <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
                         <outlet property="deleteButton" destination="89r-lJ-Gxe" id="sta-0S-ivy"/>
                         <outlet property="instructionLabel" destination="iWO-4P-4CF" id="HvC-00-keF"/>
+                        <outlet property="tapGestureRecognizer" destination="fs0-M9-WBu" id="t8H-mn-hZb"/>
                         <segue destination="viv-Vs-YnU" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Yd-tZ-n9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer cancelsTouchesInView="NO" id="fs0-M9-WBu">
+                <tapGestureRecognizer id="fs0-M9-WBu">
                     <connections>
                         <action selector="dismissKeyboard:" destination="6X2-2e-DlT" id="x6y-g0-WM9"/>
                     </connections>

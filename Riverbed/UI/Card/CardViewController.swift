@@ -9,6 +9,8 @@ protocol CardViewControllerDelegate: AnyObject {
 class CardViewController: UITableViewController,
                           ElementCellDelegate,
                           EditElementDelegate {
+
+    @IBOutlet private var tapGestureRecognizer: UIGestureRecognizer!
     @IBOutlet private var addElementButton: UIButton!
     @IBOutlet private var deleteButton: UIButton!
     @IBOutlet private var instructionLabel: UILabel! {
@@ -149,12 +151,14 @@ class CardViewController: UITableViewController,
             deleteButton.isHidden = false
             sender.setImage(UIImage(systemName: "wrench"), for: .normal)
             sender.accessibilityLabel = "Edit Elements"
+            tapGestureRecognizer.cancelsTouchesInView = true // allows dismissing autocorrect popup
         } else {
             setEditing(true, animated: true)
             addElementButton.isHidden = false
             deleteButton.isHidden = true
             sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
             sender.accessibilityLabel = "Finish Editing Elements"
+            tapGestureRecognizer.cancelsTouchesInView = false // allows tapping fields to edit them
         }
         tableView.reloadData() // because editing shows all elements
     }
