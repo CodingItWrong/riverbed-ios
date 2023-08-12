@@ -585,8 +585,9 @@ class BoardViewController: UIViewController,
         if !isFirstLoadingBoard && board != nil {
             snapshot.appendItems([.add])
         }
-        let animatingDifferences = false // results in card cells flashing for some reason
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+//        let animatingDifferences = false // results in card cells flashing for some reason
+//        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        dataSource.applySnapshotUsingReloadData(snapshot) // this seems to prevent scrolling to the top
     }
 
     // TODO: turn off or reimplement this
