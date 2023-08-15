@@ -30,7 +30,7 @@ class BoardListCollectionViewController: UICollectionViewController,
     var boardStore: BoardStore!
     var userStore: UserStore!
     var boards = [Board]()
-    var dataSource: UICollectionViewDiffableDataSource<BoardGroup.Section, String>!
+    var dataSource: UICollectionViewDiffableDataSource<BoardGroup.Section, Board>!
 
     var boardGroups = [BoardGroup]()
 
@@ -138,10 +138,9 @@ class BoardListCollectionViewController: UICollectionViewController,
         collectionView.collectionViewLayout = layout
         collectionView.allowsFocus = true
 
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, String> {
-            [weak self] (cell, _, boardId) in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Board> {
+            (cell, _, board) in
 
-            guard let board = self?.boards.first(where: { $0.id == boardId }) else { return }
             var content = cell.defaultContentConfiguration()
 
             content.text = board.attributes.name ?? Board.defaultName
@@ -177,12 +176,13 @@ class BoardListCollectionViewController: UICollectionViewController,
                 }
         }
 
-        dataSource = UICollectionViewDiffableDataSource<BoardGroup.Section, String>(
+        dataSource = UICollectionViewDiffableDataSource<BoardGroup.Section, Board>(
             collectionView: collectionView) {
-            (collectionView, indexPath, item) in
+            (collectionView, indexPath, board) in
+
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
                                                                 for: indexPath,
-                                                                item: item)
+                                                                item: board)
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, index) in
             if kind == UICollectionView.elementKindSectionHeader {
@@ -211,11 +211,11 @@ class BoardListCollectionViewController: UICollectionViewController,
     }
 
     func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<BoardGroup.Section, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<BoardGroup.Section, Board>()
 
         boardGroups.forEach { (group) in
             snapshot.appendSections([group.section])
-            snapshot.appendItems(group.boards.map { $0.id })
+            snapshot.appendItems(group.boards)
         }
 
         dataSource.apply(snapshot, animatingDifferences: true)

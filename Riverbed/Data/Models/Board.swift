@@ -1,11 +1,15 @@
 import Foundation
 
-class Board: Codable {
+class Board: Codable, Hashable, Equatable {
     let type: String
     var id: String
     var attributes: Board.Attributes
 
     static var defaultName: String { "(unnamed board)" }
+
+    static func == (lhs: Board, rhs: Board) -> Bool {
+        lhs.id == rhs.id
+    }
 
     init(id: String, attributes: Board.Attributes) {
         self.type = "boards"
@@ -13,7 +17,19 @@ class Board: Codable {
         self.attributes = attributes
     }
 
-    class Attributes: Codable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(attributes)
+    }
+
+    class Attributes: Codable, Hashable, Equatable {
+        static func == (lhs: Board.Attributes, rhs: Board.Attributes) -> Bool {
+            // maybe need to add more attributes here and to hash(into:) to make equality more predictable
+            lhs.name == rhs.name &&
+            lhs.icon == rhs.icon &&
+            lhs.colorTheme == rhs.colorTheme
+        }
+
         var name: String?
         var icon: Icon?
         var colorTheme: ColorTheme?
@@ -30,6 +46,13 @@ class Board: Codable {
             self.colorTheme = colorTheme
             self.favoritedAt = favoritedAt
             self.options = options
+        }
+
+        func hash(into hasher: inout Hasher) {
+            // only the values used in board list display
+            hasher.combine(name)
+            hasher.combine(icon)
+            hasher.combine(colorTheme)
         }
 
         enum CodingKeys: String, CodingKey {
