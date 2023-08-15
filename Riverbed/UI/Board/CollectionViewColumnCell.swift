@@ -3,6 +3,11 @@ import UIKit
 class CollectionViewColumnCell: UICollectionViewCell,
                                 UICollectionViewDelegate {
 
+    enum GroupSection: Hashable {
+        case noGroup // there are no cards, so we show the "no cards" cell, so there should be no heading
+        case group(FieldValue?) // there are cards, so an empty FieldValue is the "(empty)" group heading
+    }
+
     enum CardCollectionItem: Hashable {
         case card(Card)
         case noCards
@@ -18,7 +23,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<FieldValue?, CardCollectionItem>!
+    var dataSource: UICollectionViewDiffableDataSource<GroupSection, CardCollectionItem>!
 
     var cardStore: CardStore!
 
@@ -115,7 +120,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         collectionView.register(UINib(nibName: cellIdentifier, bundle: nil),
                                 forCellWithReuseIdentifier: cellIdentifier)
 
-        dataSource = UICollectionViewDiffableDataSource<FieldValue?, CardCollectionItem>(
+        dataSource = UICollectionViewDiffableDataSource<GroupSection, CardCollectionItem>(
             collectionView: collectionView, cellProvider: {
             collectionView, indexPath, cardCollectionItem in
 
@@ -158,14 +163,14 @@ class CollectionViewColumnCell: UICollectionViewCell,
     }
 
     func updateSnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<FieldValue?, CardCollectionItem>()
+        var snapshot = NSDiffableDataSourceSnapshot<GroupSection, CardCollectionItem>()
 
         if cardGroups.isEmpty {
-            snapshot.appendSections([nil])
+            snapshot.appendSections([.noGroup])
             snapshot.appendItems([.noCards])
         } else {
             cardGroups.forEach { (group) in
-                snapshot.appendSections([group.value])
+                snapshot.appendSections([.group(group.value)])
                 snapshot.appendItems(group.cards.map { .card($0) })
             }
         }
