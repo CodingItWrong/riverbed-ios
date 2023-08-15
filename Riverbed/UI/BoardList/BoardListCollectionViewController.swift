@@ -223,6 +223,25 @@ class BoardListCollectionViewController: UICollectionViewController,
 
     // MARK: - collection view delegate
 
+    override func collectionView(_ collectionView: UICollectionView,
+                                 contextMenuConfigurationForItemsAt indexPaths: [IndexPath],
+                                 point: CGPoint) -> UIContextMenuConfiguration? {
+        let indexPath = indexPaths.first
+        guard let indexPath = indexPath else { return nil }
+        let board = board(for: indexPath)
+
+        return UIContextMenuConfiguration(identifier: board.id as NSCopying, previewProvider: nil) { _ in
+            let isFavorite = board.attributes.favoritedAt != nil
+            let title = isFavorite ? "Unfavorite" : "Favorite"
+            let toggleFavoriteAction = UIAction(title: title) { [weak self] _ in
+                self?.toggleFavorite(board)
+            }
+
+            return UIMenu(children: [toggleFavoriteAction])
+        }
+
+    }
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let board = board(for: indexPath)
@@ -248,7 +267,8 @@ class BoardListCollectionViewController: UICollectionViewController,
         splitViewController?.show(.secondary)
     }
 
-    func toggleFavorite(_ board: Board, completion: @escaping (Bool) -> Void) {
+    // TODO: need @escaping?
+    func toggleFavorite(_ board: Board, completion: ((Bool) -> Void)? = nil) {
         let newFavoritedAt = board.attributes.favoritedAt == nil ? Date() : nil
 
         let updatedAttributes = Board.Attributes(name: board.attributes.name,
@@ -261,12 +281,12 @@ class BoardListCollectionViewController: UICollectionViewController,
             switch result {
             case .success:
                 self.loadBoards()
-                completion(true)
+                completion?(true)
             case let .failure(error):
                 print("Error toggling board favorite: \(String(describing: error))")
                 let action = newFavoritedAt == nil ? "unfavoriting" : "favoriting"
                 self.showAlert(withErrorMessage: "An error occurred while \(action) the board.")
-                completion(false)
+                completion?(false)
             }
         }
     }
