@@ -91,6 +91,11 @@ class BoardListCollectionViewController: UICollectionViewController,
                 UIAction(title: "Source code") { _ in
                     self.showSourceCode()
                 }
+            ]),
+            UIMenu(title: "Danger Zone", children: [
+                UIAction(title: "Delete my account", attributes: [.destructive]) { _ in
+                    self.confirmDeleteAccount()
+                }
             ])
         ])
 
@@ -260,6 +265,66 @@ class BoardListCollectionViewController: UICollectionViewController,
 
     func showSourceCode() {
         UIApplication.shared.open(URL(string: "https://link.riverbed.app/source-ios")!)
+    }
+
+    func confirmDeleteAccount() {
+        let message = "Are you sure you want to delete your account? " +
+                      "All boards and cards will be immediately deleted and there will be NO way to recover them."
+
+        let alert = UIAlertController(title: "WARNING: Delete your account?",
+                                      message: message,
+                                      preferredStyle: .alert)
+
+        let cancelAction = UIAlertAction(title: "Keep my account", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+
+        let deleteAction = UIAlertAction(title: "Yes, delete my account", style: .destructive) { _ in
+            self.deleteAccount()
+        }
+        alert.addAction(deleteAction)
+
+        alert.preferredAction = cancelAction
+        present(alert, animated: true)
+    }
+
+    func deleteAccount() {
+        guard let userId = tokenSource.userId else { return }
+
+        userStore.find(userId) { [weak self] (result) in
+            guard let self = self else { return }
+
+            switch result {
+            case let .success(user):
+                self.userStore.delete(user) { [weak self] result in
+                    guard let self = self else { return }
+
+                    switch result {
+                    case .success:
+                        let alert = UIAlertController(title: "Account deleted",
+                                                      message: "Your account has been successfully deleted.",
+                                                      preferredStyle: .alert)
+
+                        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                            guard let self = self else { return }
+
+                            self.signOut()
+                            self.checkForSignInFormDisplay()
+                        }
+                        alert.addAction(okAction)
+                        alert.preferredAction = okAction
+                        present(alert, animated: true)
+
+                    case let .failure(error):
+                        print("Error deleting account: \(String(describing: error))")
+                        let message = "An error occurred while deleting your account." +
+                                      " Please email help@riverbed.app and we will ensure your account is deleted."
+                        self.showAlert(withErrorMessage: message)
+                    }
+                }
+            case let .failure(error):
+                print("Error loading user: \(String(describing: error))")
+            }
+        }
     }
 
     func goTo(_ board: Board) {
