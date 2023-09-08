@@ -52,18 +52,18 @@ class BoardListCollectionViewController: UICollectionViewController,
                                return aFavDate < bFavDate
                            }))
         }
-        if let unfavorites = temp[false] {
-            boardGroups.append(
-                BoardGroup(section: .other,
-                           boards: unfavorites.sorted {
-                               guard let aName = $0.attributes.name,
-                                     let bName = $1.attributes.name else {
-                                   return false
-                               }
 
-                               return aName < bName
-                           }))
-        }
+        let unfavorites = temp[false] ?? []
+        boardGroups.append(
+            BoardGroup(section: .other,
+                       boards: unfavorites.sorted {
+                           guard let aName = $0.attributes.name,
+                                 let bName = $1.attributes.name else {
+                               return false
+                           }
+
+                           return aName < bName
+                       }))
         self.boardGroups = boardGroups
         self.updateSnapshot()
     }
