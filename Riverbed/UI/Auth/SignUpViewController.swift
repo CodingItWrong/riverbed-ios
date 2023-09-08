@@ -99,8 +99,8 @@ class SignUpViewController: UITableViewController,
             popUpButtonCell.delegate = self
             popUpButtonCell.configure(options: [
                 PopUpButtonCell.Option(title: "(choose)", value: nil, isSelected: attributes.allowEmails == nil),
-                PopUpButtonCell.Option(title: "Yes", value: true, isSelected: attributes.allowEmails == true),
-                PopUpButtonCell.Option(title: "No", value: false, isSelected: attributes.allowEmails == false)
+                PopUpButtonCell.Option(title: "No", value: false, isSelected: attributes.allowEmails == false),
+                PopUpButtonCell.Option(title: "Yes", value: true, isSelected: attributes.allowEmails == true)
             ])
             return popUpButtonCell
 
