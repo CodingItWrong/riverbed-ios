@@ -278,7 +278,7 @@ class BoardListCollectionViewController: UICollectionViewController,
         let cancelAction = UIAlertAction(title: "Keep my account", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
 
-        let deleteAction = UIAlertAction(title: "Yes, delete my account", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: "Delete my account", style: .destructive) { _ in
             self.deleteAccount()
         }
         alert.addAction(deleteAction)
