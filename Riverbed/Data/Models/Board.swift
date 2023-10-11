@@ -31,18 +31,28 @@ class Board: Codable, Hashable, Equatable {
         }
 
         var name: String?
-        var icon: Icon?
+        var iconName: String?
         var colorTheme: ColorTheme?
         var favoritedAt: Date?
         var options: Board.Options?
 
+        var icon: Icon? {
+            get {
+                guard let iconName = iconName else { return nil }
+                return Icon(rawValue: iconName)
+            }
+            set {
+                iconName = newValue?.rawValue
+            }
+        }
+
         init(name: String? = nil,
-             icon: Icon? = nil,
+             iconName: String? = nil,
              colorTheme: ColorTheme? = nil,
              favoritedAt: Date? = nil,
              options: Options? = nil) {
             self.name = name
-            self.icon = icon
+            self.iconName = iconName
             self.colorTheme = colorTheme
             self.favoritedAt = favoritedAt
             self.options = options
@@ -51,13 +61,13 @@ class Board: Codable, Hashable, Equatable {
         func hash(into hasher: inout Hasher) {
             // only the values used in board list display
             hasher.combine(name)
-            hasher.combine(icon)
+            hasher.combine(iconName)
             hasher.combine(colorTheme)
         }
 
         enum CodingKeys: String, CodingKey {
             case name
-            case icon
+            case iconName = "icon-extended"
             case colorTheme = "color-theme"
             case favoritedAt = "favorited-at"
             case options
@@ -66,7 +76,7 @@ class Board: Codable, Hashable, Equatable {
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(name, forKey: .name)
-            try container.encode(icon, forKey: .icon)
+            try container.encode(iconName, forKey: .iconName)
             try container.encode(colorTheme, forKey: .colorTheme)
             try container.encode(options, forKey: .options)
 

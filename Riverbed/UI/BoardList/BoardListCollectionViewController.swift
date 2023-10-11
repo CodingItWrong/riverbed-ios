@@ -337,7 +337,7 @@ class BoardListCollectionViewController: UICollectionViewController,
         let newFavoritedAt = board.attributes.favoritedAt == nil ? Date() : nil
 
         let updatedAttributes = Board.Attributes(name: board.attributes.name,
-                                                 icon: board.attributes.icon,
+                                                 iconName: board.attributes.iconName,
                                                  colorTheme: board.attributes.colorTheme,
                                                  favoritedAt: newFavoritedAt,
                                                  options: board.attributes.options)
