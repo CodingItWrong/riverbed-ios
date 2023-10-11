@@ -13,6 +13,7 @@ enum Icon: String, Codable, CaseIterable {
     case mapMarker = "map-marker"
     case medicalBag = "medical-bag"
     case money
+    case runner
     case scale
     case television
     case tree
@@ -30,6 +31,7 @@ enum Icon: String, Codable, CaseIterable {
         case .mapMarker: return "Map Marker"
         case .medicalBag: return "Medical Bag"
         case .money: return "Money"
+        case .runner: return "Runner"
         case .scale: return "Scale"
         case .television: return "Television"
         case .tree: return "Tree"
@@ -50,6 +52,7 @@ enum Icon: String, Codable, CaseIterable {
         case .mapMarker: return UIImage(systemName: "mappin.and.ellipse")
         case .medicalBag: return UIImage(systemName: "cross.case")
         case .money: return UIImage(systemName: "dollarsign.circle")
+        case .runner: return UIImage(systemName: "figure.run")
         case .scale: return UIImage(systemName: "scalemass")
         case .television: return UIImage(systemName: "play.tv")
         case .tree: return UIImage(systemName: "tree")
