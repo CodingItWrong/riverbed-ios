@@ -14,12 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     override func buildMenu(with builder: UIMenuBuilder) {
         super.buildMenu(with: builder)
         guard builder.system == .main else { return }
+        
+        let newSceneMenu = builder.menu(for: .newScene)
+        builder.remove(menu: .newScene)
 
         let newCardCommand = UIKeyCommand(title: "New Card",
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
-                                          modifierFlags: [.command, .shift])
-        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: [newCardCommand])
+                                          modifierFlags: [.command])
+        var fileMenuCommands = [newCardCommand]
+        if let newSceneCommand = newSceneMenu?.children.first as? UIKeyCommand,
+            let action = newSceneCommand.action,
+            let input = newSceneCommand.input {
+            let myNewSceneCommand = UIKeyCommand(title: newSceneCommand.title,
+                                                 action: action,
+                                                 input: input,
+                                                 modifierFlags: newSceneCommand.modifierFlags.union(.shift))
+            fileMenuCommands.append(myNewSceneCommand)
+        }
+        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
         builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
 
         let deleteCardCommand = UIKeyCommand(title: "Delete Card",
