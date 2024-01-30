@@ -18,7 +18,7 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     @IBOutlet private(set) var valueTextView: UITextView! {
         didSet {
             if (ProcessInfo.processInfo.isiOSAppOnMac) {
-                valueTextField.autocorrectionType = .no
+                valueTextView.autocorrectionType = .no
             }
         }
     }
