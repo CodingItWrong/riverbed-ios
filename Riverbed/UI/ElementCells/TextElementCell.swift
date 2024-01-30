@@ -8,8 +8,20 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
 
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var layoutStack: UIStackView!
-    @IBOutlet private(set) var valueTextField: UITextField!
-    @IBOutlet private(set) var valueTextView: UITextView!
+    @IBOutlet private(set) var valueTextField: UITextField! {
+        didSet {
+            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+                valueTextField.autocorrectionType = .no
+            }
+        }
+    }
+    @IBOutlet private(set) var valueTextView: UITextView! {
+        didSet {
+            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+                valueTextField.autocorrectionType = .no
+            }
+        }
+    }
 
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.element = element
