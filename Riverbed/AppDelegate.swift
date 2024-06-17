@@ -37,7 +37,13 @@ extension AppDelegate {
         super.buildMenu(with: builder)
         guard builder.system == .main else { return }
         
-        // File menu
+        buildFileMenu(with: builder)
+        buildEditMenu(with: builder)
+        buildViewMenu(with: builder)
+        buildWindowMenu(with: builder)
+    }
+    
+    private func buildFileMenu(with builder: UIMenuBuilder) {
         let newSceneMenu = builder.menu(for: .newScene)
         builder.remove(menu: .newScene)
 
@@ -57,24 +63,27 @@ extension AppDelegate {
         }
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
         builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
-
-        // Edit menu
+    }
+    
+    private func buildEditMenu(with builder: UIMenuBuilder) {
         let deleteCardCommand = UIKeyCommand(title: "Delete Card",
                                              action: #selector(CardViewController.deleteCard(_:)),
                                              input: UIKeyCommand.inputDelete,
                                              modifierFlags: .command)
         let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
         builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
-
-        // View menu
+    }
+    
+    private func buildViewMenu(with builder: UIMenuBuilder) {
         let refreshCommand = UIKeyCommand(title: "Refresh Board",
                                           action: #selector(BoardViewController.refreshBoardData(_:)),
                                           input: "r",
                                           modifierFlags: .command)
         let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
         builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
-
-        // Window menu
+    }
+    
+    private func buildWindowMenu(with builder: UIMenuBuilder) {
         let closeModalCommand = UIKeyCommand(title: "Close Card",
                                              action: #selector(CardViewController.dismissVC(_:)),
                                              input: UIKeyCommand.inputEscape)
