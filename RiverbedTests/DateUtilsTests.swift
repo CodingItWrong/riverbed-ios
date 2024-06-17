@@ -58,6 +58,17 @@ final class DateUtilsTests: XCTestCase {
         let result = DateUtils.humanString(fromServerString: "2024-06-17")
         XCTAssertEqual("Mon Jun 17, 2024", result)
     }
+    
+    func test_serverStringFrom_withNil_returnsNil() {
+        let result = DateUtils.serverString(from: nil)
+        XCTAssertNil(result)
+    }
+    
+    func test_serverStringFrom_withDate_returnsFormattedDate() {
+        let date = Date.with(year: 2024, month: 6, day: 17)!
+        let result = DateUtils.serverString(from: date)
+        XCTAssertEqual("2024-06-17", result)
+    }
 }
 
 extension Date {
