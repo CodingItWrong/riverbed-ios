@@ -95,6 +95,82 @@ final class DateUtilsTests: XCTestCase {
         let result = DateUtils.isCurrentMonth(nowString)
         XCTAssertTrue(result)
     }
+    
+    func test_isMonthOffsetBy_withNil_returnsFalse() {
+        let result = DateUtils.isMonthOffset(nil, by: 1)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withInvalidString_returnsFalse() {
+        let result = DateUtils.isMonthOffset("blah", by: 1)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withNowAndZeroOffset_returnsTrue() {
+        let nowString = DateUtils.serverString(from: Date())
+        let result = DateUtils.isMonthOffset(nowString, by: 0)
+        XCTAssertTrue(result)
+    }
+    
+    func test_isMonthOffsetBy_withNowAndOneOffset_returnsFalse() {
+        let nowString = DateUtils.serverString(from: Date())
+        let result = DateUtils.isMonthOffset(nowString, by: 1)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withNowAndNegativeOneOffset_returnsFalse() {
+        let nowString = DateUtils.serverString(from: Date())
+        let result = DateUtils.isMonthOffset(nowString, by: -1)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withTwoMonthsFromNowAndTwoOffset_returnsTrue() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: 2, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: 2)
+        XCTAssertTrue(result)
+    }
+    
+    func test_isMonthOffsetBy_withTwoMonthsFromNowAndOneOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: 2, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: 1)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withTwoMonthsFromNowAndThreeOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: 2, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: 3)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withTwoMonthsFromNowAndMinusTwoOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: 2, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: -2)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withThreeMonthsAgoAndMinusThreeOffset_returnsTrue() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: -3, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: -3)
+        XCTAssertTrue(result)
+    }
+    
+    func test_isMonthOffsetBy_withThreeMonthsAgoAndMinusFourOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: -3, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: -4)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withThreeMonthsAgoAndMinusTwoOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: -3, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: -2)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isMonthOffsetBy_withThreeMonthsAgoAndThreeOffset_returnsFalse() {
+        let twoMonthsFromNow = DateUtils.serverString(from: Calendar.current.date(byAdding: .month, value: -3, to: Date()))
+        let result = DateUtils.isMonthOffset(twoMonthsFromNow, by: 3)
+        XCTAssertFalse(result)
+    }
 }
 
 extension Date {
