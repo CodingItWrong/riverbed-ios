@@ -22,6 +22,23 @@ final class ActionTests: XCTestCase {
         XCTAssertEqual(result, ["A": nil])
     }
 
+    func test_call_setValueToSpecificValue_returnsFieldValuesWithValueSetToConfiguredValue() {
+        let elements = [
+            Element(id: "A", attributes: Element.Attributes(
+                elementType: .field,
+                dataType: .text,
+                options: Element.Options()))
+        ]
+        let fieldValues: [String: FieldValue?] = ["A": .string("B")]
+        let action = Action(
+            command: .setValue,
+            field: "A", value: .specificValue,
+            specificValue: .string("C"))
+        let result = action.call(elements: elements, fieldValues: fieldValues)
+        XCTAssertEqual(result, ["A": .string("C")])
+    }
+
+    
     func test_call_add2DaysToFutureDate_returnsFieldValuesWithDate2DaysLater() {
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
