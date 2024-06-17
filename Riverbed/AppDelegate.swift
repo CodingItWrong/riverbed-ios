@@ -11,51 +11,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    override func buildMenu(with builder: UIMenuBuilder) {
-        super.buildMenu(with: builder)
-        guard builder.system == .main else { return }
-        
-        let newSceneMenu = builder.menu(for: .newScene)
-        builder.remove(menu: .newScene)
-
-        let newCardCommand = UIKeyCommand(title: "New Card",
-                                          action: #selector(BoardViewController.addCard(_:)),
-                                          input: "n",
-                                          modifierFlags: [.command])
-        var fileMenuCommands = [newCardCommand]
-        if let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand,
-            let action = newWindowCommand.action,
-            let input = newWindowCommand.input {
-            let myNewSceneCommand = UIKeyCommand(title: newWindowCommand.title,
-                                                 action: action,
-                                                 input: input,
-                                                 modifierFlags: newWindowCommand.modifierFlags.union(.shift))
-            fileMenuCommands.append(myNewSceneCommand)
-        }
-        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
-        builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
-
-        let deleteCardCommand = UIKeyCommand(title: "Delete Card",
-                                             action: #selector(CardViewController.deleteCard(_:)),
-                                             input: UIKeyCommand.inputDelete,
-                                             modifierFlags: .command)
-        let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
-        builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
-
-        let refreshCommand = UIKeyCommand(title: "Refresh Board",
-                                          action: #selector(BoardViewController.refreshBoardData(_:)),
-                                          input: "r",
-                                          modifierFlags: .command)
-        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
-        builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
-
-        let closeModalCommand = UIKeyCommand(title: "Close Card",
-                                             action: #selector(CardViewController.dismissVC(_:)),
-                                             input: UIKeyCommand.inputEscape)
-        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
-        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication,
@@ -73,4 +28,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+}
+
+// Menu builder
+extension AppDelegate {
+    
+    override func buildMenu(with builder: UIMenuBuilder) {
+        super.buildMenu(with: builder)
+        guard builder.system == .main else { return }
+        
+        // File menu
+        let newSceneMenu = builder.menu(for: .newScene)
+        builder.remove(menu: .newScene)
+
+        let newCardCommand = UIKeyCommand(title: "New Card",
+                                          action: #selector(BoardViewController.addCard(_:)),
+                                          input: "n",
+                                          modifierFlags: [.command])
+        var fileMenuCommands = [newCardCommand]
+        if let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand,
+            let action = newWindowCommand.action,
+            let input = newWindowCommand.input {
+            let myNewWindowCommand = UIKeyCommand(title: newWindowCommand.title,
+                                                 action: action,
+                                                 input: input,
+                                                 modifierFlags: newWindowCommand.modifierFlags.union(.shift))
+            fileMenuCommands.append(myNewWindowCommand)
+        }
+        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
+        builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
+
+        // Edit menu
+        let deleteCardCommand = UIKeyCommand(title: "Delete Card",
+                                             action: #selector(CardViewController.deleteCard(_:)),
+                                             input: UIKeyCommand.inputDelete,
+                                             modifierFlags: .command)
+        let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
+        builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
+
+        // View menu
+        let refreshCommand = UIKeyCommand(title: "Refresh Board",
+                                          action: #selector(BoardViewController.refreshBoardData(_:)),
+                                          input: "r",
+                                          modifierFlags: .command)
+        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
+        builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
+
+        // Window menu
+        let closeModalCommand = UIKeyCommand(title: "Close Card",
+                                             action: #selector(CardViewController.dismissVC(_:)),
+                                             input: UIKeyCommand.inputEscape)
+        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
+        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
+    }
+    
 }
