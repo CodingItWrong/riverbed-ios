@@ -69,6 +69,32 @@ final class DateUtilsTests: XCTestCase {
         let result = DateUtils.serverString(from: date)
         XCTAssertEqual("2024-06-17", result)
     }
+    
+    func test_isCurrentMonth_withNil_returnsFalse() {
+        let result = DateUtils.isCurrentMonth(nil)
+        XCTAssertFalse(result)
+    }
+    
+    func test_isCurrentMonth_withInvalidString_returnsFalse() {
+        let result = DateUtils.isCurrentMonth("blah")
+        XCTAssertFalse(result)
+    }
+    
+    func test_isCurrentMonth_withPastMonthDateString_returnsFalse() {
+        let result = DateUtils.isCurrentMonth("1999-01-01")
+        XCTAssertFalse(result)
+    }
+    
+    func test_isCurrentMonth_withFutureMonthDateString_returnsFalse() {
+        let result = DateUtils.isCurrentMonth("2999-01-01")
+        XCTAssertFalse(result)
+    }
+    
+    func test_isCurrentMonth_withCurrentMonthDateString_returnsTrue() {
+        let nowString = DateUtils.serverString(from: Date())
+        let result = DateUtils.isCurrentMonth(nowString)
+        XCTAssertTrue(result)
+    }
 }
 
 extension Date {
