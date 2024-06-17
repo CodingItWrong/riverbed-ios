@@ -23,13 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                           input: "n",
                                           modifierFlags: [.command])
         var fileMenuCommands = [newCardCommand]
-        if let newSceneCommand = newSceneMenu?.children.first as? UIKeyCommand,
-            let action = newSceneCommand.action,
-            let input = newSceneCommand.input {
-            let myNewSceneCommand = UIKeyCommand(title: newSceneCommand.title,
+        if let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand,
+            let action = newWindowCommand.action,
+            let input = newWindowCommand.input {
+            let myNewSceneCommand = UIKeyCommand(title: newWindowCommand.title,
                                                  action: action,
                                                  input: input,
-                                                 modifierFlags: newSceneCommand.modifierFlags.union(.shift))
+                                                 modifierFlags: newWindowCommand.modifierFlags.union(.shift))
             fileMenuCommands.append(myNewSceneCommand)
         }
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
