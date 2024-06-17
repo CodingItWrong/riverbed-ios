@@ -9,7 +9,7 @@ final class ActionTests: XCTestCase {
         XCTAssertEqual(result, fieldValues)
     }
 
-    func test_call_configuredToSetValueToEmpty_returnsFieldValuesWithValueSetToNil() {
+    func test_call_setValueToEmpty_returnsFieldValuesWithValueSetToNil() {
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
                 elementType: .field,
@@ -22,7 +22,7 @@ final class ActionTests: XCTestCase {
         XCTAssertEqual(result, ["A": nil])
     }
 
-    func test_call_configuredToAdd2DaysToFutureDate_returnsFieldValuesWithDate2DaysLater() {
+    func test_call_add2DaysToFutureDate_returnsFieldValuesWithDate2DaysLater() {
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
                 elementType: .field,
@@ -35,7 +35,7 @@ final class ActionTests: XCTestCase {
         XCTAssertEqual(result, ["A": .string("2999-01-03")])
     }
 
-    func test_call_configuredToAddNegative1DaysToFutureDatetime_returnsFieldValuesWithDatetime1DayEarlier() {
+    func test_call_addNegative1DaysToFutureDatetime_returnsFieldValuesWithDatetime1DayEarlier() {
         let elements = [
             Element(id: "A", attributes: Element.Attributes(
                 elementType: .field,
