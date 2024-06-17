@@ -23,6 +23,12 @@ final class DateUtilsTests: XCTestCase {
         XCTAssertEqual(second, dateComponents.second)
     }
     
+    func test_addDaysTo_with2Days_returnsDateWithTwoDaysAdded() {
+        let startDate = Date.with(year: 2024, month: 6, day: 17)!
+        let result = DateUtils.add(days: 2, to: startDate)
+        assertDateEquals(year: 2024, month: 6, day: 19, hour: 0, minute: 0, second: 0, result)
+    }
+    
     func test_dateFromServerString_withNil_returnsNil() {
         let result = DateUtils.date(fromServerString: nil)
         XCTAssertNil(result)
@@ -36,5 +42,24 @@ final class DateUtilsTests: XCTestCase {
     func test_dateFromServerString_withValidDate_returnsDate() {
         let result = DateUtils.date(fromServerString: "2024-06-17")
         assertDateEquals(year: 2024, month: 6, day: 17, hour: 0, minute: 0, second: 0, result)
+    }
+}
+
+extension Date {
+    static func with(year: Int,
+                     month: Int,
+                     day: Int,
+                     hour: Int = 0,
+                     minute: Int = 0,
+                     second: Int = 0) -> Date?
+    {
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        dateComponents.second = second
+        return Calendar.current.date(from: dateComponents)
     }
 }

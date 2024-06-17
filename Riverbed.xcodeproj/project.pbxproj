@@ -385,10 +385,10 @@
 			children = (
 				038D35C62A4CB7F800F546DD /* ActionTests.swift */,
 				03D6688C2A1CC78F00597D9E /* CardTests.swift */,
+				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
 				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
 				031189642A2A02A400334B63 /* QueryTests.swift */,
 				036445472A48B70A0081756C /* ValueTests.swift */,
-				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
 			);
 			path = RiverbedTests;
 			sourceTree = "<group>";
