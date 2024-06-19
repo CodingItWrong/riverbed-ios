@@ -138,10 +138,54 @@ final class EditBoardViewControllerTests: XCTestCase {
         
         let indexPath = IndexPath(row: 0, section: 0)
         let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! TextFieldCell
-        cell.textField.text = updatedBoardName
         
+        cell.textField.text = updatedBoardName
         sut.valueDidChange(inFormCell: cell, at: indexPath)
 
-        XCTAssertEqual(updatedBoardName, sut.attributes.name)
+        XCTAssertEqual(sut.attributes.name, updatedBoardName)
+    }
+    
+    func test_valueDidChangeInFormCell_withRow1_shouldSetColorTheme() {
+        sut.attributes = Board.Attributes(colorTheme: .red)
+        let updatedColorTheme = ColorTheme.green
+        
+        let indexPath = IndexPath(row: 1, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! PopUpButtonCell
+
+        cell.selectedValue = updatedColorTheme
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.attributes.colorTheme, updatedColorTheme)
+    }
+    
+    func test_valueDidChangeInFormCell_withRow2_shouldSetSetIcon() {
+        sut.attributes = Board.Attributes(iconName: Icon.money.rawValue)
+        let updatedIcon = Icon.food
+        
+        let indexPath = IndexPath(row: 2, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! PopUpButtonCell
+
+        cell.selectedValue = updatedIcon
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.attributes.icon, updatedIcon)
+    }
+    
+    func test_valueDidChangeInFormCell_withRow3_shouldSetCardCreateWebhook() {
+        let webhooks = Board.Webhooks()
+        webhooks.cardCreate = "original card create URL"
+        let options = Board.Options()
+        options.webhooks = webhooks
+        sut.attributes = Board.Attributes(options: options)
+        
+        let updatedCardCreateWebhook = "updated card create URL"
+        
+        let indexPath = IndexPath(row: 3, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! TextFieldCell
+        
+        cell.textField.text = updatedCardCreateWebhook
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+
+        XCTAssertEqual(sut.attributes.options?.webhooks?.cardCreate, updatedCardCreateWebhook)
     }
 }
