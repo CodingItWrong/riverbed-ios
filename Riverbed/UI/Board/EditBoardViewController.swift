@@ -167,6 +167,11 @@ class EditBoardViewController: UITableViewController,
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
+        valueDidChange(inFormCell: formCell, at: indexPath)
+    }
+    
+    // not part of form cell delegate, but exposed for testing to isolate from index path lookup logic
+    func valueDidChange(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
         let rowEnum = Row.allCases[indexPath.row]
 
         switch rowEnum {

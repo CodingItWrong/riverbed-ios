@@ -92,6 +92,7 @@
 		036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */; };
 		036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */; };
 		03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DA82C20CCF600EE360B /* DateUtilsTests.swift */; };
+		03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -246,6 +247,7 @@
 		036D820B2A3154BB0064F05B /* PopUpButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpButtonCell.xib; sourceTree = "<group>"; };
 		036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardDismissing.swift"; sourceTree = "<group>"; };
 		03830DA82C20CCF600EE360B /* DateUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilsTests.swift; sourceTree = "<group>"; };
+		03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardViewControllerTests.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				038D35C62A4CB7F800F546DD /* ActionTests.swift */,
 				03D6688C2A1CC78F00597D9E /* CardTests.swift */,
 				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
+				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
 				031189642A2A02A400334B63 /* QueryTests.swift */,
 				036445472A48B70A0081756C /* ValueTests.swift */,
@@ -879,6 +882,7 @@
 				031189652A2A02A400334B63 /* QueryTests.swift in Sources */,
 				036445482A48B70A0081756C /* ValueTests.swift in Sources */,
 				03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */,
+				03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
