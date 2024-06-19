@@ -11,6 +11,11 @@ final class EditBoardViewControllerTests: XCTestCase {
         sut.loadViewIfNeeded()
     }
     
+    override func tearDown() {
+        sut = nil
+        super.tearDown()
+    }
+    
     func test_numberOfRows_shouldBe7() {
         XCTAssertEqual(sut.tableView(sut.tableView, numberOfRowsInSection: 0), 7)
     }
