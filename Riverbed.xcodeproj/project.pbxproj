@@ -93,6 +93,7 @@
 		036D820E2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */; };
 		03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DA82C20CCF600EE360B /* DateUtilsTests.swift */; };
 		03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */; };
+		03830DB22C23571800EE360B /* EditActionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -248,6 +249,7 @@
 		036D820D2A31E4BD0064F05B /* UIViewController+KeyboardDismissing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardDismissing.swift"; sourceTree = "<group>"; };
 		03830DA82C20CCF600EE360B /* DateUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtilsTests.swift; sourceTree = "<group>"; };
 		03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewControllerTests.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 		03830DAF2C23562500EE360B /* Board */ = {
 			isa = PBXGroup;
 			children = (
+				03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */,
 				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 			);
 			path = Board;
@@ -920,6 +923,7 @@
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
 				035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */,
 				031189652A2A02A400334B63 /* QueryTests.swift in Sources */,
+				03830DB22C23571800EE360B /* EditActionViewControllerTests.swift in Sources */,
 				036445482A48B70A0081756C /* ValueTests.swift in Sources */,
 				03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */,
 				03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */,
