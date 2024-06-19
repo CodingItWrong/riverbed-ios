@@ -518,6 +518,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DAF2C23562500EE360B /* Board */,
+				03830DB62C23951300EE360B /* Element */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -525,7 +526,6 @@
 		03830DAF2C23562500EE360B /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */,
 				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 			);
 			path = Board;
@@ -538,6 +538,14 @@
 				031189642A2A02A400334B63 /* QueryTests.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		03830DB62C23951300EE360B /* Element */ = {
+			isa = PBXGroup;
+			children = (
+				03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */,
+			);
+			path = Element;
 			sourceTree = "<group>";
 		};
 		03944A892A195F5100639AC7 /* Board */ = {
