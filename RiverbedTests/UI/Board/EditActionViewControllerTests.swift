@@ -4,6 +4,7 @@ import XCTest
 final class EditActionViewControllerTests: XCTestCase {
     
     private var fieldA: Element!
+    private var fieldB: Element!
     
     private var sut: EditActionViewController!
     
@@ -13,10 +14,13 @@ final class EditActionViewControllerTests: XCTestCase {
         fieldA = Element(id: "field_a_id",
                          attributes: Element.Attributes(elementType: .field,
                                                         name: "Field A"))
+        fieldB = Element(id: "field_b_id",
+                         attributes: Element.Attributes(elementType: .field,
+                                                        name: "Field B"))
         
         sut = EditActionViewController()
         sut.action = Action(field: fieldA.id)
-        sut.elements = [fieldA]
+        sut.elements = [fieldA, fieldB]
         
         sut.loadViewIfNeeded()
     }
@@ -92,5 +96,59 @@ final class EditActionViewControllerTests: XCTestCase {
         
         XCTAssertEqual(cell.elementLabel.text, fieldA.attributes.name)
         XCTAssertEqual(cell.valueTextField.text, specificValue)
+    }
+    
+    func test_updateValueFor_shouldSetSpecificValue() {
+        let value = FieldValue.string("updated value")
+        
+        sut.update(value: value, for: fieldA)
+        
+        XCTAssertEqual(sut.action.specificValue, value)
+    }
+    
+    func test_valueDidChangeInFormCellAt_withRow0_shouldSetCommand() {
+        let updatedCommand = Command.addDays
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! PopUpButtonCell
+        
+        cell.selectedValue = updatedCommand
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.action.command, updatedCommand)
+    }
+    
+    func test_valueDidChangeInFormCellAt_withRow1_shouldSetField() {
+        let updatedField = fieldB!
+        let indexPath = IndexPath(row: 1, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! PopUpButtonCell
+        
+        cell.selectedValue = updatedField
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.action.field, updatedField.id)
+    }
+    
+    func test_valueDidChangeInFormCellAt_withRow2AndAddDays_shouldSetSpecificValue() {
+        let updatedSpecificValue = "42"
+        sut.action.command = .addDays
+        let indexPath = IndexPath(row: 2, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! TextFieldCell
+        
+        cell.textField.text = updatedSpecificValue
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.action.specificValue, .string(updatedSpecificValue))
+    }
+    
+    func test_valueDidChangeInFormCellAt_withRow2AndSetValue_shouldSetValue() {
+        let updatedValue = Value.now
+        sut.action.command = .setValue
+        let indexPath = IndexPath(row: 2, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! PopUpButtonCell
+        
+        cell.selectedValue = updatedValue
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
+        
+        XCTAssertEqual(sut.action.value, updatedValue)
     }
 }

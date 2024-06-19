@@ -170,6 +170,10 @@ class EditActionViewController: UITableViewController,
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
+        valueDidChange(inFormCell: formCell, at: indexPath)
+    }
+    
+    func valueDidChange(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
         let rowEnum = Row.cases(for: action)[indexPath.row]
 
         switch rowEnum {
