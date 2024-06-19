@@ -74,15 +74,36 @@ final class EditBoardViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.textField.text, webhooks.cardUpdate)
     }
     
-    func test_cellForRowAt_withRow5_shouldConfigureUnknownCell() {
-        sut.attributes = Board.Attributes()
+    func test_cellForRowAt_withRow5_shouldConfigureShareUrlCell() {
+        let field = Element(id: "fake_field_id", attributes: Element.Attributes(elementType: .field))
+        sut.fields = [field]
+        let share = Board.Share()
+        share.urlField = field.id
+        let options = Board.Options()
+        options.share = share
+        sut.attributes = Board.Attributes(options: options)
 
         let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 5, section: 0)) as! PopUpButtonCell
         
         XCTAssertEqual(cell.label.text, "Share URL Field")
-        // TODO: test value, will have to set up board elements
+        XCTAssertEqual(cell.selectedValue as! Element, field)
     }
-    
+
+    func test_cellForRowAt_withRow6_shouldConfigureShareTitleCell() {
+        let field = Element(id: "fake_field_id", attributes: Element.Attributes(elementType: .field))
+        sut.fields = [field]
+        let share = Board.Share()
+        share.titleField = field.id
+        let options = Board.Options()
+        options.share = share
+        sut.attributes = Board.Attributes(options: options)
+
+        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 6, section: 0)) as! PopUpButtonCell
+        
+        XCTAssertEqual(cell.label.text, "Share Title Field")
+        XCTAssertEqual(cell.selectedValue as! Element, field)
+    }
+
     func test_cellForRowAt_withRow3_shouldConfigureUnknownCell() {
         // TODO: simplify initalization
         let webhooks = Board.Webhooks()
