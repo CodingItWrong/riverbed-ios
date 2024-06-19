@@ -385,13 +385,10 @@
 		03027E0B2A13DF9E0063EE24 /* RiverbedTests */ = {
 			isa = PBXGroup;
 			children = (
-				038D35C62A4CB7F800F546DD /* ActionTests.swift */,
-				03D6688C2A1CC78F00597D9E /* CardTests.swift */,
-				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
-				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
-				031189642A2A02A400334B63 /* QueryTests.swift */,
-				036445472A48B70A0081756C /* ValueTests.swift */,
+				03830DAC2C23560300EE360B /* Data */,
+				03830DAE2C23561C00EE360B /* UI */,
+				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
 			);
 			path = RiverbedTests;
 			sourceTree = "<group>";
@@ -495,6 +492,49 @@
 				032E3ADB2A4CD8F9001D04F4 /* JSONAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		03830DAC2C23560300EE360B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				03830DB02C23564200EE360B /* Enums */,
+				03830DAD2C23560C00EE360B /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		03830DAD2C23560C00EE360B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				03D6688C2A1CC78F00597D9E /* CardTests.swift */,
+				038D35C62A4CB7F800F546DD /* ActionTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		03830DAE2C23561C00EE360B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				03830DAF2C23562500EE360B /* Board */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		03830DAF2C23562500EE360B /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		03830DB02C23564200EE360B /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				036445472A48B70A0081756C /* ValueTests.swift */,
+				031189642A2A02A400334B63 /* QueryTests.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		03944A892A195F5100639AC7 /* Board */ = {
