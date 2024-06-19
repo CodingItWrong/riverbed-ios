@@ -136,14 +136,12 @@ final class EditBoardViewControllerTests: XCTestCase {
         sut.attributes = Board.Attributes(name: "original board name")
         let updatedBoardName = "updated board name"
         
-        let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 0)) as! TextFieldCell
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath) as! TextFieldCell
         cell.textField.text = updatedBoardName
         
-        RunLoop.current.run(until: Date.now)
-        sut.valueDidChange(inFormCell: sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 0)))
-        RunLoop.current.run(until: Date.now)
+        sut.valueDidChange(inFormCell: cell, at: indexPath)
 
-        // TODO: it's not finding the index path by the cell
         XCTAssertEqual(updatedBoardName, sut.attributes.name)
     }
 }
