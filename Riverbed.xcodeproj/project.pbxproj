@@ -100,6 +100,7 @@
 		03830DC42C2457FB00EE360B /* SignUpViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC32C2457FB00EE360B /* SignUpViewControllerTests.swift */; };
 		03830DC62C245F6E00EE360B /* MockUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC52C245F6E00EE360B /* MockUserStore.swift */; };
 		03830DCA2C2492A000EE360B /* ViewControllerPresentationSpy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03830DC92C2492A000EE360B /* ViewControllerPresentationSpy.xcframework */; };
+		03830DCF2C2494CA00EE360B /* EditColumnViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -262,6 +263,7 @@
 		03830DC32C2457FB00EE360B /* SignUpViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DC52C245F6E00EE360B /* MockUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStore.swift; sourceTree = "<group>"; };
 		03830DC92C2492A000EE360B /* ViewControllerPresentationSpy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ViewControllerPresentationSpy.xcframework; sourceTree = "<group>"; };
+		03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnViewControllerTests.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 			children = (
 				03830DBA2C239AE800EE360B /* Auth */,
 				03830DAF2C23562500EE360B /* Board */,
+				03830DCD2C2494BE00EE360B /* Column */,
 				03830DB72C23952D00EE360B /* Conditions */,
 				03830DB62C23951300EE360B /* Element */,
 			);
@@ -589,6 +592,14 @@
 				03830DC52C245F6E00EE360B /* MockUserStore.swift */,
 			);
 			path = Doubles;
+			sourceTree = "<group>";
+		};
+		03830DCD2C2494BE00EE360B /* Column */ = {
+			isa = PBXGroup;
+			children = (
+				03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */,
+			);
+			path = Column;
 			sourceTree = "<group>";
 		};
 		03944A892A195F5100639AC7 /* Board */ = {
@@ -970,6 +981,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03830DCF2C2494CA00EE360B /* EditColumnViewControllerTests.swift in Sources */,
 				03830DBC2C239B0200EE360B /* SignInViewControllerTests.swift in Sources */,
 				038D35C72A4CB7F800F546DD /* ActionTests.swift in Sources */,
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
