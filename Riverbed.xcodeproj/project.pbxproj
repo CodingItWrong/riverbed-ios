@@ -97,6 +97,8 @@
 		03830DB92C23953900EE360B /* EditConditionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DB82C23953900EE360B /* EditConditionViewControllerTests.swift */; };
 		03830DBC2C239B0200EE360B /* SignInViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */; };
 		03830DC22C24528800EE360B /* MockTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC12C24528800EE360B /* MockTokenStore.swift */; };
+		03830DC42C2457FB00EE360B /* SignUpViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC32C2457FB00EE360B /* SignUpViewControllerTests.swift */; };
+		03830DC62C245F6E00EE360B /* MockUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC52C245F6E00EE360B /* MockUserStore.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -256,6 +258,8 @@
 		03830DB82C23953900EE360B /* EditConditionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditConditionViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DC12C24528800EE360B /* MockTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenStore.swift; sourceTree = "<group>"; };
+		03830DC32C2457FB00EE360B /* SignUpViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DC52C245F6E00EE360B /* MockUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStore.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -569,6 +573,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */,
+				03830DC32C2457FB00EE360B /* SignUpViewControllerTests.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DC12C24528800EE360B /* MockTokenStore.swift */,
+				03830DC52C245F6E00EE360B /* MockUserStore.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -965,7 +971,9 @@
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
 				035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */,
 				03830DC22C24528800EE360B /* MockTokenStore.swift in Sources */,
+				03830DC62C245F6E00EE360B /* MockUserStore.swift in Sources */,
 				031189652A2A02A400334B63 /* QueryTests.swift in Sources */,
+				03830DC42C2457FB00EE360B /* SignUpViewControllerTests.swift in Sources */,
 				03830DB22C23571800EE360B /* EditActionViewControllerTests.swift in Sources */,
 				036445482A48B70A0081756C /* ValueTests.swift in Sources */,
 				03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */,

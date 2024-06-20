@@ -160,10 +160,14 @@ class SignUpViewController: UITableViewController,
     }
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
-        clearError()
         guard let indexPath = tableView.indexPath(for: formCell) else {
             preconditionFailure("Could not find indexPath for cell")
         }
+        valueDidChange(inFormCell: formCell, at: indexPath)
+    }
+    
+    func valueDidChange(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
+        clearError()
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
         case .email:

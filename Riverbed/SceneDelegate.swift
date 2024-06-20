@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         boardListVC.tokenSource = sessionSource
         boardListVC.tokenStore = ApiTokenStore(sessionSource: sessionSource) // NOTE: tokenSource is unused here
-        boardListVC.userStore = UserStore(sessionSource: sessionSource)
+        boardListVC.userStore = ApiUserStore(sessionSource: sessionSource)
         boardListVC.boardStore = boardStore
         boardListVC.delegate = boardVC
 
