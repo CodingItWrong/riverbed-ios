@@ -1,6 +1,18 @@
 import Foundation
 
-class UserStore: BaseStore {
+protocol UserStore {
+    func find(_ userId: String, completion: @escaping (Result<User, Error>) -> Void)
+    
+    func create(with attributes: NewUser.Attributes, completion: @escaping (Result<Void, Error>) -> Void)
+    
+    func update(_ user: User,
+                with updatedAttributes: User.Attributes,
+                completion: @escaping (Result<Void, Error>) -> Void)
+    
+    func delete(_ user: User, completion: @escaping (Result<Void, Error>) -> Void)
+}
+
+class ApiUserStore: BaseStore, UserStore {
     func find(_ userId: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = RiverbedAPI.userURL(for: userId)
         var request = URLRequest(url: url)

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SignInDelegate: AnyObject {
-    func didReceive(tokenResponse: TokenStore.TokenResponse)
+    func didReceive(tokenResponse: TokenResponse)
 }
 
 class SignInViewController: UIViewController,
