@@ -1,14 +1,18 @@
 @testable import Riverbed
 import XCTest
+import ViewControllerPresentationSpy
 
 final class SignUpViewControllerTests: XCTestCase {
     
     private var sut: SignUpViewController!
     private var userStore: MockUserStore!
+    private var alertVerifier: AlertVerifier!
     
-    override func setUp() {
+    @MainActor override func setUp() {
         super.setUp()
-        
+
+        alertVerifier = AlertVerifier()
+
         let sb = UIStoryboard(name: "Main", bundle: nil)
         sut = sb.instantiateViewController(withIdentifier: String(describing: SignUpViewController.self)) as? SignUpViewController
         sut.attributes.email = "example@example.com"
@@ -25,6 +29,8 @@ final class SignUpViewControllerTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        userStore = nil
+        alertVerifier = nil
         super.tearDown()
     }
     
@@ -60,7 +66,7 @@ final class SignUpViewControllerTests: XCTestCase {
         let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 3, section: 0)) as! PopUpButtonCell
         
         XCTAssertEqual(cell.label.text, "Allow important emails about your account?")
-        XCTAssertNil(cell.selectedValue)
+        XCTAssertEqual(cell.selectedValue as! Bool?, true)
         XCTAssertEqual(cell.popUpButton.menu?.children.count, 3)
         XCTAssertEqual(cell.popUpButton.menu?.children[0].title, "(choose)")
         XCTAssertEqual(cell.popUpButton.menu?.children[1].title, "No")
@@ -203,11 +209,16 @@ final class SignUpViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.errorLabel.text, "An error occurred while creating your account. Please try again.")
     }
     
-    func test_didPressButton_whenFormValidAndCreateSucceeds_showsAlert() {
+    @MainActor func test_didPressButton_whenFormValidAndCreateSucceeds_showsAlert() {
         userStore.createResult = .success(())
         
         pressSignUpButton()
         
-        // TODO: test alert shown
+        let message = "Congratulations, your Riverbed account has been created! " +
+                      "You can now log in with the username and password you provided."
+        alertVerifier.verify(title: "Account Created",
+                             message: message,
+                             animated: true,
+                             actions: [.default("OK")])
     }
 }
