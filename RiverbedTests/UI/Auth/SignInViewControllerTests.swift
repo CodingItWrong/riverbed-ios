@@ -28,6 +28,13 @@ final class SignInViewControllerTests: XCTestCase {
         
         sut.loadViewIfNeeded()
     }
+    
+    override func tearDown() {
+        sut = nil
+        tokenStore = nil
+        signInDelegate = nil
+        super.tearDown()
+    }
 
     func test_signIn_sendsEmailAndPassword() {
         let email = "testemail@example.calm"
@@ -71,5 +78,15 @@ final class SignInViewControllerTests: XCTestCase {
         XCTAssertEqual(signInDelegate.tokenResponses.count, 0)
         XCTAssertEqual(sut.errorLabel.isHidden, false)
         XCTAssertEqual(sut.errorLabel.text, "An error occurred while attempting to sign in. Please try again.")
+    }
+    
+    func test_textFieldDidChangeSelection_whenError_hidesError() {
+        sut.displayError("Fake error")
+        
+        XCTAssertEqual(sut.errorLabel.isHidden, false) // precondition
+        
+        sut.textFieldDidChangeSelection(sut.passwordField)
+        
+        XCTAssertEqual(sut.errorLabel.isHidden, true)
     }
 }
