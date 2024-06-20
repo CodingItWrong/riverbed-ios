@@ -95,6 +95,8 @@
 		03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */; };
 		03830DB22C23571800EE360B /* EditActionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */; };
 		03830DB92C23953900EE360B /* EditConditionViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DB82C23953900EE360B /* EditConditionViewControllerTests.swift */; };
+		03830DBC2C239B0200EE360B /* SignInViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */; };
+		03830DC22C24528800EE360B /* MockTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC12C24528800EE360B /* MockTokenStore.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -252,6 +254,8 @@
 		03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBoardViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActionViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DB82C23953900EE360B /* EditConditionViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditConditionViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DC12C24528800EE360B /* MockTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTokenStore.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 			children = (
 				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
 				03830DAC2C23560300EE360B /* Data */,
+				03830DC02C24524A00EE360B /* Doubles */,
 				03830DAE2C23561C00EE360B /* UI */,
 				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
 			);
@@ -519,6 +524,7 @@
 		03830DAE2C23561C00EE360B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				03830DBA2C239AE800EE360B /* Auth */,
 				03830DAF2C23562500EE360B /* Board */,
 				03830DB72C23952D00EE360B /* Conditions */,
 				03830DB62C23951300EE360B /* Element */,
@@ -557,6 +563,22 @@
 				03830DB82C23953900EE360B /* EditConditionViewControllerTests.swift */,
 			);
 			path = Conditions;
+			sourceTree = "<group>";
+		};
+		03830DBA2C239AE800EE360B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				03830DBB2C239B0200EE360B /* SignInViewControllerTests.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		03830DC02C24524A00EE360B /* Doubles */ = {
+			isa = PBXGroup;
+			children = (
+				03830DC12C24528800EE360B /* MockTokenStore.swift */,
+			);
+			path = Doubles;
 			sourceTree = "<group>";
 		};
 		03944A892A195F5100639AC7 /* Board */ = {
@@ -938,9 +960,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03830DBC2C239B0200EE360B /* SignInViewControllerTests.swift in Sources */,
 				038D35C72A4CB7F800F546DD /* ActionTests.swift in Sources */,
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
 				035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */,
+				03830DC22C24528800EE360B /* MockTokenStore.swift in Sources */,
 				031189652A2A02A400334B63 /* QueryTests.swift in Sources */,
 				03830DB22C23571800EE360B /* EditActionViewControllerTests.swift in Sources */,
 				036445482A48B70A0081756C /* ValueTests.swift in Sources */,

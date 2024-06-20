@@ -1,6 +1,24 @@
 import Foundation
 
-class TokenStore: BaseStore {
+struct TokenResponse: Codable {
+    var accessToken: String
+    var tokenType: String
+    var createdAt: Int
+    var userId: Int
+
+    enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case tokenType = "token_type"
+        case createdAt = "created_at"
+        case userId = "user_id"
+    }
+}
+
+protocol TokenStore {
+    func create(email: String, password: String, completion: @escaping (Result<TokenResponse, Error>) -> Void)
+}
+
+class ApiTokenStore: BaseStore, TokenStore {
     struct CreateTokenRequest: Codable {
         var grantType: String
         var username: String
@@ -16,20 +34,6 @@ class TokenStore: BaseStore {
             case grantType = "grant_type"
             case username
             case password
-        }
-    }
-
-    struct TokenResponse: Codable {
-        var accessToken: String
-        var tokenType: String
-        var createdAt: Int
-        var userId: Int
-
-        enum CodingKeys: String, CodingKey {
-            case accessToken = "access_token"
-            case tokenType = "token_type"
-            case createdAt = "created_at"
-            case userId = "user_id"
         }
     }
 

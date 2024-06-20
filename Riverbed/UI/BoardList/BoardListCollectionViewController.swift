@@ -415,7 +415,7 @@ class BoardListCollectionViewController: UICollectionViewController,
         loadBoards()
     }
 
-    func didReceive(tokenResponse: TokenStore.TokenResponse) {
+    func didReceive(tokenResponse: TokenResponse) {
         tokenSource.accessToken = tokenResponse.accessToken
         tokenSource.userId = String(tokenResponse.userId)
         loadBoards()
