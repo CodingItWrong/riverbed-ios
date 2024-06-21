@@ -1092,7 +1092,7 @@
         <!--Choices-->
         <scene sceneID="2n2-3R-98Q">
             <objects>
-                <tableViewController id="Aof-yE-CBg" customClass="ChoicesViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChoicesViewController" id="Aof-yE-CBg" customClass="ChoicesViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="Zfs-GS-UwD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="802"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
