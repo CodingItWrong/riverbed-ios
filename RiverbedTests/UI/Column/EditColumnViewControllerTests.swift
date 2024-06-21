@@ -60,6 +60,8 @@ final class EditColumnViewControllerTests: XCTestCase {
     }
     
     func test_cellForRowAt_withRow1AndNoConditions_returnsCardsToIncludeCellSayingAllCards() {
+        attributes.cardInclusionConditions = []
+        
         let cell = sut.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! ButtonCell
         
         XCTAssertEqual(cell.label.text, "Cards to Include")
