@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let keychainStore = KeychainStore()
         let userDefaults = UserDefaults.standard
         let sessionSource = DeviceStorageSessionSource(keychainStore: keychainStore, userDefaults: userDefaults)
-        let boardStore = BoardStore(sessionSource: sessionSource)
+        let boardStore = ApiBoardStore(sessionSource: sessionSource)
 
         boardListVC.tokenSource = sessionSource
         boardListVC.tokenStore = ApiTokenStore(sessionSource: sessionSource) // NOTE: tokenSource is unused here

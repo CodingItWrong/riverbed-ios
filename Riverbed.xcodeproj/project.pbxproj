@@ -103,6 +103,7 @@
 		03830DCF2C2494CA00EE360B /* EditColumnViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */; };
 		03830DD12C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD02C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift */; };
 		03830DD32C259F4A00EE360B /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD22C259F4A00EE360B /* TestHelpers.swift */; };
+		03830DD52C25AD7000EE360B /* MockBoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD42C25AD7000EE360B /* MockBoardStore.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -268,6 +269,7 @@
 		03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DD02C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonMenuItemViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DD22C259F4A00EE360B /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		03830DD42C25AD7000EE360B /* MockBoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBoardStore.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 		03830DC02C24524A00EE360B /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
+				03830DD42C25AD7000EE360B /* MockBoardStore.swift */,
 				03830DC12C24528800EE360B /* MockTokenStore.swift */,
 				03830DC52C245F6E00EE360B /* MockUserStore.swift */,
 			);
@@ -1003,6 +1006,7 @@
 				03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */,
 				03830DB92C23953900EE360B /* EditConditionViewControllerTests.swift in Sources */,
 				03830DD32C259F4A00EE360B /* TestHelpers.swift in Sources */,
+				03830DD52C25AD7000EE360B /* MockBoardStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
