@@ -1,6 +1,6 @@
 import Foundation
 
-class Action: Codable {
+class Action: Codable, Equatable {
     var command: Command?
     var field: String?
     var value: Value?
@@ -11,6 +11,13 @@ class Action: Codable {
         case field
         case value
         case specificValue = "specific-value"
+    }
+
+    static func == (lhs: Action, rhs: Action) -> Bool {
+        lhs.command == rhs.command
+        && lhs.field == rhs.field
+        && lhs.value == rhs.value
+        && lhs.specificValue == rhs.specificValue
     }
 
     static func copy(from old: Action) -> Action {

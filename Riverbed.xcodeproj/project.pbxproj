@@ -101,6 +101,8 @@
 		03830DC62C245F6E00EE360B /* MockUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DC52C245F6E00EE360B /* MockUserStore.swift */; };
 		03830DCA2C2492A000EE360B /* ViewControllerPresentationSpy.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03830DC92C2492A000EE360B /* ViewControllerPresentationSpy.xcframework */; };
 		03830DCF2C2494CA00EE360B /* EditColumnViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */; };
+		03830DD12C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD02C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift */; };
+		03830DD32C259F4A00EE360B /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD22C259F4A00EE360B /* TestHelpers.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -264,6 +266,8 @@
 		03830DC52C245F6E00EE360B /* MockUserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserStore.swift; sourceTree = "<group>"; };
 		03830DC92C2492A000EE360B /* ViewControllerPresentationSpy.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = ViewControllerPresentationSpy.xcframework; sourceTree = "<group>"; };
 		03830DCE2C2494CA00EE360B /* EditColumnViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditColumnViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DD02C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButtonMenuItemViewControllerTests.swift; sourceTree = "<group>"; };
+		03830DD22C259F4A00EE360B /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -403,11 +407,12 @@
 			isa = PBXGroup;
 			children = (
 				03830DC92C2492A000EE360B /* ViewControllerPresentationSpy.xcframework */,
+				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
+				03830DD22C259F4A00EE360B /* TestHelpers.swift */,
 				035C3E9A2A1D8F9200760AE5 /* UtilsTests.swift */,
 				03830DAC2C23560300EE360B /* Data */,
 				03830DC02C24524A00EE360B /* Doubles */,
 				03830DAE2C23561C00EE360B /* UI */,
-				03830DA82C20CCF600EE360B /* DateUtilsTests.swift */,
 			);
 			path = RiverbedTests;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DB12C23571800EE360B /* EditActionViewControllerTests.swift */,
+				03830DD02C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift */,
 			);
 			path = Element;
 			sourceTree = "<group>";
@@ -984,6 +990,7 @@
 				03830DCF2C2494CA00EE360B /* EditColumnViewControllerTests.swift in Sources */,
 				03830DBC2C239B0200EE360B /* SignInViewControllerTests.swift in Sources */,
 				038D35C72A4CB7F800F546DD /* ActionTests.swift in Sources */,
+				03830DD12C25094B00EE360B /* EditButtonMenuItemViewControllerTests.swift in Sources */,
 				03D6688D2A1CC78F00597D9E /* CardTests.swift in Sources */,
 				035C3E9B2A1D8F9200760AE5 /* UtilsTests.swift in Sources */,
 				03830DC22C24528800EE360B /* MockTokenStore.swift in Sources */,
@@ -995,6 +1002,7 @@
 				03830DA92C20CCF600EE360B /* DateUtilsTests.swift in Sources */,
 				03830DAB2C232FAF00EE360B /* EditBoardViewControllerTests.swift in Sources */,
 				03830DB92C23953900EE360B /* EditConditionViewControllerTests.swift in Sources */,
+				03830DD32C259F4A00EE360B /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

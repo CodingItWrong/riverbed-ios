@@ -87,7 +87,10 @@ class EditButtonMenuItemViewController: UITableViewController,
 
     func didPressButton(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
-
+        didPressButton(inFormCell: formCell, at: indexPath)
+    }
+    
+    func didPressButton(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
         case .actions: performSegue(withIdentifier: "actions", sender: self)
@@ -97,6 +100,10 @@ class EditButtonMenuItemViewController: UITableViewController,
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
+        valueDidChange(inFormCell: formCell, at: indexPath)
+    }
+    
+    func valueDidChange(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
         let rowEnum = Row.allCases[indexPath.row]
         switch rowEnum {
         case .name:
