@@ -3,10 +3,24 @@ import XCTest
 
 final class EditConditionViewControllerTests: XCTestCase {
     
+    class TestDelegate: EditConditionDelegate {
+        struct Call: Equatable {
+            let condition: Riverbed.Condition
+        }
+        
+        var calls: [Call] = []
+        
+        func didUpdate(condition: Riverbed.Condition) {
+            calls.append(Call(condition: condition))
+        }
+    }
+    
     private var fieldA: Element!
     private var fieldB: Element!
+    private var condition: Condition!
     
     private var sut: EditConditionViewController!
+    private var delegate: TestDelegate!
     
     override func setUp() {
         super.setUp()
@@ -20,12 +34,15 @@ final class EditConditionViewControllerTests: XCTestCase {
         
         sut = EditConditionViewController()
         let options = Condition.Options()
-        let condition = Condition()
+        condition = Condition()
         condition.query = .equals
         condition.field = fieldA.id
         condition.options = options
         sut.condition = condition
         sut.elements = [fieldA, fieldB]
+        
+        delegate = TestDelegate()
+        sut.delegate = delegate
         
         sut.loadViewIfNeeded()
     }
@@ -33,6 +50,12 @@ final class EditConditionViewControllerTests: XCTestCase {
     override func tearDown() {
         sut = nil
         super.tearDown()
+    }
+    
+    func test_viewWillDisappear_callsDelegateDidUpdate() {
+        sut.viewWillDisappear(true)
+        
+        XCTAssertEqual(delegate.calls, [TestDelegate.Call(condition: condition)])
     }
     
     func test_numberOfRows_whenShowConcreteFieldValueAndFieldSet_returns3() {
