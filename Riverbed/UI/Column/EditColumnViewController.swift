@@ -106,6 +106,10 @@ class EditColumnViewController: UITableViewController,
 
     func didPressButton(inFormCell formCell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: formCell) else { return }
+        didPressButton(inFormCell: formCell, at: indexPath)
+    }
+        
+    func didPressButton(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
         let rowEnum = Row.allCases[indexPath.row]
 
         switch rowEnum {

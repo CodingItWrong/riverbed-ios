@@ -1,10 +1,12 @@
 @testable import Riverbed
 import XCTest
+import ViewControllerPresentationSpy
 
 final class EditColumnViewControllerTests: XCTestCase {
     
     private var fieldA: Element!
     private var fieldB: Element!
+    private var elements: [Element]!
     
     private var sut: EditColumnViewController!
     private var attributes: Column.Attributes!
@@ -20,9 +22,11 @@ final class EditColumnViewControllerTests: XCTestCase {
                          attributes: Element.Attributes(elementType: .field,
                                                         dataType: .number,
                                                         name: "Field B"))
+        elements = [fieldA, fieldB]
                 
         attributes = Column.Attributes(name: "Initial Name",
-                                       cardInclusionConditions: [],
+                                       cardInclusionConditions: [Condition(field: fieldA.id,
+                                                                           query: .isNotEmpty)],
                                        cardGrouping:  Column.SortOrder(field: fieldA.id,
                                                                        direction: .descending),
                                        cardSortOrder: Column.SortOrder(field: fieldB.id,
@@ -31,8 +35,9 @@ final class EditColumnViewControllerTests: XCTestCase {
                                        summary: Column.Summary(function: .sum,
                                                                field: fieldB.id))
 
-        sut = EditColumnViewController()
-        sut.elements = [fieldA, fieldB]
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        sut = sb.instantiateViewController(withIdentifier: String(describing: EditColumnViewController.self)) as? EditColumnViewController
+        sut.elements = elements
         sut.attributes = attributes
         
         sut.loadViewIfNeeded()
@@ -141,6 +146,22 @@ final class EditColumnViewControllerTests: XCTestCase {
         XCTAssertEqual(cell.functionButton.title(for: .normal), "Sum")
         XCTAssertFalse(cell.fieldButton.isHidden)
         XCTAssertEqual(cell.fieldButton.title(for: .normal), "Field B")
+    }
+    
+    @MainActor func test_didPressButtonInFormCellAt_withRow1_seguesToCardsToInclude() {
+        let presentationVerifier = PresentationVerifier()
+        putInWindow(sut)
+        let indexPath = IndexPath(row: 1, section: 0)
+        let cell = sut.tableView(sut.tableView, cellForRowAt: indexPath)
+        
+        sut.didPressButton(inFormCell: cell, at: indexPath)
+        
+        let conditionsVC: ConditionsViewController? = presentationVerifier.verify(animated: true, presentingViewController: sut)
+        XCTAssertNotNil(conditionsVC)
+        XCTAssertEqual(conditionsVC?.navigationItem.title, "Cards to Include")
+        XCTAssertEqual(conditionsVC?.conditions, attributes.cardInclusionConditions!)
+        XCTAssertEqual(conditionsVC?.elements, elements)
+        XCTAssertEqual(conditionsVC?.delegate as? EditColumnViewController, sut)
     }
     
     func test_valueDidChangeInFormCellAt_withRow0_updatesName() {
