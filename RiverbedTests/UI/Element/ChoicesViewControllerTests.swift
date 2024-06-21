@@ -35,6 +35,8 @@ final class ChoicesViewControllerTests: XCTestCase {
         
         delegate = TestDelegate()
         sut.delegate = delegate
+        
+        sut.loadViewIfNeeded()
     }
     
     func test_numberOfRowsInSection_returnsNumberOfChoices() {
