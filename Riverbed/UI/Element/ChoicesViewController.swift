@@ -83,11 +83,15 @@ class ChoicesViewController: UITableViewController, FormCellDelegate {
     }
 
     func valueDidChange(inFormCell formCell: UITableViewCell) {
-        guard let textFieldCell = formCell as? TextFieldCell else {
-            preconditionFailure("Expected a TextFieldCell")
-        }
         guard let indexPath = tableView.indexPath(for: formCell) else {
             preconditionFailure("Could not find indexPath for cell \(String(describing: formCell))")
+        }
+        valueDidChange(inFormCell: formCell, at: indexPath)
+    }
+    
+    func valueDidChange(inFormCell formCell: UITableViewCell, at indexPath: IndexPath) {
+        guard let textFieldCell = formCell as? TextFieldCell else {
+            preconditionFailure("Expected a TextFieldCell")
         }
         let choice = choices[indexPath.row]
         choice.label = textFieldCell.textField.text

@@ -1,6 +1,18 @@
 import Foundation
 
-class BoardStore: BaseStore {
+protocol BoardStore {
+    func all(completion: @escaping (Result<[Board], Error>) -> Void)
+    
+    func create(completion: @escaping (Result<Board, Error>) -> Void)
+    
+    func update(_ board: Board,
+                with updatedAttributes: Board.Attributes,
+                completion: @escaping (Result<Board, Error>) -> Void)
+    
+    func delete(_ board: Board, completion: @escaping (Result<Void, Error>) -> Void)
+}
+
+class ApiBoardStore: BaseStore, BoardStore {
     func all(completion: @escaping (Result<[Board], Error>) -> Void) {
         let url = RiverbedAPI.boardsURL()
         var request = URLRequest(url: url)

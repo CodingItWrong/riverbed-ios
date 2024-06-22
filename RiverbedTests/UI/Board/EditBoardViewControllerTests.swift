@@ -3,10 +3,24 @@ import XCTest
 
 final class EditBoardViewControllerTests: XCTestCase {
     
+    class TestDelegate: EditBoardViewControllerDelegate {
+        struct Call: Equatable {
+            let board: Riverbed.Board
+        }
+        
+        var calls: [Call] = []
+        
+        func didUpdate(board: Riverbed.Board) {
+            calls.append(Call(board: board))
+        }
+    }
+    
     private var attributes: Board.Attributes!
     private var urlField: Element!
     private var titleField: Element!
     private var sut: EditBoardViewController!
+    private var boardStore: MockBoardStore!
+    private var delegate: TestDelegate!
     
     override func setUp() {
         super.setUp()
@@ -30,12 +44,40 @@ final class EditBoardViewControllerTests: XCTestCase {
                                       options: options)
         sut.attributes = attributes
         
+        boardStore = MockBoardStore()
+        sut.boardStore = boardStore
+        
+        delegate = TestDelegate()
+        sut.delegate = delegate
+        
         sut.loadViewIfNeeded()
     }
     
     override func tearDown() {
         sut = nil
         super.tearDown()
+    }
+    
+    func test_viewWillDisappear_whenSaveSucceeds_callsDelegate() {
+        // TODO: could set up the board in setUp, if needed elsewhere
+        let board = Board(id: "fake_id", attributes: attributes)
+        sut.board = board
+        boardStore.updateResult = .success(board)
+        
+        sut.viewWillDisappear(true)
+        
+        XCTAssertEqual(boardStore.calls, [.update(board: board, attributes: attributes)])
+        XCTAssertEqual(delegate.calls, [TestDelegate.Call(board: board)])
+    }
+    
+    func test_viewWillDisappear_whenSaveFails_doesNotCallDelegate() {
+        let board = Board(id: "fake_id", attributes: attributes)
+        sut.board = board
+        boardStore.updateResult = .failure(APIError.unknownError)
+        
+        sut.viewWillDisappear(true)
+        
+        XCTAssertEqual(delegate.calls, [])
     }
     
     func test_numberOfRows_shouldBe7() {

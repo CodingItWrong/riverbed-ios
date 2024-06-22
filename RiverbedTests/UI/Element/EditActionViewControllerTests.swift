@@ -3,10 +3,24 @@ import XCTest
 
 final class EditActionViewControllerTests: XCTestCase {
     
+    class TestDelegate: EditActionDelegate {
+        struct Call: Equatable {
+            let action: Riverbed.Action
+        }
+        
+        var calls: [Call] = []
+        
+        func didUpdate(action: Riverbed.Action) {
+            calls.append(Call(action: action))
+        }
+    }
+    
     private var fieldA: Element!
     private var fieldB: Element!
     
     private var sut: EditActionViewController!
+    private var action: Action!
+    private var delegate: TestDelegate!
     
     override func setUp() {
         super.setUp()
@@ -18,9 +32,13 @@ final class EditActionViewControllerTests: XCTestCase {
                          attributes: Element.Attributes(elementType: .field,
                                                         name: "Field B"))
         
+        delegate = TestDelegate()
+        action = Action(field: fieldA.id)
+        
         sut = EditActionViewController()
-        sut.action = Action(field: fieldA.id)
+        sut.action = action
         sut.elements = [fieldA, fieldB]
+        sut.delegate = delegate
         
         sut.loadViewIfNeeded()
     }
@@ -28,6 +46,12 @@ final class EditActionViewControllerTests: XCTestCase {
     override func tearDown() {
         sut = nil
         super.tearDown()
+    }
+    
+    func test_viewWillDisappear_callsDelegateDidUpdateAction() {
+        sut.viewWillDisappear(true)
+        
+        XCTAssertEqual(delegate.calls, [TestDelegate.Call(action: action)])
     }
     
     func test_numberOfRows_whenCommandNone_shouldBe2() {

@@ -70,11 +70,10 @@ class ActionsViewController: UITableViewController,
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        performSegue(withIdentifier: "editAction", sender: cell)
+        performSegue(withIdentifier: "editAction", sender: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
     override func tableView(_ tableView: UITableView,
                             moveRowAt sourceIndexPath: IndexPath,
                             to destinationIndexPath: IndexPath) {
@@ -135,15 +134,16 @@ class ActionsViewController: UITableViewController,
 
         switch segue.identifier {
         case "editAction":
-            guard let cell = sender as? UITableViewCell else {
-                preconditionFailure("Expected a UITableViewCell")
-            }
-            guard let indexPath = tableView.indexPath(for: cell) else {
-                preconditionFailure("Could not find index path for cell")
+            guard let indexPath = sender as? IndexPath else {
+                preconditionFailure("Expected an IndexPath")
             }
             let action = actions[indexPath.row]
 
-            segue.destination.popoverPresentationController?.sourceView = cell
+            if let cell = tableView.cellForRow(at: indexPath) {
+                // not reachable in unit test
+                segue.destination.popoverPresentationController?.sourceView = cell
+            }
+            
             guard let editConditionVC = segue.destination as? EditActionViewController else {
                 preconditionFailure("Expected an EditActionViewController")
             }

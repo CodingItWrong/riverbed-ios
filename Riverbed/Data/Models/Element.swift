@@ -289,9 +289,14 @@ class Element: Codable, Equatable {
         }
     }
 
-    class Item: Codable {
+    class Item: Codable, Equatable {
         var name: String
         var actions: [Action]?
+
+        static func == (lhs: Element.Item, rhs: Element.Item) -> Bool {
+            lhs.name == rhs.name
+            && lhs.actions == rhs.actions
+        }
 
         static func copy(from old: Item) -> Item {
             return Item(name: old.name,
