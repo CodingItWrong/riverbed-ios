@@ -630,7 +630,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BdC-TW-aWd">
                                                     <rect key="frame" x="141" y="30.333333333333336" width="95" height="35.000000000000007"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="tinted" title="Try Again"/>
+                                                    <buttonConfiguration key="configuration" style="tinted" title="Try Again" cornerStyle="capsule"/>
                                                     <connections>
                                                         <action selector="loadBoards" destination="Xbv-Bx-k48" eventType="touchUpInside" id="eFH-dk-Yj4"/>
                                                     </connections>

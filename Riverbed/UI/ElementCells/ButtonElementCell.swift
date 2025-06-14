@@ -7,11 +7,7 @@ class ButtonElementCell: UITableViewCell, ElementCell {
     var buttonElement: Element!
     var allElements: [Element]!
 
-    @IBOutlet private(set) var button: UIButton! {
-        didSet {
-            button.configuration?.cornerStyle = .large
-        }
-    }
+    @IBOutlet private(set) var button: UIButton!
 
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.buttonElement = element
