@@ -54,7 +54,7 @@ class GeolocationElementCell: UITableViewCell,
         didSet {
             if #available(iOS 26, *) {
                 directionsButton.configuration = .glass()
-                directionsButton.configuration?.image = UIImage(systemName: "arrow.triangle.turn.up.right.circle")
+                directionsButton.configuration?.image = UIImage(systemName: "arrow.turn.up.right")
             }
         }
     }

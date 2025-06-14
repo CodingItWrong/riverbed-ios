@@ -88,7 +88,7 @@ class DateElementCell: UITableViewCell, ElementCell {
         valueDatePicker.isHidden = !showDatePicker
         noValueLabel.isHidden = showDatePicker
 
-        let iconName = showDatePicker ? "xmark.circle" : "plus.circle"
+        let iconName = showDatePicker ? "xmark" : "plus"
         toggleDateButton.setImage(UIImage.init(systemName: iconName), for: .normal)
     }
 
