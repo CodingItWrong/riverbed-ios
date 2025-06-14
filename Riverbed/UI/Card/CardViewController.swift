@@ -11,8 +11,34 @@ class CardViewController: UITableViewController,
                           EditElementDelegate {
 
     @IBOutlet private var tapGestureRecognizer: UIGestureRecognizer!
-    @IBOutlet private var addElementButton: UIButton!
-    @IBOutlet private var deleteButton: UIButton!
+    
+    @IBOutlet private var addElementButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                addElementButton.configuration = .glass()
+                addElementButton.configuration?.image = UIImage(systemName: "plus")
+            }
+        }
+    }
+    
+    @IBOutlet private var editButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                editButton.configuration = .glass()
+                editButton.configuration?.image = UIImage(systemName: "wrench")
+            }
+        }
+    }
+
+    @IBOutlet private var deleteButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                deleteButton.configuration = .glass()
+                deleteButton.configuration?.image = UIImage(systemName: "trash")
+            }
+        }
+    }
+    
     @IBOutlet private var instructionLabel: UILabel! {
         didSet {
             instructionLabel.text = nil

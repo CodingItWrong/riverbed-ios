@@ -15,6 +15,24 @@ class SignInViewController: UIViewController,
     @IBOutlet var emailField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var errorLabel: UILabel!
+    
+    @IBOutlet private(set) var signInButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                signInButton.configuration = .prominentGlass()
+                signInButton.configuration?.title = "Sign in"
+            }
+        }
+    }
+    
+    @IBOutlet private(set) var signUpButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                signUpButton.configuration = .glass()
+                signUpButton.configuration?.title = "Sign up"
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

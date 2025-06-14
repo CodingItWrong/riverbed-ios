@@ -38,9 +38,25 @@ class GeolocationElementCell: UITableViewCell,
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var latitudeTextField: UITextField!
     @IBOutlet private(set) var longitudeTextField: UITextField!
-    @IBOutlet private(set) var currentLocationButton: UIButton!
+    @IBOutlet private(set) var currentLocationButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                currentLocationButton.configuration = .glass()
+            }
+        }
+    }
+
+    
     @IBOutlet private(set) var currentLocationActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var directionsButton: UIButton!
+    
+    @IBOutlet private(set) var directionsButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                directionsButton.configuration = .glass()
+            }
+        }
+    }
+
     @IBOutlet private(set) var mapView: MKMapView! {
         didSet {
             let tapRecognizer = UITapGestureRecognizer(target: self,

@@ -14,7 +14,15 @@ class DateElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var noValueLabel: UILabel!
-    @IBOutlet private(set) var toggleDateButton: UIButton!
+    
+    @IBOutlet private(set) var toggleDateButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                toggleDateButton.configuration = .glass()
+            }
+        }
+    }
+
     @IBOutlet private(set) var valueDatePicker: UIDatePicker! {
         didSet {
             let action = UIAction { [weak self] _ in

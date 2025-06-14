@@ -7,7 +7,13 @@ class ButtonElementCell: UITableViewCell, ElementCell {
     var buttonElement: Element!
     var allElements: [Element]!
 
-    @IBOutlet private(set) var button: UIButton!
+    @IBOutlet private(set) var button: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                button.configuration = .prominentGlass()
+            }
+        }
+    }
 
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.buttonElement = element

@@ -8,7 +8,9 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var menuButton: UIButton! {
         didSet {
-            menuButton.configuration?.cornerStyle = .large
+            if #available(iOS 26, *) {
+                menuButton.configuration = .prominentGlass()
+            }
         }
     }
 
