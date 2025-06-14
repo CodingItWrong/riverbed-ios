@@ -91,13 +91,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     var leftNavController: UINavigationController {
-        guard let leftNavController = splitVC.viewControllers.first as? UINavigationController
+        guard let leftNavController = splitVC.viewController(for: .primary) as? UINavigationController
         else { fatalError("Expected a UINavigationController") }
         return leftNavController
     }
 
     var rightNavController: UINavigationController {
-        guard let rightNavController = splitVC.viewControllers.last as? UINavigationController
+        guard let rightNavController = splitVC.viewController(for: .secondary) as? UINavigationController
         else { fatalError("Expected a UINavigationController") }
         return rightNavController
     }
