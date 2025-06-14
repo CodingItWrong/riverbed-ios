@@ -42,6 +42,7 @@ class GeolocationElementCell: UITableViewCell,
         didSet {
             if #available(iOS 26, *) {
                 currentLocationButton.configuration = .glass()
+                currentLocationButton.configuration?.image = UIImage(systemName: "location.fill")
             }
         }
     }
@@ -53,6 +54,7 @@ class GeolocationElementCell: UITableViewCell,
         didSet {
             if #available(iOS 26, *) {
                 directionsButton.configuration = .glass()
+                directionsButton.configuration?.image = UIImage(systemName: "arrow.triangle.turn.up.right.circle")
             }
         }
     }
