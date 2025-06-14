@@ -55,7 +55,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
-                                                                    <rect key="frame" x="92" y="7.6666666666666643" width="18.666666666666671" height="27"/>
+                                                                    <rect key="frame" x="92" y="8" width="18.666666666666671" height="27"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Column Menu"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <menu key="menu" id="Qhg-nT-Rdv">
@@ -142,11 +142,11 @@
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="addCell" id="du6-vV-Mh4" userLabel="Add Cell">
                                                 <rect key="frame" x="454" y="-201.66666666666666" width="454" height="1014"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
                                                     <rect key="frame" x="0.0" y="0.0" width="454" height="1014"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
                                                             <rect key="frame" x="158.5" y="8" width="137" height="34.5"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
@@ -171,7 +171,7 @@
                                         </connections>
                                     </collectionView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Reload Indicator">
-                                        <rect key="frame" x="186.66666666666663" y="32" width="20" height="20"/>
+                                        <rect key="frame" x="186.66666666666666" y="32" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-3o-nKi" userLabel="First Load Indicator">
                                         <rect key="frame" x="178" y="32" width="37" height="37"/>
@@ -268,7 +268,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TQM-Pv-KD2">
-                                    <rect key="frame" x="0.0" y="8" width="393" height="36"/>
+                                    <rect key="frame" x="8" y="8" width="377" height="36"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cr-aJ-9eJ">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="36"/>
@@ -288,7 +288,7 @@
                                             <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Edit Button">
-                                            <rect key="frame" x="240" y="0.0" width="105" height="36"/>
+                                            <rect key="frame" x="240" y="0.0" width="89" height="36"/>
                                             <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="wrench" catalog="system"/>
@@ -297,7 +297,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
-                                            <rect key="frame" x="345" y="0.0" width="48" height="36"/>
+                                            <rect key="frame" x="329" y="0.0" width="48" height="36"/>
                                             <accessibility key="accessibilityConfiguration" label="Delete Card"/>
                                             <color key="tintColor" systemColor="systemRedColor"/>
                                             <state key="normal" title="Button"/>
@@ -313,8 +313,8 @@
                             <constraints>
                                 <constraint firstItem="TQM-Pv-KD2" firstAttribute="top" secondItem="c9u-eZ-pbZ" secondAttribute="top" constant="8" id="MRh-gZ-ogL"/>
                                 <constraint firstAttribute="bottom" secondItem="TQM-Pv-KD2" secondAttribute="bottom" id="TMd-WZ-55J"/>
-                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" id="VWJ-oW-F28"/>
-                                <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" id="YQz-uM-iVd"/>
+                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" constant="8" id="VWJ-oW-F28"/>
+                                <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" constant="8" id="YQz-uM-iVd"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="hE7-qV-cou">
