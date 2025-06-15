@@ -28,7 +28,9 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
 
         let fields: [UIView] = [valueTextField, valueTextView]
         fields.forEach { (field) in
-            field.layer.cornerRadius = 5
+            if #unavailable(iOS 26) {
+                field.layer.cornerRadius = 5
+            }
             field.layer.borderWidth = 1
             field.layer.borderColor = UIColor.separator.cgColor
         }

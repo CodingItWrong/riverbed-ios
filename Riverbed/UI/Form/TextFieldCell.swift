@@ -7,7 +7,9 @@ class TextFieldCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet var label: UILabel!
     @IBOutlet var textField: UITextField! {
         didSet {
-            textField.layer.cornerRadius = 5
+            if #unavailable(iOS 26) {
+                textField.layer.cornerRadius = 5
+            }
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor.separator.cgColor
         }

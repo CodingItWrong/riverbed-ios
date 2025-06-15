@@ -76,7 +76,9 @@ class GeolocationElementCell: UITableViewCell,
         elementLabel.text = element.attributes.name
 
         [latitudeTextField, longitudeTextField].forEach { (field) in
-            field?.layer.cornerRadius = 5
+            if #unavailable(iOS 26) {
+                field?.layer.cornerRadius = 5
+            }
             field?.layer.borderWidth = 1
             field?.layer.borderColor = UIColor.separator.cgColor
         }
