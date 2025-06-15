@@ -142,11 +142,11 @@
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="addCell" id="du6-vV-Mh4" userLabel="Add Cell">
                                                 <rect key="frame" x="454" y="-4.5" width="454" height="1014"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Eev-Kz-oZH">
                                                     <rect key="frame" x="0.0" y="0.0" width="454" height="1014"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
                                                             <rect key="frame" x="158.5" y="8" width="137" height="34.5"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
@@ -173,59 +173,59 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Reload Indicator">
                                         <rect key="frame" x="782" y="0.0" width="20" height="20"/>
                                     </activityIndicatorView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-3o-nKi" userLabel="First Load Indicator">
-                                        <rect key="frame" x="386.5" y="32" width="37" height="37"/>
-                                    </activityIndicatorView>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVv-9L-QnP">
-                                        <rect key="frame" x="266.5" y="32" width="277" height="64.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occurred loading the board." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ume-Ob-jSu">
-                                                <rect key="frame" x="0.0" y="0.0" width="277" height="20.5"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <color key="textColor" systemColor="systemRedColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9g-f5-fFq">
-                                                <rect key="frame" x="91" y="30.5" width="95" height="34"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Try Again"/>
-                                                <connections>
-                                                    <action selector="loadBoardData:" destination="Flc-lf-CdM" eventType="touchUpInside" id="EcT-fX-wGr"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="T9g-f5-fFq" secondAttribute="bottom" id="2Sl-G7-bL3"/>
-                                            <constraint firstItem="ume-Ob-jSu" firstAttribute="leading" secondItem="JVv-9L-QnP" secondAttribute="leading" id="OBC-eD-ANY"/>
-                                            <constraint firstItem="T9g-f5-fFq" firstAttribute="centerX" secondItem="JVv-9L-QnP" secondAttribute="centerX" id="OJ7-KI-4Qd"/>
-                                            <constraint firstItem="ume-Ob-jSu" firstAttribute="top" secondItem="JVv-9L-QnP" secondAttribute="top" id="Odf-m2-48f"/>
-                                            <constraint firstAttribute="trailing" secondItem="ume-Ob-jSu" secondAttribute="trailing" id="RfH-3D-Wxg"/>
-                                            <constraint firstItem="T9g-f5-fFq" firstAttribute="top" secondItem="ume-Ob-jSu" secondAttribute="bottom" constant="10" id="gU1-0k-VFd"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="AUI-zJ-9RT" secondAttribute="trailing" id="1KB-cb-ESU"/>
-                                    <constraint firstItem="zWe-3o-nKi" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="32" id="9fY-eo-hPu"/>
                                     <constraint firstItem="AUI-zJ-9RT" firstAttribute="leading" secondItem="q2b-n0-3UI" secondAttribute="leading" id="B8K-dX-Xb5"/>
                                     <constraint firstAttribute="trailing" secondItem="ONw-m3-two" secondAttribute="trailing" constant="8" id="DyW-kT-yM8"/>
-                                    <constraint firstItem="zWe-3o-nKi" firstAttribute="centerX" secondItem="q2b-n0-3UI" secondAttribute="centerX" id="Kke-Aw-87K"/>
-                                    <constraint firstItem="JVv-9L-QnP" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="32" id="YJh-K6-aDZ"/>
-                                    <constraint firstItem="JVv-9L-QnP" firstAttribute="centerX" secondItem="q2b-n0-3UI" secondAttribute="centerX" id="ZMP-iZ-tbt"/>
                                     <constraint firstItem="ONw-m3-two" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" id="blh-tJ-bjo"/>
                                     <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="-23" id="et1-Fa-Zuk"/>
                                     <constraint firstAttribute="bottom" secondItem="AUI-zJ-9RT" secondAttribute="bottom" id="ldb-84-AoJ"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-3o-nKi" userLabel="First Load Indicator">
+                                <rect key="frame" x="551.5" y="138" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVv-9L-QnP">
+                                <rect key="frame" x="330" y="138" width="480" height="64.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An error occurred loading the board." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ume-Ob-jSu">
+                                        <rect key="frame" x="101.5" y="0.0" width="277" height="20.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9g-f5-fFq">
+                                        <rect key="frame" x="192.5" y="30.5" width="95" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="Try Again"/>
+                                        <connections>
+                                            <action selector="loadBoardData:" destination="Flc-lf-CdM" eventType="touchUpInside" id="EcT-fX-wGr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="T9g-f5-fFq" secondAttribute="bottom" id="2Sl-G7-bL3"/>
+                                    <constraint firstItem="T9g-f5-fFq" firstAttribute="centerX" secondItem="JVv-9L-QnP" secondAttribute="centerX" id="OJ7-KI-4Qd"/>
+                                    <constraint firstItem="ume-Ob-jSu" firstAttribute="top" secondItem="JVv-9L-QnP" secondAttribute="top" id="Odf-m2-48f"/>
+                                    <constraint firstItem="T9g-f5-fFq" firstAttribute="top" secondItem="ume-Ob-jSu" secondAttribute="bottom" constant="10" id="gU1-0k-VFd"/>
+                                    <constraint firstItem="ume-Ob-jSu" firstAttribute="centerX" secondItem="JVv-9L-QnP" secondAttribute="centerX" id="zI9-Ak-H0J"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="leading" secondItem="JVv-9L-QnP" secondAttribute="leading" id="5az-Nl-8mA"/>
+                            <constraint firstItem="zWe-3o-nKi" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="64" id="N4W-zO-yzr"/>
+                            <constraint firstItem="zWe-3o-nKi" firstAttribute="centerX" secondItem="gn0-Nt-ZuM" secondAttribute="centerX" id="NJJ-6B-r25"/>
                             <constraint firstAttribute="trailing" secondItem="q2b-n0-3UI" secondAttribute="trailing" id="Phq-oo-E7p"/>
                             <constraint firstItem="q2b-n0-3UI" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="U6I-um-ahs"/>
                             <constraint firstItem="gn0-Nt-ZuM" firstAttribute="bottom" secondItem="q2b-n0-3UI" secondAttribute="bottom" id="ZXO-jT-Dwg"/>
                             <constraint firstItem="q2b-n0-3UI" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="24" id="bGi-Na-BlD"/>
+                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="trailing" secondItem="JVv-9L-QnP" secondAttribute="trailing" id="qPV-gH-cjK"/>
+                            <constraint firstItem="JVv-9L-QnP" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="64" id="twh-yz-Nnz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Board" largeTitleDisplayMode="never" id="z2e-de-ATP">
