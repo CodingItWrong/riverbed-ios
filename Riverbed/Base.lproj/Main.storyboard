@@ -222,8 +222,8 @@
                         <viewLayoutGuide key="safeArea" id="gn0-Nt-ZuM"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="trailing" secondItem="q2b-n0-3UI" secondAttribute="trailing" id="Phq-oo-E7p"/>
-                            <constraint firstItem="q2b-n0-3UI" firstAttribute="leading" secondItem="gn0-Nt-ZuM" secondAttribute="leading" id="U6I-um-ahs"/>
+                            <constraint firstAttribute="trailing" secondItem="q2b-n0-3UI" secondAttribute="trailing" id="Phq-oo-E7p"/>
+                            <constraint firstItem="q2b-n0-3UI" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="U6I-um-ahs"/>
                             <constraint firstItem="gn0-Nt-ZuM" firstAttribute="bottom" secondItem="q2b-n0-3UI" secondAttribute="bottom" id="ZXO-jT-Dwg"/>
                             <constraint firstItem="q2b-n0-3UI" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="24" id="bGi-Na-BlD"/>
                         </constraints>

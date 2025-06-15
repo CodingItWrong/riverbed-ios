@@ -24,6 +24,7 @@ class BoardViewController: UIViewController,
 
     @IBOutlet var columnsCollectionView: UICollectionView! {
         didSet {
+            columnsCollectionView.contentInsetAdjustmentBehavior = .always
             configureCollectionView()
         }
     }
