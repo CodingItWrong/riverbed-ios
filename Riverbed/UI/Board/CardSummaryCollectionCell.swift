@@ -30,7 +30,7 @@ class CardSummaryCollectionCell: UICollectionViewCell,
     }
 
     func configureCardView() {
-        layer.cornerRadius = 5.0
+        layer.cornerRadius = 10.0
         let interaction = UIContextMenuInteraction(delegate: self)
         addInteraction(interaction)
         focusEffect = UIFocusHaloEffect()
