@@ -33,7 +33,7 @@ class CardViewController: UITableViewController,
     @IBOutlet private var deleteButton: UIButton! {
         didSet {
             if #available(iOS 26, *) {
-                deleteButton.configuration = .glass()
+                deleteButton.configuration = .prominentGlass()
                 deleteButton.configuration?.image = UIImage(systemName: "trash")
             }
         }
