@@ -234,6 +234,10 @@ class CardViewController: UITableViewController,
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
+        if #available(iOS 16, *) {
+            // should display from button on iOS 26, but doesn't seem to
+            alert.popoverPresentationController?.sourceItem = deleteButton
+        }
 
         // .destructive does not bind to Return key on macOS even when preferredAction
 //        let deleteActionStyle: UIAlertAction.Style = .default
