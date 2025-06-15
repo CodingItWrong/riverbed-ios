@@ -171,7 +171,7 @@
                                         </connections>
                                     </collectionView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ONw-m3-two" userLabel="Reload Indicator">
-                                        <rect key="frame" x="186.66666666666666" y="32" width="20" height="20"/>
+                                        <rect key="frame" x="365" y="0.0" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-3o-nKi" userLabel="First Load Indicator">
                                         <rect key="frame" x="178" y="32" width="37" height="37"/>
@@ -209,11 +209,11 @@
                                     <constraint firstAttribute="trailing" secondItem="AUI-zJ-9RT" secondAttribute="trailing" id="1KB-cb-ESU"/>
                                     <constraint firstItem="zWe-3o-nKi" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="32" id="9fY-eo-hPu"/>
                                     <constraint firstItem="AUI-zJ-9RT" firstAttribute="leading" secondItem="q2b-n0-3UI" secondAttribute="leading" id="B8K-dX-Xb5"/>
+                                    <constraint firstAttribute="trailing" secondItem="ONw-m3-two" secondAttribute="trailing" constant="8" id="DyW-kT-yM8"/>
                                     <constraint firstItem="zWe-3o-nKi" firstAttribute="centerX" secondItem="q2b-n0-3UI" secondAttribute="centerX" id="Kke-Aw-87K"/>
-                                    <constraint firstItem="ONw-m3-two" firstAttribute="centerX" secondItem="q2b-n0-3UI" secondAttribute="centerX" id="NmT-CN-DNw"/>
                                     <constraint firstItem="JVv-9L-QnP" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="32" id="YJh-K6-aDZ"/>
                                     <constraint firstItem="JVv-9L-QnP" firstAttribute="centerX" secondItem="q2b-n0-3UI" secondAttribute="centerX" id="ZMP-iZ-tbt"/>
-                                    <constraint firstItem="ONw-m3-two" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="32" id="blh-tJ-bjo"/>
+                                    <constraint firstItem="ONw-m3-two" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" id="blh-tJ-bjo"/>
                                     <constraint firstItem="AUI-zJ-9RT" firstAttribute="top" secondItem="q2b-n0-3UI" secondAttribute="top" constant="-23" id="et1-Fa-Zuk"/>
                                     <constraint firstAttribute="bottom" secondItem="AUI-zJ-9RT" secondAttribute="bottom" id="ldb-84-AoJ"/>
                                 </constraints>
