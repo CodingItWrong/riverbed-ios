@@ -129,6 +129,7 @@
 		03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */; };
 		03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF702A3C74F700B68109 /* TokenStore.swift */; };
 		03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
+		03C526112E041E1700160100 /* Riverbed Icon Apple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 03C526102E041E1700160100 /* Riverbed Icon Apple.icon */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* EditElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -298,6 +299,7 @@
 		03A3EF702A3C74F700B68109 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riverbed.entitlements; sourceTree = "<group>"; };
 		03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RiverbedShare.entitlements; sourceTree = "<group>"; };
+		03C526102E041E1700160100 /* Riverbed Icon Apple.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Riverbed Icon Apple.icon"; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				0342FC6C2A1794D500CB8075 /* Data */,
 				0342FC6B2A17948300CB8075 /* UI */,
 				03027DFE2A13DF9E0063EE24 /* Assets.xcassets */,
+				03C526102E041E1700160100 /* Riverbed Icon Apple.icon */,
 				03027E032A13DF9E0063EE24 /* Info.plist */,
 				03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */,
 			);
@@ -855,6 +858,7 @@
 				034D09DF2A2F4EB900106EE1 /* DateElementCell.xib in Resources */,
 				034D09E12A2F507000106EE1 /* GeolocationElementCell.xib in Resources */,
 				036D820A2A3154200064F05B /* SwitchCell.xib in Resources */,
+				03C526112E041E1700160100 /* Riverbed Icon Apple.icon in Resources */,
 				034655062A30857100F6AEEE /* ButtonElementCell.xib in Resources */,
 				03EB506E2A6BE8B5004F5AB5 /* NoCardsCell.xib in Resources */,
 				036D820C2A3154BB0064F05B /* PopUpButtonCell.xib in Resources */,
@@ -1229,7 +1233,7 @@
 		03027E1D2A13DF9E0063EE24 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Riverbed Icon Apple";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1260,7 +1264,7 @@
 		03027E1E2A13DF9E0063EE24 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Riverbed Icon Apple";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
