@@ -21,11 +21,20 @@ class CardViewController: UITableViewController,
         }
     }
     
-    @IBOutlet private var editButton: UIButton! {
+    @IBOutlet private var beginEditingButton: UIButton! {
         didSet {
             if #available(iOS 26, *) {
-                editButton.configuration = .glass()
-                editButton.configuration?.image = UIImage(systemName: "wrench")
+                beginEditingButton.configuration = .glass()
+                beginEditingButton.configuration?.image = UIImage(systemName: "wrench")
+            }
+        }
+    }
+
+    @IBOutlet private var endEditingButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                endEditingButton.configuration = .prominentGlass()
+                endEditingButton.configuration?.image = UIImage(systemName: "checkmark")
             }
         }
     }
@@ -169,24 +178,33 @@ class CardViewController: UITableViewController,
         }
     }
 
-    @IBAction func toggleEditing(_ sender: UIButton) {
+    @IBAction func beginEditing(_ sender: UIButton) {
+        setEditing(true, animated: true)
+        updateForEditingState()
+    }
+
+    
+    @IBAction func endEditing(_ sender: UIButton) {
+        setEditing(false, animated: true)
+        updateForEditingState()
+    }
+    
+    func updateForEditingState() {
+        beginEditingButton.isHidden = isEditing
+        deleteButton.isHidden = isEditing
+        
+        addElementButton.isHidden = !isEditing
+        endEditingButton.isHidden = !isEditing
+
+
         // TODO: voiceover
         if isEditing {
-            setEditing(false, animated: true)
-            addElementButton.isHidden = true
-            deleteButton.isHidden = false
-            sender.setImage(UIImage(systemName: "wrench"), for: .normal)
-            sender.accessibilityLabel = "Edit Elements"
-            tapGestureRecognizer.cancelsTouchesInView = true // allows dismissing autocorrect popup
-        } else {
-            setEditing(true, animated: true)
-            addElementButton.isHidden = false
-            deleteButton.isHidden = true
-            sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            sender.accessibilityLabel = "Finish Editing Elements"
             tapGestureRecognizer.cancelsTouchesInView = false // allows tapping fields to edit them
+        } else {
+            tapGestureRecognizer.cancelsTouchesInView = true // allows dismissing autocorrect popup
         }
         tableView.reloadData() // because editing shows all elements
+
     }
 
     @objc func dismissVC(_ sender: Any?) {
