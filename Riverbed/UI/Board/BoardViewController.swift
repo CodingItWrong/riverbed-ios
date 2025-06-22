@@ -59,6 +59,11 @@ class BoardViewController: UIViewController,
             // set the whole split view controller's tint color to the board's
             updateSplitViewTintColorForBoard()
 
+            if let windowScene = view.window?.windowScene,
+                let board = board {
+                windowScene.title = board.attributes.name ?? "Riverbed"
+            }
+            
             if #available(iOS 16.0, *) {
                 if let board = board {
 //                    navigationItem.title = board.attributes.name ?? Board.defaultName
