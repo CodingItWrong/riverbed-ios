@@ -73,6 +73,15 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     // MARK: - data
 
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        
+        if let window = window {
+            let bottomInset = window.safeAreaInsets.bottom
+            collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
+        }
+    }
+    
     func configureCollectionView() {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .estimated(100.0))
