@@ -549,6 +549,11 @@ class BoardViewController: UIViewController,
             return section
         }, configuration: config)
         columnsCollectionView.collectionViewLayout = layout
+        
+        // crashes on Mac for some reason
+        if (!ProcessInfo.processInfo.isiOSAppOnMac) {
+            columnsCollectionView.contentInsetAdjustmentBehavior = .never
+        }
 
         dataSource = UICollectionViewDiffableDataSource<String, ColumnCollectionItem>(
             collectionView: columnsCollectionView) {
