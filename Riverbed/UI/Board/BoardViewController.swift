@@ -529,15 +529,17 @@ class BoardViewController: UIViewController,
 
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
             _, _ in
+            
+            let fullHeight = self.columnsCollectionView.bounds.height
 
-            let columnHeight: NSCollectionLayoutDimension = .fractionalHeight(1.0)
+            let columnHeight: NSCollectionLayoutDimension = .absolute(fullHeight)
             let columnWidth: NSCollectionLayoutDimension =
                 self.traitCollection.horizontalSizeClass == .compact
                     ? .fractionalWidth(1.0)
                     : .absolute(400)
 
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .fractionalHeight(1.0))
+                                                  heightDimension: columnHeight)
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
             let groupSize = NSCollectionLayoutSize(widthDimension: columnWidth,
