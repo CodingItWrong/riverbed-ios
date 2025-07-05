@@ -22,10 +22,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2b-n0-3UI">
-                                <rect key="frame" x="0.0" y="196" width="393" height="656"/>
+                                <rect key="frame" x="0.0" y="196" width="393" height="588"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AUI-zJ-9RT" userLabel="Columns Collection View">
-                                        <rect key="frame" x="0.0" y="-23" width="393" height="679"/>
+                                        <rect key="frame" x="0.0" y="-23" width="393" height="611"/>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <gestureRecognizers/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="lSJ-PT-g4j">
@@ -224,6 +224,7 @@
                             <constraint firstItem="q2b-n0-3UI" firstAttribute="leading" secondItem="wLI-0p-YwG" secondAttribute="leading" id="U6I-um-ahs"/>
                             <constraint firstAttribute="bottom" secondItem="q2b-n0-3UI" secondAttribute="bottom" id="ZXO-jT-Dwg"/>
                             <constraint firstItem="q2b-n0-3UI" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="24" id="bGi-Na-BlD"/>
+                            <constraint firstItem="gn0-Nt-ZuM" firstAttribute="bottom" secondItem="q2b-n0-3UI" secondAttribute="bottom" id="lYz-Eq-q2m"/>
                             <constraint firstItem="gn0-Nt-ZuM" firstAttribute="trailing" secondItem="JVv-9L-QnP" secondAttribute="trailing" id="qPV-gH-cjK"/>
                             <constraint firstItem="JVv-9L-QnP" firstAttribute="top" secondItem="gn0-Nt-ZuM" secondAttribute="top" constant="64" id="twh-yz-Nnz"/>
                         </constraints>
@@ -239,6 +240,8 @@
                         <outlet property="columnsCollectionView" destination="AUI-zJ-9RT" id="bZi-91-2a7"/>
                         <outlet property="errorContainer" destination="JVv-9L-QnP" id="z80-xq-MPb"/>
                         <outlet property="firstLoadIndicator" destination="zWe-3o-nKi" id="bal-zN-KSz"/>
+                        <outlet property="outerViewBottomNonSafeAreaConstraint" destination="ZXO-jT-Dwg" id="PbZ-yM-vJy"/>
+                        <outlet property="outerViewBottomSafeAreaConstraint" destination="lYz-Eq-q2m" id="cSK-D8-zkI"/>
                         <outlet property="reloadIndicator" destination="ONw-m3-two" id="Em8-PO-V8a"/>
                         <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
                         <segue destination="SN4-mf-Wm1" kind="presentation" identifier="editBoard" modalPresentationStyle="formSheet" id="RVW-Pl-hBX"/>

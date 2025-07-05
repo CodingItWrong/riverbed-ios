@@ -31,6 +31,8 @@ class BoardViewController: UIViewController,
     @IBOutlet var firstLoadIndicator: UIActivityIndicatorView!
     @IBOutlet var reloadIndicator: UIActivityIndicatorView!
     @IBOutlet var errorContainer: UIView!
+    @IBOutlet var outerViewBottomSafeAreaConstraint: NSLayoutConstraint!
+    @IBOutlet var outerViewBottomNonSafeAreaConstraint: NSLayoutConstraint!
 
     var isLoadingBoard = false
     var isFirstLoadingBoard = true
@@ -117,6 +119,13 @@ class BoardViewController: UIViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (traitCollection.horizontalSizeClass == .compact) {
+            outerViewBottomSafeAreaConstraint.isActive = false
+        } else {
+            // fixes visual issue on iPad
+            outerViewBottomNonSafeAreaConstraint.isActive = false
+        }
 
         if #available(iOS 16.0, *) {
             navigationItem.titleMenuProvider = { _ in
@@ -552,8 +561,8 @@ class BoardViewController: UIViewController,
         }, configuration: config)
         columnsCollectionView.collectionViewLayout = layout
         
-        // crashes on Mac for some reason
-        if (!ProcessInfo.processInfo.isiOSAppOnMac) {
+        // for some reason, crashes on Mac and breaks layout on iPad
+        if (!ProcessInfo.processInfo.isiOSAppOnMac && self.traitCollection.horizontalSizeClass == .compact) {
             columnsCollectionView.contentInsetAdjustmentBehavior = .never
         }
 
