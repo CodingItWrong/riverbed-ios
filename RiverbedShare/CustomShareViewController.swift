@@ -13,6 +13,8 @@ class CustomShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.tintColor = ColorTheme.defaultUIColor
+        
         if #available(iOS 26, *) {
             saveButton.configuration = .prominentGlass()
             saveButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
