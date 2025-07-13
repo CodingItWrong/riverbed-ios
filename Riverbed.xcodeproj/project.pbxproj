@@ -129,6 +129,8 @@
 		03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */; };
 		03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF702A3C74F700B68109 /* TokenStore.swift */; };
 		03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
+		03A6206E2E22B62100C65EC0 /* CustomShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */; };
+		03A620702E22BA0800C65EC0 /* WebhookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */; };
 		03C526112E041E1700160100 /* Riverbed Icon Apple.icon in Resources */ = {isa = PBXBuildFile; fileRef = 03C526102E041E1700160100 /* Riverbed Icon Apple.icon */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* EditElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */; };
@@ -299,6 +301,8 @@
 		03A3EF702A3C74F700B68109 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riverbed.entitlements; sourceTree = "<group>"; };
 		03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RiverbedShare.entitlements; sourceTree = "<group>"; };
+		03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareViewController.swift; sourceTree = "<group>"; };
+		03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookStore.swift; sourceTree = "<group>"; };
 		03C526102E041E1700160100 /* Riverbed Icon Apple.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "Riverbed Icon Apple.icon"; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementViewController.swift; sourceTree = "<group>"; };
@@ -444,7 +448,9 @@
 				0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */,
 				0328D1D22A39D6F70079576C /* Info.plist */,
 				0328D1CF2A39D6F70079576C /* MainInterface.storyboard */,
+				03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */,
 				031094152A3FC1120051B93F /* ShareViewController.swift */,
+				03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */,
 			);
 			path = RiverbedShare;
 			sourceTree = "<group>";
@@ -1044,6 +1050,7 @@
 				0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */,
 				038D35C52A4CB75B00F546DD /* Action.swift in Sources */,
 				032E3ADD2A4CD925001D04F4 /* JSONAPI.swift in Sources */,
+				03A620702E22BA0800C65EC0 /* WebhookStore.swift in Sources */,
 				0328D1EE2A39DE540079576C /* Value.swift in Sources */,
 				0328D1E42A39DDEB0079576C /* Card.swift in Sources */,
 				0328D1E62A39DDF00079576C /* Element.swift in Sources */,
@@ -1061,6 +1068,7 @@
 				0328D1F12A39DE970079576C /* Utils.swift in Sources */,
 				0328D1EA2A39DE470079576C /* Command.swift in Sources */,
 				03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */,
+				03A6206E2E22B62100C65EC0 /* CustomShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
