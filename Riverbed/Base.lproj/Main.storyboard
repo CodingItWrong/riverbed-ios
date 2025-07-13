@@ -79,7 +79,7 @@
                                                             </connections>
                                                         </collectionView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
-                                                            <rect key="frame" x="8" y="8" width="438" height="42.666666666666664"/>
+                                                            <rect key="frame" x="8" y="0.0" width="438" height="42.666666666666664"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
                                                                     <rect key="frame" x="8" y="8.0000000000000018" width="74" height="26.666666666666671"/>
@@ -128,7 +128,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="nBU-EA-3jC" secondAttribute="trailing" id="aRn-p4-4Tl"/>
                                                         <constraint firstItem="BkZ-Cr-bSx" firstAttribute="leading" secondItem="DyP-Tp-E0D" secondAttribute="leadingMargin" id="pgz-oV-3bp"/>
                                                         <constraint firstAttribute="bottom" secondItem="nBU-EA-3jC" secondAttribute="bottom" id="t4Z-Ig-gZi"/>
-                                                        <constraint firstItem="BkZ-Cr-bSx" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="topMargin" id="zba-td-dBd"/>
+                                                        <constraint firstItem="BkZ-Cr-bSx" firstAttribute="top" secondItem="DyP-Tp-E0D" secondAttribute="top" id="zba-td-dBd"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>

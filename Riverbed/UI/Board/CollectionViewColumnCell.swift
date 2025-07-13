@@ -90,6 +90,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
             interaction.scrollView = collectionView
             interaction.edge = .top
             title.addInteraction(interaction)
+        } else {
+            headerView.backgroundColor = .secondarySystemBackground
         }
     }
     
