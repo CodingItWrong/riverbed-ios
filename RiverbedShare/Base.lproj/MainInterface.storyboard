@@ -63,13 +63,18 @@
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="t5r-eJ-1ZW">
+                                <rect key="frame" x="16" y="149" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Xd-am-t49"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Eke-vb-Bwj" firstAttribute="width" secondItem="FyU-fE-S9n" secondAttribute="width" id="0Sw-2u-TP4"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="trailing" secondItem="00P-xz-cpD" secondAttribute="trailing" constant="16" id="BQr-PK-3aE"/>
+                            <constraint firstItem="t5r-eJ-1ZW" firstAttribute="leading" secondItem="00P-xz-cpD" secondAttribute="leading" id="Fyg-vv-8mA"/>
                             <constraint firstItem="nr3-cR-KWX" firstAttribute="trailing" secondItem="00P-xz-cpD" secondAttribute="trailing" id="Iek-YR-hjV"/>
+                            <constraint firstItem="t5r-eJ-1ZW" firstAttribute="centerY" secondItem="FyU-fE-S9n" secondAttribute="centerY" id="Jj8-cN-4gr"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="trailing" secondItem="FyU-fE-S9n" secondAttribute="trailing" constant="16" id="NWc-8D-VCO"/>
                             <constraint firstItem="2mx-sQ-fLL" firstAttribute="leading" secondItem="00P-xz-cpD" secondAttribute="leading" constant="6" id="QU4-hX-IRb"/>
                             <constraint firstItem="00P-xz-cpD" firstAttribute="top" secondItem="2mx-sQ-fLL" secondAttribute="bottom" constant="5" id="RVc-Eg-Zbl"/>
@@ -87,6 +92,7 @@
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="Eke-vb-Bwj" id="T1G-Sw-1vi"/>
+                        <outlet property="loadingIndicator" destination="t5r-eJ-1ZW" id="ZOT-Aa-0Tq"/>
                         <outlet property="saveButton" destination="FyU-fE-S9n" id="kOs-MA-L1s"/>
                         <outlet property="titleField" destination="nr3-cR-KWX" id="AV2-kh-KEB"/>
                         <outlet property="urlField" destination="00P-xz-cpD" id="TSv-PA-SJn"/>

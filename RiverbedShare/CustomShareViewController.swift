@@ -9,12 +9,22 @@ class CustomShareViewController: UIViewController {
     @IBOutlet private(set) var titleField: UITextView!
     @IBOutlet private(set) var saveButton: UIButton!
     @IBOutlet private(set) var cancelButton: UIButton!
+    @IBOutlet private(set) var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DispatchQueue.main.async {
             self.view.tintColor = ColorTheme.defaultUIColor
+            
+            let fields: [UIView] = [self.urlField, self.titleField]
+            fields.forEach { (field) in
+                if #unavailable(iOS 26) {
+                    field.layer.cornerRadius = 5
+                }
+                field.layer.borderWidth = 1
+                field.layer.borderColor = UIColor.separator.cgColor
+            }
             
             if #available(iOS 26, *) {
                 self.saveButton.configuration = .prominentGlass()
@@ -57,6 +67,10 @@ class CustomShareViewController: UIViewController {
     // MARK: - helper methods
     
     private func prepopulateTextFields() {
+        loadingIndicator.startAnimating()
+//        loadingIndicator.isHidden = false
+//        print("showed loading indicator")
+
         guard let context = extensionContext,
               let items = context.inputItems as? [NSExtensionItem],
               let item = items.first,
@@ -66,14 +80,20 @@ class CustomShareViewController: UIViewController {
         }
         
         attachmentHandler.getURL(attachments: attachments) { [self] result in
-            switch result {
-            case .success(let sharedURL):
-                self.urlField.text = sharedURL.absoluteString
-                self.titleField.text = "" // not pre-setting title currently
-            case .failure(let error):
-                self.alert(
-                    message: "An error occurred: \(error.localizedDescription)",
-                    completion: self.done)
+            DispatchQueue.main.async {
+                self.loadingIndicator.stopAnimating()
+//                self.loadingIndicator.isHidden = true
+//                print("hid loading indicator")
+                
+                switch result {
+                case .success(let sharedURL):
+                    self.urlField.text = sharedURL.absoluteString
+                    self.titleField.text = "" // not pre-setting title currently
+                case .failure(let error):
+                    self.alert(
+                        message: "An error occurred: \(error.localizedDescription)",
+                        completion: self.done)
+                }
             }
         }
     }
