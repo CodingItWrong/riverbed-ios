@@ -5,25 +5,27 @@ class CustomShareViewController: UIViewController {
     private let attachmentHandler = AttachmentHandler()
     private let webhookStore = WebhookStore()
     
-    @IBOutlet private(set) var urlField: UITextField!
-    @IBOutlet private(set) var titleField: UITextField!
+    @IBOutlet private(set) var urlField: UITextView!
+    @IBOutlet private(set) var titleField: UITextView!
     @IBOutlet private(set) var saveButton: UIButton!
     @IBOutlet private(set) var cancelButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.tintColor = ColorTheme.defaultUIColor
-        
-        if #available(iOS 26, *) {
-            saveButton.configuration = .prominentGlass()
-            saveButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        DispatchQueue.main.async {
+            self.view.tintColor = ColorTheme.defaultUIColor
             
-            cancelButton.configuration = .glass()
-            cancelButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            if #available(iOS 26, *) {
+                self.saveButton.configuration = .prominentGlass()
+                self.saveButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+                
+                self.cancelButton.configuration = .glass()
+                self.cancelButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+            }
+            
+            self.prepopulateTextFields()
         }
-        
-        prepopulateTextFields()
     }
                 
     @IBAction func save() {
@@ -67,7 +69,7 @@ class CustomShareViewController: UIViewController {
             switch result {
             case .success(let sharedURL):
                 self.urlField.text = sharedURL.absoluteString
-                // not pre-setting title currently
+                self.titleField.text = "" // not pre-setting title currently
             case .failure(let error):
                 self.alert(
                     message: "An error occurred: \(error.localizedDescription)",
