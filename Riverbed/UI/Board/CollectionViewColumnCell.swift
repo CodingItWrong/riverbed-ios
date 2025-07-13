@@ -15,6 +15,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     weak var delegate: ColumnCellDelegate?
 
+    @IBOutlet var headerView: UIView!
     @IBOutlet var title: UILabel!
     @IBOutlet var columnMenuButton: UIButton!
     @IBOutlet var collectionView: UICollectionView! {
@@ -79,6 +80,16 @@ class CollectionViewColumnCell: UICollectionViewCell,
         if let window = window {
             let bottomInset = window.safeAreaInsets.bottom
             collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
+        }
+        
+        let topInset = headerView.frame.height
+        collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        
+        if #available(iOS 26, *) {
+            let interaction = UIScrollEdgeElementContainerInteraction()
+            interaction.scrollView = collectionView
+            interaction.edge = .top
+            title.addInteraction(interaction)
         }
     }
     
