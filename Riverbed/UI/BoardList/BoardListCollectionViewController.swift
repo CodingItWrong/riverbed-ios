@@ -151,9 +151,12 @@ class BoardListCollectionViewController: UICollectionViewController,
             content.text = board.attributes.name ?? Board.defaultName
             content.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
-            // do not tint on Mac due to iOS 26 bug
-            if !ProcessInfo.processInfo.isiOSAppOnMac {
-                content.imageProperties.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+            let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+            if ProcessInfo.processInfo.isiOSAppOnMac {
+                // duplicate to work around OS 26 bug
+                content.imageProperties.tintColor = UIColor(cgColor: tintColor.cgColor)
+            } else {
+                content.imageProperties.tintColor = tintColor
             }
 
             cell.contentConfiguration = content
