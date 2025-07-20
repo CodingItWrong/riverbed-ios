@@ -23,6 +23,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
             configureCollectionView()
         }
     }
+    
+    var edgeEffect: Any? = nil
 
     var dataSource: UICollectionViewDiffableDataSource<GroupSection, CardCollectionItem>!
 
@@ -86,10 +88,13 @@ class CollectionViewColumnCell: UICollectionViewCell,
         collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         
         if #available(iOS 26, *) {
-            let interaction = UIScrollEdgeElementContainerInteraction()
-            interaction.scrollView = collectionView
-            interaction.edge = .top
-            title.addInteraction(interaction)
+            if edgeEffect == nil {
+                let interaction = UIScrollEdgeElementContainerInteraction()
+                interaction.scrollView = collectionView
+                interaction.edge = .top
+                title.addInteraction(interaction)
+                edgeEffect = interaction
+            }
         } else {
             headerView.backgroundColor = .secondarySystemBackground
         }
