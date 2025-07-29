@@ -78,16 +78,19 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     override func didMoveToWindow() {
         super.didMoveToWindow()
-        
-        if let window = window {
-            let bottomInset = window.safeAreaInsets.bottom
-            collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: bottomInset, right: 0)
-        }
-        
+
+        // inset content and scrollbar out from under header
         let topInset = headerView.frame.height
         collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        
+
+        if let window = window {
+            let bottomInset = window.safeAreaInsets.bottom
+            collectionView.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
+        }
+
+        // obscure content under scrollbar
         if #available(iOS 26, *) {
+            // on OS 26+, with edge effect
             if edgeEffect == nil {
                 let interaction = UIScrollEdgeElementContainerInteraction()
                 interaction.scrollView = collectionView
@@ -96,6 +99,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 edgeEffect = interaction
             }
         } else {
+            // OS <26, with an opaque background
             headerView.backgroundColor = .secondarySystemBackground
         }
     }
