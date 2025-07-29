@@ -10,14 +10,14 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     @IBOutlet private(set) var layoutStack: UIStackView!
     @IBOutlet private(set) var valueTextField: UITextField! {
         didSet {
-            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+            if (isPlatformMac()) {
                 valueTextField.autocorrectionType = .no
             }
         }
     }
     @IBOutlet private(set) var valueTextView: UITextView! {
         didSet {
-            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+            if (isPlatformMac()) {
                 valueTextView.autocorrectionType = .no
             }
         }

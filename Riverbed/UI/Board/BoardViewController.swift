@@ -562,7 +562,7 @@ class BoardViewController: UIViewController,
         columnsCollectionView.collectionViewLayout = layout
         
         // for some reason, crashes on Mac and breaks layout on iPad
-        if (!ProcessInfo.processInfo.isiOSAppOnMac && self.traitCollection.horizontalSizeClass == .compact) {
+        if (!isPlatformMac() && self.traitCollection.horizontalSizeClass == .compact) {
             columnsCollectionView.contentInsetAdjustmentBehavior = .never
         }
 

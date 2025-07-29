@@ -165,7 +165,7 @@ class BoardListCollectionViewController: UICollectionViewController,
             content.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
             let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
-            if ProcessInfo.processInfo.isiOSAppOnMac {
+            if isPlatformMac() {
                 // duplicate to work around OS 26 bug
                 content.imageProperties.tintColor = UIColor(cgColor: tintColor.cgColor)
             } else {
