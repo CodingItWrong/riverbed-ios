@@ -34,6 +34,8 @@ class BoardViewController: UIViewController,
     @IBOutlet var outerViewBottomSafeAreaConstraint: NSLayoutConstraint!
     @IBOutlet var outerViewBottomNonSafeAreaConstraint: NSLayoutConstraint!
 
+    var titleLabel = UILabel()
+    
     var isLoadingBoard = false
     var isFirstLoadingBoard = true
 
@@ -72,11 +74,12 @@ class BoardViewController: UIViewController,
 
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
-                    let titleLbl = UILabel()
-                    titleLbl.text = board.attributes.name ?? Board.defaultName
-                    titleLbl.font = .preferredFont(forTextStyle: .title3)
+                    titleLabel.text = board.attributes.name ?? Board.defaultName
+                    titleLabel.font = .preferredFont(forTextStyle: .title3)
+                    fixTitleColors()
+
                     let imageView = UIImageView(image: image)
-                    let titleView = UIStackView(arrangedSubviews: [imageView, titleLbl])
+                    let titleView = UIStackView(arrangedSubviews: [imageView, titleLabel])
                     titleView.axis = .horizontal
                     titleView.alignment = .center
                     titleView.spacing = 5.0
@@ -155,6 +158,8 @@ class BoardViewController: UIViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        fixTitleColors()
 
         // needed here as the splitViewController is not available at the start of the segue
         updateSplitViewTintColorForBoard()
@@ -288,7 +293,13 @@ class BoardViewController: UIViewController,
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
         configureForCurrentSizeClass()
+        
+        if !isPlatformMac() {
+            fixTitleColors()
+        }
     }
 
     func configureForCurrentSizeClass() {
@@ -304,6 +315,10 @@ class BoardViewController: UIViewController,
         splitViewController.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
     }
 
+    private func fixTitleColors() {
+        titleLabel.textColor = UIColor(cgColor: UIColor.label.cgColor)
+    }
+    
     // MARK: - actions
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
