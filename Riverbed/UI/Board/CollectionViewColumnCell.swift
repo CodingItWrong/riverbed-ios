@@ -102,6 +102,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
             // OS <26, with an opaque background
             headerView.backgroundColor = .secondarySystemBackground
         }
+        
+        fixTitleColors()
     }
     
     func configureCollectionView() {
@@ -249,6 +251,10 @@ class CollectionViewColumnCell: UICollectionViewCell,
             let sum = values.reduce(0, +)
             return "\(sum)"
         }
+    }
+    
+    private func fixTitleColors() {
+        title.textColor = UIColor(cgColor: UIColor.label.cgColor)
     }
 
     // MARK: - actions
