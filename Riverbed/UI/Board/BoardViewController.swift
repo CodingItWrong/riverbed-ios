@@ -297,9 +297,7 @@ class BoardViewController: UIViewController,
         
         configureForCurrentSizeClass()
         
-        if !isPlatformMac() {
-            fixTitleColors()
-        }
+        fixTitleColors()
     }
 
     func configureForCurrentSizeClass() {
