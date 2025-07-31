@@ -217,10 +217,22 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     // MARK: - collection view delegate
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        fixTitleColors()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = card(for: indexPath)
         delegate?.didSelect(card: card)
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    // MARK: - visuals
+
+    private func fixTitleColors() {
+        title.textColor = UIColor(cgColor: UIColor.label.cgColor)
     }
 
     // MARK: - private helpers
@@ -253,10 +265,6 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
     }
     
-    private func fixTitleColors() {
-        title.textColor = UIColor(cgColor: UIColor.label.cgColor)
-    }
-
     // MARK: - actions
 
     @IBAction func showColumnSettings(_ sender: Any?) {
