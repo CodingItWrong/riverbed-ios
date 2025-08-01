@@ -7,7 +7,15 @@ class ChoiceElementCell: UITableViewCell, ElementCell {
     private var element: Element?
 
     @IBOutlet private(set) var elementLabel: UILabel!
-    @IBOutlet private(set) var valuePopUpButton: UIButton!
+
+    @IBOutlet private(set) var valuePopUpButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                valuePopUpButton.configuration = .glass()
+            }
+        }
+    }
+
 
     func update(for element: Element, allElements: [Element], fieldValue: FieldValue?) {
         self.element = element

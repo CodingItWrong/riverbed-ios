@@ -11,8 +11,43 @@ class CardViewController: UITableViewController,
                           EditElementDelegate {
 
     @IBOutlet private var tapGestureRecognizer: UIGestureRecognizer!
-    @IBOutlet private var addElementButton: UIButton!
-    @IBOutlet private var deleteButton: UIButton!
+    
+    @IBOutlet private var addElementButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                addElementButton.configuration = .glass()
+                addElementButton.configuration?.image = UIImage(systemName: "plus")
+            }
+        }
+    }
+    
+    @IBOutlet private var beginEditingButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                beginEditingButton.configuration = .glass()
+                beginEditingButton.configuration?.image = UIImage(systemName: "wrench")
+            }
+        }
+    }
+
+    @IBOutlet private var endEditingButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                endEditingButton.configuration = .prominentGlass()
+                endEditingButton.configuration?.image = UIImage(systemName: "checkmark")
+            }
+        }
+    }
+
+    @IBOutlet private var deleteButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                deleteButton.configuration = .prominentGlass()
+                deleteButton.configuration?.image = UIImage(systemName: "trash")
+            }
+        }
+    }
+    
     @IBOutlet private var instructionLabel: UILabel! {
         didSet {
             instructionLabel.text = nil
@@ -143,24 +178,33 @@ class CardViewController: UITableViewController,
         }
     }
 
-    @IBAction func toggleEditing(_ sender: UIButton) {
+    @IBAction func beginEditing(_ sender: UIButton) {
+        setEditing(true, animated: true)
+        updateForEditingState()
+    }
+
+    
+    @IBAction func endEditing(_ sender: UIButton) {
+        setEditing(false, animated: true)
+        updateForEditingState()
+    }
+    
+    func updateForEditingState() {
+        beginEditingButton.isHidden = isEditing
+        deleteButton.isHidden = isEditing
+        
+        addElementButton.isHidden = !isEditing
+        endEditingButton.isHidden = !isEditing
+
+
         // TODO: voiceover
         if isEditing {
-            setEditing(false, animated: true)
-            addElementButton.isHidden = true
-            deleteButton.isHidden = false
-            sender.setImage(UIImage(systemName: "wrench"), for: .normal)
-            sender.accessibilityLabel = "Edit Elements"
-            tapGestureRecognizer.cancelsTouchesInView = true // allows dismissing autocorrect popup
-        } else {
-            setEditing(true, animated: true)
-            addElementButton.isHidden = false
-            deleteButton.isHidden = true
-            sender.setImage(UIImage(systemName: "checkmark"), for: .normal)
-            sender.accessibilityLabel = "Finish Editing Elements"
             tapGestureRecognizer.cancelsTouchesInView = false // allows tapping fields to edit them
+        } else {
+            tapGestureRecognizer.cancelsTouchesInView = true // allows dismissing autocorrect popup
         }
         tableView.reloadData() // because editing shows all elements
+
     }
 
     @objc func dismissVC(_ sender: Any?) {
@@ -208,6 +252,10 @@ class CardViewController: UITableViewController,
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
                                       preferredStyle: .alert)
+        if #available(iOS 16, *) {
+            // should display from button on iOS 26, but doesn't seem to
+            alert.popoverPresentationController?.sourceItem = deleteButton
+        }
 
         // .destructive does not bind to Return key on macOS even when preferredAction
 //        let deleteActionStyle: UIAlertAction.Style = .default

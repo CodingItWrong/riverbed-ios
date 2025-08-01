@@ -129,6 +129,9 @@
 		03A3EF6F2A3C715600B68109 /* DeviceStorageSessionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF6E2A3C715600B68109 /* DeviceStorageSessionSource.swift */; };
 		03A3EF712A3C74F700B68109 /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF702A3C74F700B68109 /* TokenStore.swift */; };
 		03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A3EF662A3BD37E00B68109 /* KeychainStore.swift */; };
+		03A6206E2E22B62100C65EC0 /* CustomShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */; };
+		03A620702E22BA0800C65EC0 /* WebhookStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */; };
+		03B5B6672E29967E00B8019A /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 03B5B6662E29967E00B8019A /* AppIcon.icon */; };
 		03C8F07D2A2C9E9800F6AF90 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */; };
 		03C8F07F2A2C9EFE00F6AF90 /* EditElementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */; };
 		03C8F0812A2C9F4800F6AF90 /* FormCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */; };
@@ -298,6 +301,9 @@
 		03A3EF702A3C74F700B68109 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		03A3EF732A3C7F9000B68109 /* Riverbed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Riverbed.entitlements; sourceTree = "<group>"; };
 		03A3EF742A3C7FA200B68109 /* RiverbedShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RiverbedShare.entitlements; sourceTree = "<group>"; };
+		03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShareViewController.swift; sourceTree = "<group>"; };
+		03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookStore.swift; sourceTree = "<group>"; };
+		03B5B6662E29967E00B8019A /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		03C8F07C2A2C9E9800F6AF90 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		03C8F07E2A2C9EFE00F6AF90 /* EditElementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditElementViewController.swift; sourceTree = "<group>"; };
 		03C8F0802A2C9F4800F6AF90 /* FormCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCellDelegate.swift; sourceTree = "<group>"; };
@@ -405,6 +411,7 @@
 				0342FC6C2A1794D500CB8075 /* Data */,
 				0342FC6B2A17948300CB8075 /* UI */,
 				03027DFE2A13DF9E0063EE24 /* Assets.xcassets */,
+				03B5B6662E29967E00B8019A /* AppIcon.icon */,
 				03027E032A13DF9E0063EE24 /* Info.plist */,
 				03027E002A13DF9E0063EE24 /* LaunchScreen.storyboard */,
 			);
@@ -441,7 +448,9 @@
 				0328D1DD2A39DB0C0079576C /* AttachmentHandler.swift */,
 				0328D1D22A39D6F70079576C /* Info.plist */,
 				0328D1CF2A39D6F70079576C /* MainInterface.storyboard */,
+				03A6206D2E22B62100C65EC0 /* CustomShareViewController.swift */,
 				031094152A3FC1120051B93F /* ShareViewController.swift */,
+				03A6206F2E22BA0400C65EC0 /* WebhookStore.swift */,
 			);
 			path = RiverbedShare;
 			sourceTree = "<group>";
@@ -801,7 +810,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					03027DF12A13DF9D0063EE24 = {
 						CreatedOnToolsVersion = 14.3;
@@ -846,6 +855,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03B5B6672E29967E00B8019A /* AppIcon.icon in Resources */,
 				03010CCA2A348C9A00EF32D1 /* SortByCell.xib in Resources */,
 				03027E022A13DF9E0063EE24 /* LaunchScreen.storyboard in Resources */,
 				03027DFF2A13DF9E0063EE24 /* Assets.xcassets in Resources */,
@@ -1040,6 +1050,7 @@
 				0328D1EC2A39DE4F0079576C /* SummaryFunction.swift in Sources */,
 				038D35C52A4CB75B00F546DD /* Action.swift in Sources */,
 				032E3ADD2A4CD925001D04F4 /* JSONAPI.swift in Sources */,
+				03A620702E22BA0800C65EC0 /* WebhookStore.swift in Sources */,
 				0328D1EE2A39DE540079576C /* Value.swift in Sources */,
 				0328D1E42A39DDEB0079576C /* Card.swift in Sources */,
 				0328D1E62A39DDF00079576C /* Element.swift in Sources */,
@@ -1057,6 +1068,7 @@
 				0328D1F12A39DE970079576C /* Utils.swift in Sources */,
 				0328D1EA2A39DE470079576C /* Command.swift in Sources */,
 				03A3EF722A3C7E9500B68109 /* KeychainStore.swift in Sources */,
+				03A6206E2E22B62100C65EC0 /* CustomShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1155,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1165,6 +1178,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1205,6 +1219,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1220,6 +1235,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -1231,10 +1247,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				CURRENT_PROJECT_VERSION = 22;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
@@ -1248,7 +1264,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1262,10 +1278,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				CURRENT_PROJECT_VERSION = 22;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
@@ -1279,7 +1295,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1295,7 +1311,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
@@ -1316,7 +1331,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
@@ -1334,7 +1348,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.RiverbedUITests;
@@ -1351,7 +1364,6 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.RiverbedUITests;
@@ -1368,8 +1380,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				CURRENT_PROJECT_VERSION = 22;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
@@ -1380,7 +1391,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit.RiverbedShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1395,8 +1406,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 17;
-				DEVELOPMENT_TEAM = 6283CFQE2Y;
+				CURRENT_PROJECT_VERSION = 22;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
@@ -1407,7 +1417,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit.RiverbedShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

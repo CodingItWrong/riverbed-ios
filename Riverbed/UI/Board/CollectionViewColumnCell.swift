@@ -15,6 +15,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     weak var delegate: ColumnCellDelegate?
 
+    @IBOutlet var headerView: UIView!
     @IBOutlet var title: UILabel!
     @IBOutlet var columnMenuButton: UIButton!
     @IBOutlet var collectionView: UICollectionView! {
@@ -22,6 +23,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
             configureCollectionView()
         }
     }
+    
+    var edgeEffect: Any? = nil
 
     var dataSource: UICollectionViewDiffableDataSource<GroupSection, CardCollectionItem>!
 
@@ -73,6 +76,36 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     // MARK: - data
 
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+
+        // inset content and scrollbar out from under header
+        let topInset = headerView.frame.height
+        collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+
+        if let window = window {
+            let bottomInset = window.safeAreaInsets.bottom
+            collectionView.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
+        }
+
+        // obscure content under scrollbar
+        if #available(iOS 26, *) {
+            // on OS 26+, with edge effect
+            if edgeEffect == nil {
+                let interaction = UIScrollEdgeElementContainerInteraction()
+                interaction.scrollView = collectionView
+                interaction.edge = .top
+                title.addInteraction(interaction)
+                edgeEffect = interaction
+            }
+        } else {
+            // OS <26, with an opaque background
+            headerView.backgroundColor = .secondarySystemBackground
+        }
+        
+        fixTitleColors()
+    }
+    
     func configureCollectionView() {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .estimated(100.0))
@@ -184,10 +217,22 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     // MARK: - collection view delegate
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        fixTitleColors()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = card(for: indexPath)
         delegate?.didSelect(card: card)
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    // MARK: - visuals
+
+    private func fixTitleColors() {
+        title.textColor = UIColor(cgColor: UIColor.label.cgColor)
     }
 
     // MARK: - private helpers
@@ -219,7 +264,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
             return "\(sum)"
         }
     }
-
+    
     // MARK: - actions
 
     @IBAction func showColumnSettings(_ sender: Any?) {

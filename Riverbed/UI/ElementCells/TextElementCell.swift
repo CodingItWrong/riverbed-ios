@@ -10,14 +10,14 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     @IBOutlet private(set) var layoutStack: UIStackView!
     @IBOutlet private(set) var valueTextField: UITextField! {
         didSet {
-            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+            if (isPlatformMac()) {
                 valueTextField.autocorrectionType = .no
             }
         }
     }
     @IBOutlet private(set) var valueTextView: UITextView! {
         didSet {
-            if (ProcessInfo.processInfo.isiOSAppOnMac) {
+            if (isPlatformMac()) {
                 valueTextView.autocorrectionType = .no
             }
         }
@@ -28,7 +28,9 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
 
         let fields: [UIView] = [valueTextField, valueTextView]
         fields.forEach { (field) in
-            field.layer.cornerRadius = 5
+            if #unavailable(iOS 26) {
+                field.layer.cornerRadius = 5
+            }
             field.layer.borderWidth = 1
             field.layer.borderColor = UIColor.separator.cgColor
         }

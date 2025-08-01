@@ -9,7 +9,9 @@ class ButtonElementCell: UITableViewCell, ElementCell {
 
     @IBOutlet private(set) var button: UIButton! {
         didSet {
-            button.configuration?.cornerStyle = .large
+            if #available(iOS 26, *) {
+                button.configuration = .prominentGlass()
+            }
         }
     }
 

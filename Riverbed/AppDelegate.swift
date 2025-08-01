@@ -47,15 +47,19 @@ extension AppDelegate {
         let newSceneMenu = builder.menu(for: .newScene)
         builder.remove(menu: .newScene)
 
+        let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand
+        
         let newCardCommand = UIKeyCommand(title: "New Card",
+                                          image: newWindowCommand?.image ?? UIImage(systemName: "plus.square"),
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: [.command])
         var fileMenuCommands = [newCardCommand]
-        if let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand,
+        if let newWindowCommand = newWindowCommand,
             let action = newWindowCommand.action,
             let input = newWindowCommand.input {
             let myNewWindowCommand = UIKeyCommand(title: newWindowCommand.title,
+                                                  image: newWindowCommand.image,
                                                  action: action,
                                                  input: input,
                                                  modifierFlags: newWindowCommand.modifierFlags.union(.shift))
@@ -67,6 +71,7 @@ extension AppDelegate {
     
     private func buildEditMenu(with builder: UIMenuBuilder) {
         let deleteCardCommand = UIKeyCommand(title: "Delete Card",
+                                             image: UIImage(systemName: "trash"),
                                              action: #selector(CardViewController.deleteCard(_:)),
                                              input: UIKeyCommand.inputDelete,
                                              modifierFlags: .command)
@@ -76,6 +81,7 @@ extension AppDelegate {
     
     private func buildViewMenu(with builder: UIMenuBuilder) {
         let refreshCommand = UIKeyCommand(title: "Refresh Board",
+                                          image: UIImage(systemName: "arrow.clockwise"),
                                           action: #selector(BoardViewController.refreshBoardData(_:)),
                                           input: "r",
                                           modifierFlags: .command)

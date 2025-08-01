@@ -119,3 +119,7 @@ private func getHostName(for url: URL) -> String? {
         return url.host
     }
 }
+
+func isPlatformMac() -> Bool {
+    return ProcessInfo.processInfo.isiOSAppOnMac
+}

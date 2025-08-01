@@ -38,9 +38,27 @@ class GeolocationElementCell: UITableViewCell,
     @IBOutlet private(set) var elementLabel: UILabel!
     @IBOutlet private(set) var latitudeTextField: UITextField!
     @IBOutlet private(set) var longitudeTextField: UITextField!
-    @IBOutlet private(set) var currentLocationButton: UIButton!
+    @IBOutlet private(set) var currentLocationButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                currentLocationButton.configuration = .glass()
+                currentLocationButton.configuration?.image = UIImage(systemName: "location.fill")
+            }
+        }
+    }
+
+    
     @IBOutlet private(set) var currentLocationActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet private(set) var directionsButton: UIButton!
+    
+    @IBOutlet private(set) var directionsButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                directionsButton.configuration = .glass()
+                directionsButton.configuration?.image = UIImage(systemName: "arrow.turn.up.right")
+            }
+        }
+    }
+
     @IBOutlet private(set) var mapView: MKMapView! {
         didSet {
             let tapRecognizer = UITapGestureRecognizer(target: self,
@@ -58,7 +76,9 @@ class GeolocationElementCell: UITableViewCell,
         elementLabel.text = element.attributes.name
 
         [latitudeTextField, longitudeTextField].forEach { (field) in
-            field?.layer.cornerRadius = 5
+            if #unavailable(iOS 26) {
+                field?.layer.cornerRadius = 5
+            }
             field?.layer.borderWidth = 1
             field?.layer.borderColor = UIColor.separator.cgColor
         }

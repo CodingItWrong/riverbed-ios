@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="eVR-Co-4fW" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="83" id="eVR-Co-4fW" customClass="DateElementCell" customModule="Riverbed" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="393" height="83"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVR-Co-4fW" id="TCf-Cj-njC">
+            <tableViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eVR-Co-4fW" id="TCf-Cj-njC">
                 <rect key="frame" x="0.0" y="0.0" width="393" height="83"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -41,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="25" width="353" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR" userLabel="Date Picker Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="303.33333333333331" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="303" height="50"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
                                                 <rect key="frame" x="0.0" y="8" width="303.33333333333331" height="34.333333333333336"/>
@@ -61,10 +61,14 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
-                                        <rect key="frame" x="303.33333333333331" y="0.0" width="49.666666666666686" height="50"/>
+                                        <rect key="frame" x="303" y="0.0" width="50" height="50"/>
                                         <accessibility key="accessibilityConfiguration" label="Clear Date"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="VfV-ie-fIw"/>
+                                            <constraint firstAttribute="width" constant="50" id="e7J-zg-cFa"/>
+                                        </constraints>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.circle" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                                         <connections>
                                             <action selector="toggleDate:" destination="eVR-Co-4fW" eventType="touchUpInside" id="kEn-ZJ-96L"/>
                                         </connections>
@@ -103,9 +107,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="xmark.circle" catalog="system" width="128" height="123"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -70,7 +70,11 @@ class BoardListCollectionViewController: UICollectionViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if !isPlatformMac() {
+            fixTitleColors()
+        }
+        
         guard let menuButton = navigationItem.rightBarButtonItem else {
             preconditionFailure("Expected a right bar button item")
         }
@@ -107,6 +111,15 @@ class BoardListCollectionViewController: UICollectionViewController,
         super.viewDidAppear(animated)
 
         checkForSignInFormDisplay()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if !isPlatformMac() {
+            fixTitleColors()
+            collectionView.reloadData()
+        }
     }
 
     // MARK: - data
@@ -150,7 +163,14 @@ class BoardListCollectionViewController: UICollectionViewController,
 
             content.text = board.attributes.name ?? Board.defaultName
             content.image = board.attributes.icon?.image ?? Icon.defaultBoardImage
-            content.imageProperties.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+
+            let tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
+            if isPlatformMac() {
+                // duplicate to work around OS 26 bug
+                content.imageProperties.tintColor = UIColor(cgColor: tintColor.cgColor)
+            } else {
+                content.imageProperties.tintColor = tintColor
+            }
 
             cell.contentConfiguration = content
         }
@@ -160,6 +180,11 @@ class BoardListCollectionViewController: UICollectionViewController,
             (supplementaryView, _, indexPath) in
                 let boardGroup = self.boardGroups[indexPath.section]
                 supplementaryView.label.text = boardGroup.section.rawValue
+                
+                // work around iPadOS 26 issue
+                if !isPlatformMac() {
+                    supplementaryView.label.textColor = UIColor(cgColor: UIColor.secondaryLabel.cgColor)
+                }
         }
         let footerRegistration = UICollectionView.SupplementaryRegistration<ButtonSupplementaryView>(
             elementKind: UICollectionView.elementKindSectionFooter) {
@@ -402,6 +427,12 @@ class BoardListCollectionViewController: UICollectionViewController,
 
     private func board(for indexPath: IndexPath) -> Board {
         boardGroups[indexPath.section].boards[indexPath.row]
+    }
+    
+    private func fixTitleColors() {
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(cgColor: UIColor.label.cgColor)]
+        navigationController?.navigationBar.standardAppearance = appearance
     }
 
     // MARK: - app-specific delegates

@@ -110,6 +110,9 @@ class SignUpViewController: UITableViewController,
             else { preconditionFailure("Expected a ButtonCell") }
 
             buttonCell.label.text = nil
+            if #available(iOS 26, *) {
+                buttonCell.button.configuration = .prominentGlass()
+            }
             buttonCell.button.setTitle(rowEnum.label, for: .normal)
             buttonCell.delegate = self
             return buttonCell

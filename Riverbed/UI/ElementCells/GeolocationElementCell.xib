@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,13 +22,13 @@
                         <rect key="frame" x="20" y="4" width="353" height="311"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-NO-SW8">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="53"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edg-Oc-IYS">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="53"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGs-fd-XNo">
-                                                <rect key="frame" x="6" y="0.0" width="31" height="50"/>
+                                                <rect key="frame" x="6" y="0.0" width="31" height="53"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -42,14 +42,14 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2n-EL-2d0">
-                                <rect key="frame" x="0.0" y="54" width="353" height="53"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2n-EL-2d0" userLabel="Coordinates Row">
+                                <rect key="frame" x="0.0" y="57" width="353" height="50"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4gN-fZ-X4L">
-                                        <rect key="frame" x="0.0" y="0.0" width="253.33333333333334" height="53"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4gN-fZ-X4L" userLabel="Coordiantes Stack View">
+                                        <rect key="frame" x="0.0" y="8" width="233" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="latitude" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ze9-3L-Sq5">
-                                                <rect key="frame" x="0.0" y="0.0" width="121.66666666666667" height="53"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="34"/>
                                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -58,7 +58,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="longitude" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-bT-bEl">
-                                                <rect key="frame" x="131.66666666666666" y="0.0" width="121.66666666666666" height="53"/>
+                                                <rect key="frame" x="121.66666666666666" y="0.0" width="111.33333333333334" height="34"/>
                                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -68,51 +68,62 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLO-x4-JZu" userLabel="Current Location Container">
-                                        <rect key="frame" x="253.33333333333331" y="1.6666666666666643" width="50" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QbF-7O-8VB" userLabel="Buttons Stack View">
+                                        <rect key="frame" x="243" y="0.0" width="110" height="50"/>
                                         <subviews>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="3mF-PJ-gyC">
-                                                <rect key="frame" x="15" y="15.000000000000007" width="20" height="20"/>
-                                            </activityIndicatorView>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epT-Q8-I2n" userLabel="Current Location Button">
-                                                <rect key="frame" x="0.33333333333337123" y="7.6666666666666643" width="49.666666666666664" height="34.333333333333336"/>
-                                                <accessibility key="accessibilityConfiguration" label="Get Current Location"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLO-x4-JZu" userLabel="Current Location Container">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <subviews>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="3mF-PJ-gyC">
+                                                        <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                    </activityIndicatorView>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epT-Q8-I2n" userLabel="Current Location Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        <accessibility key="accessibilityConfiguration" label="Get Current Location"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="Vze-tk-owf"/>
+                                                            <constraint firstAttribute="width" constant="50" id="aCr-Mx-WPI"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="location.fill" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="getCurrentLocation" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="C2O-Cz-tuC"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="3mF-PJ-gyC" firstAttribute="centerY" secondItem="hLO-x4-JZu" secondAttribute="centerY" id="6GA-FZ-O0A"/>
+                                                    <constraint firstItem="epT-Q8-I2n" firstAttribute="top" secondItem="hLO-x4-JZu" secondAttribute="top" id="PfN-7z-4Ur"/>
+                                                    <constraint firstItem="3mF-PJ-gyC" firstAttribute="centerX" secondItem="hLO-x4-JZu" secondAttribute="centerX" id="bdV-Dy-og2"/>
+                                                    <constraint firstItem="epT-Q8-I2n" firstAttribute="leading" secondItem="hLO-x4-JZu" secondAttribute="leading" id="f3V-VU-Mba"/>
+                                                    <constraint firstAttribute="bottom" secondItem="epT-Q8-I2n" secondAttribute="bottom" id="tDx-kg-3FE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="epT-Q8-I2n" secondAttribute="trailing" id="vOZ-Pu-IMy"/>
+                                                </constraints>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-g9-mCZ" userLabel="Directions Button">
+                                                <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                <accessibility key="accessibilityConfiguration" label="Get Directions"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="Pog-z5-LkW"/>
+                                                    <constraint firstAttribute="height" constant="50" id="zwY-j2-OCH"/>
+                                                </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="location.circle" catalog="system"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="arrow.turn.up.right" catalog="system"/>
                                                 <connections>
-                                                    <action selector="getCurrentLocation" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="C2O-Cz-tuC"/>
+                                                    <action selector="getDirections" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="FIR-tW-W9p"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="3mF-PJ-gyC" firstAttribute="centerY" secondItem="hLO-x4-JZu" secondAttribute="centerY" id="6GA-FZ-O0A"/>
-                                            <constraint firstItem="epT-Q8-I2n" firstAttribute="centerY" secondItem="hLO-x4-JZu" secondAttribute="centerY" id="Aye-2G-xcF"/>
-                                            <constraint firstItem="epT-Q8-I2n" firstAttribute="centerX" secondItem="hLO-x4-JZu" secondAttribute="centerX" id="Uiz-Ee-d4S"/>
-                                            <constraint firstAttribute="height" constant="50" id="aLD-bj-2Cd"/>
-                                            <constraint firstItem="3mF-PJ-gyC" firstAttribute="centerX" secondItem="hLO-x4-JZu" secondAttribute="centerX" id="bdV-Dy-og2"/>
-                                            <constraint firstAttribute="width" constant="50" id="uez-0X-N7k"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uga-g9-mCZ" userLabel="Directions Button">
-                                        <rect key="frame" x="303.33333333333331" y="9.3333333333333286" width="49.666666666666686" height="34.333333333333336"/>
-                                        <accessibility key="accessibilityConfiguration" label="Get Directions"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="arrow.triangle.turn.up.right.circle" catalog="system"/>
-                                        <connections>
-                                            <action selector="getDirections" destination="JoN-Bj-Fsm" eventType="touchUpInside" id="FIR-tW-W9p"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Uga-g9-mCZ" secondAttribute="trailing" id="0Lm-6b-bFR"/>
-                                    <constraint firstItem="Uga-g9-mCZ" firstAttribute="centerY" secondItem="S2n-EL-2d0" secondAttribute="centerY" id="RJk-Pz-N9z"/>
+                                    <constraint firstItem="4gN-fZ-X4L" firstAttribute="centerY" secondItem="S2n-EL-2d0" secondAttribute="centerY" id="DMG-bB-Kmc"/>
+                                    <constraint firstItem="QbF-7O-8VB" firstAttribute="leading" secondItem="4gN-fZ-X4L" secondAttribute="trailing" constant="10" id="LAA-C4-tet"/>
+                                    <constraint firstItem="QbF-7O-8VB" firstAttribute="top" secondItem="S2n-EL-2d0" secondAttribute="top" id="Yof-fw-pjU"/>
+                                    <constraint firstAttribute="bottom" secondItem="QbF-7O-8VB" secondAttribute="bottom" id="ZTE-Yl-gY8"/>
                                     <constraint firstItem="4gN-fZ-X4L" firstAttribute="leading" secondItem="S2n-EL-2d0" secondAttribute="leading" id="b9P-Oj-DUe"/>
-                                    <constraint firstItem="hLO-x4-JZu" firstAttribute="centerY" secondItem="S2n-EL-2d0" secondAttribute="centerY" id="eAn-Wb-LH1"/>
-                                    <constraint firstItem="4gN-fZ-X4L" firstAttribute="top" secondItem="S2n-EL-2d0" secondAttribute="top" id="enn-8f-q3F"/>
-                                    <constraint firstItem="hLO-x4-JZu" firstAttribute="leading" secondItem="4gN-fZ-X4L" secondAttribute="trailing" id="iLa-Ik-oOV"/>
-                                    <constraint firstAttribute="bottom" secondItem="4gN-fZ-X4L" secondAttribute="bottom" id="ko1-hE-lxG"/>
-                                    <constraint firstItem="Uga-g9-mCZ" firstAttribute="leading" secondItem="hLO-x4-JZu" secondAttribute="trailing" id="kr7-id-mNV"/>
+                                    <constraint firstAttribute="trailing" secondItem="QbF-7O-8VB" secondAttribute="trailing" id="bZO-VQ-X1d"/>
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzW-jt-RdL">
@@ -146,10 +157,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrow.triangle.turn.up.right.circle" catalog="system" width="128" height="123"/>
-        <image name="location.circle" catalog="system" width="128" height="123"/>
+        <image name="arrow.turn.up.right" catalog="system" width="128" height="99"/>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
         <systemColor name="tertiarySystemFillColor">
-            <color red="0.46274509803921571" green="0.46274509803921571" blue="0.50196078431372548" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.46274509800000002" green="0.46274509800000002" blue="0.50196078430000002" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

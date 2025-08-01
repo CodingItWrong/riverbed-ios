@@ -3,7 +3,14 @@ import UIKit
 class PopUpButtonCell: UITableViewCell {
 
     @IBOutlet var label: UILabel!
-    @IBOutlet var popUpButton: UIButton!
+
+    @IBOutlet var popUpButton: UIButton! {
+        didSet {
+            if #available(iOS 26, *) {
+                popUpButton.configuration = .glass()
+            }
+        }
+    }
 
     weak var delegate: FormCellDelegate?
 

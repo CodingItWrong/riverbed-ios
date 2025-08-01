@@ -24,13 +24,18 @@ class BoardViewController: UIViewController,
 
     @IBOutlet var columnsCollectionView: UICollectionView! {
         didSet {
+            columnsCollectionView.contentInsetAdjustmentBehavior = .always
             configureCollectionView()
         }
     }
     @IBOutlet var firstLoadIndicator: UIActivityIndicatorView!
     @IBOutlet var reloadIndicator: UIActivityIndicatorView!
     @IBOutlet var errorContainer: UIView!
+    @IBOutlet var outerViewBottomSafeAreaConstraint: NSLayoutConstraint!
+    @IBOutlet var outerViewBottomNonSafeAreaConstraint: NSLayoutConstraint!
 
+    var titleLabel = UILabel()
+    
     var isLoadingBoard = false
     var isFirstLoadingBoard = true
 
@@ -58,17 +63,23 @@ class BoardViewController: UIViewController,
             // set the whole split view controller's tint color to the board's
             updateSplitViewTintColorForBoard()
 
+            if let windowScene = view.window?.windowScene,
+                let board = board {
+                windowScene.title = board.attributes.name ?? "Riverbed"
+            }
+            
             if #available(iOS 16.0, *) {
                 if let board = board {
 //                    navigationItem.title = board.attributes.name ?? Board.defaultName
 
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
-                    let titleLbl = UILabel()
-                    titleLbl.text = board.attributes.name ?? Board.defaultName
-                    titleLbl.font = .preferredFont(forTextStyle: .title3)
+                    titleLabel.text = board.attributes.name ?? Board.defaultName
+                    titleLabel.font = .preferredFont(forTextStyle: .title3)
+                    fixTitleColors()
+
                     let imageView = UIImageView(image: image)
-                    let titleView = UIStackView(arrangedSubviews: [imageView, titleLbl])
+                    let titleView = UIStackView(arrangedSubviews: [imageView, titleLabel])
                     titleView.axis = .horizontal
                     titleView.alignment = .center
                     titleView.spacing = 5.0
@@ -111,6 +122,13 @@ class BoardViewController: UIViewController,
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (traitCollection.horizontalSizeClass == .compact) {
+            outerViewBottomSafeAreaConstraint.isActive = false
+        } else {
+            // fixes visual issue on iPad
+            outerViewBottomNonSafeAreaConstraint.isActive = false
+        }
 
         if #available(iOS 16.0, *) {
             navigationItem.titleMenuProvider = { _ in
@@ -140,6 +158,8 @@ class BoardViewController: UIViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        fixTitleColors()
 
         // needed here as the splitViewController is not available at the start of the segue
         updateSplitViewTintColorForBoard()
@@ -273,7 +293,11 @@ class BoardViewController: UIViewController,
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
         configureForCurrentSizeClass()
+        
+        fixTitleColors()
     }
 
     func configureForCurrentSizeClass() {
@@ -289,6 +313,10 @@ class BoardViewController: UIViewController,
         splitViewController.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
     }
 
+    private func fixTitleColors() {
+        titleLabel.textColor = UIColor(cgColor: UIColor.label.cgColor)
+    }
+    
     // MARK: - actions
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
@@ -523,15 +551,17 @@ class BoardViewController: UIViewController,
 
         let layout = UICollectionViewCompositionalLayout(sectionProvider: {
             _, _ in
+            
+            let fullHeight = self.columnsCollectionView.bounds.height
 
-            let columnHeight: NSCollectionLayoutDimension = .fractionalHeight(1.0)
+            let columnHeight: NSCollectionLayoutDimension = .absolute(fullHeight)
             let columnWidth: NSCollectionLayoutDimension =
                 self.traitCollection.horizontalSizeClass == .compact
                     ? .fractionalWidth(1.0)
                     : .absolute(400)
 
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                  heightDimension: .fractionalHeight(1.0))
+                                                  heightDimension: columnHeight)
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
             let groupSize = NSCollectionLayoutSize(widthDimension: columnWidth,
@@ -543,6 +573,11 @@ class BoardViewController: UIViewController,
             return section
         }, configuration: config)
         columnsCollectionView.collectionViewLayout = layout
+        
+        // for some reason, crashes on Mac and breaks layout on iPad
+        if (!isPlatformMac() && self.traitCollection.horizontalSizeClass == .compact) {
+            columnsCollectionView.contentInsetAdjustmentBehavior = .never
+        }
 
         dataSource = UICollectionViewDiffableDataSource<String, ColumnCollectionItem>(
             collectionView: columnsCollectionView) {
