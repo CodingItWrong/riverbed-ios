@@ -49,20 +49,30 @@ extension AppDelegate {
 
         let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand
         
+        let newBoardCommand = UICommand(title: "New Board",
+                                        image: UIImage(systemName: "plus.square"),
+                                        action: #selector(RiverbedSplitViewController.newBoard(_:)))
+        
+        let reloadBoardsCommand = UIKeyCommand(title: "Reload Boards",
+                                               image: UIImage(systemName: "arrow.clockwise"),
+                                               action: #selector(RiverbedSplitViewController.reloadBoards(_:)),
+                                               input: "r",
+                                               modifierFlags: [.command, .shift])
+        
         let newCardCommand = UIKeyCommand(title: "New Card",
                                           image: newWindowCommand?.image ?? UIImage(systemName: "plus.square"),
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: [.command])
-        var fileMenuCommands = [newCardCommand]
+        var fileMenuCommands = [newBoardCommand, newCardCommand, reloadBoardsCommand] // TODO: order, grouping
         if let newWindowCommand = newWindowCommand,
             let action = newWindowCommand.action,
             let input = newWindowCommand.input {
             let myNewWindowCommand = UIKeyCommand(title: newWindowCommand.title,
                                                   image: newWindowCommand.image,
-                                                 action: action,
-                                                 input: input,
-                                                 modifierFlags: newWindowCommand.modifierFlags.union(.shift))
+                                                  action: action,
+                                                  input: input,
+                                                  modifierFlags: newWindowCommand.modifierFlags.union(.shift))
             fileMenuCommands.append(myNewWindowCommand)
         }
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)

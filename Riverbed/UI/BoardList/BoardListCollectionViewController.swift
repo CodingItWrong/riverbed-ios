@@ -228,6 +228,7 @@ class BoardListCollectionViewController: UICollectionViewController,
     }
 
     @IBAction func loadBoards() {
+        print("LOADING BOARDS")
         boardStore.all { [weak self] (result) in
             guard let self = self else { return }
 
