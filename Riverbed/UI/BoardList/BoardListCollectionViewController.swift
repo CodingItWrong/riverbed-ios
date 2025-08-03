@@ -197,7 +197,7 @@ class BoardListCollectionViewController: UICollectionViewController,
                     supplementaryView.addButton()
                     button.isHidden = false
                     button.configuration = .plain()
-                    button.configuration?.title = "Add Board"
+                    button.configuration?.title = "New Board"
                     button.configuration?.image = UIImage(systemName: "plus")
                     button.configuration?.imagePadding = 5
                     button.addTarget(self,

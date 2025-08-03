@@ -135,7 +135,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
                                                             <rect key="frame" x="158.5" y="8" width="137" height="34.5"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
+                                                            <buttonConfiguration key="configuration" style="plain" title="New Column" imagePadding="5">
                                                                 <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
                                                                 <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                                             </buttonConfiguration>
