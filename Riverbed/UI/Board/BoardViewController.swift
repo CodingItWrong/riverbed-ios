@@ -465,7 +465,7 @@ class BoardViewController: UIViewController,
 
     func delete(column: Column) {
         let columnDescriptor = column.attributes.name ?? "this board"
-        let message = "Are you sure you want to delete \(columnDescriptor)? " +
+        let message = "Are you sure you want to delete column \"\(columnDescriptor)\"? " +
                       "Cards in this column will still be available in other columns."
         let alert = UIAlertController(title: "Delete Column?",
                                       message: message,
