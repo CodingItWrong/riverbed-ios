@@ -366,13 +366,13 @@ class BoardViewController: UIViewController,
         loadBoardData(refreshControl)
     }
 
-    func editBoard() {
+    @objc func editBoard() {
         if board != nil {
             performSegue(withIdentifier: "editBoard", sender: nil)
         }
     }
 
-    func deleteBoard() {
+    @objc func deleteBoard() {
         guard let board = board else { return }
 
         let boardDescriptor = board.attributes.name ?? "this board"

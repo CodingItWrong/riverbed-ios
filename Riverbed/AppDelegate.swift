@@ -39,7 +39,7 @@ extension AppDelegate {
         
         buildFileMenu(with: builder)
         buildEditMenu(with: builder)
-        buildViewMenu(with: builder)
+        buildBoardMenu(with: builder)
         buildWindowMenu(with: builder)
     }
     
@@ -79,14 +79,25 @@ extension AppDelegate {
         builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
     }
     
-    private func buildViewMenu(with builder: UIMenuBuilder) {
-        let refreshCommand = UIKeyCommand(title: "Refresh Board",
-                                          image: UIImage(systemName: "arrow.clockwise"),
-                                          action: #selector(BoardViewController.refreshBoardData(_:)),
-                                          input: "r",
-                                          modifierFlags: .command)
-        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
-        builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
+    private func buildBoardMenu(with builder: UIMenuBuilder) {
+        let boardMenu = UIMenu(title: "Board", children: [
+            UIKeyCommand(title: "Reload Board",
+                         image: UIImage(systemName: "arrow.clockwise"),
+                         action: #selector(BoardViewController.refreshBoardData(_:)),
+                         input: "r",
+                         modifierFlags: .command),
+            UICommand(title: "Board Settings",
+                      image: UIImage(systemName: "gear"),
+                      action: #selector(BoardViewController.editBoard)),
+            UICommand(title: "New Column",
+                      image: UIImage(systemName: "plus.square"),
+                      action: #selector(BoardViewController.addColumn(_:))),
+            UICommand(title: "Delete Board",
+                      image: UIImage(systemName: "trash"),
+                      action: #selector(BoardViewController.deleteBoard))
+        ])
+        
+        builder.insertSibling(boardMenu, beforeMenu: .window)
     }
     
     private func buildWindowMenu(with builder: UIMenuBuilder) {
