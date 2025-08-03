@@ -17,7 +17,11 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     @IBOutlet var headerView: UIView!
     @IBOutlet var title: UILabel!
-    @IBOutlet var columnMenuButton: UIButton!
+    @IBOutlet var columnMenuButton: UIButton! {
+        didSet {
+            configureColumnMenu()
+        }
+    }
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
             configureCollectionView()
@@ -234,6 +238,18 @@ class CollectionViewColumnCell: UICollectionViewCell,
     private func fixTitleColors() {
         title.textColor = UIColor(cgColor: UIColor.label.cgColor)
     }
+    
+    private func configureColumnMenu() {
+        columnMenuButton.menu = UIMenu(children: [
+            UIAction(title: "Column settings", image: UIImage(systemName: "gear")) { _ in
+                self.showColumnSettings()
+            },
+            UIAction(title: "Delete column", image: UIImage(systemName: "trash")) { _ in
+                // TODO: confirm
+                self.deleteColumn()
+            },
+        ])
+    }
 
     // MARK: - private helpers
 
@@ -267,13 +283,13 @@ class CollectionViewColumnCell: UICollectionViewCell,
     
     // MARK: - actions
 
-    @IBAction func showColumnSettings(_ sender: Any?) {
+    @IBAction func showColumnSettings() {
         guard let delegate = delegate,
               let column = column else { return }
         delegate.edit(column: column)
     }
 
-    @IBAction func deleteColumn(_ sender: Any?) {
+    @IBAction func deleteColumn() {
         guard let delegate = delegate,
               let column = column else { return }
         delegate.delete(column: column)
