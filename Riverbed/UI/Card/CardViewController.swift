@@ -134,7 +134,9 @@ class CardViewController: UITableViewController,
         updateInstructionLabel()
 
         let actions = Element.ElementType.allCases.map { (elementType) in
-            UIAction(title: "Add \(elementType.label)") { [weak self] _ in self?.addElement(of: elementType) }
+            UIAction(title: "Add \(elementType.label)", image: UIImage(systemName: "plus.square")) { [weak self] _ in
+                self?.addElement(of: elementType)
+            }
         }
         addElementButton.menu = UIMenu(children: actions)
     }

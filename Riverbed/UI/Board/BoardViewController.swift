@@ -133,10 +133,12 @@ class BoardViewController: UIViewController,
         if #available(iOS 16.0, *) {
             navigationItem.titleMenuProvider = { _ in
                 UIMenu(children: [
-                    UIAction(title: "Board Settings") { [weak self] _ in
+                    UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
                         self?.editBoard()
                     },
-                    UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
+                    UIAction(title: "Delete Board",
+                             image: UIImage(systemName: "trash"),
+                             attributes: [.destructive]) { [weak self] _ in
                         self?.deleteBoard()
                     }
                 ])
@@ -145,10 +147,12 @@ class BoardViewController: UIViewController,
             navigationItem.titleView = titleButton
 
             let menu = UIMenu(children: [
-                UIAction(title: "Board Settings") { [weak self] _ in
+                UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
                     self?.editBoard()
                 },
-                UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
+                UIAction(title: "Delete Board",
+                         image: UIImage(systemName: "trash"),
+                         attributes: [.destructive]) { [weak self] _ in
                     self?.deleteBoard()
                 }
             ])

@@ -80,24 +80,26 @@ class BoardListCollectionViewController: UICollectionViewController,
         }
         menuButton.menu = UIMenu(children: [
             UIMenu(options: .displayInline, children: [
-                UIAction(title: "User settings") { _ in
+                UIAction(title: "User settings", image: UIImage(systemName: "gear")) { _ in
                     self.showUserSettings()
                 },
-                UIAction(title: "Sign out") { _ in
+                UIAction(title: "Sign out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right")) { _ in
                     self.signOut()
                     self.checkForSignInFormDisplay()
                 }
             ]),
             UIMenu(title: "More info", children: [
-                UIAction(title: "About") { _ in
+                UIAction(title: "About", image: UIImage(systemName: "info.circle")) { _ in
                     self.showAboutPage()
                 },
-                UIAction(title: "Source code") { _ in
+                UIAction(title: "Source code", image: UIImage(systemName: "curlybraces")) { _ in
                     self.showSourceCode()
                 }
             ]),
             UIMenu(title: "Danger Zone", children: [
-                UIAction(title: "Delete my account", attributes: [.destructive]) { _ in
+                UIAction(title: "Delete my account",
+                         image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                         attributes: [.destructive]) { _ in
                     self.confirmDeleteAccount()
                 }
             ])
