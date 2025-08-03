@@ -271,9 +271,9 @@
                                             </constraints>
                                             <menu key="menu" id="bh6-0w-My0">
                                                 <children>
-                                                    <command title="Add Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
-                                                    <command title="Add Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
-                                                    <command title="Add Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
+                                                    <command title="New Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
+                                                    <command title="New Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
+                                                    <command title="New Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
                                                 </children>
                                             </menu>
                                             <state key="normal" image="plus" catalog="system"/>

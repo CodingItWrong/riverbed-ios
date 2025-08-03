@@ -38,8 +38,8 @@ extension AppDelegate {
         guard builder.system == .main else { return }
         
         buildFileMenu(with: builder)
-        buildEditMenu(with: builder)
         buildBoardMenu(with: builder)
+        buildCardMenu(with: builder)
         buildWindowMenu(with: builder)
     }
     
@@ -79,16 +79,6 @@ extension AppDelegate {
         builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
     }
     
-    private func buildEditMenu(with builder: UIMenuBuilder) {
-        let deleteCardCommand = UIKeyCommand(title: "Delete Card",
-                                             image: UIImage(systemName: "trash"),
-                                             action: #selector(CardViewController.deleteCard(_:)),
-                                             input: UIKeyCommand.inputDelete,
-                                             modifierFlags: .command)
-        let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
-        builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
-    }
-    
     private func buildBoardMenu(with builder: UIMenuBuilder) {
         let boardMenu = UIMenu(title: "Board", children: [
             UIKeyCommand(title: "Reload Board",
@@ -108,6 +98,30 @@ extension AppDelegate {
         ])
         
         builder.insertSibling(boardMenu, beforeMenu: .window)
+    }
+    
+    private func buildCardMenu(with builder: UIMenuBuilder) {
+        let cardMenu = UIMenu(title: "Card", children: [
+            UICommand(title: "Configure Fields",
+                         image: UIImage(systemName: "wrench"),
+                         action: #selector(CardViewController.beginEditing(_:))),
+            UICommand(title: "New Field",
+                      image: UIImage(systemName: "plus.square"),
+                      action: #selector(CardViewController.addField(_:))),
+            UICommand(title: "New Button",
+                      image: UIImage(systemName: "plus.square"),
+                      action: #selector(CardViewController.addButton(_:))),
+            UICommand(title: "New Button Menu",
+                      image: UIImage(systemName: "plus.square"),
+                      action: #selector(CardViewController.addButtonMenu(_:))),
+            UIKeyCommand(title: "Delete Card",
+                         image: UIImage(systemName: "trash"),
+                         action: #selector(CardViewController.deleteCard(_:)),
+                         input: UIKeyCommand.inputDelete,
+                         modifierFlags: .command)
+        ])
+        
+        builder.insertSibling(cardMenu, beforeMenu: .window)
     }
     
     private func buildWindowMenu(with builder: UIMenuBuilder) {
