@@ -1250,7 +1250,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
@@ -1281,7 +1281,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Riverbed/Riverbed.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
@@ -1380,7 +1380,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
@@ -1406,7 +1406,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = RiverbedShare/RiverbedShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RiverbedShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Riverbed;
