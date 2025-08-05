@@ -74,7 +74,6 @@ class BoardViewController: UIViewController,
 
                     titleLabel.text = board.attributes.name ?? Board.defaultName
                     titleLabel.font = .preferredFont(forTextStyle: .title3)
-                    fixTitleColors()
 
                     let imageView = UIImageView(image: image)
                     let titleView = UIStackView(arrangedSubviews: [imageView, titleLabel])
@@ -152,8 +151,6 @@ class BoardViewController: UIViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        fixTitleColors()
 
         // needed here as the splitViewController is not available at the start of the segue
         updateSplitViewTintColorForBoard()
@@ -290,8 +287,6 @@ class BoardViewController: UIViewController,
         super.traitCollectionDidChange(previousTraitCollection)
         
         configureForCurrentSizeClass()
-        
-        fixTitleColors()
     }
 
     func configureForCurrentSizeClass() {
@@ -307,10 +302,6 @@ class BoardViewController: UIViewController,
         splitViewController.view.tintColor = board.attributes.colorTheme?.uiColor ?? ColorTheme.defaultUIColor
     }
 
-    private func fixTitleColors() {
-        titleLabel.textColor = UIColor(cgColor: UIColor.label.cgColor)
-    }
-    
     // MARK: - actions
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
