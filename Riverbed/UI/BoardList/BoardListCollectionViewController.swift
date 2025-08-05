@@ -71,39 +71,41 @@ class BoardListCollectionViewController: UICollectionViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !isPlatformMac() {
+        if isPlatformMac() {
+            navigationItem.rightBarButtonItem = nil
+        } else {
             fixTitleColors()
+            
+            guard let menuButton = navigationItem.rightBarButtonItem else {
+                preconditionFailure("Expected a right bar button item")
+            }
+            menuButton.menu = UIMenu(children: [
+                UIMenu(options: .displayInline, children: [
+                    UIAction(title: "User Settings", image: UIImage(systemName: "gear")) { _ in
+                        self.showUserSettings()
+                    },
+                    UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right")) { _ in
+                        self.signOut()
+                    }
+                ]),
+                UIMenu(title: "More Info", children: [
+                    UIAction(title: "About", image: UIImage(systemName: "info.circle")) { _ in
+                        self.showAboutPage()
+                    },
+                    UIAction(title: "Source Code", image: UIImage(systemName: "curlybraces")) { _ in
+                        self.showSourceCode()
+                    }
+                ]),
+                UIMenu(title: "Danger Zone", children: [
+                    UIAction(title: "Delete My Account",
+                             image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                             attributes: [.destructive]) { _ in
+                        self.confirmDeleteAccount()
+                    }
+                ])
+            ])
         }
         
-        guard let menuButton = navigationItem.rightBarButtonItem else {
-            preconditionFailure("Expected a right bar button item")
-        }
-        menuButton.menu = UIMenu(children: [
-            UIMenu(options: .displayInline, children: [
-                UIAction(title: "User Settings", image: UIImage(systemName: "gear")) { _ in
-                    self.showUserSettings()
-                },
-                UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right")) { _ in
-                    self.signOut()
-                }
-            ]),
-            UIMenu(title: "More Info", children: [
-                UIAction(title: "About", image: UIImage(systemName: "info.circle")) { _ in
-                    self.showAboutPage()
-                },
-                UIAction(title: "Source Code", image: UIImage(systemName: "curlybraces")) { _ in
-                    self.showSourceCode()
-                }
-            ]),
-            UIMenu(title: "Danger Zone", children: [
-                UIAction(title: "Delete My Account",
-                         image: UIImage(systemName: "person.crop.circle.badge.xmark"),
-                         attributes: [.destructive]) { _ in
-                    self.confirmDeleteAccount()
-                }
-            ])
-        ])
-
         configureCollectionView()
         loadBoards()
     }
