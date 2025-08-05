@@ -37,10 +37,22 @@ extension AppDelegate {
         super.buildMenu(with: builder)
         guard builder.system == .main else { return }
         
+        buildApplicationMenu(with: builder)
         buildFileMenu(with: builder)
         buildViewMenu(with: builder)
         buildBoardMenu(with: builder)
         buildCardMenu(with: builder)
+    }
+    
+    private func buildApplicationMenu(with builder: UIMenuBuilder) {
+        builder.remove(menu: .about)
+        
+        let aboutCommand = UICommand(title: "About Riverbed",
+                                     image: UIImage(systemName: "info.circle"),
+                                     action: #selector(RiverbedSplitViewController.about(_:)))
+        
+        let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand])
+        builder.insertChild(topAppMenuCommands, atStartOfMenu: .application)
     }
     
     private func buildFileMenu(with builder: UIMenuBuilder) {

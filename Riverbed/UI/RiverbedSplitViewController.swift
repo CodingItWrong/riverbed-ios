@@ -28,6 +28,10 @@ class RiverbedSplitViewController: UISplitViewController,
     
     // MARK: - menu commands
     
+    @objc func about(_ sender: Any?) {
+        boardListVC.showAboutPage()
+    }
+    
     @objc func newBoard(_ sender: Any?) {
         boardListVC.createBoard(sender)
     }
