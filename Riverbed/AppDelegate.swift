@@ -50,8 +50,11 @@ extension AppDelegate {
         let aboutCommand = UICommand(title: "About Riverbed",
                                      image: UIImage(systemName: "info.circle"),
                                      action: #selector(RiverbedSplitViewController.about(_:)))
+        let sourceCodeCommand = UICommand(title: "Source Code",
+                                          image: UIImage(systemName: "curlybraces"),
+                                          action: #selector(RiverbedSplitViewController.sourceCode(_:)))
         
-        let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand])
+        let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand, sourceCodeCommand])
         builder.insertChild(topAppMenuCommands, atStartOfMenu: .application)
         
         let userSettingsCommand = UICommand(title: "User Settings…",

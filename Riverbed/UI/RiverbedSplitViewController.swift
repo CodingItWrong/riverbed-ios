@@ -32,6 +32,10 @@ class RiverbedSplitViewController: UISplitViewController,
         boardListVC.showAboutPage()
     }
     
+    @objc func sourceCode(_ sender: Any?) {
+        boardListVC.showSourceCode()
+    }
+    
     @objc func userSettings(_ sender: Any?) {
         boardListVC.showUserSettings()
     }
