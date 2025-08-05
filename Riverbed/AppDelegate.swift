@@ -57,7 +57,11 @@ extension AppDelegate {
         let userSettingsCommand = UICommand(title: "User Settings…",
                                             image: UIImage(systemName: "gear"),
                                             action: #selector(RiverbedSplitViewController.userSettings(_:)))
-        builder.insertSibling(UIMenu(options: .displayInline, children: [userSettingsCommand]), afterMenu: .preferences)
+        let signOutCommand = UICommand(title: "Sign Out",
+                                       image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                                       action: #selector(RiverbedSplitViewController.signOut))
+        let settingsMenuCommands = [userSettingsCommand, signOutCommand]
+        builder.insertSibling(UIMenu(options: .displayInline, children: settingsMenuCommands), afterMenu: .preferences)
     }
     
     private func buildFileMenu(with builder: UIMenuBuilder) {
@@ -88,12 +92,6 @@ extension AppDelegate {
         }
         let topFileCommandsMenu = UIMenu(options: .displayInline, children: topFileMenuCommands)
         builder.insertChild(topFileCommandsMenu, atStartOfMenu: .file)
-        
-        let signOutCommand = UICommand(title: "Sign Out",
-                                       image: UIImage(systemName: "person.crop.circle.badge.xmark"),
-                                       action: #selector(RiverbedSplitViewController.signOut))
-        let bottomFileCommandsMenu = UIMenu(options: .displayInline, children: [signOutCommand])
-        builder.insertChild(bottomFileCommandsMenu, atEndOfMenu: .file)
     }
     
     private func buildViewMenu(with builder: UIMenuBuilder) {
