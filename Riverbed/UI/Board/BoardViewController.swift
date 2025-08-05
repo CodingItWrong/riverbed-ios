@@ -70,8 +70,6 @@ class BoardViewController: UIViewController,
             
             if #available(iOS 16.0, *) {
                 if let board = board {
-//                    navigationItem.title = board.attributes.name ?? Board.defaultName
-
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
                     titleLabel.text = board.attributes.name ?? Board.defaultName
@@ -91,7 +89,6 @@ class BoardViewController: UIViewController,
                 if let board = board {
                     titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
-                    // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
                     titleButton.setImage(image, for: .normal)
                     titleButton.sizeToFit()
                 } else {
