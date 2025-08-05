@@ -32,6 +32,10 @@ class RiverbedSplitViewController: UISplitViewController,
         boardListVC.showAboutPage()
     }
     
+    @objc func userSettings(_ sender: Any?) {
+        boardListVC.showUserSettings()
+    }
+    
     @objc func newBoard(_ sender: Any?) {
         boardListVC.createBoard(sender)
     }

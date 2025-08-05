@@ -53,6 +53,11 @@ extension AppDelegate {
         
         let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand])
         builder.insertChild(topAppMenuCommands, atStartOfMenu: .application)
+        
+        let userSettingsCommand = UICommand(title: "User Settings…",
+                                            image: UIImage(systemName: "gear"),
+                                            action: #selector(RiverbedSplitViewController.userSettings(_:)))
+        builder.insertSibling(UIMenu(options: .displayInline, children: [userSettingsCommand]), afterMenu: .preferences)
     }
     
     private func buildFileMenu(with builder: UIMenuBuilder) {
