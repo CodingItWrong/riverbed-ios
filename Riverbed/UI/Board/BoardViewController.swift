@@ -127,33 +127,35 @@ class BoardViewController: UIViewController,
             outerViewBottomNonSafeAreaConstraint.isActive = false
         }
 
-        if #available(iOS 16.0, *) {
-            navigationItem.titleMenuProvider = { _ in
-                UIMenu(children: [
+        if !isPlatformMac() {
+            if #available(iOS 16.0, *) {
+                navigationItem.titleMenuProvider = { _ in
+                    UIMenu(children: [
+                        UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
+                            self?.editBoard()
+                        },
+                        UIAction(title: "Delete Board",
+                                 image: UIImage(systemName: "trash"),
+                                 attributes: [.destructive]) { [weak self] _ in
+                                     self?.deleteBoard()
+                                 }
+                    ])
+                }
+            } else {
+                navigationItem.titleView = titleButton
+                
+                let menu = UIMenu(children: [
                     UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
                         self?.editBoard()
                     },
                     UIAction(title: "Delete Board",
                              image: UIImage(systemName: "trash"),
                              attributes: [.destructive]) { [weak self] _ in
-                        self?.deleteBoard()
-                    }
+                                 self?.deleteBoard()
+                             }
                 ])
+                titleButton.menu = menu
             }
-        } else {
-            navigationItem.titleView = titleButton
-
-            let menu = UIMenu(children: [
-                UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
-                    self?.editBoard()
-                },
-                UIAction(title: "Delete Board",
-                         image: UIImage(systemName: "trash"),
-                         attributes: [.destructive]) { [weak self] _ in
-                    self?.deleteBoard()
-                }
-            ])
-            titleButton.menu = menu
         }
     }
 
