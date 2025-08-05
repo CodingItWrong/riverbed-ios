@@ -218,7 +218,9 @@ class CardSummaryCollectionCell: UICollectionViewCell,
                     }
             }()
 
-            let deleteAction = UIAction(title: "Delete", attributes: [.destructive]) { [weak self] _ in
+            let deleteAction = UIAction(title: "Delete",
+                                        image: UIImage(systemName: "trash"),
+                                        attributes: [.destructive]) { [weak self] _ in
                 // deleted the wrong card! did it preview the wrong one too?
                 self?.delegate?.delete(card: card)
             }

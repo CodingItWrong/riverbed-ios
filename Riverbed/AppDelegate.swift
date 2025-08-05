@@ -37,10 +37,39 @@ extension AppDelegate {
         super.buildMenu(with: builder)
         guard builder.system == .main else { return }
         
+        buildApplicationMenu(with: builder)
         buildFileMenu(with: builder)
-        buildEditMenu(with: builder)
         buildViewMenu(with: builder)
-        buildWindowMenu(with: builder)
+        buildBoardMenu(with: builder)
+        buildCardMenu(with: builder)
+    }
+    
+    private func buildApplicationMenu(with builder: UIMenuBuilder) {
+        builder.remove(menu: .about)
+        
+        let aboutCommand = UICommand(title: "About Riverbed",
+                                     image: UIImage(systemName: "info.circle"),
+                                     action: #selector(RiverbedSplitViewController.about(_:)))
+        let sourceCodeCommand = UICommand(title: "Source Code",
+                                          image: UIImage(systemName: "curlybraces"),
+                                          action: #selector(RiverbedSplitViewController.sourceCode(_:)))
+        
+        let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand, sourceCodeCommand])
+        builder.insertChild(topAppMenuCommands, atStartOfMenu: .application)
+
+        let deleteAccountCommand = UICommand(title: "Delete My Account",
+                                             image: UIImage(systemName: "exclamationmark.triangle.fill"),
+                                       action: #selector(RiverbedSplitViewController.confirmDeleteAccount(_:)))
+        builder.insertSibling(UIMenu(options: .displayInline, children: [deleteAccountCommand]), afterMenu: .preferences)
+
+        let userSettingsCommand = UICommand(title: "User Settings…",
+                                            image: UIImage(systemName: "gear"),
+                                            action: #selector(RiverbedSplitViewController.userSettings(_:)))
+        let signOutCommand = UICommand(title: "Sign Out",
+                                       image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                                       action: #selector(RiverbedSplitViewController.signOut))
+        let settingsMenuCommands = [userSettingsCommand, signOutCommand]
+        builder.insertSibling(UIMenu(options: .displayInline, children: settingsMenuCommands), afterMenu: .preferences)
     }
     
     private func buildFileMenu(with builder: UIMenuBuilder) {
@@ -49,52 +78,97 @@ extension AppDelegate {
 
         let newWindowCommand = newSceneMenu?.children.first as? UIKeyCommand
         
+        let newBoardCommand = UICommand(title: "New Board",
+                                        image: UIImage(systemName: "plus.square"),
+                                        action: #selector(RiverbedSplitViewController.newBoard(_:)))
+                
         let newCardCommand = UIKeyCommand(title: "New Card",
                                           image: newWindowCommand?.image ?? UIImage(systemName: "plus.square"),
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: [.command])
-        var fileMenuCommands = [newCardCommand]
+        var topFileMenuCommands = [newBoardCommand, newCardCommand]
         if let newWindowCommand = newWindowCommand,
             let action = newWindowCommand.action,
             let input = newWindowCommand.input {
             let myNewWindowCommand = UIKeyCommand(title: newWindowCommand.title,
                                                   image: newWindowCommand.image,
-                                                 action: action,
-                                                 input: input,
-                                                 modifierFlags: newWindowCommand.modifierFlags.union(.shift))
-            fileMenuCommands.append(myNewWindowCommand)
+                                                  action: action,
+                                                  input: input,
+                                                  modifierFlags: newWindowCommand.modifierFlags.union(.shift))
+            topFileMenuCommands.insert(myNewWindowCommand, at: 0)
         }
-        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
-        builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
-    }
-    
-    private func buildEditMenu(with builder: UIMenuBuilder) {
-        let deleteCardCommand = UIKeyCommand(title: "Delete Card",
-                                             image: UIImage(systemName: "trash"),
-                                             action: #selector(CardViewController.deleteCard(_:)),
-                                             input: UIKeyCommand.inputDelete,
-                                             modifierFlags: .command)
-        let additionalEditCommandsMenu = UIMenu(options: .displayInline, children: [deleteCardCommand])
-        builder.insertChild(additionalEditCommandsMenu, atEndOfMenu: .edit)
+        let topFileCommandsMenu = UIMenu(options: .displayInline, children: topFileMenuCommands)
+        builder.insertChild(topFileCommandsMenu, atStartOfMenu: .file)
     }
     
     private func buildViewMenu(with builder: UIMenuBuilder) {
-        let refreshCommand = UIKeyCommand(title: "Refresh Board",
-                                          image: UIImage(systemName: "arrow.clockwise"),
-                                          action: #selector(BoardViewController.refreshBoardData(_:)),
-                                          input: "r",
-                                          modifierFlags: .command)
-        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [refreshCommand])
+        let reloadBoardsCommand = UIKeyCommand(title: "Reload Boards",
+                                               image: UIImage(systemName: "arrow.clockwise"),
+                                               action: #selector(RiverbedSplitViewController.reloadBoards(_:)),
+                                               input: "r",
+                                               modifierFlags: [.command, .shift])
+        
+        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [reloadBoardsCommand])
         builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
     }
     
-    private func buildWindowMenu(with builder: UIMenuBuilder) {
-        let closeModalCommand = UIKeyCommand(title: "Close Card",
-                                             action: #selector(CardViewController.dismissVC(_:)),
-                                             input: UIKeyCommand.inputEscape)
-        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
-        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
+    private func buildBoardMenu(with builder: UIMenuBuilder) {
+        let boardMenu = UIMenu(title: "Board", children: [
+            UIKeyCommand(title: "Reload Board",
+                         image: UIImage(systemName: "arrow.clockwise"),
+                         action: #selector(BoardViewController.refreshBoardData(_:)),
+                         input: "r",
+                         modifierFlags: .command),
+            UICommand(title: "Board Settings",
+                      image: UIImage(systemName: "gear"),
+                      action: #selector(BoardViewController.editBoard)),
+            UICommand(title: "New Column",
+                      image: UIImage(systemName: "plus.square"),
+                      action: #selector(BoardViewController.addColumn(_:))),
+            UIMenu(options:.displayInline, children: [
+                UICommand(title: "Delete Board",
+                          image: UIImage(systemName: "trash"),
+                          action: #selector(BoardViewController.deleteBoard))
+            ])
+        ])
+        
+        builder.insertSibling(boardMenu, beforeMenu: .window)
     }
+    
+    private func buildCardMenu(with builder: UIMenuBuilder) {
+        let cardMenu = UIMenu(title: "Card", children: [
+            UICommand(title: "Configure Fields",
+                         image: UIImage(systemName: "wrench"),
+                         action: #selector(CardViewController.beginEditing(_:))),
+            UIKeyCommand(title: "Close Card",
+                         image: UIImage(systemName: "xmark"),
+                         action: #selector(CardViewController.dismissVC(_:)),
+                         input: UIKeyCommand.inputEscape),
+            UIMenu(options: .displayInline, children: [
+                UICommand(title: "New Field",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addField(_:))),
+                UICommand(title: "New Button",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addButton(_:))),
+                UICommand(title: "New Button Menu",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addButtonMenu(_:))),
+            ]),
+            UIKeyCommand(title: "Delete Card",
+                         image: UIImage(systemName: "trash"),
+                         action: #selector(CardViewController.deleteCard(_:)),
+                         input: UIKeyCommand.inputDelete,
+                         modifierFlags: .command)
+        ])
+        
+        builder.insertSibling(cardMenu, beforeMenu: .window)
+    }
+    
+//    private func buildWindowMenu(with builder: UIMenuBuilder) {
+//        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
+//        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
+//    }
     
 }

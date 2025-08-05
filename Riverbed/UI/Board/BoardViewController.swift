@@ -70,8 +70,6 @@ class BoardViewController: UIViewController,
             
             if #available(iOS 16.0, *) {
                 if let board = board {
-//                    navigationItem.title = board.attributes.name ?? Board.defaultName
-
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
 
                     titleLabel.text = board.attributes.name ?? Board.defaultName
@@ -91,7 +89,6 @@ class BoardViewController: UIViewController,
                 if let board = board {
                     titleButton.configuration?.title = board.attributes.name ?? Board.defaultName
                     let image = board.attributes.icon?.image ?? Icon.defaultBoardImage
-                    // let scaledImage = image.applyingSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small))
                     titleButton.setImage(image, for: .normal)
                     titleButton.sizeToFit()
                 } else {
@@ -130,29 +127,26 @@ class BoardViewController: UIViewController,
             outerViewBottomNonSafeAreaConstraint.isActive = false
         }
 
-        if #available(iOS 16.0, *) {
-            navigationItem.titleMenuProvider = { _ in
-                UIMenu(children: [
-                    UIAction(title: "Board Settings") { [weak self] _ in
-                        self?.editBoard()
-                    },
-                    UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
-                        self?.deleteBoard()
-                    }
-                ])
-            }
-        } else {
-            navigationItem.titleView = titleButton
-
-            let menu = UIMenu(children: [
-                UIAction(title: "Board Settings") { [weak self] _ in
+        if !isPlatformMac() {
+            let menuItems = [
+                UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
                     self?.editBoard()
                 },
-                UIAction(title: "Delete Board", attributes: [.destructive]) { [weak self] _ in
-                    self?.deleteBoard()
+                UIAction(title: "Delete Board",
+                         image: UIImage(systemName: "trash"),
+                         attributes: [.destructive]) { [weak self] _ in
+                             self?.deleteBoard()
+                         }
+            ]
+            
+            if #available(iOS 16.0, *) {
+                navigationItem.titleMenuProvider = { _ in
+                    UIMenu(children: menuItems)
                 }
-            ])
-            titleButton.menu = menu
+            } else {
+                navigationItem.titleView = titleButton
+                titleButton.menu = UIMenu(children: menuItems)
+            }
         }
     }
 
@@ -362,13 +356,13 @@ class BoardViewController: UIViewController,
         loadBoardData(refreshControl)
     }
 
-    func editBoard() {
+    @objc func editBoard() {
         if board != nil {
             performSegue(withIdentifier: "editBoard", sender: nil)
         }
     }
 
-    func deleteBoard() {
+    @objc func deleteBoard() {
         guard let board = board else { return }
 
         let boardDescriptor = board.attributes.name ?? "this board"
@@ -461,7 +455,7 @@ class BoardViewController: UIViewController,
 
     func delete(column: Column) {
         let columnDescriptor = column.attributes.name ?? "this board"
-        let message = "Are you sure you want to delete \(columnDescriptor)? " +
+        let message = "Are you sure you want to delete column \"\(columnDescriptor)\"? " +
                       "Cards in this column will still be available in other columns."
         let alert = UIAlertController(title: "Delete Column?",
                                       message: message,

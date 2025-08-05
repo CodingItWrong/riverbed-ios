@@ -134,7 +134,9 @@ class CardViewController: UITableViewController,
         updateInstructionLabel()
 
         let actions = Element.ElementType.allCases.map { (elementType) in
-            UIAction(title: "Add \(elementType.label)") { [weak self] _ in self?.addElement(of: elementType) }
+            UIAction(title: "New \(elementType.label)", image: UIImage(systemName: "plus.square")) { [weak self] _ in
+                self?.addElement(of: elementType)
+            }
         }
         addElementButton.menu = UIMenu(children: actions)
     }
@@ -218,6 +220,26 @@ class CardViewController: UITableViewController,
     }
 
     // MARK: - actions
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(addField(_:)) || action == #selector(addButton(_:)) || action == #selector(addButtonMenu(_:)) {
+            return isEditing
+        } else {
+            return true
+        }
+    }
+    
+    @objc func addField(_ sender: Any?) {
+        addElement(of: .field)
+    }
+
+    @objc func addButton(_ sender: Any?) {
+        addElement(of: .button)
+    }
+
+    @objc func addButtonMenu(_ sender: Any?) {
+        addElement(of: .buttonMenu)
+    }
 
     func addElement(of elementType: Element.ElementType) {
         elementStore.create(of: elementType, on: board) { [weak self] (result) in

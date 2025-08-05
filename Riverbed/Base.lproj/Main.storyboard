@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24093.9" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24112" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="7"/>
     <dependencies>
@@ -94,21 +94,6 @@
                                                                     <rect key="frame" x="92" y="8" width="18.666666666666671" height="27"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Column Menu"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                                                    <menu key="menu" id="Qhg-nT-Rdv">
-                                                                        <children>
-                                                                            <command title="Column Settings" id="K1Q-Nc-KrP" userLabel="Column Settings">
-                                                                                <connections>
-                                                                                    <action selector="showColumnSettings:" destination="SQU-q4-32P" id="4t4-DI-j4v"/>
-                                                                                </connections>
-                                                                            </command>
-                                                                            <command title="Delete Column" id="BWJ-fR-fQz" userLabel="Delete Column">
-                                                                                <menuElementAttributes key="attributes" destructive="YES"/>
-                                                                                <connections>
-                                                                                    <action selector="deleteColumn:" destination="SQU-q4-32P" id="aqo-v5-hkV"/>
-                                                                                </connections>
-                                                                            </command>
-                                                                        </children>
-                                                                    </menu>
                                                                     <state key="normal" image="ellipsis" catalog="system"/>
                                                                 </button>
                                                             </subviews>
@@ -150,7 +135,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14Q-xw-yRO">
                                                             <rect key="frame" x="158.5" y="8" width="137" height="34.5"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" title="Add Column" imagePadding="5">
+                                                            <buttonConfiguration key="configuration" style="plain" title="New Column" imagePadding="5">
                                                                 <imageReference key="image" image="plus" catalog="system" symbolScale="small"/>
                                                                 <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
                                                             </buttonConfiguration>
@@ -286,9 +271,9 @@
                                             </constraints>
                                             <menu key="menu" id="bh6-0w-My0">
                                                 <children>
-                                                    <command title="Add Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
-                                                    <command title="Add Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
-                                                    <command title="Add Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
+                                                    <command title="New Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
+                                                    <command title="New Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
+                                                    <command title="New Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
                                                 </children>
                                             </menu>
                                             <state key="normal" image="plus" catalog="system"/>

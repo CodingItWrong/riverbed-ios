@@ -25,5 +25,40 @@ class RiverbedSplitViewController: UISplitViewController,
         // show left VC first on iPhone
         .primary
     }
+    
+    // MARK: - menu commands
+    
+    @objc func about(_ sender: Any?) {
+        boardListVC.showAboutPage()
+    }
+    
+    @objc func sourceCode(_ sender: Any?) {
+        boardListVC.showSourceCode()
+    }
+    
+    @objc func userSettings(_ sender: Any?) {
+        boardListVC.showUserSettings()
+    }
+    
+    @objc func newBoard(_ sender: Any?) {
+        boardListVC.createBoard(sender)
+    }
+    
+    @objc func reloadBoards(_ sender: Any?) {
+        boardListVC.loadBoards()
+    }
+    
+    @objc func signOut(_ sender: Any?) {
+        boardListVC.signOut()
+    }
+    
+    @objc func confirmDeleteAccount(_ sender: Any?) {
+        boardListVC.confirmDeleteAccount()
+    }
+    
+    private var boardListVC: BoardListCollectionViewController {
+        let boardListNavVC = viewController(for: .primary) as! UINavigationController
+        return boardListNavVC.viewControllers.first as! BoardListCollectionViewController
+    }
 
 }
