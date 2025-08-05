@@ -38,9 +38,9 @@ extension AppDelegate {
         guard builder.system == .main else { return }
         
         buildFileMenu(with: builder)
+        buildViewMenu(with: builder)
         buildBoardMenu(with: builder)
         buildCardMenu(with: builder)
-        buildWindowMenu(with: builder)
     }
     
     private func buildFileMenu(with builder: UIMenuBuilder) {
@@ -52,19 +52,13 @@ extension AppDelegate {
         let newBoardCommand = UICommand(title: "New Board",
                                         image: UIImage(systemName: "plus.square"),
                                         action: #selector(RiverbedSplitViewController.newBoard(_:)))
-        
-        let reloadBoardsCommand = UIKeyCommand(title: "Reload Boards",
-                                               image: UIImage(systemName: "arrow.clockwise"),
-                                               action: #selector(RiverbedSplitViewController.reloadBoards(_:)),
-                                               input: "r",
-                                               modifierFlags: [.command, .shift])
-        
+                
         let newCardCommand = UIKeyCommand(title: "New Card",
                                           image: newWindowCommand?.image ?? UIImage(systemName: "plus.square"),
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: [.command])
-        var fileMenuCommands = [newBoardCommand, newCardCommand, reloadBoardsCommand] // TODO: order, grouping
+        var fileMenuCommands = [newBoardCommand, newCardCommand]
         if let newWindowCommand = newWindowCommand,
             let action = newWindowCommand.action,
             let input = newWindowCommand.input {
@@ -77,6 +71,17 @@ extension AppDelegate {
         }
         let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
         builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
+    }
+    
+    private func buildViewMenu(with builder: UIMenuBuilder) {
+        let reloadBoardsCommand = UIKeyCommand(title: "Reload Boards",
+                                               image: UIImage(systemName: "arrow.clockwise"),
+                                               action: #selector(RiverbedSplitViewController.reloadBoards(_:)),
+                                               input: "r",
+                                               modifierFlags: [.command, .shift])
+        
+        let additionalViewCommandsMenu = UIMenu(options: .displayInline, children: [reloadBoardsCommand])
+        builder.insertChild(additionalViewCommandsMenu, atEndOfMenu: .view)
     }
     
     private func buildBoardMenu(with builder: UIMenuBuilder) {
@@ -92,9 +97,11 @@ extension AppDelegate {
             UICommand(title: "New Column",
                       image: UIImage(systemName: "plus.square"),
                       action: #selector(BoardViewController.addColumn(_:))),
-            UICommand(title: "Delete Board",
-                      image: UIImage(systemName: "trash"),
-                      action: #selector(BoardViewController.deleteBoard))
+            UIMenu(options:.displayInline, children: [
+                UICommand(title: "Delete Board",
+                          image: UIImage(systemName: "trash"),
+                          action: #selector(BoardViewController.deleteBoard))
+            ])
         ])
         
         builder.insertSibling(boardMenu, beforeMenu: .window)
@@ -105,15 +112,21 @@ extension AppDelegate {
             UICommand(title: "Configure Fields",
                          image: UIImage(systemName: "wrench"),
                          action: #selector(CardViewController.beginEditing(_:))),
-            UICommand(title: "New Field",
-                      image: UIImage(systemName: "plus.square"),
-                      action: #selector(CardViewController.addField(_:))),
-            UICommand(title: "New Button",
-                      image: UIImage(systemName: "plus.square"),
-                      action: #selector(CardViewController.addButton(_:))),
-            UICommand(title: "New Button Menu",
-                      image: UIImage(systemName: "plus.square"),
-                      action: #selector(CardViewController.addButtonMenu(_:))),
+            UIKeyCommand(title: "Close Card",
+                         image: UIImage(systemName: "xmark"),
+                         action: #selector(CardViewController.dismissVC(_:)),
+                         input: UIKeyCommand.inputEscape),
+            UIMenu(options: .displayInline, children: [
+                UICommand(title: "New Field",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addField(_:))),
+                UICommand(title: "New Button",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addButton(_:))),
+                UICommand(title: "New Button Menu",
+                          image: UIImage(systemName: "plus.square"),
+                          action: #selector(CardViewController.addButtonMenu(_:))),
+            ]),
             UIKeyCommand(title: "Delete Card",
                          image: UIImage(systemName: "trash"),
                          action: #selector(CardViewController.deleteCard(_:)),
@@ -124,12 +137,9 @@ extension AppDelegate {
         builder.insertSibling(cardMenu, beforeMenu: .window)
     }
     
-    private func buildWindowMenu(with builder: UIMenuBuilder) {
-        let closeModalCommand = UIKeyCommand(title: "Close Card",
-                                             action: #selector(CardViewController.dismissVC(_:)),
-                                             input: UIKeyCommand.inputEscape)
-        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
-        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
-    }
+//    private func buildWindowMenu(with builder: UIMenuBuilder) {
+//        let additionalWindowCommandsMenu = UIMenu(options: .displayInline, children: [closeModalCommand])
+//        builder.insertChild(additionalWindowCommandsMenu, atEndOfMenu: .window)
+//    }
     
 }
