@@ -58,7 +58,7 @@ extension AppDelegate {
                                           action: #selector(BoardViewController.addCard(_:)),
                                           input: "n",
                                           modifierFlags: [.command])
-        var fileMenuCommands = [newBoardCommand, newCardCommand]
+        var topFileMenuCommands = [newBoardCommand, newCardCommand]
         if let newWindowCommand = newWindowCommand,
             let action = newWindowCommand.action,
             let input = newWindowCommand.input {
@@ -67,10 +67,16 @@ extension AppDelegate {
                                                   action: action,
                                                   input: input,
                                                   modifierFlags: newWindowCommand.modifierFlags.union(.shift))
-            fileMenuCommands.append(myNewWindowCommand)
+            topFileMenuCommands.append(myNewWindowCommand)
         }
-        let additionalFileCommandsMenu = UIMenu(options: .displayInline, children: fileMenuCommands)
-        builder.insertChild(additionalFileCommandsMenu, atStartOfMenu: .file)
+        let topFileCommandsMenu = UIMenu(options: .displayInline, children: topFileMenuCommands)
+        builder.insertChild(topFileCommandsMenu, atStartOfMenu: .file)
+        
+        let signOutCommand = UICommand(title: "Sign Out",
+                                       image: UIImage(systemName: "person.crop.circle.badge.xmark"),
+                                       action: #selector(RiverbedSplitViewController.signOut))
+        let bottomFileCommandsMenu = UIMenu(options: .displayInline, children: [signOutCommand])
+        builder.insertChild(bottomFileCommandsMenu, atEndOfMenu: .file)
     }
     
     private func buildViewMenu(with builder: UIMenuBuilder) {

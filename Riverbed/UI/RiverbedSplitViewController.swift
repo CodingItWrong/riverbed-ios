@@ -29,15 +29,20 @@ class RiverbedSplitViewController: UISplitViewController,
     // MARK: - menu commands
     
     @objc func newBoard(_ sender: Any?) {
-        let boardListNavVC = viewController(for: .primary) as! UINavigationController
-        let boardListVC = boardListNavVC.viewControllers.first as! BoardListCollectionViewController
         boardListVC.createBoard(sender)
     }
     
     @objc func reloadBoards(_ sender: Any?) {
-        let boardListNavVC = viewController(for: .primary) as! UINavigationController
-        let boardListVC = boardListNavVC.viewControllers.first as! BoardListCollectionViewController
         boardListVC.loadBoards()
+    }
+    
+    @objc func signOut(_ sender: Any?) {
+        boardListVC.signOut()
+    }
+    
+    private var boardListVC: BoardListCollectionViewController {
+        let boardListNavVC = viewController(for: .primary) as! UINavigationController
+        return boardListNavVC.viewControllers.first as! BoardListCollectionViewController
     }
 
 }

@@ -85,7 +85,6 @@ class BoardListCollectionViewController: UICollectionViewController,
                 },
                 UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right")) { _ in
                     self.signOut()
-                    self.checkForSignInFormDisplay()
                 }
             ]),
             UIMenu(title: "More Info", children: [
@@ -336,7 +335,6 @@ class BoardListCollectionViewController: UICollectionViewController,
                             guard let self = self else { return }
 
                             self.signOut()
-                            self.checkForSignInFormDisplay()
                         }
                         alert.addAction(okAction)
                         alert.preferredAction = okAction
@@ -424,6 +422,7 @@ class BoardListCollectionViewController: UICollectionViewController,
 
     func signOut() {
         tokenSource.accessToken = nil
+        checkForSignInFormDisplay()
     }
 
     // MARK: - private helpers
