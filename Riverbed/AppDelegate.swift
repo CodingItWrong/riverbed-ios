@@ -67,7 +67,7 @@ extension AppDelegate {
                                                   action: action,
                                                   input: input,
                                                   modifierFlags: newWindowCommand.modifierFlags.union(.shift))
-            topFileMenuCommands.append(myNewWindowCommand)
+            topFileMenuCommands.insert(myNewWindowCommand, at: 0)
         }
         let topFileCommandsMenu = UIMenu(options: .displayInline, children: topFileMenuCommands)
         builder.insertChild(topFileCommandsMenu, atStartOfMenu: .file)
