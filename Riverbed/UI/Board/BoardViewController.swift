@@ -128,33 +128,24 @@ class BoardViewController: UIViewController,
         }
 
         if !isPlatformMac() {
+            let menuItems = [
+                UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
+                    self?.editBoard()
+                },
+                UIAction(title: "Delete Board",
+                         image: UIImage(systemName: "trash"),
+                         attributes: [.destructive]) { [weak self] _ in
+                             self?.deleteBoard()
+                         }
+            ]
+            
             if #available(iOS 16.0, *) {
                 navigationItem.titleMenuProvider = { _ in
-                    UIMenu(children: [
-                        UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
-                            self?.editBoard()
-                        },
-                        UIAction(title: "Delete Board",
-                                 image: UIImage(systemName: "trash"),
-                                 attributes: [.destructive]) { [weak self] _ in
-                                     self?.deleteBoard()
-                                 }
-                    ])
+                    UIMenu(children: menuItems)
                 }
             } else {
                 navigationItem.titleView = titleButton
-                
-                let menu = UIMenu(children: [
-                    UIAction(title: "Board Settings", image: UIImage(systemName: "gear")) { [weak self] _ in
-                        self?.editBoard()
-                    },
-                    UIAction(title: "Delete Board",
-                             image: UIImage(systemName: "trash"),
-                             attributes: [.destructive]) { [weak self] _ in
-                                 self?.deleteBoard()
-                             }
-                ])
-                titleButton.menu = menu
+                titleButton.menu = UIMenu(children: menuItems)
             }
         }
     }
