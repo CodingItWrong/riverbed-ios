@@ -52,6 +52,10 @@ class RiverbedSplitViewController: UISplitViewController,
         boardListVC.signOut()
     }
     
+    @objc func confirmDeleteAccount(_ sender: Any?) {
+        boardListVC.confirmDeleteAccount()
+    }
+    
     private var boardListVC: BoardListCollectionViewController {
         let boardListNavVC = viewController(for: .primary) as! UINavigationController
         return boardListNavVC.viewControllers.first as! BoardListCollectionViewController

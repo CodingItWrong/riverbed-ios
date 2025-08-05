@@ -56,7 +56,12 @@ extension AppDelegate {
         
         let topAppMenuCommands = UIMenu(options: .displayInline, children: [aboutCommand, sourceCodeCommand])
         builder.insertChild(topAppMenuCommands, atStartOfMenu: .application)
-        
+
+        let deleteAccountCommand = UICommand(title: "Delete My Account",
+                                             image: UIImage(systemName: "exclamationmark.triangle.fill"),
+                                       action: #selector(RiverbedSplitViewController.confirmDeleteAccount(_:)))
+        builder.insertSibling(UIMenu(options: .displayInline, children: [deleteAccountCommand]), afterMenu: .preferences)
+
         let userSettingsCommand = UICommand(title: "User Settings…",
                                             image: UIImage(systemName: "gear"),
                                             action: #selector(RiverbedSplitViewController.userSettings(_:)))
