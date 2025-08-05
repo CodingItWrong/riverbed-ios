@@ -106,6 +106,8 @@ class CollectionViewColumnCell: UICollectionViewCell,
             // OS <26, with an opaque background
             headerView.backgroundColor = .secondarySystemBackground
         }
+        
+        fixTitleColors()
     }
     
     func configureCollectionView() {
@@ -219,6 +221,12 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
     // MARK: - collection view delegate
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        fixTitleColors()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = card(for: indexPath)
         delegate?.didSelect(card: card)
@@ -227,6 +235,10 @@ class CollectionViewColumnCell: UICollectionViewCell,
     
     // MARK: - visuals
 
+    private func fixTitleColors() {
+        title.textColor = UIColor(cgColor: UIColor.label.cgColor)
+    }
+    
     private func configureColumnMenu() {
         columnMenuButton.menu = UIMenu(children: [
             UIAction(title: "Column settings", image: UIImage(systemName: "gear")) { _ in
