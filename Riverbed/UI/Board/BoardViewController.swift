@@ -676,7 +676,8 @@ class BoardViewController: UIViewController,
             prepare(cardViewController: cardVC, with: card)
 
         case "editBoard":
-            guard let editBoardVC = segue.destination as? EditBoardViewController else {
+            guard let editBoardNavController = segue.destination as? UINavigationController,
+                  let editBoardVC = editBoardNavController.topViewController as? EditBoardViewController else {
                 preconditionFailure("Expected EditBoardViewController")
             }
 
