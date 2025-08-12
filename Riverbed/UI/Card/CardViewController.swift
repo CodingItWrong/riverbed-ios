@@ -225,7 +225,7 @@ class CardViewController: UITableViewController,
         if action == #selector(addField(_:)) || action == #selector(addButton(_:)) || action == #selector(addButtonMenu(_:)) {
             return isEditing
         } else {
-            return true
+            return super.canPerformAction(action, withSender: sender)
         }
     }
     
