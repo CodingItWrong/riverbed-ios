@@ -5,6 +5,7 @@ enum Icon: String, Codable, CaseIterable {
     case baseball
     case bed
     case book
+    case car
     case chart
     case checkbox
     case food
@@ -23,6 +24,7 @@ enum Icon: String, Codable, CaseIterable {
         case .baseball: return "Baseball"
         case .bed: return "Bed"
         case .book: return "Book"
+        case .car: return "Car"
         case .chart: return "Chart"
         case .checkbox: return "Checkbox"
         case .food: return "Food"
@@ -44,6 +46,7 @@ enum Icon: String, Codable, CaseIterable {
         case .baseball: return UIImage(systemName: "baseball")
         case .bed: return UIImage(systemName: "bed.double")
         case .book: return UIImage(systemName: "book")
+        case .car: return UIImage(systemName: "car")
         case .chart: return UIImage(systemName: "chart.line.uptrend.xyaxis")
         case .checkbox: return UIImage(systemName: "checkmark.square")
         case .food: return UIImage(systemName: "takeoutbag.and.cup.and.straw")
