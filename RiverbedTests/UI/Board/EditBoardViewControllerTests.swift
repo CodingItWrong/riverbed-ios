@@ -114,7 +114,7 @@ final class EditBoardViewControllerTests: XCTestCase {
         
         XCTAssertEqual(cell.label.text, "Icon")
         XCTAssertEqual(cell.selectedValue as? Icon, attributes.icon)
-        XCTAssertEqual(cell.popUpButton.menu?.children.count, 16)
+        XCTAssertEqual(cell.popUpButton.menu?.children.count, 17)
         XCTAssertEqual(cell.popUpButton.menu?.children[0].title, "(none)")
         XCTAssertEqual(cell.popUpButton.menu?.children[1].title, "Baseball")
     }
