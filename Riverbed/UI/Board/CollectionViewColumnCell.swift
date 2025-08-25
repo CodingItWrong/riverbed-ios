@@ -241,10 +241,10 @@ class CollectionViewColumnCell: UICollectionViewCell,
     
     private func configureColumnMenu() {
         columnMenuButton.menu = UIMenu(children: [
-            UIAction(title: "Column settings", image: UIImage(systemName: "gear")) { _ in
+            UIAction(title: "Column Settings", image: UIImage(systemName: "gear")) { _ in
                 self.showColumnSettings()
             },
-            UIAction(title: "Delete column", image: UIImage(systemName: "trash")) { _ in
+            UIAction(title: "Delete Column", image: UIImage(systemName: "trash")) { _ in
                 // TODO: confirm
                 self.deleteColumn()
             },
