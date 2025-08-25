@@ -273,9 +273,8 @@ class CardViewController: UITableViewController,
     @IBAction func deleteCard(_ sender: Any?) {
         let alert = UIAlertController(title: "Delete?",
                                       message: "Are you sure you want to delete this card?",
-                                      preferredStyle: .alert)
+                                      preferredStyle: .actionSheet)
         if #available(iOS 16, *) {
-            // should display from button on iOS 26, but doesn't seem to
             alert.popoverPresentationController?.sourceItem = deleteButton
         }
 
