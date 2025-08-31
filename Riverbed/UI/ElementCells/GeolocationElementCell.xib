@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,17 +18,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="319"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Cud-Qf-MyB" userLabel="Geolocation Layout Stack">
-                        <rect key="frame" x="20" y="4" width="353" height="311"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Cud-Qf-MyB" userLabel="Geolocation Layout Stack">
+                        <rect key="frame" x="16" y="4" width="361" height="311"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-NO-SW8">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="53"/>
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="49"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Edg-Oc-IYS">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="53"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="49"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGs-fd-XNo">
-                                                <rect key="frame" x="6" y="0.0" width="31" height="53"/>
+                                                <rect key="frame" x="6" y="0.0" width="31" height="49"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -43,13 +43,13 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2n-EL-2d0" userLabel="Coordinates Row">
-                                <rect key="frame" x="0.0" y="57" width="353" height="50"/>
+                                <rect key="frame" x="0.0" y="55" width="361" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4gN-fZ-X4L" userLabel="Coordiantes Stack View">
-                                        <rect key="frame" x="0.0" y="8" width="233" height="34"/>
+                                        <rect key="frame" x="0.0" y="8" width="241" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="latitude" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ze9-3L-Sq5">
-                                                <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="115.66666666666667" height="34"/>
                                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -58,7 +58,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="longitude" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhK-bT-bEl">
-                                                <rect key="frame" x="121.66666666666666" y="0.0" width="111.33333333333334" height="34"/>
+                                                <rect key="frame" x="125.66666666666666" y="0.0" width="115.33333333333334" height="34"/>
                                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -69,7 +69,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QbF-7O-8VB" userLabel="Buttons Stack View">
-                                        <rect key="frame" x="243" y="0.0" width="110" height="50"/>
+                                        <rect key="frame" x="251" y="0.0" width="110" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLO-x4-JZu" userLabel="Current Location Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -127,7 +127,7 @@
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" rotateEnabled="NO" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzW-jt-RdL">
-                                <rect key="frame" x="0.0" y="111" width="353" height="200"/>
+                                <rect key="frame" x="0.0" y="111" width="361" height="200"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="kLv-uN-Oua"/>
@@ -140,8 +140,8 @@
                 <constraints>
                     <constraint firstItem="Cud-Qf-MyB" firstAttribute="top" secondItem="r9O-9P-KRO" secondAttribute="top" constant="4" id="IXy-dH-oKc"/>
                     <constraint firstAttribute="bottom" secondItem="Cud-Qf-MyB" secondAttribute="bottom" constant="4" id="XLs-HS-Uqr"/>
-                    <constraint firstItem="Cud-Qf-MyB" firstAttribute="leading" secondItem="r9O-9P-KRO" secondAttribute="leadingMargin" id="XPz-jI-5ec"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Cud-Qf-MyB" secondAttribute="trailing" id="icZ-yg-fuG"/>
+                    <constraint firstItem="Cud-Qf-MyB" firstAttribute="leading" secondItem="r9O-9P-KRO" secondAttribute="leading" constant="16" id="XPz-jI-5ec"/>
+                    <constraint firstAttribute="trailing" secondItem="Cud-Qf-MyB" secondAttribute="trailing" constant="16" id="icZ-yg-fuG"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -150,8 +150,10 @@
                 <outlet property="directionsButton" destination="Uga-g9-mCZ" id="dW8-Fx-D6i"/>
                 <outlet property="elementLabel" destination="JGs-fd-XNo" id="oDv-Gi-jSc"/>
                 <outlet property="latitudeTextField" destination="Ze9-3L-Sq5" id="P9N-lP-61h"/>
+                <outlet property="leadingConstraint" destination="XPz-jI-5ec" id="8jO-u7-n7N"/>
                 <outlet property="longitudeTextField" destination="vhK-bT-bEl" id="weh-dB-hEr"/>
                 <outlet property="mapView" destination="VzW-jt-RdL" id="nt5-gr-5m1"/>
+                <outlet property="trailingConstraint" destination="icZ-yg-fuG" id="ZDo-t3-jfM"/>
             </connections>
             <point key="canvasLocation" x="35.877862595419849" y="16.549295774647888"/>
         </tableViewCell>

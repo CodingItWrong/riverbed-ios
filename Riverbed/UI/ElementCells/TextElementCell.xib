@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="AAc-g0-Pw5">
-                        <rect key="frame" x="20" y="4" width="353" height="228"/>
+                        <rect key="frame" x="16" y="4" width="361" height="228"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OsI-fJ-EUa" userLabel="Label Container">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="14.333333333333334"/>
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="14.333333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fnr-Ig-NzS">
-                                        <rect key="frame" x="6" y="20" width="347" height="14.333333333333336"/>
+                                        <rect key="frame" x="6" y="20" width="355" height="14.333333333333336"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9k-tC-cRD">
-                                <rect key="frame" x="0.0" y="18.333333333333329" width="353" height="34"/>
+                                <rect key="frame" x="0.0" y="18.333333333333329" width="361" height="34"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -47,7 +47,7 @@
                                 </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" ambiguous="YES" scrollEnabled="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6EZ-Xk-a6B">
-                                <rect key="frame" x="0.0" y="56.333333333333329" width="353" height="171.66666666666669"/>
+                                <rect key="frame" x="0.0" y="56.333333333333329" width="361" height="171.66666666666669"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemFillColor"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -63,13 +63,15 @@
                 <constraints>
                     <constraint firstItem="AAc-g0-Pw5" firstAttribute="top" secondItem="3zH-l5-BuN" secondAttribute="top" constant="4" id="p4i-hm-XUm"/>
                     <constraint firstAttribute="bottom" secondItem="AAc-g0-Pw5" secondAttribute="bottom" constant="4" id="tpf-g7-8G3"/>
-                    <constraint firstItem="AAc-g0-Pw5" firstAttribute="leading" secondItem="3zH-l5-BuN" secondAttribute="leadingMargin" id="tud-o1-vhm"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="AAc-g0-Pw5" secondAttribute="trailing" id="yei-ic-ty7"/>
+                    <constraint firstItem="AAc-g0-Pw5" firstAttribute="leading" secondItem="3zH-l5-BuN" secondAttribute="leading" constant="16" id="tud-o1-vhm"/>
+                    <constraint firstAttribute="trailing" secondItem="AAc-g0-Pw5" secondAttribute="trailing" constant="16" id="yei-ic-ty7"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="elementLabel" destination="fnr-Ig-NzS" id="Bb7-eJ-tQJ"/>
                 <outlet property="layoutStack" destination="AAc-g0-Pw5" id="gcW-x4-YHX"/>
+                <outlet property="leadingConstraint" destination="tud-o1-vhm" id="n5j-Bj-z6Y"/>
+                <outlet property="trailingConstraint" destination="yei-ic-ty7" id="BtI-xL-Adf"/>
                 <outlet property="valueTextField" destination="k9k-tC-cRD" id="Euy-Nk-XC0"/>
                 <outlet property="valueTextView" destination="6EZ-Xk-a6B" id="8iq-4k-nkY"/>
             </connections>

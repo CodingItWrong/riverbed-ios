@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-eu-MVd">
-                        <rect key="frame" x="20" y="4" width="353" height="86"/>
+                        <rect key="frame" x="16" y="4" width="361" height="86"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTo-I2-sdU" userLabel="Label Container">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-gu-l0F">
                                         <rect key="frame" x="6" y="0.0" width="31" height="32"/>
@@ -38,7 +38,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THW-K9-5aD" userLabel="Dropdown Container">
-                                <rect key="frame" x="0.0" y="36" width="353" height="50"/>
+                                <rect key="frame" x="0.0" y="36" width="361" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EBc-HZ-lIE">
                                         <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="50"/>
@@ -68,14 +68,16 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="BOB-eu-MVd" secondAttribute="trailing" id="ZRc-Tv-l52"/>
-                    <constraint firstItem="BOB-eu-MVd" firstAttribute="leading" secondItem="qUL-O9-BQa" secondAttribute="leadingMargin" id="Zv1-TB-0Nl"/>
+                    <constraint firstAttribute="trailing" secondItem="BOB-eu-MVd" secondAttribute="trailing" constant="16" id="ZRc-Tv-l52"/>
+                    <constraint firstItem="BOB-eu-MVd" firstAttribute="leading" secondItem="qUL-O9-BQa" secondAttribute="leading" constant="16" id="Zv1-TB-0Nl"/>
                     <constraint firstAttribute="bottom" secondItem="BOB-eu-MVd" secondAttribute="bottom" constant="4" id="uDL-mE-P1L"/>
                     <constraint firstItem="BOB-eu-MVd" firstAttribute="top" secondItem="qUL-O9-BQa" secondAttribute="top" constant="4" id="uT9-8B-ggr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="elementLabel" destination="Bui-gu-l0F" id="rpf-Dm-gQk"/>
+                <outlet property="leadingConstraint" destination="Zv1-TB-0Nl" id="IiT-rd-1gU"/>
+                <outlet property="trailingConstraint" destination="ZRc-Tv-l52" id="2YO-9Z-10Y"/>
                 <outlet property="valuePopUpButton" destination="EBc-HZ-lIE" id="ZZK-sQ-1BR"/>
             </connections>
             <point key="canvasLocation" x="34.351145038167935" y="-45.774647887323944"/>

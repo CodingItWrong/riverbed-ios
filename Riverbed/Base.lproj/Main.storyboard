@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24118.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="7"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -253,18 +253,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="c9u-eZ-pbZ">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TQM-Pv-KD2">
-                                    <rect key="frame" x="8" y="16" width="369" height="44"/>
+                                    <rect key="frame" x="16" y="16" width="361" height="50"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cr-aJ-9eJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="249" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="229" height="50"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         </view>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-rV-DUI">
-                                            <rect key="frame" x="257" y="0.0" width="44" height="44"/>
+                                            <rect key="frame" x="237" y="0.0" width="50" height="50"/>
                                             <accessibility key="accessibilityConfiguration" label="Add Element"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="0Ux-rV-DUI" secondAttribute="height" id="obi-0r-Rff"/>
@@ -280,7 +280,7 @@
                                             <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                                         </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlJ-Ib-PWe" userLabel="End Editing Button">
-                                            <rect key="frame" x="257" y="0.0" width="44" height="44"/>
+                                            <rect key="frame" x="237" y="0.0" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="JlJ-Ib-PWe" secondAttribute="height" id="fDR-MP-6pI"/>
                                             </constraints>
@@ -291,7 +291,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Begin Edit Button">
-                                            <rect key="frame" x="265" y="0.0" width="44" height="44"/>
+                                            <rect key="frame" x="245" y="0.0" width="50" height="50"/>
                                             <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="wSu-gE-XFS" secondAttribute="height" id="nG4-sZ-c2d"/>
@@ -303,7 +303,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
-                                            <rect key="frame" x="325" y="0.0" width="44" height="44"/>
+                                            <rect key="frame" x="311" y="0.0" width="50" height="50"/>
                                             <accessibility key="accessibilityConfiguration" label="Delete Card"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="89r-lJ-Gxe" secondAttribute="height" id="jN1-MQ-3mS"/>
@@ -316,18 +316,20 @@
                                             </connections>
                                         </button>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="hsr-Yi-87Z"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="TQM-Pv-KD2" firstAttribute="top" secondItem="c9u-eZ-pbZ" secondAttribute="top" constant="16" id="MRh-gZ-ogL"/>
-                                <constraint firstAttribute="bottom" secondItem="TQM-Pv-KD2" secondAttribute="bottom" id="TMd-WZ-55J"/>
-                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" constant="8" id="VWJ-oW-F28"/>
+                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" constant="16" id="VWJ-oW-F28"/>
                                 <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" constant="16" id="YQz-uM-iVd"/>
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="hE7-qV-cou">
-                            <rect key="frame" x="0.0" y="60" width="393" height="44"/>
+                            <rect key="frame" x="0.0" y="70" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWO-4P-4CF">
@@ -368,7 +370,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2603" y="1519"/>
+            <point key="canvasLocation" x="2602.290076335878" y="1518.3098591549297"/>
         </scene>
         <!--Edit Column-->
         <scene sceneID="hE7-GH-1I4">

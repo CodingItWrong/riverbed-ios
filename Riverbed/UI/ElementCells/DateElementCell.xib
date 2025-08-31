@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="uYh-Ca-sp6">
-                        <rect key="frame" x="20" y="4" width="353" height="75"/>
+                        <rect key="frame" x="16" y="4" width="361" height="75"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykz-Ih-ueH">
-                                <rect key="frame" x="0.0" y="0.0" width="353" height="21"/>
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="21"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2l-ci-XKM">
-                                        <rect key="frame" x="6" y="0.0" width="347" height="21"/>
+                                        <rect key="frame" x="6" y="0.0" width="355" height="21"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -38,10 +38,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OP-Og-IFg">
-                                <rect key="frame" x="0.0" y="25" width="353" height="50"/>
+                                <rect key="frame" x="0.0" y="25" width="361" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="4NA-uv-pPR" userLabel="Date Picker Container">
-                                        <rect key="frame" x="0.0" y="0.0" width="303" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="311" height="50"/>
                                         <subviews>
                                             <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Fqo-XC-9cV">
                                                 <rect key="frame" x="0.0" y="8" width="303.33333333333331" height="34.333333333333336"/>
@@ -61,7 +61,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ID4-E4-QMb">
-                                        <rect key="frame" x="303" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="311" y="0.0" width="50" height="50"/>
                                         <accessibility key="accessibilityConfiguration" label="Clear Date"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="VfV-ie-fIw"/>
@@ -91,16 +91,18 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="uYh-Ca-sp6" firstAttribute="leading" secondItem="TCf-Cj-njC" secondAttribute="leadingMargin" id="L04-ra-M2k"/>
+                    <constraint firstItem="uYh-Ca-sp6" firstAttribute="leading" secondItem="TCf-Cj-njC" secondAttribute="leading" constant="16" id="L04-ra-M2k"/>
                     <constraint firstAttribute="bottom" secondItem="uYh-Ca-sp6" secondAttribute="bottom" constant="4" id="LYj-iY-8qm"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="uYh-Ca-sp6" secondAttribute="trailing" id="Pua-Zb-ClH"/>
+                    <constraint firstAttribute="trailing" secondItem="uYh-Ca-sp6" secondAttribute="trailing" constant="16" id="Pua-Zb-ClH"/>
                     <constraint firstItem="uYh-Ca-sp6" firstAttribute="top" secondItem="TCf-Cj-njC" secondAttribute="top" constant="4" id="hNV-j0-ZbV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="elementLabel" destination="p2l-ci-XKM" id="wgH-G1-NYD"/>
+                <outlet property="leadingConstraint" destination="L04-ra-M2k" id="t2M-CF-tWM"/>
                 <outlet property="noValueLabel" destination="QJd-OW-4X9" id="HUB-zr-d52"/>
                 <outlet property="toggleDateButton" destination="ID4-E4-QMb" id="8Rc-MV-iPv"/>
+                <outlet property="trailingConstraint" destination="Pua-Zb-ClH" id="egQ-iM-2VJ"/>
                 <outlet property="valueDatePicker" destination="Fqo-XC-9cV" id="ZV0-az-Tjt"/>
             </connections>
             <point key="canvasLocation" x="223.66412213740458" y="6.6901408450704229"/>

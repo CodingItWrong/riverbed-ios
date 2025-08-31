@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f37-Hu-oVb">
-                        <rect key="frame" x="20" y="4" width="353" height="47"/>
+                        <rect key="frame" x="16" y="4" width="361" height="47"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="1oa-mg-3Tl"/>
                         </constraints>
@@ -34,13 +34,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="f37-Hu-oVb" firstAttribute="top" secondItem="yxm-x3-U3d" secondAttribute="top" constant="4" id="OjH-Gi-zg3"/>
-                    <constraint firstItem="f37-Hu-oVb" firstAttribute="leading" secondItem="yxm-x3-U3d" secondAttribute="leadingMargin" id="fxO-MT-Hu0"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="f37-Hu-oVb" secondAttribute="trailing" id="j0j-jN-d3i"/>
+                    <constraint firstItem="f37-Hu-oVb" firstAttribute="leading" secondItem="yxm-x3-U3d" secondAttribute="leading" constant="16" id="fxO-MT-Hu0"/>
+                    <constraint firstAttribute="trailing" secondItem="f37-Hu-oVb" secondAttribute="trailing" constant="16" id="j0j-jN-d3i"/>
                     <constraint firstAttribute="bottom" secondItem="f37-Hu-oVb" secondAttribute="bottom" constant="4" id="yiH-fU-l4H"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="leadingConstraint" destination="fxO-MT-Hu0" id="5PW-xF-jRw"/>
                 <outlet property="menuButton" destination="f37-Hu-oVb" id="rqK-rv-Axq"/>
+                <outlet property="trailingConstraint" destination="j0j-jN-d3i" id="SYh-2J-1da"/>
             </connections>
             <point key="canvasLocation" x="287.78625954198475" y="-12.323943661971832"/>
         </tableViewCell>
