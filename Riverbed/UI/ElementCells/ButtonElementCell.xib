@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24093.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24053.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fe-Oo-lMf">
-                        <rect key="frame" x="20" y="4" width="353" height="45"/>
+                        <rect key="frame" x="16" y="4" width="361" height="45"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Vxu-8z-mhb"/>
                         </constraints>
@@ -31,14 +31,16 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="2fe-Oo-lMf" secondAttribute="trailing" id="Gn2-r3-1sl"/>
+                    <constraint firstAttribute="trailing" secondItem="2fe-Oo-lMf" secondAttribute="trailing" constant="16" id="Gn2-r3-1sl"/>
                     <constraint firstItem="2fe-Oo-lMf" firstAttribute="top" secondItem="bhY-28-5VL" secondAttribute="top" constant="4" id="e82-KJ-ZX8"/>
-                    <constraint firstItem="2fe-Oo-lMf" firstAttribute="leading" secondItem="bhY-28-5VL" secondAttribute="leadingMargin" id="i5o-aK-haJ"/>
+                    <constraint firstItem="2fe-Oo-lMf" firstAttribute="leading" secondItem="bhY-28-5VL" secondAttribute="leading" constant="16" id="i5o-aK-haJ"/>
                     <constraint firstAttribute="bottom" secondItem="2fe-Oo-lMf" secondAttribute="bottom" constant="4" id="xZm-8g-JEa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="button" destination="2fe-Oo-lMf" id="QFv-fK-yrc"/>
+                <outlet property="leadingConstraint" destination="i5o-aK-haJ" id="Lkq-7s-J2L"/>
+                <outlet property="trailingConstraint" destination="Gn2-r3-1sl" id="8wo-d5-lZX"/>
             </connections>
             <point key="canvasLocation" x="200.76335877862596" y="15.845070422535212"/>
         </tableViewCell>
