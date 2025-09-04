@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24093.9" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1y-V4-xli">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1y-V4-xli">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24057"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eke-vb-Bwj">
-                                <rect key="frame" x="272" y="134" width="50" height="50"/>
+                                <rect key="frame" x="16" y="134" width="50" height="50"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                                 <connections>
@@ -80,11 +80,11 @@
                             <constraint firstItem="00P-xz-cpD" firstAttribute="top" secondItem="2mx-sQ-fLL" secondAttribute="bottom" constant="5" id="RVc-Eg-Zbl"/>
                             <constraint firstItem="nr3-cR-KWX" firstAttribute="top" secondItem="E7l-pQ-61x" secondAttribute="bottom" constant="5" id="Ude-vt-dOP"/>
                             <constraint firstItem="Eke-vb-Bwj" firstAttribute="height" secondItem="FyU-fE-S9n" secondAttribute="height" id="cLV-4O-0yr"/>
+                            <constraint firstItem="Eke-vb-Bwj" firstAttribute="leading" secondItem="1Xd-am-t49" secondAttribute="leading" constant="16" id="fdC-xX-fVi"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="leading" secondItem="00P-xz-cpD" secondAttribute="leading" constant="-16" id="gvk-18-i71"/>
                             <constraint firstItem="nr3-cR-KWX" firstAttribute="leading" secondItem="00P-xz-cpD" secondAttribute="leading" id="od6-TA-TyN"/>
                             <constraint firstItem="1Xd-am-t49" firstAttribute="top" secondItem="FyU-fE-S9n" secondAttribute="top" constant="-16" id="pMT-9y-AJy"/>
                             <constraint firstItem="E7l-pQ-61x" firstAttribute="top" secondItem="00P-xz-cpD" secondAttribute="bottom" constant="5" id="pkr-kB-prm"/>
-                            <constraint firstItem="FyU-fE-S9n" firstAttribute="leading" secondItem="Eke-vb-Bwj" secondAttribute="trailing" constant="5" id="q28-EW-6f6"/>
                             <constraint firstItem="2mx-sQ-fLL" firstAttribute="top" secondItem="FyU-fE-S9n" secondAttribute="bottom" constant="5" id="qfp-gJ-w8Q"/>
                             <constraint firstItem="Eke-vb-Bwj" firstAttribute="centerY" secondItem="FyU-fE-S9n" secondAttribute="centerY" id="uds-tY-Ndj"/>
                             <constraint firstItem="E7l-pQ-61x" firstAttribute="leading" secondItem="2mx-sQ-fLL" secondAttribute="leading" id="wzy-16-kY0"/>
