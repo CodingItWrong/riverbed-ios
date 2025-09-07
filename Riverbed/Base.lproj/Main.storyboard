@@ -78,11 +78,11 @@
                                                                 <outlet property="delegate" destination="SQU-q4-32P" id="WLV-De-198"/>
                                                             </connections>
                                                         </collectionView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
-                                                            <rect key="frame" x="8" y="0.0" width="438" height="42.666666666666664"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
+                                                            <rect key="frame" x="8" y="0.0" width="438" height="60"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
-                                                                    <rect key="frame" x="8" y="8.0000000000000018" width="74" height="26.666666666666671"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
+                                                                    <rect key="frame" x="8" y="8" width="74" height="44"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                                     </accessibility>
@@ -90,11 +90,14 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
-                                                                    <rect key="frame" x="92" y="8" width="18.666666666666671" height="27"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
+                                                                    <rect key="frame" x="92" y="13" width="47.666666666666657" height="34.333333333333336"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Column Menu"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                                     <state key="normal" image="ellipsis" catalog="system"/>
+                                                                    <buttonConfiguration key="configuration" style="tinted" image="ellipsis" catalog="system">
+                                                                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle2"/>
+                                                                    </buttonConfiguration>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -102,7 +105,8 @@
                                                                 <constraint firstItem="d3b-ht-uh0" firstAttribute="bottom" secondItem="BkZ-Cr-bSx" secondAttribute="bottomMargin" id="6be-Z5-IgX"/>
                                                                 <constraint firstItem="d3b-ht-uh0" firstAttribute="leading" secondItem="BkZ-Cr-bSx" secondAttribute="leadingMargin" id="7cs-DW-n8p"/>
                                                                 <constraint firstItem="Cqb-rb-Iuq" firstAttribute="centerY" secondItem="d3b-ht-uh0" secondAttribute="centerY" id="asQ-Ki-s2M"/>
-                                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="top" secondItem="BkZ-Cr-bSx" secondAttribute="topMargin" id="zW7-FL-E9H"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="wed-9U-YpH"/>
+                                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="bottom" secondItem="BkZ-Cr-bSx" secondAttribute="bottomMargin" id="zW7-FL-E9H"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
