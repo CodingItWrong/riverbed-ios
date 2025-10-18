@@ -129,6 +129,7 @@ class CardViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.allowsSelectionDuringEditing = true
         updateInstructionLabel()
