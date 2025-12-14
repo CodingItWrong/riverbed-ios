@@ -46,6 +46,8 @@ class CustomShareViewController: UIViewController {
         
         let bodyDict = ["url": url, "title": title]
         
+        saveButton.isEnabled = false
+        
         webhookStore.postWebhook(bodyDict: bodyDict) { result in
             switch result {
             case .success:
@@ -53,6 +55,7 @@ class CustomShareViewController: UIViewController {
                     message: "Link saved.",
                     completion: self.done)
             case .failure(let error):
+                self.saveButton.isEnabled = true
                 self.alert(
                     message: error.localizedDescription,
                     completion: self.done)
@@ -67,9 +70,7 @@ class CustomShareViewController: UIViewController {
     // MARK: - helper methods
     
     private func prepopulateTextFields() {
-        loadingIndicator.startAnimating()
-//        loadingIndicator.isHidden = false
-//        print("showed loading indicator")
+//        loadingIndicator.startAnimating()
 
         guard let context = extensionContext,
               let items = context.inputItems as? [NSExtensionItem],
@@ -81,9 +82,7 @@ class CustomShareViewController: UIViewController {
         
         attachmentHandler.getURL(attachments: attachments) { [self] result in
             DispatchQueue.main.async {
-                self.loadingIndicator.stopAnimating()
-//                self.loadingIndicator.isHidden = true
-//                print("hid loading indicator")
+//                self.loadingIndicator.stopAnimating()
                 
                 switch result {
                 case .success(let sharedURL):
