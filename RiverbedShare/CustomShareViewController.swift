@@ -70,9 +70,7 @@ class CustomShareViewController: UIViewController {
     // MARK: - helper methods
     
     private func prepopulateTextFields() {
-        loadingIndicator.startAnimating()
-//        loadingIndicator.isHidden = false
-//        print("showed loading indicator")
+//        loadingIndicator.startAnimating()
 
         guard let context = extensionContext,
               let items = context.inputItems as? [NSExtensionItem],
@@ -84,9 +82,7 @@ class CustomShareViewController: UIViewController {
         
         attachmentHandler.getURL(attachments: attachments) { [self] result in
             DispatchQueue.main.async {
-                self.loadingIndicator.stopAnimating()
-//                self.loadingIndicator.isHidden = true
-//                print("hid loading indicator")
+//                self.loadingIndicator.stopAnimating()
                 
                 switch result {
                 case .success(let sharedURL):
