@@ -43,7 +43,7 @@ Authorization: Bearer {access_token}
 - **HTTP Method**: `POST`
 - **URL Parameters**: None
 - **Query Parameters**: None
-- **Authentication**: Bearer token (optional during signup)
+- **Authentication**: Required (Bearer token) - Note: The implementation always sends a Bearer token, which may be an empty string if no user is signed in. The backend should handle user signup appropriately.
 - **Content-Type**: `application/vnd.api+json`
 - **Request Body**: JSON:API format with user attributes (email, password, etc.)
 - **Implementation**: `UserStore.swift` - `create(with:completion:)`
@@ -270,7 +270,13 @@ Authorization: Bearer {access_token}
 - **Query Parameters**: None
 - **Authentication**: Required (Bearer token)
 - **Content-Type**: `application/json`
-- **Request Body**: JSON dictionary with share data (implementation-specific fields)
+- **Request Body**: JSON object with the following fields:
+  ```json
+  {
+    "url": "{string - URL being shared}",
+    "title": "{string - optional title/description of the URL}"
+  }
+  ```
 - **Expected Response**: HTTP 204 No Content
 - **Note**: Has a 5-second timeout configured
 - **Implementation**: `WebhookStore.swift` - `postWebhook(bodyDict:completion:)`
@@ -291,7 +297,7 @@ Authorization: Bearer {access_token}
 - **Webhooks/Shares**: 1 endpoint (Create)
 
 #### By HTTP Method:
-- **GET**: 7 endpoints
+- **GET**: 6 endpoints
 - **POST**: 7 endpoints
 - **PATCH**: 7 endpoints
 - **DELETE**: 5 endpoints
