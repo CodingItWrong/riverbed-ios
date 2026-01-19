@@ -31,7 +31,15 @@ Authorization: Bearer {access_token}
     "password": "{password}"
   }
   ```
-- **Response**: Returns `TokenResponse` with access token
+- **Response**: JSON object with the following structure:
+  ```json
+  {
+    "access_token": "{string - OAuth access token}",
+    "token_type": "{string - typically 'Bearer'}",
+    "created_at": {integer - Unix timestamp},
+    "user_id": {integer - ID of the authenticated user}
+  }
+  ```
 - **Implementation**: `TokenStore.swift` - `create(email:password:completion:)`
 
 ---
@@ -43,9 +51,21 @@ Authorization: Bearer {access_token}
 - **HTTP Method**: `POST`
 - **URL Parameters**: None
 - **Query Parameters**: None
-- **Authentication**: Required (Bearer token) - Note: The implementation always sends a Bearer token, which may be an empty string if no user is signed in. The backend should handle user signup appropriately.
+- **Authentication**: The iOS app always sends an `Authorization: Bearer {token}` header. During signup when no user is authenticated, the token will be an empty string (`Bearer `). The backend should treat this endpoint as public and either ignore the Authorization header or handle empty/invalid tokens gracefully during user registration.
 - **Content-Type**: `application/vnd.api+json`
-- **Request Body**: JSON:API format with user attributes (email, password, etc.)
+- **Request Body**: JSON:API format with the following structure:
+  ```json
+  {
+    "data": {
+      "type": "users",
+      "attributes": {
+        "email": "{string - user's email address}",
+        "password": "{string - user's password}",
+        "allow-emails": {boolean - optional, user's email preference}
+      }
+    }
+  }
+  ```
 - **Implementation**: `UserStore.swift` - `create(with:completion:)`
 
 ### 3. Get User
