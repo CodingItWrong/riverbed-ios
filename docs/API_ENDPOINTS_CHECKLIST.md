@@ -1,9 +1,10 @@
-# Backend API Migration Checklist
+# Backend API Migration Checklist (JSON:API Endpoints Only)
 
-Use this checklist to track the migration of backend routes to the new implementation. For detailed information about each endpoint, see [API_ENDPOINTS.md](./API_ENDPOINTS.md).
+Use this checklist to track the migration of JSON:API backend routes to the new implementation. For detailed information about all endpoints (including non-JSON:API endpoints like OAuth and webhooks), see [API_ENDPOINTS.md](./API_ENDPOINTS.md).
 
-## Authentication
-- [ ] `POST /oauth/token` - Create OAuth token (sign in)
+**Note**: This checklist only includes endpoints that use JSON:API format (`application/vnd.api+json`). Non-JSON:API endpoints (OAuth token creation and webhook/share) are documented in API_ENDPOINTS.md but excluded from this checklist.
+
+---
 
 ## Users
 - [ ] `POST /users` - Create user (sign up)
@@ -36,20 +37,22 @@ Use this checklist to track the migration of backend routes to the new implement
 - [ ] `PATCH /cards/{cardId}` - Update card
 - [ ] `DELETE /cards/{cardId}` - Delete card
 
-## Webhooks/Shares
-- [ ] `POST /shares` - Post webhook/share
-
 ---
 
 ## Migration Progress Summary
-- Total Endpoints: 23
+- Total JSON:API Endpoints: 21
 - Completed: 0
-- Remaining: 23
+- Remaining: 21
+
+## Excluded Non-JSON:API Endpoints
+The following endpoints use standard JSON format and are excluded from this checklist:
+- `POST /oauth/token` - OAuth token creation (uses `application/json`)
+- `POST /shares` - Webhook/share posting (uses `application/json`)
 
 ## Notes for Migration
-1. All endpoints (except `/oauth/token` and user signup) require Bearer token authentication
-2. Most endpoints use JSON:API format (`application/vnd.api+json`)
-3. OAuth token and webhook endpoints use standard `application/json`
+1. All endpoints in this checklist use JSON:API format (`application/vnd.api+json`)
+2. All endpoints (except user signup) require Bearer token authentication
+3. User signup sends an empty Bearer token when unauthenticated
 4. No query string parameters are currently used
 5. Date fields use a custom server date-time format
 6. Base URL: `https://api.riverbed.app/` (production) or `http://localhost:3000/` (development)
