@@ -440,6 +440,31 @@ CollectionViewColumnCell
 
 ---
 
+## Side-by-Side Testing (Old vs New Algorithm)
+
+To compare client-side and server-side filtering on the same Mac simultaneously, temporarily give the local Debug build a different bundle ID. This is a **temporary change — revert before release**.
+
+In `Riverbed.xcodeproj/project.pbxproj`, change the `Debug` configuration bundle ID for the main target only (leave `Release` unchanged):
+
+```
+// Debug (change this one)
+PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit.dev;
+
+// Release (leave unchanged)
+PRODUCT_BUNDLE_IDENTIFIER = com.codingitwrong.riverbed.uikit;
+```
+
+**Result:**
+- App Store build (`com.codingitwrong.riverbed.uikit`) — old client-side filtering
+- Local Debug build (`com.codingitwrong.riverbed.uikit.dev`) — new server-side filtering
+- Both appear as separate apps in Simulator, on device, and on Mac (Catalyst)
+- Both can run simultaneously; log in to each separately (keychain is scoped per bundle ID)
+- The share extension gets `.dev` appended too in debug — fine for comparison testing
+
+**Remember to revert** this change (restore the original bundle ID in the Debug configuration) before tagging a release.
+
+---
+
 ## Implementation Order
 
 1. Add `columnCardsURL` to `RiverbedAPI` + unit test
