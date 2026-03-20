@@ -10,7 +10,7 @@ Riverbed iOS is a native Swift UIKit app for iOS, iPadOS, and macOS (Catalyst). 
 
 - Open `Riverbed.xcodeproj` in Xcode and run
 - **Linting:** SwiftLint is required (install via Homebrew). It runs as an Xcode build phase
-- **Tests:** Run the `RiverbedTests` target in Xcode, or `xcodebuild test -project Riverbed.xcodeproj -scheme Riverbed -testPlan Riverbed -destination 'platform=iOS Simulator,name=iPhone 16'`
+- **Tests:** Run the `RiverbedTests` target in Xcode, or `xcodebuild test -project Riverbed.xcodeproj -scheme Riverbed -testPlan Riverbed -destination 'platform=iOS Simulator,name=iPhone 17'`
 - UI tests (`RiverbedUITests`) are disabled in the test plan
 
 ## Architecture
