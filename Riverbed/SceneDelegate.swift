@@ -38,7 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         boardVC.boardStore = boardStore
         boardVC.cardStore = CardStore(sessionSource: sessionSource)
-        boardVC.columnStore = ColumnStore(sessionSource: sessionSource)
+        boardVC.columnStore = ApiColumnStore(sessionSource: sessionSource)
         boardVC.elementStore = ElementStore(sessionSource: sessionSource)
         boardVC.delegate = boardListVC
     }
