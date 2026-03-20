@@ -45,6 +45,10 @@ struct RiverbedAPI {
         url(columnPath(columnId))
     }
 
+    static func columnCardsURL(for columnId: String) -> URL {
+        url(columnCardsPath(columnId))
+    }
+
     static func elementsURL() -> URL {
         url(elementsPath())
     }
@@ -109,6 +113,10 @@ struct RiverbedAPI {
 
     private static func columnPath(_ columnId: String) -> String {
         joinPathSegments(columnsPath(), columnId)
+    }
+
+    private static func columnCardsPath(_ columnId: String) -> String {
+        joinPathSegments(columnsPath(), columnId, "cards")
     }
 
     private static func elementPath(_ element: Element) -> String {
