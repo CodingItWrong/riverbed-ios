@@ -107,12 +107,6 @@
 		03830DD72C25B6A900EE360B /* ChoicesViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD62C25B6A900EE360B /* ChoicesViewControllerTests.swift */; };
 		03830DD92C25BF7300EE360B /* ButtonMenuItemsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DD82C25BF7300EE360B /* ButtonMenuItemsViewControllerTests.swift */; };
 		03830DDB2C25C77600EE360B /* ActionsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DDA2C25C77600EE360B /* ActionsViewControllerTests.swift */; };
-		03830DE12C26000100EE360B /* MockColumnStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DE02C26000000EE360B /* MockColumnStore.swift */; };
-		03830DE32C26000300EE360B /* MockElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DE22C26000200EE360B /* MockElementStore.swift */; };
-		03830DE52C26000500EE360B /* MockCardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DE42C26000400EE360B /* MockCardStore.swift */; };
-		03830DE72C26000700EE360B /* ColumnStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DE62C26000600EE360B /* ColumnStoreTests.swift */; };
-		03830DE92C26000900EE360B /* BoardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DE82C26000800EE360B /* BoardViewControllerTests.swift */; };
-		03830DEB2C26000B00EE360B /* CollectionViewColumnCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03830DEA2C26000A00EE360B /* CollectionViewColumnCellTests.swift */; };
 		038BBC2E2A1811C300BB2284 /* ElementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2D2A1811C300BB2284 /* ElementStore.swift */; };
 		038BBC302A1811C900BB2284 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC2F2A1811C900BB2284 /* Element.swift */; };
 		038BBC322A1823ED00BB2284 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038BBC312A1823ED00BB2284 /* CardViewController.swift */; };
@@ -285,12 +279,6 @@
 		03830DD62C25B6A900EE360B /* ChoicesViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoicesViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DD82C25BF7300EE360B /* ButtonMenuItemsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonMenuItemsViewControllerTests.swift; sourceTree = "<group>"; };
 		03830DDA2C25C77600EE360B /* ActionsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsViewControllerTests.swift; sourceTree = "<group>"; };
-		03830DE02C26000000EE360B /* MockColumnStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockColumnStore.swift; sourceTree = "<group>"; };
-		03830DE22C26000200EE360B /* MockElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockElementStore.swift; sourceTree = "<group>"; };
-		03830DE42C26000400EE360B /* MockCardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCardStore.swift; sourceTree = "<group>"; };
-		03830DE62C26000600EE360B /* ColumnStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStoreTests.swift; sourceTree = "<group>"; };
-		03830DE82C26000800EE360B /* BoardViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewControllerTests.swift; sourceTree = "<group>"; };
-		03830DEA2C26000A00EE360B /* CollectionViewColumnCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewColumnCellTests.swift; sourceTree = "<group>"; };
 		038BBC2D2A1811C300BB2284 /* ElementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementStore.swift; sourceTree = "<group>"; };
 		038BBC2F2A1811C900BB2284 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		038BBC312A1823ED00BB2284 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -552,8 +540,7 @@
 			children = (
 				03830DB02C23564200EE360B /* Enums */,
 				03830DAD2C23560C00EE360B /* Models */,
-				03830DE62C26000600EE360B /* ColumnStoreTests.swift */,
-			);
+				);
 			path = Data;
 			sourceTree = "<group>";
 		};
@@ -581,9 +568,7 @@
 		03830DAF2C23562500EE360B /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				03830DE82C26000800EE360B /* BoardViewControllerTests.swift */,
-				03830DEA2C26000A00EE360B /* CollectionViewColumnCellTests.swift */,
-				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
+					03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -630,10 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DD42C25AD7000EE360B /* MockBoardStore.swift */,
-				03830DE42C26000400EE360B /* MockCardStore.swift */,
-				03830DE02C26000000EE360B /* MockColumnStore.swift */,
-				03830DE22C26000200EE360B /* MockElementStore.swift */,
-				03830DC12C24528800EE360B /* MockTokenStore.swift */,
+					03830DC12C24528800EE360B /* MockTokenStore.swift */,
 				03830DC52C245F6E00EE360B /* MockUserStore.swift */,
 			);
 			path = Doubles;
@@ -1047,12 +1029,6 @@
 				03830DB92C23953900EE360B /* EditConditionViewControllerTests.swift in Sources */,
 				03830DD32C259F4A00EE360B /* TestHelpers.swift in Sources */,
 				03830DD52C25AD7000EE360B /* MockBoardStore.swift in Sources */,
-				03830DE12C26000100EE360B /* MockColumnStore.swift in Sources */,
-				03830DE32C26000300EE360B /* MockElementStore.swift in Sources */,
-				03830DE52C26000500EE360B /* MockCardStore.swift in Sources */,
-				03830DE72C26000700EE360B /* ColumnStoreTests.swift in Sources */,
-				03830DE92C26000900EE360B /* BoardViewControllerTests.swift in Sources */,
-				03830DEB2C26000B00EE360B /* CollectionViewColumnCellTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
