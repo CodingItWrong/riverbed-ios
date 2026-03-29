@@ -1,18 +1,6 @@
 import Foundation
 
-protocol ColumnStore {
-    func all(for board: Board, completion: @escaping (Result<[Column], Error>) -> Void)
-    func cards(for column: Column, completion: @escaping (Result<[Card], Error>) -> Void)
-    func create(on board: Board, completion: @escaping (Result<Column, Error>) -> Void)
-    func update(_ column: Column,
-                with updatedAttributes: Column.Attributes,
-                completion: @escaping (Result<Void, Error>) -> Void)
-    func updateDisplayOrders(of columns: [Column],
-                             completion: @escaping (Result<[Column], Error>) -> Void)
-    func delete(_ column: Column, completion: @escaping (Result<Void, Error>) -> Void)
-}
-
-class ApiColumnStore: BaseStore, ColumnStore {
+class ColumnStore: BaseStore {
     func all(for board: Board, completion: @escaping (Result<[Column], Error>) -> Void) {
         let url = RiverbedAPI.columnsURL(for: board)
         var request = URLRequest(url: url)
