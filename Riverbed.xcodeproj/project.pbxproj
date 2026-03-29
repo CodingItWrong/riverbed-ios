@@ -540,7 +540,7 @@
 			children = (
 				03830DB02C23564200EE360B /* Enums */,
 				03830DAD2C23560C00EE360B /* Models */,
-				);
+			);
 			path = Data;
 			sourceTree = "<group>";
 		};
@@ -568,7 +568,7 @@
 		03830DAF2C23562500EE360B /* Board */ = {
 			isa = PBXGroup;
 			children = (
-					03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
+				03830DAA2C232FAF00EE360B /* EditBoardViewControllerTests.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 			isa = PBXGroup;
 			children = (
 				03830DD42C25AD7000EE360B /* MockBoardStore.swift */,
-					03830DC12C24528800EE360B /* MockTokenStore.swift */,
+				03830DC12C24528800EE360B /* MockTokenStore.swift */,
 				03830DC52C245F6E00EE360B /* MockUserStore.swift */,
 			);
 			path = Doubles;
@@ -1253,6 +1253,7 @@
 				CURRENT_PROJECT_VERSION = 38;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main;
@@ -1284,6 +1285,7 @@
 				CURRENT_PROJECT_VERSION = 38;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Riverbed/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Fill in geolocation fields you configure";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = Main;
