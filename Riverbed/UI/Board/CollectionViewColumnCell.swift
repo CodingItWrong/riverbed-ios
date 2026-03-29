@@ -51,29 +51,20 @@ class CollectionViewColumnCell: UICollectionViewCell,
         }
     }
     var cards = [Card]() {
-        didSet { updateFilteredCards() }
-    }
-    var elements = [Element]() {
-        didSet { updateFilteredCards() }
-    }
-
-    var filteredCards = [Card]() {
         didSet {
             updateColumnTitle()
             updateCardGroups()
         }
     }
-    private func updateFilteredCards() {
-        guard let column = column else { return }
-
-        filteredCards = Card.filter(cards: cards, for: column, with: elements)
+    var elements = [Element]() {
+        didSet { updateCardGroups() }
     }
 
     var cardGroups = [CardGroup]()
     private func updateCardGroups() {
         guard let column = column else { return }
 
-        cardGroups = Card.group(cards: filteredCards, for: column, with: elements)
+        cardGroups = Card.group(cards: cards, for: column, with: elements)
 
         updateSnapshot()
     }
@@ -264,10 +255,10 @@ class CollectionViewColumnCell: UICollectionViewCell,
 
         switch summaryFunction {
         case .count:
-            return String(filteredCards.count)
+            return String(cards.count)
         case .sum:
             guard let summaryFieldId = summary.field else { return nil }
-            let values: [Decimal] = filteredCards
+            let values: [Decimal] = cards
                 .map { (card) in
                     if let value = singularizeOptionality(card.attributes.fieldValues[summaryFieldId]),
                        case let .string(valueString) = value,

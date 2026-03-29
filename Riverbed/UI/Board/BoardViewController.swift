@@ -44,7 +44,7 @@ class BoardViewController: UIViewController,
     var columnStore: ColumnStore!
     var elementStore: ElementStore!
 
-    var cards = [Card]()
+    var columnCards = [String: [Card]]()
     var columns = [Column]()
     var elements = [Element]()
 
@@ -178,7 +178,7 @@ class BoardViewController: UIViewController,
     // MARK: - data management
 
     func clearBoardData() {
-        cards = []
+        columnCards = [:]
         columns = []
         elements = []
         isFirstLoadingBoard = true
@@ -217,41 +217,22 @@ class BoardViewController: UIViewController,
         updateLoadingErrorDisplay(isError: false, refreshControl: refreshControl)
 
         var isError = false
-        var areCardsLoading = true
         var areColumnsLoading = true
         var areElementsLoading = true
 
-        func checkForLoadingDone() {
-            let loadingDone = !areCardsLoading && !areColumnsLoading && !areElementsLoading
-            if !loadingDone {
-                return
-            }
-
-            isLoadingBoard = false
-            updateLoadingErrorDisplay(isError: isError, refreshControl: refreshControl)
+        func checkForInitialLoadDone() {
+            if areColumnsLoading || areElementsLoading { return }
 
             if isError {
+                isLoadingBoard = false
+                updateLoadingErrorDisplay(isError: true, refreshControl: refreshControl)
                 clearBoardData()
                 return
-            } else {
-                isFirstLoadingBoard = false
-                updateSnapshot()
-                navigationItem.rightBarButtonItem?.isEnabled = true
             }
+
+            loadCardsForColumns(refreshControl: refreshControl)
         }
 
-        print("LOADING CARDS")
-        cardStore.all(for: board) { (result) in
-            switch result {
-            case let .success(cards):
-                self.cards = cards
-            case let .failure(error):
-                print("Error loading cards: \(error)")
-                isError = true
-            }
-            areCardsLoading = false
-            checkForLoadingDone()
-        }
         columnStore.all(for: board) { (result) in
             switch result {
             case let .success(columns):
@@ -262,7 +243,7 @@ class BoardViewController: UIViewController,
                 isError = true
             }
             areColumnsLoading = false
-            checkForLoadingDone()
+            checkForInitialLoadDone()
         }
         elementStore.all(for: board) { (result) in
             switch result {
@@ -273,7 +254,47 @@ class BoardViewController: UIViewController,
                 isError = true
             }
             areElementsLoading = false
-            checkForLoadingDone()
+            checkForInitialLoadDone()
+        }
+    }
+
+    private func loadCardsForColumns(refreshControl: UIRefreshControl?) {
+        let columnsToLoad = sortedColumns
+        if columnsToLoad.isEmpty {
+            finishLoading(isError: false, refreshControl: refreshControl)
+            return
+        }
+
+        var isError = false
+        var remainingCount = columnsToLoad.count
+
+        for column in columnsToLoad {
+            columnStore.cards(for: column) { (result) in
+                switch result {
+                case let .success(cards):
+                    self.columnCards[column.id] = cards
+                case let .failure(error):
+                    print("Error loading cards for column \(column.id): \(error)")
+                    isError = true
+                }
+                remainingCount -= 1
+                if remainingCount == 0 {
+                    self.finishLoading(isError: isError, refreshControl: refreshControl)
+                }
+            }
+        }
+    }
+
+    private func finishLoading(isError: Bool, refreshControl: UIRefreshControl?) {
+        isLoadingBoard = false
+        updateLoadingErrorDisplay(isError: isError, refreshControl: refreshControl)
+
+        if isError {
+            clearBoardData()
+        } else {
+            isFirstLoadingBoard = false
+            updateSnapshot()
+            navigationItem.rightBarButtonItem?.isEnabled = true
         }
     }
 
@@ -590,7 +611,7 @@ class BoardViewController: UIViewController,
                     cell.cardStore = self.cardStore
                     cell.column = column
                     cell.elements = self.elements
-                    cell.cards = self.cards
+                    cell.cards = self.columnCards[column.id] ?? []
 
                     if cell.collectionView.refreshControl == nil {
                         cell.collectionView.refreshControl = UIRefreshControl()

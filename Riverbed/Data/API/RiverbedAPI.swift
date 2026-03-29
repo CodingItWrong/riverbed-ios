@@ -3,10 +3,10 @@ import Foundation
 struct RiverbedAPI {
 #if targetEnvironment(simulator)
 //    private static let baseURL = URL(string: "http://localhost:3000/")
-    private static let baseURL = URL(string: "https://beta.api.riverbed.app/")
+    private static let baseURL = URL(string: "https://api.riverbed.app/")
 #else
 //    private static let baseURL = URL(string: "http://localhost:3000/")
-    private static let baseURL = URL(string: "https://beta.api.riverbed.app/")
+    private static let baseURL = URL(string: "https://api.riverbed.app/")
 #endif
 
     static func boardsURL() -> URL {
@@ -43,6 +43,10 @@ struct RiverbedAPI {
 
     static func columnURL(for columnId: String) -> URL {
         url(columnPath(columnId))
+    }
+
+    static func columnCardsURL(for columnId: String) -> URL {
+        url(columnCardsPath(columnId))
     }
 
     static func elementsURL() -> URL {
@@ -109,6 +113,10 @@ struct RiverbedAPI {
 
     private static func columnPath(_ columnId: String) -> String {
         joinPathSegments(columnsPath(), columnId)
+    }
+
+    private static func columnCardsPath(_ columnId: String) -> String {
+        joinPathSegments(columnsPath(), columnId, "cards")
     }
 
     private static func elementPath(_ element: Element) -> String {

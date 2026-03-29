@@ -15,6 +15,20 @@ class ColumnStore: BaseStore {
         task.resume()
     }
 
+    func cards(for column: Column, completion: @escaping (Result<[Card], Error>) -> Void) {
+        let url = RiverbedAPI.columnCardsURL(for: column.id)
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let result: Result<[Card], Error> = self.processResult((data, response, error))
+            OperationQueue.main.addOperation {
+                completion(result)
+            }
+        }
+        task.resume()
+    }
+
     func create(on board: Board, completion: @escaping (Result<Column, Error>) -> Void) {
         let url = RiverbedAPI.columnsURL()
         var request = URLRequest(url: url)
