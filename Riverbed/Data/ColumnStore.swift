@@ -16,7 +16,8 @@ class ColumnStore: BaseStore {
     }
 
     func cards(for column: Column, completion: @escaping (Result<[Card], Error>) -> Void) {
-        let url = RiverbedAPI.columnCardsURL(for: column.id)
+        let timezone = TimeZone.current.identifier
+        let url = RiverbedAPI.columnCardsURL(for: column.id, timezone: timezone)
         var request = URLRequest(url: url)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 

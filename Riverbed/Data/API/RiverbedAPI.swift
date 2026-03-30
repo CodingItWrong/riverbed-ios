@@ -45,8 +45,10 @@ struct RiverbedAPI {
         url(columnPath(columnId))
     }
 
-    static func columnCardsURL(for columnId: String) -> URL {
-        url(columnCardsPath(columnId))
+    static func columnCardsURL(for columnId: String, timezone: String) -> URL {
+        var components = URLComponents(url: url(columnCardsPath(columnId)), resolvingAgainstBaseURL: true)!
+        components.queryItems = [URLQueryItem(name: "timezone", value: timezone)]
+        return components.url!
     }
 
     static func elementsURL() -> URL {
