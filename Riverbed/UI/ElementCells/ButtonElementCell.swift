@@ -7,17 +7,17 @@ class ButtonElementCell: UITableViewCell, ElementCell {
     var buttonElement: Element!
     var allElements: [Element]!
 
-    @IBOutlet private(set) var button: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                button.configuration = .prominentGlass()
-            }
-        }
-    }
+    @IBOutlet private(set) var button: UIButton!
     
     @IBOutlet private(set) var leadingConstraint: NSLayoutConstraint!
     @IBOutlet private(set) var trailingConstraint: NSLayoutConstraint!
 
+    func applyLiquidGlassEffects() {
+        if #available(iOS 26, *) {
+            button.configuration = .prominentGlass()
+        }
+    }
+    
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         

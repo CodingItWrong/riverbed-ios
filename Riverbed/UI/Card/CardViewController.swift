@@ -21,15 +21,10 @@ class CardViewController: UITableViewController,
         }
     }
     
-    @IBOutlet private var beginEditingButton: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                beginEditingButton.configuration = .glass()
-                beginEditingButton.configuration?.image = UIImage(systemName: "wrench")
-            }
-        }
-    }
+    @IBOutlet private var beginEditingButton: UIButton!
 
+    @IBOutlet private var deleteButton: UIButton!
+    
     @IBOutlet private var endEditingButton: UIButton! {
         didSet {
             if #available(iOS 26, *) {
@@ -39,21 +34,14 @@ class CardViewController: UITableViewController,
         }
     }
 
-    @IBOutlet private var deleteButton: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                deleteButton.configuration = .prominentGlass()
-                deleteButton.configuration?.image = UIImage(systemName: "trash")
-            }
-        }
-    }
-    
     @IBOutlet private var instructionLabel: UILabel! {
         didSet {
             instructionLabel.text = nil
         }
     }
 
+    private var shouldApplyLiquidGlassEffects = false
+    
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
 
@@ -145,6 +133,19 @@ class CardViewController: UITableViewController,
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deleteButton.tintColor = .systemRed
+    }
+    
+    func applyLiquidGlassEffects() {
+        if #available(iOS 26, *) {
+            beginEditingButton.configuration = .glass()
+            beginEditingButton.configuration?.image = UIImage(systemName: "wrench")
+
+            deleteButton.configuration = .prominentGlass()
+            deleteButton.configuration?.image = UIImage(systemName: "trash")
+        }
+
+        shouldApplyLiquidGlassEffects = true
+        tableView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -339,6 +340,18 @@ class CardViewController: UITableViewController,
         cell.delegate = self
         let fieldValue = singularizeOptionality(fieldValues[element.id])
         cell.update(for: element, allElements: elements, fieldValue: fieldValue)
+        
+        // TODO: if button cell and not in preview mode, call to set liquid glass
+        if shouldApplyLiquidGlassEffects {
+            // TODO: remove duplication in cell type checks
+            if let buttonCell = cell as? ButtonElementCell {
+                buttonCell.applyLiquidGlassEffects()
+            }
+            if let buttonMenuCell = cell as? ButtonMenuElementCell {
+                buttonMenuCell.applyLiquidGlassEffects()
+            }
+        }
+        
         return cell
     }
 

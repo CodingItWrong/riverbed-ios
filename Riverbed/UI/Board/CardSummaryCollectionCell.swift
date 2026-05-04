@@ -237,6 +237,9 @@ class CardSummaryCollectionCell: UICollectionViewCell,
         guard let cardVC = animator.previewViewController as? CardViewController else {
             preconditionFailure("Expected a CardViewController")
         }
+        
+        cardVC.applyLiquidGlassEffects()
+        
         animator.addCompletion {
             self.delegate?.didSelect(preview: cardVC)
         }

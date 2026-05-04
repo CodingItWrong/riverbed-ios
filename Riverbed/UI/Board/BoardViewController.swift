@@ -687,6 +687,9 @@ class BoardViewController: UIViewController,
 
         switch segue.identifier {
         case "showCardDetail":
+            // only when navigating directly via tapping
+            // for opening preview see CardSummaryCollectionCell contextMenuInteraction(_:configurationForMenuAtLocation:)
+            // for taking preview to full navigation see CardSummaryCollectionCell contextMenuInteraction(_:willPerformPreviewActionForMenuWith:animator)
             guard let cardVC = segue.destination as? CardViewController else {
                 preconditionFailure("Expected CardViewController")
             }
@@ -695,6 +698,7 @@ class BoardViewController: UIViewController,
             }
 
             prepare(cardViewController: cardVC, with: card)
+            cardVC.applyLiquidGlassEffects()
 
         case "editBoard":
             guard let editBoardNavController = segue.destination as? UINavigationController,
