@@ -378,6 +378,9 @@ class CardViewController: UITableViewController,
         elementStore.updateDisplayOrders(of: sortedElements) { (result) in
             if case let .failure(error) = result {
                 print("Error updating display orders: \(String(describing: error))")
+            } else {
+                // reload in parent
+                self.delegate?.didUpdateElements(forCard: self.card)
             }
         }
     }
