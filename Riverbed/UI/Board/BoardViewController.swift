@@ -349,8 +349,13 @@ class BoardViewController: UIViewController,
     @IBAction func addCard(_ sender: Any?) {
         guard let board = board else { return }
 
+        addCardButton?.isEnabled = false
+        
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             guard let self = self else { return }
+            
+            addCardButton?.isEnabled = true
+            
             switch result {
             case let .success(card):
                 self.didSelect(card: card)
