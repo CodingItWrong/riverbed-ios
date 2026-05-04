@@ -56,6 +56,10 @@ class BoardViewController: UIViewController,
         button.configuration?.imagePadding = 5
         return button
     }()
+    
+    private var addCardButton: UIBarButtonItem? {
+        return navigationItem.rightBarButtonItem
+    }
 
     var board: Board? {
         didSet {
@@ -98,7 +102,7 @@ class BoardViewController: UIViewController,
             }
 
             if board?.id != oldValue?.id {
-                navigationItem.rightBarButtonItem?.isEnabled = false // until elements loaded
+                addCardButton?.isEnabled = false // until elements loaded
                 clearBoardData()
                 loadBoardData()
             }
@@ -294,7 +298,7 @@ class BoardViewController: UIViewController,
         } else {
             isFirstLoadingBoard = false
             updateSnapshot()
-            navigationItem.rightBarButtonItem?.isEnabled = true
+            addCardButton?.isEnabled = true
         }
     }
 
@@ -336,7 +340,7 @@ class BoardViewController: UIViewController,
 
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         if action == #selector(addCard(_:)) {
-            return navigationItem.rightBarButtonItem?.isEnabled ?? false
+            return addCardButton?.isEnabled ?? false
         } else {
             return super.canPerformAction(action, withSender: sender)
         }
@@ -345,8 +349,13 @@ class BoardViewController: UIViewController,
     @IBAction func addCard(_ sender: Any?) {
         guard let board = board else { return }
 
+        addCardButton?.isEnabled = false
+        
         cardStore.create(on: board, with: elements) { [weak self] (result) in
             guard let self = self else { return }
+            
+            addCardButton?.isEnabled = true
+            
             switch result {
             case let .success(card):
                 self.didSelect(card: card)
