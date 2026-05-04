@@ -471,7 +471,6 @@ class BoardViewController: UIViewController,
     }
 
     func didUpdateElements(forCard card: Card) {
-        // Could consider only reloading the cards
         loadBoardData()
     }
 
