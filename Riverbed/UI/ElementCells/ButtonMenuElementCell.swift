@@ -6,16 +6,16 @@ class ButtonMenuElementCell: UITableViewCell, ElementCell {
 
     var allElements: [Element]!
 
-    @IBOutlet private(set) var menuButton: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                menuButton.configuration = .prominentGlass()
-            }
-        }
-    }
+    @IBOutlet private(set) var menuButton: UIButton!
 
     @IBOutlet private(set) var leadingConstraint: NSLayoutConstraint!
     @IBOutlet private(set) var trailingConstraint: NSLayoutConstraint!
+
+    func applyLiquidGlassEffects() {
+        if #available(iOS 26, *) {
+            menuButton.configuration = .prominentGlass()
+        }
+    }
 
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)

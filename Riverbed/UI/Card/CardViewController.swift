@@ -40,6 +40,8 @@ class CardViewController: UITableViewController,
         }
     }
 
+    private var shouldApplyLiquidGlassEffects = false
+    
     weak var delegate: CardViewControllerDelegate?
     private var isCardDeleted = false
 
@@ -141,6 +143,9 @@ class CardViewController: UITableViewController,
             deleteButton.configuration = .prominentGlass()
             deleteButton.configuration?.image = UIImage(systemName: "trash")
         }
+
+        shouldApplyLiquidGlassEffects = true
+        tableView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -335,6 +340,18 @@ class CardViewController: UITableViewController,
         cell.delegate = self
         let fieldValue = singularizeOptionality(fieldValues[element.id])
         cell.update(for: element, allElements: elements, fieldValue: fieldValue)
+        
+        // TODO: if button cell and not in preview mode, call to set liquid glass
+        if shouldApplyLiquidGlassEffects {
+            // TODO: remove duplication in cell type checks
+            if let buttonCell = cell as? ButtonElementCell {
+                buttonCell.applyLiquidGlassEffects()
+            }
+            if let buttonMenuCell = cell as? ButtonMenuElementCell {
+                buttonMenuCell.applyLiquidGlassEffects()
+            }
+        }
+        
         return cell
     }
 
