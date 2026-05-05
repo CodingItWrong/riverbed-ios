@@ -359,6 +359,7 @@ class BoardViewController: UIViewController,
             switch result {
             case let .success(card):
                 self.didSelect(card: card)
+                self.loadBoardData()
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
                 self.showAlert(withErrorMessage: "An error occurred while adding a card.")
