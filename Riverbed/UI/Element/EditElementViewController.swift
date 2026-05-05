@@ -480,7 +480,8 @@ class EditElementViewController: UITableViewController,
 
     func didUpdate(choices: [Element.Choice]) {
         ensureOptionsPresent()
-        attributes.options?.choices = choices
+        attributes.options?.choices = choices // NOTE: seems to already be updated, maybe passes same mutable array
+        element.attributes.options?.choices = choices // needed because element passed to child
         tableView.reloadData()
     }
 
