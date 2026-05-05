@@ -202,6 +202,7 @@ class BoardListCollectionViewController: UICollectionViewController,
                                                                 item: board)
         }
         dataSource.supplementaryViewProvider = { (collectionView, kind, index) in
+            // TODO: add the kind in here
             if kind == UICollectionView.elementKindSectionHeader {
                 return collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: index)
             } else {
