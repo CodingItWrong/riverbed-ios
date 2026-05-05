@@ -15,7 +15,7 @@ class EditElementNavigationController: UINavigationController {
                 preconditionFailure("Expected EditColumnViewController")
             }
             editElementVC.element = element
-            editElementVC.attributes = attributes
+            editElementVC.attributes = attributes // TODO: try to remove this so we avoid duplication
         }
     }
 
