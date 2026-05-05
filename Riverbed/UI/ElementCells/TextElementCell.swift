@@ -41,7 +41,6 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     func configureForCurrentSizeClass() {
         let constant = traitCollection.horizontalSizeClass == .compact ? 16.0 : 20.0
         
-        print("updating constraint constants to \(constant)")
         leadingConstraint.constant = constant
         trailingConstraint.constant = constant
     }
