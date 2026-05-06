@@ -62,6 +62,7 @@ class CardViewController: UITableViewController,
     }
     var originalFieldValues = [String: FieldValue?]()
     var fieldValues = [String: FieldValue?]()
+    var isNewCard: Bool!
 
     func loadFieldValues() {
         // get latest values from server in case it's changed from the list view
