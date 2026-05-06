@@ -152,7 +152,7 @@ class CardViewController: UITableViewController,
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let isCardChanged = fieldValues != originalFieldValues
+        let isCardChanged = isNewCard || fieldValues != originalFieldValues
 
         if isCardDeleted {
             delegate?.didDelete(card: card)
