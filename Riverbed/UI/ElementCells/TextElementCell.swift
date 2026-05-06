@@ -128,7 +128,9 @@ class TextElementCell: UITableViewCell, ElementCell, UITextFieldDelegate, UIText
     func passUpdatedValueToDelegate(_ value: String?) {
         guard let element = element,
               let value = value else { return }
-        delegate?.update(value: .string(value), for: element)
+        
+        let canChangeHeight = element.attributes.options?.multiline ?? false
+        delegate?.update(value: .string(value), for: element, canChangeHeight: canChangeHeight)
     }
 
 }

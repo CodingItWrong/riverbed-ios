@@ -154,7 +154,7 @@ class EditConditionViewController: UITableViewController,
 
     var fieldValues = [String: FieldValue?]()
 
-    func update(value: FieldValue?, for element: Element) {
+    func update(value: FieldValue?, for element: Element, canChangeHeight: Bool) {
         if condition.options == nil {
             condition.options = Condition.Options()
         }

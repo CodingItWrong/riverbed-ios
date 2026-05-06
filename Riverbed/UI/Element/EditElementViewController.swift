@@ -458,7 +458,7 @@ class EditElementViewController: UITableViewController,
 
     var fieldValues = [String: FieldValue?]()
 
-    func update(value: FieldValue?, for element: Element) {
+    func update(value: FieldValue?, for element: Element, canChangeHeight: Bool) {
         ensureOptionsPresent()
         attributes.options?.initialSpecificValue = value
     }

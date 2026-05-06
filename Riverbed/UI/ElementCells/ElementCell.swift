@@ -3,8 +3,15 @@ import UIKit
 protocol ElementCellDelegate: AnyObject {
     var fieldValues: [String: FieldValue?] { get }
 
-    func update(value: FieldValue?, for element: Element)
+    func update(value: FieldValue?, for element: Element, canChangeHeight: Bool)
     func update(values: [String: FieldValue?], dismiss: Bool)
+}
+
+extension ElementCellDelegate {
+    // effectively make canChangeHeight an optional argument with default value false
+    func update(value: FieldValue?, for element: Element) {
+        update(value: value, for: element, canChangeHeight: false)
+    }
 }
 
 protocol ElementCell: UITableViewCell {

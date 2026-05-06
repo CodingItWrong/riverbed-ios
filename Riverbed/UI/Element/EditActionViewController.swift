@@ -156,7 +156,7 @@ class EditActionViewController: UITableViewController,
 
     var fieldValues: [String: FieldValue?] = [:] // unused
 
-    func update(value: FieldValue?, for element: Element) {
+    func update(value: FieldValue?, for element: Element, canChangeHeight: Bool) {
         action.specificValue = value
     }
 
