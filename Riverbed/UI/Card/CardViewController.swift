@@ -442,7 +442,10 @@ class CardViewController: UITableViewController,
             }
         }
 
-        recomputeTableCellSizes()
+        // recomputeTableCellSizes causes shadow flicker on macOS, so avoid it unless necessary
+        if (canChangeHeight) {
+            recomputeTableCellSizes()
+        }
     }
 
     func update(values: [String: FieldValue?], dismiss: Bool) {
