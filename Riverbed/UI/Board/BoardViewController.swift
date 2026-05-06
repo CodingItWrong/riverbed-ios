@@ -38,6 +38,7 @@ class BoardViewController: UIViewController,
     
     var isLoadingBoard = false
     var isFirstLoadingBoard = true
+    var wasLastCardSelectionByCreation = false
 
     var boardStore: BoardStore!
     var cardStore: CardStore!
@@ -358,8 +359,8 @@ class BoardViewController: UIViewController,
             
             switch result {
             case let .success(card):
+                wasLastCardSelectionByCreation = true
                 self.didSelect(card: card)
-                self.loadBoardData()
             case let .failure(error):
                 print("Error creating card: \(String(describing: error))")
                 self.showAlert(withErrorMessage: "An error occurred while adding a card.")
@@ -747,6 +748,10 @@ class BoardViewController: UIViewController,
         cardViewController.elementStore = elementStore
         cardViewController.cardStore = cardStore // TODO: setter order dependency unfortunate
         cardViewController.card = card
+        cardViewController.isNewCard = wasLastCardSelectionByCreation
+        
+        // reset
+        wasLastCardSelectionByCreation = false
     }
 
 }

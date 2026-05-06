@@ -62,6 +62,7 @@ class CardViewController: UITableViewController,
     }
     var originalFieldValues = [String: FieldValue?]()
     var fieldValues = [String: FieldValue?]()
+    var isNewCard: Bool!
 
     func loadFieldValues() {
         // get latest values from server in case it's changed from the list view
@@ -151,7 +152,7 @@ class CardViewController: UITableViewController,
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let isCardChanged = fieldValues != originalFieldValues
+        let isCardChanged = isNewCard || fieldValues != originalFieldValues
 
         if isCardDeleted {
             delegate?.didDelete(card: card)
