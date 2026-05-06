@@ -431,7 +431,7 @@ class CardViewController: UITableViewController,
         delegate?.didUpdateElements(forCard: card)
     }
 
-    func update(value: FieldValue?, for element: Element) {
+    func update(value: FieldValue?, for element: Element, canChangeHeight: Bool = false) {
         // avoid creating a new instance if not needed, to preserve value equality
         if fieldValues[element.id] != value {
             if case let .string(stringValue) = value,
@@ -442,7 +442,10 @@ class CardViewController: UITableViewController,
             }
         }
 
-        recomputeTableCellSizes()
+        // recomputeTableCellSizes causes shadow flicker on macOS, so avoid it unless necessary
+        if (canChangeHeight) {
+            recomputeTableCellSizes()
+        }
     }
 
     func update(values: [String: FieldValue?], dismiss: Bool) {
