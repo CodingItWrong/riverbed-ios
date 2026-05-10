@@ -235,6 +235,12 @@ class CollectionViewColumnCell: UICollectionViewCell,
             UIAction(title: "Column Settings", image: UIImage(systemName: "gear")) { _ in
                 self.showColumnSettings()
             },
+            UIAction(title: "Move Column Left", image: UIImage(systemName: "arrow.left")) { _ in
+                // TODO
+            },
+            UIAction(title: "Move Column Right", image: UIImage(systemName: "arrow.right")) { _ in
+                // TODO
+            },
             UIAction(title: "Delete Column",
                      image: UIImage(systemName: "trash"),
                      attributes: [.destructive]) { _ in
