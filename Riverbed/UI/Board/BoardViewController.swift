@@ -617,7 +617,7 @@ class BoardViewController: UIViewController,
                         for: indexPath) as? CollectionViewColumnCell
                     else { preconditionFailure("Expected a CollectionViewColumnCell") }
 
-                    cell.delegate = self // needs to come first
+                    cell.columnCellDelegate = self // needs to come first
                     cell.cardStore = self.cardStore
                     cell.column = column
                     cell.elements = self.elements

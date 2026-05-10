@@ -13,7 +13,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         case noCards
     }
 
-    weak var delegate: ColumnCellDelegate?
+    weak var columnCellDelegate: ColumnCellDelegate?
 
     @IBOutlet var headerView: UIView!
     @IBOutlet var title: UILabel!
@@ -160,7 +160,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
                         withReuseIdentifier: cellIdentifier, for: indexPath) as? CardSummaryCollectionCell
                     else { preconditionFailure("Expected a CardSummaryCollectionCell")}
                     cell.configureData(card: card, elements: self.elements)
-                    cell.delegate = self.delegate // forward the delegate so cell can call directly through to it
+                    cell.delegate = self.columnCellDelegate // forward the delegate so cell can call directly through to it
                     return cell
                 }
         })
@@ -220,7 +220,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = card(for: indexPath)
-        delegate?.didSelect(card: card)
+        columnCellDelegate?.didSelect(card: card)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
@@ -282,13 +282,13 @@ class CollectionViewColumnCell: UICollectionViewCell,
     // MARK: - actions
 
     @IBAction func showColumnSettings() {
-        guard let delegate = delegate,
+        guard let delegate = columnCellDelegate,
               let column = column else { return }
         delegate.edit(column: column)
     }
 
     @IBAction func deleteColumn() {
-        guard let delegate = delegate,
+        guard let delegate = columnCellDelegate,
               let column = column else { return }
         delegate.delete(column: column)
     }
