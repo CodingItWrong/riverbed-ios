@@ -7,6 +7,7 @@ protocol ColumnCellDelegate: AnyObject {
     func update(card: Card, with fieldValues: [String: FieldValue?])
     func delete(card: Card)
     func edit(column: Column)
+    func move(column: Column, direction: HorizontalDirection)
     func delete(column: Column)
 }
 
@@ -60,6 +61,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
             title.text = titleText
         }
     }
+    
     var cards = [Card]() {
         didSet {
             updateColumnTitle()
@@ -246,10 +248,10 @@ class CollectionViewColumnCell: UICollectionViewCell,
                 self.showColumnSettings()
             },
             UIAction(title: "Move Column Left", image: UIImage(systemName: "arrow.left")) { _ in
-                // TODO
+                self.moveColumn(.left)
             },
             UIAction(title: "Move Column Right", image: UIImage(systemName: "arrow.right")) { _ in
-                // TODO
+                self.moveColumn(.right)
             },
             UIAction(title: "Delete Column",
                      image: UIImage(systemName: "trash"),
@@ -295,6 +297,12 @@ class CollectionViewColumnCell: UICollectionViewCell,
         guard let delegate = columnCellDelegate,
               let column = column else { return }
         delegate.edit(column: column)
+    }
+    
+    func moveColumn(_ direction: HorizontalDirection) {
+        guard let delegate = columnCellDelegate,
+              let column = column else { return }
+        delegate.move(column: column, direction: direction)
     }
 
     @IBAction func deleteColumn() {
