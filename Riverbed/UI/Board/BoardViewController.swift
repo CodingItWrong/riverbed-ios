@@ -5,6 +5,11 @@ protocol BoardDelegate: AnyObject {
     func didDelete(board: Board)
 }
 
+enum HorizontalDirection: Int {
+    case left = -1
+    case right = 1
+}
+
 class BoardViewController: UIViewController,
                            UICollectionViewDelegateFlowLayout,
                            BoardListDelegate,
@@ -483,6 +488,38 @@ class BoardViewController: UIViewController,
     func edit(column: Column) {
         performSegue(withIdentifier: "editColumn", sender: column)
     }
+    
+    func move(column: Column, direction: HorizontalDirection) {
+        // find column current location
+        let sourceIndex = sortedColumns.firstIndex { $0.id == column.id }
+        guard let sourceIndex = sourceIndex else { return }
+        let destinationIndex = sourceIndex + direction.rawValue
+        
+        // check if can be moved
+        let canBeMoved = switch direction {
+        case .left: sourceIndex > 0
+        case .right: sourceIndex < sortedColumns.count - 1
+        }
+        guard canBeMoved else { return }
+        
+        // move
+        move(column: column, from: sourceIndex, to: destinationIndex)
+        
+        // update UI
+        updateSnapshot()
+    }
+    
+    func move(column: Column, from sourceIndex: Int, to destinationIndex: Int) {
+        sortedColumns.remove(at: sourceIndex)
+        sortedColumns.insert(column, at: destinationIndex)
+
+        // persist to server
+        columnStore.updateDisplayOrders(of: sortedColumns) { (result) in
+            if case let .failure(error) = result {
+                print("Error updating display orders: \(String(describing: error))")
+            }
+        }
+    }
 
     func delete(column: Column) {
         let columnDescriptor = column.attributes.name ?? "this board"
@@ -617,7 +654,7 @@ class BoardViewController: UIViewController,
                         for: indexPath) as? CollectionViewColumnCell
                     else { preconditionFailure("Expected a CollectionViewColumnCell") }
 
-                    cell.delegate = self // needs to come first
+                    cell.columnCellDelegate = self // needs to come first
                     cell.cardStore = self.cardStore
                     cell.column = column
                     cell.elements = self.elements
@@ -660,15 +697,7 @@ class BoardViewController: UIViewController,
 
         // move in local data
         let movedColumn = sortedColumns[sourceIndexPath.row]
-        sortedColumns.remove(at: sourceIndexPath.row)
-        sortedColumns.insert(movedColumn, at: destinationIndexPath.row)
-
-        // persist to server
-        columnStore.updateDisplayOrders(of: sortedColumns) { (result) in
-            if case let .failure(error) = result {
-                print("Error updating display orders: \(String(describing: error))")
-            }
-        }
+        move(column: movedColumn, from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
 
     @IBAction func moveColumn(_ gesture: UILongPressGestureRecognizer) {

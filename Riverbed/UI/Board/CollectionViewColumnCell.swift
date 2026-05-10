@@ -1,5 +1,16 @@
 import UIKit
 
+protocol ColumnCellDelegate: AnyObject {
+    func didSelect(card: Card)
+    func getPreview(forCard card: Card) -> CardViewController
+    func didSelect(preview viewController: CardViewController)
+    func update(card: Card, with fieldValues: [String: FieldValue?])
+    func delete(card: Card)
+    func edit(column: Column)
+    func move(column: Column, direction: HorizontalDirection)
+    func delete(column: Column)
+}
+
 class CollectionViewColumnCell: UICollectionViewCell,
                                 UICollectionViewDelegate {
 
@@ -13,7 +24,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
         case noCards
     }
 
-    weak var delegate: ColumnCellDelegate?
+    weak var columnCellDelegate: ColumnCellDelegate?
 
     @IBOutlet var headerView: UIView!
     @IBOutlet var title: UILabel!
@@ -50,6 +61,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
             title.text = titleText
         }
     }
+    
     var cards = [Card]() {
         didSet {
             updateColumnTitle()
@@ -160,7 +172,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
                         withReuseIdentifier: cellIdentifier, for: indexPath) as? CardSummaryCollectionCell
                     else { preconditionFailure("Expected a CardSummaryCollectionCell")}
                     cell.configureData(card: card, elements: self.elements)
-                    cell.delegate = self.delegate // forward the delegate so cell can call directly through to it
+                    cell.delegate = self.columnCellDelegate // forward the delegate so cell can call directly through to it
                     return cell
                 }
         })
@@ -220,7 +232,7 @@ class CollectionViewColumnCell: UICollectionViewCell,
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let card = card(for: indexPath)
-        delegate?.didSelect(card: card)
+        columnCellDelegate?.didSelect(card: card)
         collectionView.deselectItem(at: indexPath, animated: true)
     }
     
@@ -234,6 +246,12 @@ class CollectionViewColumnCell: UICollectionViewCell,
         columnMenuButton.menu = UIMenu(children: [
             UIAction(title: "Column Settings", image: UIImage(systemName: "gear")) { _ in
                 self.showColumnSettings()
+            },
+            UIAction(title: "Move Column Left", image: UIImage(systemName: "arrow.left")) { _ in
+                self.moveColumn(.left)
+            },
+            UIAction(title: "Move Column Right", image: UIImage(systemName: "arrow.right")) { _ in
+                self.moveColumn(.right)
             },
             UIAction(title: "Delete Column",
                      image: UIImage(systemName: "trash"),
@@ -276,13 +294,19 @@ class CollectionViewColumnCell: UICollectionViewCell,
     // MARK: - actions
 
     @IBAction func showColumnSettings() {
-        guard let delegate = delegate,
+        guard let delegate = columnCellDelegate,
               let column = column else { return }
         delegate.edit(column: column)
     }
+    
+    func moveColumn(_ direction: HorizontalDirection) {
+        guard let delegate = columnCellDelegate,
+              let column = column else { return }
+        delegate.move(column: column, direction: direction)
+    }
 
     @IBAction func deleteColumn() {
-        guard let delegate = delegate,
+        guard let delegate = columnCellDelegate,
               let column = column else { return }
         delegate.delete(column: column)
     }
