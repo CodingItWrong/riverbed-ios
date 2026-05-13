@@ -36,11 +36,14 @@ final class CardTests: XCTestCase {
         let cardA = Card(id: "A",
                          attributes: Card.Attributes(
                             fieldValues: ["text": .string("A")]))
-        let cardB = Card(id: "B",
+        let cardC = Card(id: "C",
                          attributes: Card.Attributes(
-                            fieldValues: ["text": .string("B")]))
-        let cards = [cardB, cardA]
-        let expectedCards = [cardA, cardB]
+                            fieldValues: ["text": .string("C")]))
+        let cardLowercaseB = Card(id: "b",
+                         attributes: Card.Attributes(
+                            fieldValues: ["text": .string("b")]))
+        let cards = [cardLowercaseB, cardA, cardC]
+        let expectedCards = [cardA, cardLowercaseB, cardC]
         let column = Column(
             id: "27",
             attributes: Column.Attributes(name: "DUMMY",
