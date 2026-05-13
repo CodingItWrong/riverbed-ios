@@ -103,7 +103,8 @@ extension Card {
                   case let .string(aValue) = aValue else { return true }
             guard let bValue = cardB.attributes.fieldValues[field],
                   case let .string(bValue) = bValue else { return false }
-            return aValue < bValue
+            
+            return aValue.lowercased() < bValue.lowercased()
         }
         switch direction {
         case .ascending: return sortedCards
