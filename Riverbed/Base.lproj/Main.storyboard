@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25084" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="7"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25061"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -78,10 +77,10 @@
                                                                 <outlet property="delegate" destination="SQU-q4-32P" id="WLV-De-198"/>
                                                             </connections>
                                                         </collectionView>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkZ-Cr-bSx" userLabel="Column Header">
                                                             <rect key="frame" x="8" y="0.0" width="438" height="60"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Column" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3b-ht-uh0" userLabel="Column Name">
                                                                     <rect key="frame" x="8" y="8" width="74" height="44"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" header="YES"/>
@@ -90,7 +89,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
+                                                                <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cqb-rb-Iuq">
                                                                     <rect key="frame" x="92" y="13" width="47.666666666666657" height="34.333333333333336"/>
                                                                     <accessibility key="accessibilityConfiguration" label="Column Menu"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
@@ -102,7 +101,7 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="Cqb-rb-Iuq" firstAttribute="leading" secondItem="d3b-ht-uh0" secondAttribute="trailing" constant="10" id="4Vp-P6-ua2"/>
-                                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="bottom" secondItem="BkZ-Cr-bSx" secondAttribute="bottomMargin" id="6be-Z5-IgX"/>
+                                                                <constraint firstItem="d3b-ht-uh0" firstAttribute="top" secondItem="BkZ-Cr-bSx" secondAttribute="topMargin" id="6be-Z5-IgX"/>
                                                                 <constraint firstItem="d3b-ht-uh0" firstAttribute="leading" secondItem="BkZ-Cr-bSx" secondAttribute="leadingMargin" id="7cs-DW-n8p"/>
                                                                 <constraint firstItem="Cqb-rb-Iuq" firstAttribute="centerY" secondItem="d3b-ht-uh0" secondAttribute="centerY" id="asQ-Ki-s2M"/>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="wed-9U-YpH"/>
@@ -1147,11 +1146,11 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="trash" catalog="system" width="117" height="128"/>
-        <image name="wrench" catalog="system" width="128" height="124"/>
+        <image name="checkmark" catalog="system" width="128" height="118"/>
+        <image name="ellipsis" catalog="system" width="128" height="41"/>
+        <image name="plus" catalog="system" width="128" height="118"/>
+        <image name="trash" catalog="system" width="113" height="128"/>
+        <image name="wrench" catalog="system" width="128" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
@@ -1162,10 +1161,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.21960784310000001" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.53333333329999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
