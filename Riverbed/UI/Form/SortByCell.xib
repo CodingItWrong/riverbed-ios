@@ -62,12 +62,8 @@
                                         </constraints>
                                         <menu key="menu" id="5Sx-F1-gEk">
                                             <children>
-                                                <command title="(direction)" input="" id="SzA-G0-xWA">
-                                                    <keyModifierFlags key="modifierFlags" shift="YES"/>
-                                                </command>
-                                                <command title="Ascending" input="" id="Zqr-RT-AIr" userLabel="Ascending">
-                                                    <keyModifierFlags key="modifierFlags" shift="YES"/>
-                                                </command>
+                                                <command title="(direction)" id="SzA-G0-xWA"/>
+                                                <command title="Ascending" id="Zqr-RT-AIr" userLabel="Ascending"/>
                                                 <command title="Descending" id="5QS-K7-SAV" userLabel="Descending"/>
                                             </children>
                                         </menu>
