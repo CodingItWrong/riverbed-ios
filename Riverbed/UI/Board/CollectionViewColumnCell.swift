@@ -131,20 +131,26 @@ class CollectionViewColumnCell: UICollectionViewCell,
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize,
                                                      subitems: [item])
 
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(10)),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top)
-
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0,
                                                         leading: 0,
                                                         bottom: 10,
                                                         trailing: 0)
-        section.boundarySupplementaryItems = [sectionHeader]
-        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        // prevent Duo crash in partially folded pose
+        if environment.container.effectiveContentSize.width > 0 {
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(10)),
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top)
+
+            section.boundarySupplementaryItems = [sectionHeader]
+        }
+        let layout = UICollectionViewCompositionalLayout {
+        
+        (section: section)
 
         collectionView.collectionViewLayout = layout
         collectionView.allowsFocus = true
