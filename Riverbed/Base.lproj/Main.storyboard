@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25084" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kue-E1-G6l">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <accessibilityOverrides dynamicTypePreference="7"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25061"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -232,7 +232,7 @@
                         <outlet property="outerViewBottomNonSafeAreaConstraint" destination="ZXO-jT-Dwg" id="PbZ-yM-vJy"/>
                         <outlet property="outerViewBottomSafeAreaConstraint" destination="lYz-Eq-q2m" id="cSK-D8-zkI"/>
                         <outlet property="reloadIndicator" destination="ONw-m3-two" id="Em8-PO-V8a"/>
-                        <segue destination="6X2-2e-DlT" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
+                        <segue destination="Me5-nn-6bE" kind="presentation" identifier="showCardDetail" modalPresentationStyle="formSheet" id="pX9-jO-neL"/>
                         <segue destination="1Ck-EN-DbN" kind="presentation" identifier="editBoard" modalPresentationStyle="formSheet" id="RVW-Pl-hBX"/>
                         <segue destination="zqR-CJ-8Qs" kind="presentation" identifier="editColumn" modalPresentationStyle="formSheet" id="Eo8-M9-iRK"/>
                     </connections>
@@ -255,84 +255,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="c9u-eZ-pbZ">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="TQM-Pv-KD2">
-                                    <rect key="frame" x="16" y="16" width="361" height="50"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cr-aJ-9eJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="229" height="50"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        </view>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-rV-DUI">
-                                            <rect key="frame" x="237" y="0.0" width="50" height="50"/>
-                                            <accessibility key="accessibilityConfiguration" label="Add Element"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="0Ux-rV-DUI" secondAttribute="height" id="obi-0r-Rff"/>
-                                            </constraints>
-                                            <menu key="menu" id="bh6-0w-My0">
-                                                <children>
-                                                    <command title="New Field" id="NT5-aJ-h1Q" userLabel="Add Field"/>
-                                                    <command title="New Button" id="h0E-Fm-PoR" userLabel="Add Button"/>
-                                                    <command title="New Button Menu" id="4Ov-jc-m1Q" userLabel="Add Button Menu"/>
-                                                </children>
-                                            </menu>
-                                            <state key="normal" image="plus" catalog="system"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlJ-Ib-PWe" userLabel="End Editing Button">
-                                            <rect key="frame" x="237" y="0.0" width="50" height="50"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="JlJ-Ib-PWe" secondAttribute="height" id="fDR-MP-6pI"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="checkmark" catalog="system"/>
-                                            <connections>
-                                                <action selector="endEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="kc1-HP-Q1I"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSu-gE-XFS" userLabel="Begin Edit Button">
-                                            <rect key="frame" x="245" y="0.0" width="50" height="50"/>
-                                            <accessibility key="accessibilityConfiguration" label="Edit Elements"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="wSu-gE-XFS" secondAttribute="height" id="nG4-sZ-c2d"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="wrench" catalog="system"/>
-                                            <connections>
-                                                <action selector="beginEditing:" destination="6X2-2e-DlT" eventType="touchUpInside" id="Pge-KX-PNP"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89r-lJ-Gxe" userLabel="Delete Button">
-                                            <rect key="frame" x="311" y="0.0" width="50" height="50"/>
-                                            <accessibility key="accessibilityConfiguration" label="Delete Card"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="89r-lJ-Gxe" secondAttribute="height" id="jN1-MQ-3mS"/>
-                                            </constraints>
-                                            <color key="tintColor" systemColor="systemRedColor"/>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
-                                            <connections>
-                                                <action selector="deleteCard:" destination="6X2-2e-DlT" eventType="touchUpInside" id="lRx-rI-zt0"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="hsr-Yi-87Z"/>
-                                    </constraints>
-                                </stackView>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="top" secondItem="c9u-eZ-pbZ" secondAttribute="top" constant="16" id="MRh-gZ-ogL"/>
-                                <constraint firstItem="TQM-Pv-KD2" firstAttribute="leading" secondItem="c9u-eZ-pbZ" secondAttribute="leading" constant="16" id="VWJ-oW-F28"/>
-                                <constraint firstAttribute="trailing" secondItem="TQM-Pv-KD2" secondAttribute="trailing" constant="16" id="YQz-uM-iVd"/>
-                            </constraints>
-                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="hE7-qV-cou">
-                            <rect key="frame" x="0.0" y="70" width="393" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWO-4P-4CF">
@@ -356,11 +280,33 @@
                             <outletCollection property="gestureRecognizers" destination="fs0-M9-WBu" appends="YES" id="yTj-ft-lQp"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="WfA-AN-9z6">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="EdP-jF-dju">
+                                <connections>
+                                    <action selector="deleteCard:" destination="6X2-2e-DlT" id="HlV-uM-e37"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Edit" image="wrench.adjustable" catalog="system" id="bq6-qZ-CiP">
+                                <connections>
+                                    <action selector="beginEditing:" destination="6X2-2e-DlT" id="LV8-52-2Uc"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Done" image="checkmark" catalog="system" hidden="YES" id="RVE-3O-R86">
+                                <connections>
+                                    <action selector="endEditing:" destination="6X2-2e-DlT" id="Ctj-p1-Gz4"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" hidden="YES" id="fNH-Rb-sgg"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="addElementButton" destination="0Ux-rV-DUI" id="d7r-3r-Rkb"/>
-                        <outlet property="beginEditingButton" destination="wSu-gE-XFS" id="ckA-95-bMc"/>
-                        <outlet property="deleteButton" destination="89r-lJ-Gxe" id="sta-0S-ivy"/>
-                        <outlet property="endEditingButton" destination="JlJ-Ib-PWe" id="Q3f-xJ-g6j"/>
+                        <outlet property="addElementButton" destination="fNH-Rb-sgg" id="Zkp-cF-I8Q"/>
+                        <outlet property="beginEditingButton" destination="bq6-qZ-CiP" id="Wqz-hF-YLC"/>
+                        <outlet property="deleteButton" destination="EdP-jF-dju" id="xwg-rs-nU5"/>
+                        <outlet property="endEditingButton" destination="RVE-3O-R86" id="6F6-9d-f6g"/>
                         <outlet property="instructionLabel" destination="iWO-4P-4CF" id="HvC-00-keF"/>
                         <outlet property="tapGestureRecognizer" destination="fs0-M9-WBu" id="t8H-mn-hZb"/>
                         <segue destination="viv-Vs-YnU" kind="presentation" identifier="editElement" modalPresentationStyle="formSheet" id="68U-AT-SHy"/>
@@ -373,7 +319,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2602.290076335878" y="1518.3098591549297"/>
+            <point key="canvasLocation" x="3529.0076335877861" y="1518.3098591549297"/>
         </scene>
         <!--Edit Column-->
         <scene sceneID="hE7-GH-1I4">
@@ -408,7 +354,7 @@
             <objects>
                 <tableViewController id="U7h-wc-2y0" customClass="ConditionsViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="8FP-Em-TOF">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="condition" textLabel="X7e-DY-tiu" style="IBUITableViewCellStyleDefault" id="EBq-R6-YOG">
@@ -447,14 +393,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYy-0W-W7x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5278" y="1091"/>
+            <point key="canvasLocation" x="6203.8167938931292" y="1090.8450704225352"/>
         </scene>
         <!--Edit Condition-->
         <scene sceneID="a5l-HO-HU1">
             <objects>
                 <tableViewController id="oMr-Le-tR8" customClass="EditConditionViewController" customModule="Riverbed" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="WoX-ap-Zgm">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
@@ -484,7 +430,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6060" y="1089"/>
+            <point key="canvasLocation" x="6985.4961832061063" y="1088.7323943661972"/>
         </scene>
         <!--Board Settings-->
         <scene sceneID="wnt-6z-bVb">
@@ -565,7 +511,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4413.04347826087" y="1518.75"/>
+            <point key="canvasLocation" x="5339.6946564885493" y="1518.3098591549297"/>
         </scene>
         <!--My Boards-->
         <scene sceneID="hWi-Hn-0Rq">
@@ -849,7 +795,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hho-99-E5C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3502.898550724638" y="1518.75"/>
+            <point key="canvasLocation" x="4428.2442748091598" y="1518.3098591549297"/>
         </scene>
         <!--Actions-->
         <scene sceneID="Azi-Tz-scf">
@@ -895,7 +841,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BH9-yh-TuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6874" y="1518"/>
+            <point key="canvasLocation" x="7799.2366412213742" y="1517.605633802817"/>
         </scene>
         <!--Edit Action-->
         <scene sceneID="NAC-WO-e3M">
@@ -921,7 +867,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="7673" y="1518"/>
+            <point key="canvasLocation" x="8599.2366412213742" y="1517.605633802817"/>
         </scene>
         <!--User Settings-->
         <scene sceneID="bI4-oV-Nrd">
@@ -1072,7 +1018,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHz-H7-3aF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5295" y="1943"/>
+            <point key="canvasLocation" x="6220.6106870229005" y="1942.9577464788733"/>
         </scene>
         <!--Edit Button Menu Item-->
         <scene sceneID="3I8-BH-MQ3">
@@ -1101,7 +1047,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6094" y="1943"/>
+            <point key="canvasLocation" x="7020.6106870229005" y="1942.9577464788733"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yKY-l3-AiU">
@@ -1139,18 +1085,35 @@
             </objects>
             <point key="canvasLocation" x="1921" y="46"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yvf-6m-rfT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Me5-nn-6bE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2rq-Nb-TrY">
+                        <rect key="frame" x="0.0" y="16" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6X2-2e-DlT" kind="relationship" relationship="rootViewController" id="ypA-KH-D5T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qR4-4I-XTo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2602.290076335878" y="1518.3098591549297"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="usA-OV-bnJ"/>
-        <segue reference="En7-Rs-8j7"/>
+        <segue reference="a1h-7Y-iTO"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="tintColor"/>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="118"/>
         <image name="ellipsis" catalog="system" width="128" height="41"/>
         <image name="plus" catalog="system" width="128" height="118"/>
-        <image name="trash" catalog="system" width="113" height="128"/>
-        <image name="wrench" catalog="system" width="128" height="128"/>
+        <image name="wrench.adjustable" catalog="system" width="128" height="128"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

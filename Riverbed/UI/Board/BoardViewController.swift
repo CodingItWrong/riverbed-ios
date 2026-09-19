@@ -729,7 +729,10 @@ class BoardViewController: UIViewController,
             // only when navigating directly via tapping
             // for opening preview see CardSummaryCollectionCell contextMenuInteraction(_:configurationForMenuAtLocation:)
             // for taking preview to full navigation see CardSummaryCollectionCell contextMenuInteraction(_:willPerformPreviewActionForMenuWith:animator)
-            guard let cardVC = segue.destination as? CardViewController else {
+            guard let navVC = segue.destination as? UINavigationController else {
+                preconditionFailure("Expected UINavigationController")
+            }
+            guard let cardVC = navVC.viewControllers.first as? CardViewController else {
                 preconditionFailure("Expected CardViewController")
             }
             guard let card = sender as? Card else {
