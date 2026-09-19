@@ -12,27 +12,13 @@ class CardViewController: UITableViewController,
 
     @IBOutlet private var tapGestureRecognizer: UIGestureRecognizer!
     
-    @IBOutlet private var addElementButton: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                addElementButton.configuration = .glass()
-                addElementButton.configuration?.image = UIImage(systemName: "plus")
-            }
-        }
-    }
+    @IBOutlet private var addElementButton: UIBarButtonItem!
     
-    @IBOutlet private var beginEditingButton: UIButton!
+    @IBOutlet private var beginEditingButton: UIBarButtonItem!
 
-    @IBOutlet private var deleteButton: UIButton!
+    @IBOutlet private var deleteButton: UIBarButtonItem!
     
-    @IBOutlet private var endEditingButton: UIButton! {
-        didSet {
-            if #available(iOS 26, *) {
-                endEditingButton.configuration = .prominentGlass()
-                endEditingButton.configuration?.image = UIImage(systemName: "checkmark")
-            }
-        }
-    }
+    @IBOutlet private var endEditingButton: UIBarButtonItem!
 
     @IBOutlet private var instructionLabel: UILabel! {
         didSet {
@@ -137,14 +123,6 @@ class CardViewController: UITableViewController,
     }
     
     func applyLiquidGlassEffects() {
-        if #available(iOS 26, *) {
-            beginEditingButton.configuration = .glass()
-            beginEditingButton.configuration?.image = UIImage(systemName: "wrench")
-
-            deleteButton.configuration = .prominentGlass()
-            deleteButton.configuration?.image = UIImage(systemName: "trash")
-        }
-
         shouldApplyLiquidGlassEffects = true
         tableView.reloadData()
     }
